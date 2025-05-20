@@ -68,6 +68,7 @@ public class PlayerController : MonoBehaviour
         Vector3 direction = new Vector3(horizontal, 0f, vertical).normalized;
         animator.SetFloat("Speed", direction.magnitude);
 
+
         if (direction.magnitude >= 0.1f)
         {
             float targetAngle = Mathf.Atan2(direction.x, direction.z) * Mathf.Rad2Deg + cam.eulerAngles.y;
@@ -92,6 +93,7 @@ public class PlayerController : MonoBehaviour
         else
         {
             isSprinting = false;
+            animator.SetBool("RunWhichWeapon", false);
         }
     }
 
@@ -132,12 +134,14 @@ public class PlayerController : MonoBehaviour
             {
                 isDashing = false;
                 isSprinting = true;
+                animator.SetBool("RunWhichWeapon", true);
             }
         }
 
         if (isSprinting && Input.GetAxisRaw("Horizontal") == 0 && Input.GetAxisRaw("Vertical") == 0)
         {
             isSprinting = false;
+            animator.SetBool("RunWhichWeapon", false);
         }
     }
 
@@ -152,5 +156,4 @@ public class PlayerController : MonoBehaviour
             }
         }
     }
-
 }
