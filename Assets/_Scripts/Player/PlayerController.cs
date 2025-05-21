@@ -68,6 +68,7 @@ public class PlayerController : MonoBehaviour
         Vector3 direction = new Vector3(horizontal, 0f, vertical).normalized;
         animator.SetFloat("Speed", direction.magnitude);
 
+
         if (direction.magnitude >= 0.1f)
         {
             float targetAngle = Mathf.Atan2(direction.x, direction.z) * Mathf.Rad2Deg + cam.eulerAngles.y;
@@ -92,6 +93,7 @@ public class PlayerController : MonoBehaviour
         else
         {
             isSprinting = false;
+            animator.SetBool("RunWhichWeapon", false);
         }
     }
 
@@ -102,15 +104,21 @@ public class PlayerController : MonoBehaviour
         if (isGrounded && velocity.y < 0)
         {
             velocity.y = -2f;
+            animator.SetBool("IsJumping", false);
+            animator.SetBool("IsFalling", false);
+            animator.SetBool("IsGrounded", true);
         }
 
         if (Input.GetButtonDown("Jump") && isGrounded)
         {
             velocity.y = Mathf.Sqrt(jumpHeight * -2f * gravity);
+            animator.SetBool("IsJumping", true);
+            animator.SetBool("IsGrounded", false);
         }
 
         velocity.y += gravity * Time.deltaTime;
         controller.Move(velocity * Time.deltaTime);
+        animator.SetBool("IsFalling", !isGrounded && velocity.y < 0);
     }
 
     private void Dash()
@@ -132,12 +140,14 @@ public class PlayerController : MonoBehaviour
             {
                 isDashing = false;
                 isSprinting = true;
+                animator.SetBool("RunWhichWeapon", true);
             }
         }
 
         if (isSprinting && Input.GetAxisRaw("Horizontal") == 0 && Input.GetAxisRaw("Vertical") == 0)
         {
             isSprinting = false;
+            animator.SetBool("RunWhichWeapon", false);
         }
     }
 
@@ -152,5 +162,4 @@ public class PlayerController : MonoBehaviour
             }
         }
     }
-
 }
