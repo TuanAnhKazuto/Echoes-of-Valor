@@ -161,7 +161,7 @@ AnimatorStateMachine:
   m_StateMachineBehaviours: []
   m_AnyStatePosition: {x: 50, y: 20, z: 0}
   m_EntryPosition: {x: 50, y: 120, z: 0}
-  m_ExitPosition: {x: 950, y: 0, z: 0}
+  m_ExitPosition: {x: 50, y: 230, z: 0}
   m_ParentStateMachinePosition: {x: 800, y: 20, z: 0}
   m_DefaultState: {fileID: -8699932265280351056}
 --- !u!1102 &-3344956291105996630
@@ -377,7 +377,7 @@ AnimatorController:
     m_DefaultInt: 0
     m_DefaultBool: 0
     m_Controller: {fileID: 9100000}
-  - m_Name: RunWhichWeapon2
+  - m_Name: RunWhenCombat
     m_Type: 4
     m_DefaultFloat: 0
     m_DefaultInt: 0
@@ -473,7 +473,7 @@ AnimatorStateTransition:
   m_Name: 
   m_Conditions:
   - m_ConditionMode: 1
-    m_ConditionEvent: RunWhichWeapon2
+    m_ConditionEvent: RunWhenCombat
     m_EventTreshold: 0
   - m_ConditionMode: 2
     m_ConditionEvent: RunWhichWeapon
@@ -731,7 +731,7 @@ AnimatorStateTransition:
   m_Name: 
   m_Conditions:
   - m_ConditionMode: 1
-    m_ConditionEvent: RunWhichWeapon2
+    m_ConditionEvent: RunWhenCombat
     m_EventTreshold: 0
   m_DstStateMachine: {fileID: 0}
   m_DstState: {fileID: 7503515083587989919}
@@ -759,7 +759,7 @@ AnimatorStateTransition:
     m_ConditionEvent: RunWhichWeapon
     m_EventTreshold: 0
   - m_ConditionMode: 2
-    m_ConditionEvent: RunWhichWeapon2
+    m_ConditionEvent: RunWhenCombat
     m_EventTreshold: 0
   m_DstStateMachine: {fileID: 0}
   m_DstState: {fileID: -2719412300210213606}
@@ -857,7 +857,7 @@ AnimatorState:
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
-  m_Name: Run_Which_Weapon_2
+  m_Name: Run_When_Combat
   m_Speed: 1
   m_CycleOffset: 0
   m_Transitions:
@@ -940,7 +940,7 @@ AnimatorStateTransition:
   m_Name: 
   m_Conditions:
   - m_ConditionMode: 2
-    m_ConditionEvent: RunWhichWeapon2
+    m_ConditionEvent: RunWhenCombat
     m_EventTreshold: 0
   m_DstStateMachine: {fileID: 0}
   m_DstState: {fileID: -3344956291105996630}
