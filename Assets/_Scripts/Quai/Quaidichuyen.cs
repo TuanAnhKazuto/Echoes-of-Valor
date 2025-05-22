@@ -1,26 +1,59 @@
 ﻿using UnityEngine;
+using UnityEngine.AI;
 
 public class Quaidichuyen : MonoBehaviour
 {
-    public Transform player;         // Người chơi
-    public float moveSpeed = 3f;     // Tốc độ di chuyển
-    public float chaseRange = 10f;   // Khoảng cách phát hiện
+    public float detectionRange = 10f;
+    public float attackRange = 2f;
+    public float attackCooldown = 1.5f;
+    public int damage = 10;
+
+    private Transform player;
+    private NavMeshAgent agent;
+    private Animator animator;
+    private float lastAttackTime;
+
+    void Start()
+    {
+        player = GameObject.FindGameObjectWithTag("Player").transform;
+        agent = GetComponent<NavMeshAgent>();
+        animator = GetComponent<Animator>();
+    }
 
     void Update()
     {
         float distance = Vector3.Distance(transform.position, player.position);
 
-        if (distance < chaseRange)
+        if (distance <= detectionRange)
         {
-            // Tính hướng đến người chơi
-            Vector3 direction = (player.position - transform.position).normalized;
+            agent.SetDestination(player.position);
+            animator.SetBool("isRunning", true);
 
-            // Di chuyển tới người chơi
-            transform.position += direction * moveSpeed * Time.deltaTime;
+            if (distance <= attackRange)
+            {
+                Attack();
+            }
+        }
+        else
+        {
+            agent.ResetPath();
+            animator.SetBool("isRunning", false);
+        }
+    }
 
-            // Quay mặt theo hướng di chuyển
-            Quaternion toRotation = Quaternion.LookRotation(direction);
-            transform.rotation = Quaternion.Slerp(transform.rotation, toRotation, 5f * Time.deltaTime);
+    void Attack()
+    {
+        if (Time.time - lastAttackTime > attackCooldown)
+        {
+            lastAttackTime = Time.time;
+            animator.SetTrigger("attack");
+
+            // Gây sát thương nếu cần
+            HEALTH HEALTH = player.GetComponent<HEALTH>();
+            if (HEALTH != null)
+            {
+                HEALTH.TakeDamage(damage);
+            }
         }
     }
 }
