@@ -44,6 +44,10 @@ public class PlayerController : MonoBehaviour
     public float staminaDrainRate = 15f;
     public float staminaRegenRate = 10f;
 
+    // Attack
+    [Header("Attack Settings")]
+    public bool isAttacking = false;
+
     private void Start()
     {
         currentStamina = maxStamina;
@@ -51,7 +55,7 @@ public class PlayerController : MonoBehaviour
 
     private void Update()
     {
-        if (!isDashing)
+        if (!isDashing || !isAttacking)
         {
             Movement();
             Jump();
