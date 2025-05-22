@@ -9,6 +9,7 @@ public class PlayerController : MonoBehaviour
     public CharacterController controller;
     public Transform cam;
 
+    public float moveSpeed;
     public float speed = 6f;
     public float sprintSpeed = 12f;
     public float jumpHeight = 3f;
@@ -81,7 +82,7 @@ public class PlayerController : MonoBehaviour
 
             Vector3 moveDir = Quaternion.Euler(0f, targetAngle, 0f) * Vector3.forward;
 
-            float moveSpeed = isSprinting && currentStamina > 0f ? sprintSpeed : speed;
+            moveSpeed = isSprinting && currentStamina > 0f ? sprintSpeed : speed;
             controller.Move(moveDir.normalized * moveSpeed * Time.deltaTime);
 
             if (isSprinting)
