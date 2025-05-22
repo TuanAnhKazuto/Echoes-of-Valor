@@ -129,6 +129,7 @@ public class PlayerController : MonoBehaviour
             dashTimer = dashDuration;
             dashDirection = transform.forward;
             currentStamina -= 10f;
+            animator.SetTrigger("Dashing");
         }
 
         if (isDashing)
