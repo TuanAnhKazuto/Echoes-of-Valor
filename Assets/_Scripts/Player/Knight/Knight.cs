@@ -1,6 +1,6 @@
 ﻿using UnityEngine;
 
-public class KnightAttack : MonoBehaviour
+public class Knight : MonoBehaviour
 {
     public PlayerController player;
     public GameObject hitBox;
@@ -10,11 +10,12 @@ public class KnightAttack : MonoBehaviour
     private float nextAttackTime = 0f;
     public static int noOfClicks = 0;
     float lastClickedTime = 0f;
-    float maxComboDelay = 2f;
+    float maxComboDelay = 1f;
 
     private void Start()
     {
         anim = player.animator;
+        player.isAttacking = false;
     }
 
     private void Update()
@@ -24,7 +25,17 @@ public class KnightAttack : MonoBehaviour
 
     void Attack()
     {
-        player.isAttacking = true;
+        if (player.isDashing)
+        {
+            player.isAttacking = false;
+            anim.SetBool("IsAttack1", false);
+            anim.SetBool("IsAttack2", false);
+            anim.SetBool("IsAttack3", false);
+            anim.SetBool("IsAttack4", false);
+            anim.SetBool("IsAttack5", false);
+        }
+
+        if (player.isJumping || player.isDashing) return;
 
         if (anim.GetCurrentAnimatorStateInfo(0).normalizedTime > 0.9f && anim.GetCurrentAnimatorStateInfo(0).IsName("Attack1"))
         {
@@ -51,12 +62,14 @@ public class KnightAttack : MonoBehaviour
         if (Time.time - lastClickedTime > maxComboDelay)
         {
             noOfClicks = 0;
+            player.isAttacking = false;
         }
         if (Time.time > nextAttackTime)
         {
             if (Input.GetMouseButtonDown(0))
             {
                 OnClick();
+                player.isAttacking = true;
             }
         }
     }
@@ -101,5 +114,6 @@ public class KnightAttack : MonoBehaviour
     public void EndAttack()
     {
         hitBox.SetActive(false);
+        player.isAttacking = false;
     }
 }

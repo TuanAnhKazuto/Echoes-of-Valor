@@ -21,6 +21,7 @@ public class PlayerController : MonoBehaviour
     [Header("Jump Check")]
     private Vector3 velocity;
     private bool isGrounded;
+    public bool isJumping = false;
 
     public Transform groundCheck;
     public float groundDistance = 0.4f;
@@ -30,8 +31,8 @@ public class PlayerController : MonoBehaviour
     [Header("Dash Settings")]
     public float dashDistance = 8f;
     public float dashSpeed = 20f;
-    public float dashDuration = 0.2f;
-    private bool isDashing = false;
+    public float dashDuration = 0.3f;
+    public bool isDashing = false;
     private float dashTimer = 0f;
     private Vector3 dashDirection;
 
@@ -54,18 +55,20 @@ public class PlayerController : MonoBehaviour
         currentStamina = maxStamina;
 
         Cursor.lockState = CursorLockMode.Locked;
+
+        isAttacking = false;
     }
 
     private void Update()
     {
-        if (!isDashing || !isAttacking)
-        {
-            Movement();
-            Jump();
-        }
-
         Dash();
         HandleStamina();
+        if (!isDashing)
+        {
+            Jump();
+            if (isAttacking) return;
+            Movement();
+        }
     }
 
     private void Movement()
@@ -114,6 +117,7 @@ public class PlayerController : MonoBehaviour
             animator.SetBool("IsJumping", false);
             animator.SetBool("IsFalling", false);
             animator.SetBool("IsGrounded", true);
+            isJumping = false;
         }
 
         if (Input.GetButtonDown("Jump") && isGrounded)
@@ -121,6 +125,7 @@ public class PlayerController : MonoBehaviour
             velocity.y = Mathf.Sqrt(jumpHeight * -2f * gravity);
             animator.SetBool("IsJumping", true);
             animator.SetBool("IsGrounded", false);
+            isJumping = true;
         }
 
         velocity.y += gravity * Time.deltaTime;
@@ -137,6 +142,7 @@ public class PlayerController : MonoBehaviour
             dashDirection = transform.forward;
             currentStamina -= 10f;
             animator.SetTrigger("Dashing");
+            isAttacking = false;
         }
 
         if (isDashing)
