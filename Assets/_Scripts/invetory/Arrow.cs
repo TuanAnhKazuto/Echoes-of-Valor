@@ -5,23 +5,29 @@ public class Arrow : MonoBehaviour
     private Transform target;
     private Vector3 direction;
     private bool hasTarget = false;
+    private bool isFlying = false;
 
     public float speed = 15f;
+    public Vector3 arrowRotationOffset = new Vector3(0, 90, 0);
 
     public void SetTarget(Transform enemy)
     {
         target = enemy;
         hasTarget = true;
+        isFlying = true;
     }
 
     public void SetDirection(Vector3 dir)
     {
         direction = dir.normalized;
         hasTarget = false;
+        isFlying = true;
     }
 
     void Update()
     {
+        if (!isFlying) return; 
+
         if (hasTarget)
         {
             if (target == null)
@@ -38,15 +44,13 @@ public class Arrow : MonoBehaviour
                 HitTarget();
                 return;
             }
-
             transform.Translate(dir.normalized * distanceThisFrame, Space.World);
-            transform.rotation = Quaternion.LookRotation(dir);
+            transform.rotation = Quaternion.LookRotation(dir) * Quaternion.Euler(arrowRotationOffset);
         }
         else
         {
-            // Bay thẳng
             transform.Translate(direction * speed * Time.deltaTime, Space.World);
-            transform.rotation = Quaternion.LookRotation(direction);
+            transform.rotation = Quaternion.LookRotation(direction) * Quaternion.Euler(arrowRotationOffset);
         }
     }
 

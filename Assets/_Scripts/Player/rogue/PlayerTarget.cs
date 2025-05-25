@@ -1,16 +1,16 @@
 ﻿using UnityEngine;
+using System.Collections;
 
 public class PlayerTarget : MonoBehaviour
 {
-    public GameObject arrowPrefab;      // Prefab mũi tên
-    public Transform shootPoint;        // Điểm bắn mũi tên (ví dụ đầu cung)
-    public float shootCooldown = 1f;    // Thời gian giữa các lần bắn
-    public float cooldownAfterShoot = 2f; // Thời gian hồi chiêu sau khi bắn
+    public GameObject arrowPrefab;
+    public Transform shootPoint;
+    public float shootCooldown = 2f;
+    public float shootDelay = 0.75f;   
 
     private float lastShootTime = -Mathf.Infinity;
-    private bool canShoot = true;
-
     private Transform targetEnemy;
+    private bool isWaitingToShoot = false;
 
     void Update()
     {
@@ -21,13 +21,26 @@ public class PlayerTarget : MonoBehaviour
             RotateTowardsTarget(targetEnemy.position);
         }
 
-        if (Input.GetMouseButtonDown(0)) // Chuột trái
+        if (Input.GetMouseButtonDown(0))
         {
-            if (canShoot && Time.time - lastShootTime >= shootCooldown)
+            if (!isWaitingToShoot && Time.time - lastShootTime >= shootCooldown)
             {
-                ShootArrow();
+                StartCoroutine(DelayedShoot());
             }
         }
+    }
+
+    IEnumerator DelayedShoot()
+    {
+        isWaitingToShoot = true;
+        yield return new WaitForSeconds(shootDelay); 
+        if (Time.time - lastShootTime >= shootCooldown)
+        {
+            ShootArrow();
+            lastShootTime = Time.time;
+        }
+
+        isWaitingToShoot = false;
     }
 
     void FindNearestEnemy()
@@ -39,7 +52,7 @@ public class PlayerTarget : MonoBehaviour
         foreach (GameObject enemy in enemies)
         {
             float dist = Vector3.Distance(transform.position, enemy.transform.position);
-            if (dist <= 13f && dist < minDistance) 
+            if (dist <= 13f && dist < minDistance)
             {
                 minDistance = dist;
                 nearest = enemy.transform;
@@ -49,20 +62,19 @@ public class PlayerTarget : MonoBehaviour
         targetEnemy = nearest;
     }
 
-
     void RotateTowardsTarget(Vector3 targetPos)
     {
         Vector3 direction = targetPos - transform.position;
-        direction.y = 0; // Giữ nguyên trục Y để nhân vật chỉ xoay ngang
+        direction.y = 0;
         if (direction != Vector3.zero)
         {
             Quaternion lookRotation = Quaternion.LookRotation(direction);
             transform.rotation = Quaternion.Slerp(transform.rotation, lookRotation, Time.deltaTime * 10f);
         }
     }
+
     void ShootArrow()
     {
-        // Tạo mũi tên ở điểm bắn
         GameObject arrow = Instantiate(arrowPrefab, shootPoint.position, Quaternion.identity);
 
         Arrow arrowScript = arrow.GetComponent<Arrow>();
@@ -74,19 +86,8 @@ public class PlayerTarget : MonoBehaviour
             }
             else
             {
-                arrowScript.SetDirection(transform.forward); // Bay thẳng
+                arrowScript.SetDirection(transform.forward);
             }
         }
-
-        lastShootTime = Time.time;
-        canShoot = false;
-
-        // Bắt đầu hồi chiêu
-        Invoke(nameof(ResetShoot), cooldownAfterShoot);
-    }
-
-    void ResetShoot()
-    {
-        canShoot = true;
     }
 }
