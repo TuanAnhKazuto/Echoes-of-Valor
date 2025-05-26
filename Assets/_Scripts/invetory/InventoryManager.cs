@@ -22,7 +22,7 @@ public class InventoryManager : MonoBehaviour
         }
 
         Instance = this;
-        //DontDestroyOnLoad(gameObject);
+        DontDestroyOnLoad(gameObject);
     }
 
 
@@ -55,7 +55,7 @@ public class InventoryManager : MonoBehaviour
 
 
             //obj.GetComponent<ItemUIController>().SetItem(item);
-            
+
             //Debug.Log("add item done");
 
         }
