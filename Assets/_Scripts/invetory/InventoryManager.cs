@@ -54,9 +54,9 @@ public class InventoryManager : MonoBehaviour
             itemImager.sprite = item.image;
 
 
-            //obj.GetComponent<ItemUIController>().SetItem(item);
+            obj.GetComponent<ItemUIController>().SetItem(item);
 
-            //Debug.Log("add item done");
+            Debug.Log("add item done");
 
         }
     }
