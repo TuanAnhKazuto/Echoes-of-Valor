@@ -63,11 +63,26 @@ public class PlayerController : MonoBehaviour
     {
         Dash();
         HandleStamina();
+        MouseControll();
         if (!isDashing)
         {
             Jump();
             if (isAttacking) return;
             Movement();
+        }
+    }
+
+    private void MouseControll()
+    {
+        if(Input.GetKey(KeyCode.LeftAlt) || Input.GetKey(KeyCode.RightAlt))
+        {
+            Cursor.lockState = CursorLockMode.None;
+            Cursor.visible = true;
+        }
+        else
+        {
+            Cursor.lockState = CursorLockMode.Locked;
+            Cursor.visible = false;
         }
     }
 
