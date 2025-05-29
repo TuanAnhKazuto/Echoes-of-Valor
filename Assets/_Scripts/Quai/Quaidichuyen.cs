@@ -1,58 +1,70 @@
 ﻿using UnityEngine;
-using UnityEngine.AI;
 
-public class Quaidichuyen : MonoBehaviour
+public class EnemyMovementManual : MonoBehaviour
 {
-    public float detectionRange = 10f;
-    public float attackRange = 2f;
-    public float attackCooldown = 1.5f;
-    public int damage = 10;
+    [Header("Cài đặt AI")]
+    public Transform player;             
+    public float moveSpeed = 3f;         
+    public float chaseRange = 10f;      
+    public float attackRange = 2f;       
+    public float attackCooldown = 1.5f;  
+    public int damage = 10;             
 
-    private Transform player;
-    private NavMeshAgent agent;
-    private Animator animator;
+    [Header("Animation (nếu có)")]
+    public Animator animator;
+
     private float lastAttackTime;
-
-    void Start()
-    {
-        player = GameObject.FindGameObjectWithTag("Player").transform;
-        agent = GetComponent<NavMeshAgent>();
-        animator = GetComponent<Animator>();
-    }
 
     void Update()
     {
+        if (player == null) return;
+
         float distance = Vector3.Distance(transform.position, player.position);
 
-        if (distance <= detectionRange)
+        if (distance <= chaseRange)
         {
-            agent.SetDestination(player.position);
-            animator.SetBool("isRunning", true);
-
-            if (distance <= attackRange)
+            if (distance > attackRange)
             {
+                
+                MoveTowardsPlayer();
+                if (animator != null) animator.SetBool("isRunning", true);
+            }
+            else
+            {
+               
+                if (animator != null) animator.SetBool("isRunning", false);
                 Attack();
             }
         }
-        else
+    }
+
+    void MoveTowardsPlayer()
+    {
+        Vector3 direction = (player.position - transform.position).normalized;
+        transform.position += direction * moveSpeed * Time.deltaTime;
+
+
+        if (direction != Vector3.zero)
         {
-            agent.ResetPath();
-            animator.SetBool("isRunning", false);
+            Quaternion toRotation = Quaternion.LookRotation(direction);
+            transform.rotation = Quaternion.Slerp(transform.rotation, toRotation, 5f * Time.deltaTime);
         }
     }
 
     void Attack()
     {
-        if (Time.time - lastAttackTime > attackCooldown)
+        if (Time.time - lastAttackTime >= attackCooldown)
         {
             lastAttackTime = Time.time;
-            animator.SetTrigger("attack");
 
-            // Gây sát thương nếu cần
-            HEALTH HEALTH = player.GetComponent<HEALTH>();
-            if (HEALTH != null)
+            if (animator != null)
+                animator.SetTrigger("attack");
+
+          
+            HEALTH health = player.GetComponent<HEALTH>();
+            if (health != null)
             {
-                HEALTH.TakeDamage(damage);
+                health.TakeDamage(damage);
             }
         }
     }
