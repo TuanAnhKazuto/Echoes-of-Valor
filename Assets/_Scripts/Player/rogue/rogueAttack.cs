@@ -34,8 +34,6 @@ public class rogueAttack : MonoBehaviour
         }
         animator.SetTrigger("Attack");
     }
-
-    // Hàm này nên được gọi bởi Animation Event ở cuối animation Attack
     public void EndAttack()
     {
         isAttacking = false;

@@ -26,7 +26,7 @@ public class Arrow : MonoBehaviour
 
     void Update()
     {
-        if (!isFlying) return; 
+        if (!isFlying) return;
 
         if (hasTarget)
         {
@@ -35,8 +35,8 @@ public class Arrow : MonoBehaviour
                 Destroy(gameObject);
                 return;
             }
-
-            Vector3 dir = target.position - transform.position;
+            Vector3 targetPos = target.position + Vector3.up * 1.5f;
+            Vector3 dir = targetPos - transform.position;
             float distanceThisFrame = speed * Time.deltaTime;
 
             if (dir.magnitude <= distanceThisFrame)
@@ -44,6 +44,7 @@ public class Arrow : MonoBehaviour
                 HitTarget();
                 return;
             }
+
             transform.Translate(dir.normalized * distanceThisFrame, Space.World);
             transform.rotation = Quaternion.LookRotation(dir) * Quaternion.Euler(arrowRotationOffset);
         }
