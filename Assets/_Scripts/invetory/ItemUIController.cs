@@ -45,9 +45,9 @@ public class ItemUIController : MonoBehaviour
             case ItemType.Xp:
                 FindObjectOfType<EXP>().IncreaseExp(item.value);
                 break;
-            //case ItemType.Hp:
-            //    FindObjectOfType<EXP>().IncreaseExp(-item.value);
-            //    break;
+            case ItemType.Hp:
+                FindObjectOfType<EXP>().IncreaseExp(-item.value);
+                break;
 
         }
         Remove();
