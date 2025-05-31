@@ -9,8 +9,8 @@ public class Inventory : MonoBehaviour
     [Header("Inventory Settings")]
     public GameObject inventoryUI; // Tham chiếu tới UI Inventory
 
-    //[Header("Free Look Camera Settings")]
-    //public CinemachineFreeLook freeLookCamera;
+    [Header("Free Look Camera Settings")]
+    public CinemachineCamera freeLookCamera;
 
     public bool isInventoryOpen = false; // Trạng thái Inventory
 
@@ -37,29 +37,20 @@ public class Inventory : MonoBehaviour
         isInventoryOpen = !isInventoryOpen; // Đảo trạng thái Inventory
         inventoryUI.SetActive(isInventoryOpen); // Bật/tắt giao diện Inventory
 
-        //if (isInventoryOpen)
-        //{
-        //    DisableCameraControl();
-        //}
-        //else
-        //{
-        //    EnableCameraControl();
-        //}
+        if (isInventoryOpen)
+        {
+            freeLookCamera.enabled = false;
+        }
+        else
+        {
+            freeLookCamera.enabled = true;
+
+        }
 
         // Khóa hoặc mở khóa con trỏ chuột
         Cursor.lockState = isInventoryOpen ? CursorLockMode.None : CursorLockMode.Locked;
         Cursor.visible = isInventoryOpen;
     }
 
-    //void DisableCameraControl()
-    //{
-    //    freeLookCamera.m_XAxis.m_InputAxisName = ""; // Xóa trục X
-    //    freeLookCamera.m_YAxis.m_InputAxisName = ""; // Xóa trục Y
-    //}
-
-    //void EnableCameraControl()
-    //{
-    //    freeLookCamera.m_XAxis.m_InputAxisName = "Mouse X"; // Gắn lại trục X
-    //    freeLookCamera.m_YAxis.m_InputAxisName = "Mouse Y"; // Gắn lại trục Y
-    //}
+    
 }
