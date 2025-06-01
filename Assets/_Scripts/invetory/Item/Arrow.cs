@@ -8,7 +8,7 @@ public class Arrow : MonoBehaviour
     private bool isFlying = false;
 
     public float speed = 15f;
-    public Vector3 arrowRotationOffset = new Vector3(0, 90, 0);
+    public Vector3 arrowRotationOffset = Vector3.zero;
 
     public void SetTarget(Transform enemy)
     {
@@ -26,7 +26,7 @@ public class Arrow : MonoBehaviour
 
     void Update()
     {
-        if (!isFlying) return; 
+        if (!isFlying) return;
 
         if (hasTarget)
         {
@@ -36,7 +36,8 @@ public class Arrow : MonoBehaviour
                 return;
             }
 
-            Vector3 dir = target.position - transform.position;
+            Vector3 targetPos = target.position + Vector3.up * 1.5f;
+            Vector3 dir = targetPos - transform.position;
             float distanceThisFrame = speed * Time.deltaTime;
 
             if (dir.magnitude <= distanceThisFrame)
@@ -44,13 +45,14 @@ public class Arrow : MonoBehaviour
                 HitTarget();
                 return;
             }
+
             transform.Translate(dir.normalized * distanceThisFrame, Space.World);
-            transform.rotation = Quaternion.LookRotation(dir) * Quaternion.Euler(arrowRotationOffset);
+            transform.rotation = Quaternion.LookRotation(dir) * Quaternion.Euler(arrowRotationOffset + new Vector3(0, 180f, 0));
         }
         else
         {
             transform.Translate(direction * speed * Time.deltaTime, Space.World);
-            transform.rotation = Quaternion.LookRotation(direction) * Quaternion.Euler(arrowRotationOffset);
+            transform.rotation = Quaternion.LookRotation(direction) * Quaternion.Euler(arrowRotationOffset + new Vector3(0, 180f, 0));
         }
     }
 

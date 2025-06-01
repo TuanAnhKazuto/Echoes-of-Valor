@@ -47,7 +47,7 @@ public class InventoryManager : MonoBehaviour
         foreach (Item item in items)
         {
             GameObject obj = Instantiate(itemPrefab, itemContentPane);
-            var itemName = obj.transform.Find("ItemName").GetComponent<TextMeshProUGUI>();
+            var itemName = obj.transform.Find("Title/ItemName").GetComponent<TextMeshProUGUI>();
             var itemImager = obj.transform.Find("ItemImage").GetComponent<Image>();
 
             itemName.text = item.itemName;
