@@ -8,7 +8,7 @@ public class Projectile : MonoBehaviour
     public void Initialize(float damageAmount)
     {
         damage = damageAmount;
-        Destroy(gameObject, 5f);
+        Destroy(gameObject, 3f);
     }
 
     void Update()
