@@ -17,5 +17,18 @@ public class Item : ScriptableObject
     public int value;
     public Sprite image;
     public ItemType itemType;
+    public string description;
 
+}
+[System.Serializable]
+public class InventoryItem
+{
+    public Item item;
+    public int quantity;
+
+    public InventoryItem(Item item, int quantity)
+    {
+        this.item = item;
+        this.quantity = quantity;
+    }
 }
