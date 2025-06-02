@@ -11,6 +11,7 @@ GameObject:
   - component: {fileID: 3666282475762851283}
   - component: {fileID: 1720270961116412553}
   - component: {fileID: 1880600346219823512}
+  - component: {fileID: 1586836074940117380}
   m_Layer: 0
   m_Name: MageCharacter
   m_TagString: Untagged
@@ -33,6 +34,7 @@ Transform:
   m_Children:
   - {fileID: 8433728277858426646}
   - {fileID: 2081099518697635158}
+  - {fileID: 979233424904058683}
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!143 &1720270961116412553
@@ -96,6 +98,26 @@ MonoBehaviour:
   staminaDrainRate: 15
   staminaRegenRate: 10
   isAttacking: 0
+--- !u!114 &1586836074940117380
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 3432828208371693777}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 3cea2d2e238f49c4993a35aedbbebd00, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  animator: {fileID: 3933366847016646908}
+  bulletPrefab: {fileID: 4835795885790367263, guid: f2f77979c0045514f9f38c1ed1667514, type: 3}
+  fireBreathEffect: {fileID: 4209997914145111215, guid: 9c8a7ccf06912aa4c9dd58f2e417d423, type: 3}
+  BigBallPrefab: {fileID: 2795806856581110241, guid: 3bd1834ecf4604e42bb389dfbc81d074, type: 3}
+  firePoint: {fileID: 979233424904058683}
+  fireBreathCooldown: 1
+  skill2Cooldown: 1
+  skill3Cooldown: 1
 --- !u!1 &6172984158577316107
 GameObject:
   m_ObjectHideFlags: 0
@@ -122,6 +144,37 @@ Transform:
   serializedVersion: 2
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
   m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 3666282475762851283}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!1 &6491402012195944425
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 979233424904058683}
+  m_Layer: 0
+  m_Name: firePoint
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &979233424904058683
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 6491402012195944425}
+  serializedVersion: 2
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0.7, y: 1.2, z: 0.7}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []

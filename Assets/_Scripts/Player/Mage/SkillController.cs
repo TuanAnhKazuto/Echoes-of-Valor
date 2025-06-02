@@ -7,7 +7,7 @@ public class SkillController : MonoBehaviour
 
     public GameObject bulletPrefab;
     public GameObject fireBreathEffect;
-    public GameObject aoeBallPrefab;
+    public GameObject BigBallPrefab;
 
     public Transform firePoint;
 
@@ -17,7 +17,7 @@ public class SkillController : MonoBehaviour
     private bool isUsingFireBreath = false;
 
     public float skill2Cooldown = 6f;
-    public float skill3Cooldown = 11f;
+    public float skill3Cooldown = 3f;
     private float skill2Timer = 0f;
     private float skill3Timer = 0f;
 
@@ -72,6 +72,7 @@ public class SkillController : MonoBehaviour
         isUsingFireBreath = true;
     }
 
+
     void StopFireBreath()
     {
         fireBreathEffect.SetActive(false);
@@ -83,16 +84,14 @@ public class SkillController : MonoBehaviour
     void UseAOEBall()
     {
         animator.SetTrigger("Attack2");
-        Instantiate(aoeBallPrefab, firePoint.position, firePoint.rotation);
+        Instantiate(BigBallPrefab, firePoint.position, firePoint.rotation);
         skill2Timer = 0f;
     }
 
     void UseTripleAOE()
     {
         animator.SetTrigger("Attack2");
-        Instantiate(aoeBallPrefab, firePoint.position + Vector3.left, firePoint.rotation);
-        Instantiate(aoeBallPrefab, firePoint.position, firePoint.rotation);
-        Instantiate(aoeBallPrefab, firePoint.position + Vector3.right, firePoint.rotation);
+        Instantiate(BigBallPrefab, firePoint.position + Vector3.left, firePoint.rotation);
         skill3Timer = 0f;
     }
 }
