@@ -7,10 +7,8 @@ using UnityEngine;
 public class ItemUIController : MonoBehaviour
 {
     public Item item;
-    public GameObject infoPanel;             // Panel hiển thị thông tin
-    public TextMeshProUGUI infoText;
+   
 
-    private bool isShowingInfo = false;
     //[HideInInspector] public CharacterMovement player;
     //[HideInInspector] public PlayerHealth playerHealth;
 
@@ -25,10 +23,6 @@ public class ItemUIController : MonoBehaviour
     {
         this.item = item;
       
-        if (infoText != null && item != null)
-        {
-            infoText.text = item.description; // Gán mô tả cho infoText ngay từ đầu
-        }
     }
   
     public void Remove()
@@ -61,19 +55,9 @@ public class ItemUIController : MonoBehaviour
 
         }
         Remove();
+        InventoryManager.Instance.DisplayInventory(); // Thêm dòng này
     }
-    public void ToggleInfo()
-    {
-        if (infoPanel == null) return;
-
-        isShowingInfo = !isShowingInfo;
-        infoPanel.SetActive(isShowingInfo);
-
-        if (isShowingInfo && item != null && infoText != null)
-        {
-            infoText.text = item.description;
-        }
-    }
+   
 
 
 
