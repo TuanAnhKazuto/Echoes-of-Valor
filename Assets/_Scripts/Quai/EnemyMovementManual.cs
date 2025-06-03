@@ -27,29 +27,23 @@ public class EnemyMovementManual : MonoBehaviour
             {
                 MoveTowardsPlayer();
 
+                // Gán tốc độ cho Animator để chuyển sang animation "Run"
                 if (animator != null)
-                {
                     animator.SetFloat("Speed", moveSpeed);
-                    animator.SetBool("IsAttack", false);    
-                }
             }
             else
             {
                 if (animator != null)
-                {
-                    animator.SetBool("IsAttack", true);
-                }
+                    animator.SetFloat("Speed", 0f); // Dừng chạy
 
-                Attack(); 
+                Attack();
             }
         }
         else
         {
+            // Ngoài phạm vi, dừng di chuyển
             if (animator != null)
-            {
                 animator.SetFloat("Speed", 0f);
-                animator.SetBool("IsAttack", false);
-            }
         }
     }
 
@@ -71,7 +65,9 @@ public class EnemyMovementManual : MonoBehaviour
         {
             lastAttackTime = Time.time;
 
-           
+            if (animator != null)
+                animator.SetTrigger("attack"); // Bạn đang dùng trigger 'attack' => ok
+
             HEALTH health = player.GetComponent<HEALTH>();
             if (health != null)
             {
