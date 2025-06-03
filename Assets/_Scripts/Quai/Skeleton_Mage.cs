@@ -1,14 +1,15 @@
 ﻿using UnityEngine;
 
-public class EnemyMovementManual : MonoBehaviour
+public class Skeleton_Magel : MonoBehaviour
 {
     [Header("Cài đặt AI")]
     public Transform player;
     public float moveSpeed = 3f;
     public float chaseRange = 10f;
-    public float attackRange = 2f;
+    public float attackRange = 8f;
     public float attackCooldown = 1.5f;
-    public int damage = 10;
+    public GameObject arrowPrefab;
+    public Transform firePoint;
 
     [Header("Animation (nếu có)")]
     public Animator animator;
@@ -26,38 +27,39 @@ public class EnemyMovementManual : MonoBehaviour
             if (distance > attackRange)
             {
                 MoveTowardsPlayer();
-
-                if (animator != null)
-                {
-                    animator.SetFloat("Speed", moveSpeed);
-                    animator.SetBool("IsAttack", false);    
-                }
+                animator?.SetFloat("Speed", moveSpeed);
+                animator?.SetBool("IsAttack", false);
             }
             else
             {
-                if (animator != null)
-                {
-                    animator.SetBool("IsAttack", true);
-                }
+                animator?.SetFloat("Speed", 0f);
+                animator?.SetBool("IsAttack", true);
 
-                Attack(); 
+                if (Time.time - lastAttackTime >= attackCooldown)
+                {
+                    lastAttackTime = Time.time;
+                    animator?.SetTrigger("Shoot"); // sẽ gọi Attack() thông qua Animation Event
+                }
             }
         }
         else
         {
-            if (animator != null)
-            {
-                animator.SetFloat("Speed", 0f);
-                animator.SetBool("IsAttack", false);
-            }
+            animator?.SetFloat("Speed", 0f);
+            animator?.SetBool("IsAttack", false);
         }
+
+        RotateTowardsPlayer();
     }
 
     void MoveTowardsPlayer()
     {
         Vector3 direction = (player.position - transform.position).normalized;
         transform.position += direction * moveSpeed * Time.deltaTime;
+    }
 
+    void RotateTowardsPlayer()
+    {
+        Vector3 direction = (player.position - transform.position).normalized;
         if (direction != Vector3.zero)
         {
             Quaternion toRotation = Quaternion.LookRotation(direction);
@@ -65,18 +67,12 @@ public class EnemyMovementManual : MonoBehaviour
         }
     }
 
-    void Attack()
+    // Gọi đúng lúc từ animation event
+    public void Attack()
     {
-        if (Time.time - lastAttackTime >= attackCooldown)
+        if (arrowPrefab != null && firePoint != null)
         {
-            lastAttackTime = Time.time;
-
-           
-            HEALTH health = player.GetComponent<HEALTH>();
-            if (health != null)
-            {
-                health.TakeDamage(damage);
-            }
+            Instantiate(arrowPrefab, firePoint.position, firePoint.rotation);
         }
     }
 }
