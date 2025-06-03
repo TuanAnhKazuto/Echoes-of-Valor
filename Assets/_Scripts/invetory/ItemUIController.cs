@@ -1,11 +1,14 @@
-using System.Collections;
+﻿using System.Collections;
 using System.Collections.Generic;
+using TMPro;
 using UnityEngine;
 
 
 public class ItemUIController : MonoBehaviour
 {
     public Item item;
+   
+
     //[HideInInspector] public CharacterMovement player;
     //[HideInInspector] public PlayerHealth playerHealth;
 
@@ -19,8 +22,9 @@ public class ItemUIController : MonoBehaviour
     public void SetItem(Item item)
     {
         this.item = item;
+      
     }
-
+  
     public void Remove()
     {
         //if(player.curStamina >= player.maxStm || playerHealth.curHp >= playerHealth.maxHp) return;
@@ -51,7 +55,10 @@ public class ItemUIController : MonoBehaviour
 
         }
         Remove();
+        InventoryManager.Instance.DisplayInventory(); // Thêm dòng này
     }
+   
+
 
 
 }

@@ -2,9 +2,9 @@ using UnityEngine;
 
 public class Enemy : MonoBehaviour
 {
-    public int health = 50;
+    public float health = 500;
 
-    public void TakeDamage(int amount)
+    public void TakeDamage(float  amount)
     {
         health -= amount;
         Debug.Log("Enemy HP: " + health);

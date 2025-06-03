@@ -3,7 +3,6 @@
 public class Knight : MonoBehaviour
 {
     public PlayerController player;
-    public GameObject hitBox;
     Animator anim;
 
     public float coolDownTime = 0.8f;
@@ -104,16 +103,5 @@ public class Knight : MonoBehaviour
             anim.SetBool("IsAttack4", false);
             anim.SetBool("IsAttack5", true);
         }
-    }
-
-    public void OnAttack()
-    {
-        hitBox.SetActive(true);
-    }
-
-    public void EndAttack()
-    {
-        hitBox.SetActive(false);
-        player.isAttacking = false;
     }
 }
