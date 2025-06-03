@@ -1,6 +1,7 @@
 using System.Collections;
 using System.Collections.Generic;
 using TMPro;
+using Unity.VisualScripting;
 using UnityEngine;
 using UnityEngine.UI;
 
@@ -14,11 +15,13 @@ public class InventoryManager : MonoBehaviour
     {
         public Item item;
         public int quantity;
+        public string description;
 
-        public InventoryItem(Item item, int quantity)
+        public InventoryItem(Item item, int quantity, string description)
         {
             this.item = item;
             this.quantity = quantity;
+            this.description = description;
         }
     }
 
@@ -49,7 +52,7 @@ public class InventoryManager : MonoBehaviour
         }
         else
         {
-            items.Add(new InventoryItem(item, 1));
+            items.Add(new InventoryItem(item, 1, item.description));
         }
 
         DisplayInventory();
@@ -78,15 +81,19 @@ public class InventoryManager : MonoBehaviour
         foreach (InventoryItem inventoryItem in items)
         {
             GameObject obj = Instantiate(itemPrefab, itemContentPane);
+            
             var itemName = obj.transform.Find("Title/ItemName").GetComponent<TextMeshProUGUI>();
             var itemImage = obj.transform.Find("Title/ItemImage").GetComponent<Image>();
             var itemQuantityText = obj.transform.Find("Count/QuantityText").GetComponent<TextMeshProUGUI>();
+            var itemDescription = obj.transform.Find("Info/Button/Panel/Description").GetComponent<TextMeshProUGUI>();
 
             itemName.text = inventoryItem.item.itemName;
             itemImage.sprite = inventoryItem.item.image;
+            itemDescription.text = inventoryItem.description;
             itemQuantityText.text = $"x{inventoryItem.quantity}";
 
             obj.GetComponent<ItemUIController>().SetItem(inventoryItem.item);
+
 
             Debug.Log("add item done");
         }
