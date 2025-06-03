@@ -79,7 +79,7 @@ public class InventoryManager : MonoBehaviour
         {
             GameObject obj = Instantiate(itemPrefab, itemContentPane);
             var itemName = obj.transform.Find("Title/ItemName").GetComponent<TextMeshProUGUI>();
-            var itemImage = obj.transform.Find("ItemImage").GetComponent<Image>();
+            var itemImage = obj.transform.Find("Title/ItemImage").GetComponent<Image>();
             var itemQuantityText = obj.transform.Find("Count/QuantityText").GetComponent<TextMeshProUGUI>();
 
             itemName.text = inventoryItem.item.itemName;
