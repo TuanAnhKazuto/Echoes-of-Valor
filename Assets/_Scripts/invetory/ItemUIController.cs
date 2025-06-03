@@ -53,7 +53,7 @@ public class ItemUIController : MonoBehaviour
                 FindObjectOfType<Hp>().IncreaseHp(item.value);
                 break;
             case ItemType.Mp:
-                FindObjectOfType<MP>().IncreaseMp(item.value);
+                FindObjectOfType<Mp>().IncreaseMp(item.value);
                 break;
         }
         Remove();

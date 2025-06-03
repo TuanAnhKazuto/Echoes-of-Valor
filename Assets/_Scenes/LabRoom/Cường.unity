@@ -568,7 +568,7 @@ PrefabInstance:
       addedObject: {fileID: 982175416}
     - targetCorrespondingSourceObject: {fileID: 5428599474284752997, guid: 4d2ee5f6a7438074ca0779ca792324ba, type: 3}
       insertIndex: -1
-      addedObject: {fileID: 982175417}
+      addedObject: {fileID: 982175420}
   m_SourcePrefab: {fileID: 100100000, guid: 4d2ee5f6a7438074ca0779ca792324ba, type: 3}
 --- !u!1 &636597108 stripped
 GameObject:
@@ -1235,7 +1235,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   hp: 0
   hpText: {fileID: 711816484}
---- !u!114 &982175417
+--- !u!114 &982175420
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -3535,6 +3535,10 @@ PrefabInstance:
     m_TransformParent: {fileID: 3524467107309621132}
     m_Modifications:
     - target: {fileID: 4789358918242832832, guid: 016e2721ae6bd3549b8b7895876b53e1, type: 3}
+      propertyPath: m_text
+      value: "\u0103n 1 qu\u1EA3 t\xE1o tr\u1EA3 20 c\u1EE5c v\xE0ng"
+      objectReference: {fileID: 0}
+    - target: {fileID: 4789358918242832832, guid: 016e2721ae6bd3549b8b7895876b53e1, type: 3}
       propertyPath: m_fontSize
       value: 200
       objectReference: {fileID: 0}
@@ -3546,6 +3550,14 @@ PrefabInstance:
       propertyPath: m_fontSizeBase
       value: 200
       objectReference: {fileID: 0}
+    - target: {fileID: 4789358918242832832, guid: 016e2721ae6bd3549b8b7895876b53e1, type: 3}
+      propertyPath: m_isRightToLeft
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 4789358918242832832, guid: 016e2721ae6bd3549b8b7895876b53e1, type: 3}
+      propertyPath: m_sharedMaterial
+      value: 
+      objectReference: {fileID: 2180264, guid: 8f586378b4e144a9851e7b34d9b748ee, type: 2}
     - target: {fileID: 4789358918242832832, guid: 016e2721ae6bd3549b8b7895876b53e1, type: 3}
       propertyPath: m_HorizontalAlignment
       value: 1
