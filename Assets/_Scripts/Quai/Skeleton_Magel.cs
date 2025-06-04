@@ -1,6 +1,6 @@
 ﻿using UnityEngine;
 
-public class Skeleton_Magel : MonoBehaviour
+public class Skeleton_MagelQ : MonoBehaviour
 {
     [Header("Cài đặt AI")]
     public Transform player;
