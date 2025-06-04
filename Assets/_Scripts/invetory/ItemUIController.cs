@@ -50,12 +50,14 @@ public class ItemUIController : MonoBehaviour
                 FindObjectOfType<EXP>().IncreaseExp(item.value);
                 break;
             case ItemType.Hp:
-                FindObjectOfType<EXP>().IncreaseExp(-item.value);
+                FindObjectOfType<Hp>().IncreaseHp(item.value);
                 break;
-
+            case ItemType.Mp:
+                FindObjectOfType<Mp>().IncreaseMp(item.value);
+                break;
         }
         Remove();
-        InventoryManager.Instance.DisplayInventory(); // Thêm dòng này
+        InventoryManager.Instance.DisplayInventory(); 
     }
    
 
