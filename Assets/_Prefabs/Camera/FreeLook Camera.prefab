@@ -30,13 +30,13 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 2270401803781899934}
   serializedVersion: 2
-  m_LocalRotation: {x: 0.22746886, y: -0.62613124, z: 0.19808446, w: 0.71901333}
+  m_LocalRotation: {x: 0.22746988, y: -0.6261309, z: 0.19808528, w: 0.7190131}
   m_LocalPosition: {x: 7.018804, y: 6.0611653, z: -0.9739388}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 0}
-  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+  m_LocalEulerAnglesHint: {x: 35.111, y: -82.1, z: 0}
 --- !u!114 &7628293848178210821
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -103,18 +103,18 @@ MonoBehaviour:
   Radius: 10
   Orbits:
     Top:
-      Radius: 0
-      Height: 9
+      Radius: 2
+      Height: 10
     Center:
-      Radius: 9
-      Height: 2.53
+      Radius: 10
+      Height: 5
     Bottom:
-      Radius: 1
-      Height: 0
+      Radius: 4
+      Height: 1
     SplineCurvature: 0.5
   RecenteringTarget: 2
   HorizontalAxis:
-    Value: -82.1
+    Value: -66.50003
     Center: 0
     Range: {x: -180, y: 180}
     Wrap: 1
@@ -124,9 +124,9 @@ MonoBehaviour:
       Time: 2
     Restrictions: 0
   VerticalAxis:
-    Value: 27
+    Value: 27.632322
     Center: 0
-    Range: {x: -10, y: 45}
+    Range: {x: -6.79, y: 45}
     Wrap: 0
     Recentering:
       Enabled: 0
@@ -134,9 +134,9 @@ MonoBehaviour:
       Time: 2
     Restrictions: 0
   RadialAxis:
-    Value: 1
-    Center: 1
-    Range: {x: 1, y: 1}
+    Value: 1.5
+    Center: 1.5
+    Range: {x: 0.3, y: 1.5}
     Wrap: 0
     Recentering:
       Enabled: 0
@@ -236,7 +236,7 @@ MonoBehaviour:
       Enabled: 1
       Input:
         InputAction: {fileID: 5082991133974614888, guid: 1d6e640e716dc4ff6989b73d02023f2b, type: 3}
-        Gain: -1
+        Gain: -8
         LegacyInput: 
         LegacyGain: 1
         CancelDeltaTime: 0
