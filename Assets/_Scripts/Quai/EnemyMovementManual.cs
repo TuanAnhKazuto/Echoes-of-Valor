@@ -6,14 +6,22 @@ public class EnemyMovementManual : MonoBehaviour
     public Transform player;
     public float moveSpeed = 3f;
     public float chaseRange = 10f;
-    public float attackRange = 2f;
+    public float attackRange = 8f;
     public float attackCooldown = 1.5f;
     public int damage = 10;
 
-    [Header("Animation (nếu có)")]
+    [Header("Animation")]
     public Animator animator;
 
     private float lastAttackTime;
+
+    void Start()
+    {
+        if (animator == null)
+        {
+            animator = GetComponent<Animator>(); // Tự động gán nếu quên kéo trong Inspector
+        }
+    }
 
     void Update()
     {
@@ -27,23 +35,30 @@ public class EnemyMovementManual : MonoBehaviour
             {
                 MoveTowardsPlayer();
 
-                // Gán tốc độ cho Animator để chuyển sang animation "Run"
                 if (animator != null)
+                {
                     animator.SetFloat("Speed", moveSpeed);
+                    animator.SetBool("IsAttack", false);
+                }
             }
             else
             {
                 if (animator != null)
-                    animator.SetFloat("Speed", 0f); // Dừng chạy
+                {
+                    animator.SetFloat("Speed", 0f);
+                    animator.SetBool("IsAttack", true);
+                }
 
-                Attack();
+                TryAttack();
             }
         }
         else
         {
-            // Ngoài phạm vi, dừng di chuyển
             if (animator != null)
+            {
                 animator.SetFloat("Speed", 0f);
+                animator.SetBool("IsAttack", false);
+            }
         }
     }
 
@@ -59,15 +74,25 @@ public class EnemyMovementManual : MonoBehaviour
         }
     }
 
-    void Attack()
+    void TryAttack()
     {
         if (Time.time - lastAttackTime >= attackCooldown)
         {
             lastAttackTime = Time.time;
 
+            // Gọi animation trigger Shoot (nếu có Animation Event sẽ gọi DealDamage)
             if (animator != null)
-                animator.SetTrigger("attack"); // Bạn đang dùng trigger 'attack' => ok
+            {
+                animator.SetTrigger("Shoot");
+            }
+        }
+    }
 
+    // Hàm này nên được gọi bằng animation event tại thời điểm ra đòn
+    public void DealDamage()
+    {
+        if (player != null)
+        {
             HEALTH health = player.GetComponent<HEALTH>();
             if (health != null)
             {
