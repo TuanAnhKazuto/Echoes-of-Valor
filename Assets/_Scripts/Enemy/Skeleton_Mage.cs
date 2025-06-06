@@ -50,7 +50,11 @@ public class Skeleton_Magel : MonoBehaviour
 
         RotateTowardsPlayer();
     }
-
+    private void OnDrawGizmos()
+    {
+        Gizmos.color = Color.red;
+        Gizmos.DrawWireSphere(transform.position, attackRange);
+    }
     void MoveTowardsPlayer()
     {
         Vector3 direction = (player.position - transform.position).normalized;

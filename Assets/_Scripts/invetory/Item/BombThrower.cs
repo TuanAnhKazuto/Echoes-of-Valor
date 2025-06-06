@@ -20,7 +20,7 @@ public class BombThrower : MonoBehaviour
         Rigidbody rb = bomb.GetComponent<Rigidbody>();
         if (rb != null)
         {
-            rb.linearVelocity = throwPoint.forward * throwForce;
+            rb.velocity = throwPoint.forward * throwForce;
         }
     }
 }
