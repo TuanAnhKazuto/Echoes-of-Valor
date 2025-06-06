@@ -12,7 +12,7 @@ GameObject:
   - component: {fileID: 3850803950733474773}
   m_Layer: 3
   m_Name: HitBox
-  m_TagString: Untagged
+  m_TagString: PlayerHitBox
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -51,8 +51,8 @@ BoxCollider:
   m_ProvidesContacts: 0
   m_Enabled: 1
   serializedVersion: 3
-  m_Size: {x: 1.83, y: 1.24, z: 1.08}
-  m_Center: {x: 0, y: 0, z: 0}
+  m_Size: {x: 1.83, y: 1.24, z: 1.4507928}
+  m_Center: {x: 0, y: 0, z: 0.18539643}
 --- !u!1 &4476123385917625323
 GameObject:
   m_ObjectHideFlags: 0
@@ -95,6 +95,7 @@ GameObject:
   - component: {fileID: 4842269802902040384}
   - component: {fileID: 986040163151268293}
   - component: {fileID: 7343371498176557}
+  - component: {fileID: 4656843496498232716}
   m_Layer: 3
   m_Name: KnightChar
   m_TagString: Player
@@ -181,6 +182,38 @@ MonoBehaviour:
   staminaDrainRate: 15
   staminaRegenRate: 10
   isAttacking: 0
+--- !u!114 &4656843496498232716
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 5428599474284752997}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 783bca73d7e03f744ae97eb046fb7c6c, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  healthBar: {fileID: 0}
+  level: 1
+  maxHealth: 100
+  currentHealth: 0
+  currentMana: 0
+  maxMana: 100
+  baseDamage: 10
+  baseDefense: 5
+  equippedWeapon:
+    weaponID: 
+    weaponName: 
+    waponLevel: 1
+    maxWaponLevel: 60
+    breakthroughLevel: 1
+    baseDamage: 0
+    damagePerLevel: 3
+    damagePerBreakthrough: 6
+    baseDefense: 0
+    defensePerLevel: 3
+    defensePerBreakthrough: 6
 --- !u!1001 &1571177679213408839
 PrefabInstance:
   m_ObjectHideFlags: 0
