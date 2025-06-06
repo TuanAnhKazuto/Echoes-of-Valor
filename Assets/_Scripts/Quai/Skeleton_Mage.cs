@@ -38,7 +38,7 @@ public class Skeleton_Magel : MonoBehaviour
                 if (Time.time - lastAttackTime >= attackCooldown)
                 {
                     lastAttackTime = Time.time;
-                    animator?.SetTrigger("Shoot"); 
+                    animator?.SetTrigger("Shoot");
                 }
             }
         }
@@ -67,7 +67,19 @@ public class Skeleton_Magel : MonoBehaviour
         }
     }
 
-  
+    // Gọi từ Animation Event trong animation
+    public void OnAttack()
+    {
+        Attack();
+    }
+
+    // Gọi từ Animation Event khi kết thúc animation tấn công
+    public void EndAttack()
+    {
+        Debug.Log("EndAttack Animation Event Triggered");
+    }
+
+    // Hàm tấn công thực tế - bắn tên
     public void Attack()
     {
         if (arrowPrefab != null && firePoint != null)
