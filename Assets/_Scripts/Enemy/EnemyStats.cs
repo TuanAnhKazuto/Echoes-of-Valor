@@ -8,7 +8,7 @@ public class EnemyStats : MonoBehaviour
     public PlayerData playerData;
     public CharacterStats characterStats;
 
-    public HealthBar healthBar;
+    public EnemyHealthBar healthBar;
     public TextMeshProUGUI levelText;
 
     [Header("Base Stats")]
@@ -35,15 +35,6 @@ public class EnemyStats : MonoBehaviour
         currentHealth = maxHealth;
         levelText.text = "Lv. " + level.ToString();
         healthBar.UpdateHealth(currentHealth, maxHealth);
-    }
-
-    private void Update()
-    {
-        if (Input.GetKeyDown(KeyCode.J))
-        {
-            TakeDamage();
-            Debug.Log($"Hp = {maxHealth}.\nDamage taked = {characterStats.TotalDamage}");
-        }
     }
 
     public void TakeDamage()

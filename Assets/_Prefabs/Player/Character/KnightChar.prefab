@@ -12,7 +12,7 @@ GameObject:
   - component: {fileID: 3850803950733474773}
   m_Layer: 3
   m_Name: HitBox
-  m_TagString: Untagged
+  m_TagString: PlayerHitBox
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -51,8 +51,8 @@ BoxCollider:
   m_ProvidesContacts: 0
   m_Enabled: 1
   serializedVersion: 3
-  m_Size: {x: 1.83, y: 1.24, z: 1.08}
-  m_Center: {x: 0, y: 0, z: 0}
+  m_Size: {x: 1.83, y: 1.24, z: 1.4507928}
+  m_Center: {x: 0, y: 0, z: 0.18539643}
 --- !u!1 &4476123385917625323
 GameObject:
   m_ObjectHideFlags: 0
@@ -95,12 +95,7 @@ GameObject:
   - component: {fileID: 4842269802902040384}
   - component: {fileID: 986040163151268293}
   - component: {fileID: 7343371498176557}
-  - component: {fileID: 91946306637866849}
-  - component: {fileID: 5368188831112458645}
-  - component: {fileID: 8726475578424049440}
-  - component: {fileID: 8522078838837176073}
-  - component: {fileID: 8948633353636028677}
-  - component: {fileID: 6785396278992457236}
+  - component: {fileID: 4656843496498232716}
   m_Layer: 3
   m_Name: KnightChar
   m_TagString: Player
@@ -187,7 +182,7 @@ MonoBehaviour:
   staminaDrainRate: 15
   staminaRegenRate: 10
   isAttacking: 0
---- !u!114 &91946306637866849
+--- !u!114 &4656843496498232716
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -196,82 +191,29 @@ MonoBehaviour:
   m_GameObject: {fileID: 5428599474284752997}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 9d0b4c15e9ec1014f865199298478b06, type: 3}
+  m_Script: {fileID: 11500000, guid: 783bca73d7e03f744ae97eb046fb7c6c, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  inventoryUI: {fileID: 0}
-  freeLookCamera: {fileID: 0}
-  isInventoryOpen: 0
-  inventoryManager: {fileID: 0}
---- !u!114 &5368188831112458645
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 5428599474284752997}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 375af0af9130355499c1428cc4cde02f, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  exp: 0
-  expText: {fileID: 0}
---- !u!114 &8726475578424049440
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 5428599474284752997}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 7e379d10794a657448af3690d1a0111b, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  questItems: []
-  playerQuestPanel: {fileID: 0}
---- !u!114 &8522078838837176073
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 5428599474284752997}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: a735513318b837f4eb3ea8847f7a6f21, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  fKey: {fileID: 0}
---- !u!114 &8948633353636028677
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 5428599474284752997}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: fb8747f9194e36e4290059e0992bdcee, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  hp: 0
-  hpText: {fileID: 0}
---- !u!114 &6785396278992457236
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 5428599474284752997}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: be22e915aff9ecc45a5ce19b885eabfe, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  mp: 0
-  mpText: {fileID: 0}
+  healthBar: {fileID: 0}
+  level: 1
+  maxHealth: 100
+  currentHealth: 0
+  currentMana: 0
+  maxMana: 100
+  baseDamage: 10
+  baseDefense: 5
+  equippedWeapon:
+    weaponID: 
+    weaponName: 
+    waponLevel: 1
+    maxWaponLevel: 60
+    breakthroughLevel: 1
+    baseDamage: 0
+    damagePerLevel: 3
+    damagePerBreakthrough: 6
+    baseDefense: 0
+    defensePerLevel: 3
+    defensePerBreakthrough: 6
 --- !u!1001 &1571177679213408839
 PrefabInstance:
   m_ObjectHideFlags: 0

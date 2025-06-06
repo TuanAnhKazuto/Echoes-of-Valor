@@ -2,6 +2,8 @@ using UnityEngine;
 
 public class CharacterStats : MonoBehaviour
 {
+    public PlayerHealthBar healthBar;
+
     [Header("Base Stats")]
     public int level = 1;
     public float maxHealth = 100f;
@@ -15,6 +17,14 @@ public class CharacterStats : MonoBehaviour
     [Header("Equipment")]
     public WeaponData equippedWeapon;
 
+    private void Awake()
+    {
+        if (healthBar == null)
+        {
+            healthBar = FindAnyObjectByType<PlayerHealthBar>();
+        }
+    }
+
     private void Start()
     {
         currentHealth = maxHealth;
@@ -23,13 +33,14 @@ public class CharacterStats : MonoBehaviour
 
     public int TotalDamage => baseDamage + (equippedWeapon != null ? equippedWeapon.GetDamage() : 0);
     public int TotalDefense => baseDefense + (equippedWeapon != null ? equippedWeapon.GetDefense() : 0);
-    
+
     public void TakeDamage(float damage)
     {
         float damageTake = Mathf.Max(damage - TotalDefense, 1f);
         currentHealth -= damageTake;
+        healthBar.UpdateHealth((int)currentHealth, (int)maxHealth);
 
-        if(currentHealth <= 0)
+        if (currentHealth <= 0)
         {
             currentHealth = 0;
             Die();
@@ -40,5 +51,21 @@ public class CharacterStats : MonoBehaviour
     {
         Debug.Log($"{gameObject.name} has died.");
         // Handle death logic here, e.g., respawn, game over, etc.
+    }
+
+    private void OnTriggerEnter(Collider other)
+    {
+        if(other.gameObject.transform.CompareTag("EnemyHitBox"))
+        {
+            
+        }
+    }
+
+    private void Update()
+    {
+        if (Input.GetKeyDown(KeyCode.I)) 
+        {
+            TakeDamage(10f); 
+        }
     }
 }
