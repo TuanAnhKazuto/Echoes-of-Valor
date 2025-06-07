@@ -1,78 +1,76 @@
 ﻿using UnityEngine;
+using UnityEngine.AI;
 
-public class Skeleton_Magel : MonoBehaviour
+public class Skeleton_Mage : BaseCharacter
 {
-    [Header("Cài đặt AI")]
-    public Transform player;
-    public float moveSpeed = 3f;
-    public float chaseRange = 10f;
-    public float attackRange = 8f;
-    public float attackCooldown = 1.5f;
-    public GameObject arrowPrefab;
-    public Transform firePoint;
+    private bool isMoving = false;
 
-    [Header("Animation (nếu có)")]
-    public Animator animator;
-
-    private float lastAttackTime;
-
-    void Update()
+    protected override void Start()
     {
-        if (player == null) return;
+        base.Start();
+        agent = GetComponent<NavMeshAgent>();
+        if (agent == null) agent = gameObject.AddComponent<NavMeshAgent>();
+        agent.speed = moveSpeed;
 
-        float distance = Vector3.Distance(transform.position, player.position);
+    }
 
-        if (distance <= chaseRange)
+    protected override void Update()
+    {
+        base.Update();
+        if (IsDead || IsAttacking) return;
+
+        distanceToTarget = Vector3.Distance(transform.position, target.transform.position);
+
+        if (distanceToTarget <= attackTriggerRange && distanceToTarget > attackRange)
         {
-            if (distance > attackRange)
+            if (!IsSpawm)
             {
-                MoveTowardsPlayer();
-                animator?.SetFloat("Speed", moveSpeed);
-                animator?.SetBool("IsAttack", false);
+                animator.speed = 1;
+                return;
             }
-            else
-            {
-                animator?.SetFloat("Speed", 0f);
-                animator?.SetBool("IsAttack", true);
+            MoveToTarget();
+        }
+        else if (distanceToTarget <= attackRange)
+        {
+            StopMoving();
 
-                if (Time.time - lastAttackTime >= attackCooldown)
-                {
-                    lastAttackTime = Time.time;
-                    animator?.SetTrigger("Shoot"); 
-                }
+            if (!IsFacingTarget())
+            {
+                RotateToFaceTarget();
+                return;
             }
+            animator.SetTrigger("Attack");
+            IsAttacking = true;
         }
         else
         {
-            animator?.SetFloat("Speed", 0f);
-            animator?.SetBool("IsAttack", false);
-        }
-
-        RotateTowardsPlayer();
-    }
-
-    void MoveTowardsPlayer()
-    {
-        Vector3 direction = (player.position - transform.position).normalized;
-        transform.position += direction * moveSpeed * Time.deltaTime;
-    }
-
-    void RotateTowardsPlayer()
-    {
-        Vector3 direction = (player.position - transform.position).normalized;
-        if (direction != Vector3.zero)
-        {
-            Quaternion toRotation = Quaternion.LookRotation(direction);
-            transform.rotation = Quaternion.Slerp(transform.rotation, toRotation, 5f * Time.deltaTime);
+            StopMoving();
         }
     }
 
-  
-    public void Attack()
+    private void MoveToTarget()
     {
-        if (arrowPrefab != null && firePoint != null)
+        if (agent == null) return;
+
+        if (!isMoving)
         {
-            Instantiate(arrowPrefab, firePoint.position, firePoint.rotation);
+            agent.isStopped = false;
+            isMoving = true;
+            animator.SetBool("IsRunning", true);
+        }
+
+        agent.SetDestination(target.transform.position);
+    }
+
+    private void StopMoving()
+    {
+        if (agent == null) return;
+
+        if (isMoving)
+        {
+            agent.isStopped = true;
+            isMoving = false;
+            animator.SetBool("IsRunning", false);
         }
     }
 }

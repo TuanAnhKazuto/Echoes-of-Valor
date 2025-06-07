@@ -79,7 +79,7 @@ public class PaneQuest : MonoBehaviour
     IEnumerator MovingPanel(bool show)
     {
         Vector2 targetPos = show
-            ? new Vector2(initialPosition.x + 600f, initialPosition.y)
+            ? new Vector2(initialPosition.x + 300f, initialPosition.y)
             : new Vector2(initialPosition.x - 5f, initialPosition.y);
 
         while (Vector2.Distance(rect.anchoredPosition, targetPos) > 1f)

@@ -1535,7 +1535,6 @@ GameObject:
   - component: {fileID: 1283718047148153270}
   - component: {fileID: 4470778822035619694}
   - component: {fileID: 5834333616896532354}
-  - component: {fileID: 6178342869959526041}
   - component: {fileID: 2938735291668699248}
   - component: {fileID: 5099905241375679236}
   m_Layer: 0
@@ -1581,7 +1580,7 @@ Animator:
   m_GameObject: {fileID: 6329946028441545229}
   m_Enabled: 1
   m_Avatar: {fileID: 9000000, guid: 0b3da1f3c3be7b14bbbc3e7c0295b0b4, type: 2}
-  m_Controller: {fileID: 9100000, guid: c6993c9c4f5d45f479b3f84e13b50d63, type: 2}
+  m_Controller: {fileID: 9100000, guid: ad6e4856892a556409c1f73064607507, type: 2}
   m_CullingMode: 0
   m_UpdateMode: 0
   m_ApplyRootMotion: 0
@@ -1632,44 +1631,6 @@ MonoBehaviour:
   isSpawned: 0
   arrowPrefab: {fileID: 4728223573417189928, guid: e7073cbbffe003042a2c9bc54d8a9dad, type: 3}
   firePoint: {fileID: 7300617296076394209}
---- !u!114 &6178342869959526041
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 6329946028441545229}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: e6237329c387c1441b5a50c644246241, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  playerData:
-    playerName: 
-    characterClass: 
-    level: 0
-    exp: 0
-    health: 0
-    defense: 0
-    damage: 0
-    skillPoints: 0
-    sceneName: 
-    positionX: 0
-    positionY: 0
-    positionZ: 0
-    rotationY: 0
-    weaponId: 0
-    weaponLevel: 0
-    worldLevel: 0
-  characterStats: {fileID: 0}
-  healthBar: {fileID: 0}
-  levelText: {fileID: 0}
-  level: 10
-  maxHealth: 100
-  currentHealth: 0
-  baseDamage: 10
-  healthPerLevel: 20
-  damagePerLevel: 5
 --- !u!54 &2938735291668699248
 Rigidbody:
   m_ObjectHideFlags: 0
@@ -2336,10 +2297,6 @@ PrefabInstance:
     m_TransformParent: {fileID: 7713735878304070000}
     m_Modifications:
     - target: {fileID: 1524977347169880408, guid: 21480abdbaf0ea144a2e9e0a2fcfdcd7, type: 3}
-      propertyPath: m_Mesh
-      value: 
-      objectReference: {fileID: 0}
-    - target: {fileID: 4091844351836130732, guid: 21480abdbaf0ea144a2e9e0a2fcfdcd7, type: 3}
       propertyPath: m_Mesh
       value: 
       objectReference: {fileID: 0}
