@@ -1,7 +1,7 @@
 ﻿using UnityEngine;
 using UnityEngine.AI;
 
-public class Skeleton_Mage : BaseCharacter
+public class Skeleton_Minion : BaseCharacter
 {
     private bool isMoving = false;
 
@@ -18,7 +18,7 @@ public class Skeleton_Mage : BaseCharacter
     {
         base.Update();
         if (IsDead || IsAttacking) return;
-
+        
         distanceToTarget = Vector3.Distance(transform.position, target.transform.position);
 
         if (distanceToTarget <= attackTriggerRange && distanceToTarget > attackRange)
@@ -28,6 +28,7 @@ public class Skeleton_Mage : BaseCharacter
                 animator.speed = 1;
                 return;
             }
+
             MoveToTarget();
         }
         else if (distanceToTarget <= attackRange)
@@ -39,6 +40,7 @@ public class Skeleton_Mage : BaseCharacter
                 RotateToFaceTarget();
                 return;
             }
+
             animator.SetTrigger("Attack");
             IsAttacking = true;
         }
