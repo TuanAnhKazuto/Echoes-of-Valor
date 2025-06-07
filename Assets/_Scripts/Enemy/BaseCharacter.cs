@@ -55,11 +55,8 @@ public abstract class BaseCharacter : MonoBehaviour
     {
         // Trạng thái animation ban đầu là Spawm sau đó dừng lại luôn.
         currentAnimation = AnimationType.Spawn;
-        if (animator)
-        {
-            animator?.SetTrigger("Spawm");
-            animator.speed = 0;
-        }
+        animator.SetTrigger("Spawm");
+        animator.speed = 0;
     }
     protected virtual void Update()
     {

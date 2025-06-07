@@ -14,7 +14,7 @@ public class HealthController : MonoBehaviour
 
     void Start()
     {
-        if (healthBarFill == null) healthBarFill = this.transform.Find("Health/BG/HealthBar")?.GetComponent<Image>();
+        if (healthBarFill == null) healthBarFill = this.transform.Find("Health/BG/HealthBar").GetComponent<Image>();
         ResetHealth();
         UpdateHealthBar();
     }
