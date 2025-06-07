@@ -52,6 +52,13 @@ public class Skeleton_Mage : BaseCharacter
     {
         if (agent == null) return;
 
+        float heightDifference = Mathf.Abs(transform.position.y - target.transform.position.y);
+        if (heightDifference > 2f)
+        {
+            StopMoving();
+            return;
+        }
+
         if (!isMoving)
         {
             agent.isStopped = false;

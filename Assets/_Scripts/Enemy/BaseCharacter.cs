@@ -63,14 +63,7 @@ public abstract class BaseCharacter : MonoBehaviour
     }
     protected virtual void Update()
     {
-        if (Input.GetKeyDown(KeyCode.D))
-        {
-            Death();
-        }
-        if (Input.GetKeyDown(KeyCode.T))
-        {
-            TakeDamage(damage);
-        }
+        
     }
     public void OnAnimationStart(AnimationType type)
     {
@@ -144,7 +137,7 @@ public abstract class BaseCharacter : MonoBehaviour
     }
     public virtual void Death()
     {
-        animator.SetTrigger("Death");
+        animator?.SetTrigger("Death");
     }
     protected virtual void OnDrawGizmos()
     {

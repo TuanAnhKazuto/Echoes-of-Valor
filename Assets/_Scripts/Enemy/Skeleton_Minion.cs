@@ -54,6 +54,13 @@ public class Skeleton_Minion : BaseCharacter
     {
         if (agent == null) return;
 
+        float heightDifference = Mathf.Abs(transform.position.y - target.transform.position.y);
+        if (heightDifference > 2f)
+        {
+            StopMoving();
+            return;
+        }
+
         if (!isMoving)
         {
             agent.isStopped = false;
