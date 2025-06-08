@@ -1,10 +1,16 @@
-using UnityEngine;
+﻿using UnityEngine;
 
 public class KnightSkill : MonoBehaviour
 {
-    Animator animator;
+    public Animator animator;
+    
 
-    [Header("Excarlibur Skill")]
+    [Header("Excalibur Skill")]
+    public int excaliburLevel = 1;
+
+    public float excarliburCooldown = 6f;
+    float nextReadyTime = 0f;
+
     public GameObject excaliburEffect;
 
     private void Awake()
@@ -14,18 +20,31 @@ public class KnightSkill : MonoBehaviour
 
     private void Update()
     {
+        ExcaliburSkill();
+    }
+
+    private void ExcaliburSkill()
+    {
         if (Input.GetKeyDown(KeyCode.Alpha2))
         {
-            animator.SetTrigger("ExcarliburSkill");
+            if (Time.time >= nextReadyTime)
+            {
+                animator.SetTrigger("ExcaliburSkill");
+                nextReadyTime = Time.time + excarliburCooldown;
+            }
+            else
+            {
+                Debug.Log("❌ Skill đang hồi, còn: " + (nextReadyTime - Time.time).ToString("F1") + "s");
+            }
         }
     }
 
 
-    public void ExcarliburSkillStart()
+    public void ExcaliburSkillStart()
     {
         excaliburEffect.SetActive(true);
     }
-    public void ExcarliburSkillEnd()
+    public void ExcaliburSkillEnd()
     {
         excaliburEffect.SetActive(false);
     }
