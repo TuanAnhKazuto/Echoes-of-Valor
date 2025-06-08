@@ -20,6 +20,17 @@ public class Inventory : MonoBehaviour
     {
         GameObject ivtr = GameObject.FindWithTag("InventoryManager");
         inventoryManager = ivtr.GetComponent<InventoryManager>();
+
+        if (inventoryUI == null)
+        {
+            inventoryUI = GameObject.Find("Window Inventory");
+        }
+
+        if (freeLookCamera == null)
+        {
+            freeLookCamera = FindAnyObjectByType<CinemachineCamera>();
+        }
+
     }
 
     void Update()
@@ -31,6 +42,7 @@ public class Inventory : MonoBehaviour
             inventoryManager.DisplayInventory();
         }
     }
+
 
     void ToggleInventory()
     {
