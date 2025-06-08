@@ -43,7 +43,6 @@ public class Inventory : MonoBehaviour
         }
     }
 
-
     void ToggleInventory()
     {
         isInventoryOpen = !isInventoryOpen; // Đảo trạng thái Inventory
@@ -65,4 +64,5 @@ public class Inventory : MonoBehaviour
     }
 
     
+
 }

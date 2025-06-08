@@ -8,9 +8,6 @@ public class ItemUIController : MonoBehaviour
 {
     public Item item;
 
-   
-
-
     //[HideInInspector] public CharacterMovement player;
     //[HideInInspector] public PlayerHealth playerHealth;
 
@@ -48,7 +45,7 @@ public class ItemUIController : MonoBehaviour
                 break;
            
             case ItemType.Mp:
-                FindAnyObjectByType<Mp>().IncreaseMp(item.value);
+                FindAnyObjectByType<CharacterStats>().Heal(item.value);
                 break;
         }
         Remove();
