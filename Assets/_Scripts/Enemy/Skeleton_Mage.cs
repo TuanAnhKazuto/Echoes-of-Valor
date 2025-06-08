@@ -1,76 +1,94 @@
 ﻿using UnityEngine;
-using UnityEngine.AI;
 
-public class Skeleton_Mage : BaseCharacter
+public class Skeleton_Magel : MonoBehaviour
 {
-    private bool isMoving = false;
+    [Header("Cài đặt AI")]
+    public Transform player;
+    public float moveSpeed = 3f;
+    public float chaseRange = 10f;
+    public float attackRange = 8f;
+    public float attackCooldown = 1.5f;
+    public GameObject arrowPrefab;
+    public Transform firePoint;
 
-    protected override void Start()
+    [Header("Animation (nếu có)")]
+    public Animator animator;
+
+    private float lastAttackTime;
+
+    void Update()
     {
-        base.Start();
-        agent = GetComponent<NavMeshAgent>();
-        if (agent == null) agent = gameObject.AddComponent<NavMeshAgent>();
-        agent.speed = moveSpeed;
+        if (player == null) return;
 
-    }
+        float distance = Vector3.Distance(transform.position, player.position);
 
-    protected override void Update()
-    {
-        base.Update();
-        if (IsDead || IsAttacking) return;
-
-        distanceToTarget = Vector3.Distance(transform.position, target.transform.position);
-
-        if (distanceToTarget <= attackTriggerRange && distanceToTarget > attackRange)
+        if (distance <= chaseRange)
         {
-            if (!IsSpawm)
+            if (distance > attackRange)
             {
-                animator.speed = 1;
-                return;
+                MoveTowardsPlayer();
+                animator?.SetFloat("Speed", moveSpeed);
+                animator?.SetBool("IsAttack", false);
             }
-            MoveToTarget();
-        }
-        else if (distanceToTarget <= attackRange)
-        {
-            StopMoving();
+            else
+            {
+                animator?.SetFloat("Speed", 0f);
+                animator?.SetBool("IsAttack", true);
 
-            if (!IsFacingTarget())
-            {
-                RotateToFaceTarget();
-                return;
+                if (Time.time - lastAttackTime >= attackCooldown)
+                {
+                    lastAttackTime = Time.time;
+                    animator?.SetTrigger("Shoot");
+                }
             }
-            animator.SetTrigger("Attack");
-            IsAttacking = true;
         }
         else
         {
-            StopMoving();
+            animator?.SetFloat("Speed", 0f);
+            animator?.SetBool("IsAttack", false);
+        }
+
+        RotateTowardsPlayer();
+    }
+    private void OnDrawGizmos()
+    {
+        Gizmos.color = Color.red;
+        Gizmos.DrawWireSphere(transform.position, attackRange);
+    }
+    void MoveTowardsPlayer()
+    {
+        Vector3 direction = (player.position - transform.position).normalized;
+        transform.position += direction * moveSpeed * Time.deltaTime;
+    }
+
+    void RotateTowardsPlayer()
+    {
+        Vector3 direction = (player.position - transform.position).normalized;
+        if (direction != Vector3.zero)
+        {
+            Quaternion toRotation = Quaternion.LookRotation(direction);
+            transform.rotation = Quaternion.Slerp(transform.rotation, toRotation, 5f * Time.deltaTime);
         }
     }
 
-    private void MoveToTarget()
+    // Gọi từ Animation Event trong animation
+    public void OnAttack()
     {
-        if (agent == null) return;
-
-        if (!isMoving)
-        {
-            agent.isStopped = false;
-            isMoving = true;
-            animator.SetBool("IsRunning", true);
-        }
-
-        agent.SetDestination(target.transform.position);
+        Attack();
     }
 
-    private void StopMoving()
+    // Gọi từ Animation Event khi kết thúc animation tấn công
+    public void EndAttack()
     {
-        if (agent == null) return;
+        Debug.Log("EndAttack Animation Event Triggered");
+    }
 
-        if (isMoving)
+    // Hàm tấn công thực tế - bắn tên
+    public void Attack()
+    {
+        if (arrowPrefab != null && firePoint != null)
         {
-            agent.isStopped = true;
-            isMoving = false;
-            animator.SetBool("IsRunning", false);
+            Instantiate(arrowPrefab, firePoint.position, firePoint.rotation);
         }
     }
 }
