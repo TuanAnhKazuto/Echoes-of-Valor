@@ -19,7 +19,7 @@ public class EXP : MonoBehaviour
     {
         if (expText == null)
         {
-            expText = GameObject.Find("Text")?.GetComponent<TextMeshProUGUI>();
+            expText = GameObject.Find("Textexp")?.GetComponent<TextMeshProUGUI>();
         }
     }
 }
