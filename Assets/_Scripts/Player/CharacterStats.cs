@@ -46,6 +46,11 @@ public class CharacterStats : MonoBehaviour
             Die();
         }
     }
+    public void Heal(float amount)
+    {
+        currentHealth = Mathf.Min(currentHealth + amount, maxHealth);
+        healthBar.UpdateHealth((int)currentHealth, (int)maxHealth);
+    }
 
     private void Die()
     {
@@ -57,7 +62,7 @@ public class CharacterStats : MonoBehaviour
     {
         if(other.gameObject.transform.CompareTag("EnemyHitBox"))
         {
-            
+            TakeDamage(20f);
         }
     }
 
@@ -65,7 +70,7 @@ public class CharacterStats : MonoBehaviour
     {
         if (Input.GetKeyDown(KeyCode.I)) 
         {
-            TakeDamage(10f); 
+            Heal(10f); 
         }
     }
 }
