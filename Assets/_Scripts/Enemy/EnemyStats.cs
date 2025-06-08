@@ -1,6 +1,5 @@
 using TMPro;
 using UnityEngine;
-using UnityEngine.UI;
 
 public class EnemyStats : MonoBehaviour
 {
@@ -13,7 +12,7 @@ public class EnemyStats : MonoBehaviour
 
     [Header("Base Stats")]
     public int level = 1;
-    public int maxHealth = 100;
+    public int maxHealth = 10;
     public int currentHealth;
 
     public float baseDamage = 10f;
@@ -24,7 +23,7 @@ public class EnemyStats : MonoBehaviour
 
     private void Awake()
     {
-        if(characterStats == null)
+        if (characterStats == null)
         {
             characterStats = FindAnyObjectByType<CharacterStats>();
         }
@@ -37,9 +36,19 @@ public class EnemyStats : MonoBehaviour
         healthBar.UpdateHealth(currentHealth, maxHealth);
     }
 
-    public void TakeDamage()
+    public void LevelUp()
     {
-        currentHealth -= characterStats.TotalDamage;
+        level++;
+        maxHealth += (int)healthPerLevel;
+        baseDamage += damagePerLevel;
+        currentHealth = maxHealth; // Reset current health to max health on level up
+        levelText.text = "Lv. " + level.ToString();
+        healthBar.UpdateHealth(currentHealth, maxHealth);
+    }
+
+    public void TakeDamage(float damage)
+    {
+        currentHealth -= (int)damage;
         healthBar.UpdateHealth(currentHealth, maxHealth);
     }
 
@@ -47,7 +56,13 @@ public class EnemyStats : MonoBehaviour
     {
         if (other.gameObject.CompareTag("PlayerHitBox"))
         {
-            TakeDamage();
+            TakeDamage(characterStats.TotalDamage);
+        }
+
+        if (other.gameObject.CompareTag("PlayerSkill"))
+        {
+            var skillDamage = other.gameObject.GetComponent<SkillInfo>();
+            TakeDamage(skillDamage.damgeSkill);
         }
     }
 }

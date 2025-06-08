@@ -84,12 +84,16 @@ public class PlayerController : MonoBehaviour
 
     private void MouseControll()
     {
-        if(Input.GetKey(KeyCode.LeftAlt) || Input.GetKey(KeyCode.RightAlt))
+        if(Input.GetKey(KeyCode.LeftAlt))
         {
             Cursor.lockState = CursorLockMode.None;
             Cursor.visible = true;
         }
-      
+        else if(Input.GetKeyDown(KeyCode.RightAlt))
+        {
+            Cursor.lockState = CursorLockMode.Locked;
+            Cursor.visible = false;
+        }
     }
 
     private void Movement()
