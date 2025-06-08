@@ -1,4 +1,4 @@
-using UnityEngine;
+﻿using UnityEngine;
 
 public class CharacterStats : MonoBehaviour
 {
@@ -56,6 +56,10 @@ public class CharacterStats : MonoBehaviour
     {
         Debug.Log($"{gameObject.name} has died.");
         // Handle death logic here, e.g., respawn, game over, etc.
+        // Hiển thị Panel Thất Bại
+        GameResult gameResult = FindAnyObjectByType<GameResult>();
+        if (gameResult != null)
+            gameResult.ShowFailPanel();
     }
 
     private void OnTriggerEnter(Collider other)
