@@ -1,5 +1,5 @@
-﻿using UnityEngine;
-using UnityEngine.Experimental.GlobalIllumination;
+﻿using Unity.Cinemachine;
+using UnityEngine;
 
 public class PlayerController : MonoBehaviour
 {
@@ -8,6 +8,7 @@ public class PlayerController : MonoBehaviour
     [Header("Movement Settings")]
     public CharacterController controller;
     public Transform cam;
+    public CinemachineCamera freeLookCam;
 
     public float moveSpeed;
     public float speed = 6f;
@@ -57,6 +58,13 @@ public class PlayerController : MonoBehaviour
         Cursor.lockState = CursorLockMode.Locked;
 
         cam  = Camera.main.transform;
+
+        freeLookCam = FindAnyObjectByType<CinemachineCamera>();
+        if (freeLookCam != null)
+        {
+            freeLookCam.Follow = transform;
+            freeLookCam.LookAt = transform;
+        }
 
         isAttacking = false;
     }
