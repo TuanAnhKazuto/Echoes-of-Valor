@@ -155,6 +155,7 @@ public class PlayerController : MonoBehaviour
             isJumping = true;
         }
 
+
         velocity.y += gravity * Time.deltaTime;
         controller.Move(velocity * Time.deltaTime);
         animator.SetBool("IsFalling", !isGrounded && velocity.y < 0);

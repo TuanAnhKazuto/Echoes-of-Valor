@@ -28,12 +28,6 @@ public class Knight : MonoBehaviour
         Attack();
     }
 
-    private void OnDrawGizmos()
-    {
-        Gizmos.color = Color.green;
-        Gizmos.DrawWireSphere(player.transform.position, curTargetRange);
-    }
-
     public void FindClosestEnemy()
     {
         GameObject[] enemies = GameObject.FindGameObjectsWithTag("Enemy");
