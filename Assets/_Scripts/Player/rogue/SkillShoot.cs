@@ -1,31 +1,39 @@
 ﻿using UnityEngine;
 using System.Collections;
-using System.Collections.Generic;
 
 public class SkillShoot : MonoBehaviour
 {
+    private Animator animator;
+
     public GameObject normalArrowPrefab;
     public GameObject fireArrowPrefab;
+
     public Transform shootPoint;
-    public float arrowSpeed = 15f;
+    public float arrowSpeed = 20f;
     public LayerMask enemyLayer;
+
+    private float normalArrowDamage = 20f;
 
     public ParticleSystem fireArrowEffectPrefab;
     public ParticleSystem aoeImpactEffectPrefab;
 
-    private float normalArrowDamage = 20f;
+    void Start()
+    {
+        if (animator == null)
+            animator = GetComponent<Animator>();
+    }
 
     void Update()
     {
-        if (Input.GetKeyDown(KeyCode.T))
+        if (Input.GetKeyDown(KeyCode.Alpha1))
         {
-            FireArrow();
+            if (animator) animator.SetTrigger("Attack3");
         }
-        else if (Input.GetKeyDown(KeyCode.R))
+        else if (Input.GetKeyDown(KeyCode.Alpha2))
         {
-            DoubleArrow();
+            if (animator) animator.SetTrigger("Attack2");
         }
-        else if (Input.GetKeyDown(KeyCode.E))
+        else if (Input.GetKeyDown(KeyCode.Alpha3))
         {
             StartCoroutine(ArrowRain());
         }
@@ -34,7 +42,10 @@ public class SkillShoot : MonoBehaviour
     void FireArrow()
     {
         Transform target = FindNearestEnemy();
+        if (target == null || shootPoint == null || fireArrowPrefab == null) return;
+
         GameObject arrow = Instantiate(fireArrowPrefab, shootPoint.position, Quaternion.identity);
+
         Arrow arrowScript = arrow.GetComponent<Arrow>();
         if (arrowScript != null)
         {
@@ -43,9 +54,12 @@ public class SkillShoot : MonoBehaviour
         }
 
         ArrowDamage dmg = arrow.GetComponent<ArrowDamage>();
-        if (dmg != null) dmg.damage = normalArrowDamage * 1.75f;
+        if (dmg != null)
+        {
+            dmg.damage = normalArrowDamage * 1.75f;
+        }
 
-        if (fireArrowEffectPrefab)
+        if (fireArrowEffectPrefab != null)
         {
             ParticleSystem fireFX = Instantiate(fireArrowEffectPrefab, arrow.transform);
             fireFX.transform.localPosition = Vector3.zero;
@@ -55,81 +69,46 @@ public class SkillShoot : MonoBehaviour
     void DoubleArrow()
     {
         Transform target = FindNearestEnemy();
-        if (target == null) return;
+        if (target == null || shootPoint == null || normalArrowPrefab == null) return;
 
         float offset = 0.3f;
         Vector3 leftPos = shootPoint.position - shootPoint.right * offset;
         Vector3 rightPos = shootPoint.position + shootPoint.right * offset;
 
         Vector3 targetPos = target.position + Vector3.up * 1.5f;
-        Vector3 direction = (targetPos - shootPoint.position).normalized;
+        Vector3 dir = (targetPos - shootPoint.position).normalized;
 
-        GameObject leftArrow = Instantiate(normalArrowPrefab, leftPos, Quaternion.identity);
-        GameObject rightArrow = Instantiate(normalArrowPrefab, rightPos, Quaternion.identity);
-
-        Arrow leftScript = leftArrow.GetComponent<Arrow>();
-        Arrow rightScript = rightArrow.GetComponent<Arrow>();
-
-        if (leftScript != null)
-        {
-            leftScript.speed = arrowSpeed;
-            leftScript.SetDirection(direction);
-        }
-
-        if (rightScript != null)
-        {
-            rightScript.speed = arrowSpeed;
-            rightScript.SetDirection(direction);
-        }
-
-        ArrowDamage dmgL = leftArrow.GetComponent<ArrowDamage>();
-        ArrowDamage dmgR = rightArrow.GetComponent<ArrowDamage>();
-
-        if (dmgL != null) dmgL.damage = normalArrowDamage * 3f;
-        if (dmgR != null) dmgR.damage = normalArrowDamage * 3f;
+        ShootArrow(normalArrowPrefab, leftPos, dir, normalArrowDamage * 3f);
+        ShootArrow(normalArrowPrefab, rightPos, dir, normalArrowDamage * 3f);
     }
 
     IEnumerator ArrowRain()
     {
-        Transform targetEnemy = FindNearestEnemy();
-        if (targetEnemy == null) yield break;
+        Transform target = FindNearestEnemy();
+        if (target == null || normalArrowPrefab == null || fireArrowPrefab == null) yield break;
 
         int totalArrows = Random.Range(20, 31);
         int fireCount = Mathf.RoundToInt(totalArrows * 2f / 3f);
-        Vector3 center = targetEnemy.position;
+        Vector3 center = target.position;
 
         for (int i = 0; i < totalArrows; i++)
         {
             yield return new WaitForSeconds(Random.Range(0.05f, 0.15f));
 
             Vector3 spawnPos = center + new Vector3(Random.Range(-2f, 2f), 10f, Random.Range(-2f, 2f));
-            GameObject arrow;
-            float damage;
+            Vector3 dir = Vector3.down;
 
             bool isFire = i < fireCount;
+            GameObject prefab = isFire ? fireArrowPrefab : normalArrowPrefab;
+            float damage = isFire ? 35f : 20f;
 
-            if (isFire)
-            {
-                arrow = Instantiate(fireArrowPrefab, spawnPos, Quaternion.identity);
-                damage = 35f;
-
-                if (fireArrowEffectPrefab)
-                {
-                    ParticleSystem fireFX = Instantiate(fireArrowEffectPrefab, arrow.transform);
-                    fireFX.transform.localPosition = Vector3.zero;
-                }
-            }
-            else
-            {
-                arrow = Instantiate(normalArrowPrefab, spawnPos, Quaternion.identity);
-                damage = 20f;
-            }
+            GameObject arrow = Instantiate(prefab, spawnPos, Quaternion.identity);
 
             Arrow arrowScript = arrow.GetComponent<Arrow>();
             if (arrowScript != null)
             {
                 arrowScript.speed = arrowSpeed;
-                arrowScript.SetDirection(Vector3.down);
+                arrowScript.SetDirection(dir);
             }
 
             ArrowDamage dmg = arrow.GetComponent<ArrowDamage>();
@@ -138,6 +117,32 @@ public class SkillShoot : MonoBehaviour
                 dmg.damage = damage;
                 dmg.onAOEImpactEffect = aoeImpactEffectPrefab;
             }
+
+            if (isFire && fireArrowEffectPrefab != null)
+            {
+                ParticleSystem fireFX = Instantiate(fireArrowEffectPrefab, arrow.transform);
+                fireFX.transform.localPosition = Vector3.zero;
+            }
+        }
+    }
+
+    void ShootArrow(GameObject prefab, Vector3 position, Vector3 direction, float damage)
+    {
+        if (prefab == null) return;
+
+        GameObject arrow = Instantiate(prefab, position, Quaternion.LookRotation(direction));
+
+        Arrow arrowScript = arrow.GetComponent<Arrow>();
+        if (arrowScript != null)
+        {
+            arrowScript.speed = arrowSpeed;
+            arrowScript.SetDirection(direction);
+        }
+
+        ArrowDamage dmg = arrow.GetComponent<ArrowDamage>();
+        if (dmg != null)
+        {
+            dmg.damage = damage;
         }
     }
 
