@@ -5,6 +5,10 @@ public class CharacterStats : MonoBehaviour
     public PlayerHealthBar healthBar;
 
     [Header("Base Stats")]
+    public int playerId;
+    public string playerName;
+    public string characterClass;
+
     public int level = 1;
     public float maxHealth = 100f;
     public float currentHealth;
@@ -31,7 +35,7 @@ public class CharacterStats : MonoBehaviour
         currentMana = maxMana;
     }
 
-    public int TotalDamage => baseDamage + (equippedWeapon != null ? equippedWeapon.GetDamage() : 0);
+    public int TotalDamage => baseDamage + (equippedWeapon != null ? equippedWeapon.GetDamage() : 1);
     public int TotalDefense => baseDefense + (equippedWeapon != null ? equippedWeapon.GetDefense() : 0);
 
     public void TakeDamage(float damage)
