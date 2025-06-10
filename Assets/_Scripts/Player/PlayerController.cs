@@ -6,6 +6,7 @@ public class PlayerController : MonoBehaviour
     public Animator animator;
     // movement variables
     [Header("Movement Settings")]
+    public bool canMove = true;
     public CharacterController controller;
     public Transform cam;
     public CinemachineCamera freeLookCam;
@@ -98,11 +99,12 @@ public class PlayerController : MonoBehaviour
 
     private void Movement()
     {
+        
         float horizontal = Input.GetAxisRaw("Horizontal");
         float vertical = Input.GetAxisRaw("Vertical");
         Vector3 direction = new Vector3(horizontal, 0f, vertical).normalized;
         animator.SetFloat("Speed", direction.magnitude);
-
+        if (!canMove) return;
 
         if (direction.magnitude >= 0.1f)
         {
@@ -160,7 +162,7 @@ public class PlayerController : MonoBehaviour
 
     private void Dash()
     {
-        if (Input.GetMouseButtonDown(1) && !isDashing && currentStamina >= 10f)
+        if (Input.GetKeyDown(KeyCode.LeftShift) && !isDashing && currentStamina >= 10f)
         {
             isDashing = true;
             dashTimer = dashDuration;

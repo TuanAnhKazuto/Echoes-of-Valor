@@ -6,6 +6,7 @@ public class SkillInfo : MonoBehaviour
     public float damgeSkill = 0;
 
     private float excaliburDamage = 20f;
+    private float rageSpikeDamage = 15f;
 
 
     private void Awake()
@@ -36,11 +37,7 @@ public class SkillInfo : MonoBehaviour
         }
         else if (knightSkill.animator.GetCurrentAnimatorStateInfo(0).IsName("1H_Melee_Skill_RageSpike"))
         {
-            damgeSkill = 100;
-        }
-        else
-        {
-            damgeSkill = 200;
+            damgeSkill = rageSpikeDamage;
         }
     }
 
