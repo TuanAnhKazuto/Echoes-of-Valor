@@ -2,6 +2,7 @@
 [System.Serializable]
 public class PlayerData
 {
+    public int playerId;
     public string playerName;
     public string characterClass;
     public int level;
