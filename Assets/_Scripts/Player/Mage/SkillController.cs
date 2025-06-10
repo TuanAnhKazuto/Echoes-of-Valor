@@ -3,7 +3,7 @@ using UnityEngine.ProBuilder;
 
 public class SkillController : MonoBehaviour
 {
-    public Animator animator;
+    private Animator animator;
 
     public GameObject bulletPrefab;
     public GameObject fireBreathEffect;
@@ -36,23 +36,24 @@ public class SkillController : MonoBehaviour
 
         if (Input.GetMouseButtonDown(0))
         {
-            NormalAttack();
-        }
-        if (Input.GetKeyDown(KeyCode.E) && !fireBreathOnCooldown)
-        {
-            StartFireBreath();
+            animator.SetTrigger("Attack");
         }
 
-        if (Input.GetKeyUp(KeyCode.E) && isUsingFireBreath)
+        if (Input.GetKey(KeyCode.Alpha1) && !fireBreathOnCooldown)
+        {
+            animator.SetBool("Skill1", true);
+        }
+        if (Input.GetKeyUp(KeyCode.Alpha1) && isUsingFireBreath)
         {
             StopFireBreath();
         }
-        if (Input.GetKeyDown(KeyCode.R) && skill2Timer >= skill2Cooldown)
+
+        if (Input.GetKeyDown(KeyCode.Alpha2) && skill2Timer >= skill2Cooldown)
         {
-            UseAOEBall();
+            animator.SetTrigger("Attack2");
         }
 
-        if (Input.GetKeyDown(KeyCode.T) && skill3Timer >= skill3Cooldown)
+        if (Input.GetKeyDown(KeyCode.Alpha3) && skill3Timer >= skill3Cooldown)
         {
             UseTripleAOE();
         }
@@ -60,14 +61,13 @@ public class SkillController : MonoBehaviour
 
     void NormalAttack()
     {
-        animator.SetTrigger("Attack1");
         GameObject bullet = Instantiate(bulletPrefab, firePoint.position, firePoint.rotation);
         bullet.GetComponent<Projectile>().Initialize(20f);
     }
 
     void StartFireBreath()
     {
-        animator.SetTrigger("Attack1");
+
         fireBreathEffect.SetActive(true);
         isUsingFireBreath = true;
     }
@@ -76,6 +76,7 @@ public class SkillController : MonoBehaviour
     void StopFireBreath()
     {
         fireBreathEffect.SetActive(false);
+        animator.SetBool("Skill1", false);
         isUsingFireBreath = false;
         fireBreathOnCooldown = true;
         fireBreathTimer = 0f;
@@ -83,14 +84,13 @@ public class SkillController : MonoBehaviour
 
     void UseAOEBall()
     {
-        animator.SetTrigger("Attack2");
         Instantiate(BigBallPrefab, firePoint.position, firePoint.rotation);
         skill2Timer = 0f;
     }
 
     void UseTripleAOE()
     {
-        animator.SetTrigger("Attack2");
+        //animator.SetTrigger("Attack2");
         Instantiate(BigBallPrefab, firePoint.position + Vector3.left, firePoint.rotation);
         skill3Timer = 0f;
     }
