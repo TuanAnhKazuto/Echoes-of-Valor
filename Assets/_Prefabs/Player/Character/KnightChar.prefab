@@ -1179,6 +1179,8 @@ GameObject:
   - component: {fileID: 986040163151268293}
   - component: {fileID: 7343371498176557}
   - component: {fileID: 4656843496498232716}
+  - component: {fileID: 2987594514679051766}
+  - component: {fileID: 2548190139823987596}
   m_Layer: 3
   m_Name: KnightChar
   m_TagString: Player
@@ -1303,6 +1305,36 @@ MonoBehaviour:
     baseDefense: 0
     defensePerLevel: 3
     defensePerBreakthrough: 6
+--- !u!114 &2987594514679051766
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 5428599474284752997}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 9d0b4c15e9ec1014f865199298478b06, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  inventoryUI: {fileID: 0}
+  freeLookCamera: {fileID: 0}
+  isInventoryOpen: 0
+  inventoryManager: {fileID: 0}
+--- !u!114 &2548190139823987596
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 5428599474284752997}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 375af0af9130355499c1428cc4cde02f, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  exp: 0
+  expText: {fileID: 0}
 --- !u!1 &6020767039364578528
 GameObject:
   m_ObjectHideFlags: 0
@@ -2219,7 +2251,7 @@ PrefabInstance:
     m_Modifications:
     - target: {fileID: 4005100084169640724, guid: 7c839b7eae1a9514f86368c1fef0bd47, type: 3}
       propertyPath: m_VersionIndex
-      value: 936
+      value: 939
       objectReference: {fileID: 0}
     - target: {fileID: 5774715856320653376, guid: 7c839b7eae1a9514f86368c1fef0bd47, type: 3}
       propertyPath: m_Name
