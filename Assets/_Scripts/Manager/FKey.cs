@@ -1,15 +1,27 @@
-using System.Collections;
+﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.UI;
 
 public class FKey : MonoBehaviour
 {
     public GameObject fKey;
     bool isShowFKey;
 
+
+
     private void Start()
     {
-        fKey.SetActive(false);
+        // Nếu chưa được gán sẵn trong Inspector, thì tự động tìm trong scene
+        if (fKey == null)
+        {
+            fKey = GameObject.Find("F key"); // Tên phải đúng chính xác trong Hierarchy
+        }
+
+        if (fKey != null)
+        {
+            fKey.SetActive(false); // Ẩn ngay từ đầu
+        }
     }
 
     private void Update()
@@ -20,6 +32,7 @@ public class FKey : MonoBehaviour
             {
                 HideFKey();
             }
+            
         }
     }
 

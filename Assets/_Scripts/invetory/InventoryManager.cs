@@ -40,12 +40,12 @@ public class InventoryManager : MonoBehaviour
         Instance = this;
         DontDestroyOnLoad(gameObject);
 
-       
-        //if (itemContentPane == null)
-        //{
-        //    itemContentPane = GameObject.Find("Content").transform;
 
-        //}
+        if (itemContentPane == null)
+        {
+            itemContentPane = GameObject.Find("Content").transform;
+
+        }
     }
 
 

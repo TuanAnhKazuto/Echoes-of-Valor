@@ -24,13 +24,13 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 3720290164151482392}
   serializedVersion: 2
-  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalRotation: {x: 0, y: 1, z: 0, w: 0}
   m_LocalPosition: {x: 0, y: 1.34, z: 0}
-  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_LocalScale: {x: 1.0778, y: 1.0778, z: 1.0778}
   m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 4889111232530559316}
-  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+  m_LocalEulerAnglesHint: {x: 0, y: 180, z: 0}
 --- !u!1 &7852397991073688201
 GameObject:
   m_ObjectHideFlags: 0
@@ -130,6 +130,7 @@ GameObject:
   - component: {fileID: 4360035839269646891}
   - component: {fileID: 5419667281095187636}
   - component: {fileID: 4712310576297389421}
+  - component: {fileID: 2696430597383162602}
   m_Layer: 0
   m_Name: Chests
   m_TagString: Untagged
@@ -147,7 +148,7 @@ Transform:
   serializedVersion: 2
   m_LocalRotation: {x: 0, y: 1, z: 0, w: 0}
   m_LocalPosition: {x: 912.34845, y: 0.00000074098716, z: 130.12}
-  m_LocalScale: {x: 1.5, y: 1.5, z: 1.5}
+  m_LocalScale: {x: 1.128765, y: 1.128765, z: 1.128765}
   m_ConstrainProportionsScale: 0
   m_Children:
   - {fileID: 1590845899167496320}
@@ -240,7 +241,29 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 88709e60885a81d4795c301799561de5, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  hpPrefab: {fileID: 3826594298048161205, guid: e8cefcfea3a3f4d46a0bd06ebaa75611, type: 3}
-  mpPrefab: {fileID: 694108709114642616, guid: afd5ae8213ad200458bafb63ad6a4bc8, type: 3}
-  expPrefab: {fileID: 3628897259695132979, guid: 5a52602f8cf0f944b8739922da4efe26, type: 3}
+  hpPrefab: {fileID: 0}
+  mpPrefab: {fileID: 0}
+  expPrefab: {fileID: 0}
   spawnPoint: {fileID: 1947154464639300732}
+--- !u!95 &2696430597383162602
+Animator:
+  serializedVersion: 7
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 8312637853224617091}
+  m_Enabled: 1
+  m_Avatar: {fileID: 0}
+  m_Controller: {fileID: 9100000, guid: 8fb066528266e93449b74f9205707e3e, type: 2}
+  m_CullingMode: 0
+  m_UpdateMode: 0
+  m_ApplyRootMotion: 0
+  m_LinearVelocityBlending: 0
+  m_StabilizeFeet: 0
+  m_AnimatePhysics: 0
+  m_WarningMessage: 
+  m_HasTransformHierarchy: 1
+  m_AllowConstantClipSamplingOptimization: 1
+  m_KeepAnimatorStateOnDisable: 0
+  m_WriteDefaultValuesOnDisable: 0

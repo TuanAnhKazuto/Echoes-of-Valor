@@ -50,6 +50,11 @@ public class EnemyStats : MonoBehaviour
     {
         currentHealth -= (int)damage;
         healthBar.UpdateHealth(currentHealth, maxHealth);
+
+        if(currentHealth < 0)
+        {
+            Destroy(gameObject);
+        }
     }
 
     private void OnTriggerEnter(Collider other)
