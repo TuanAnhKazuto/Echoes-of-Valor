@@ -3,9 +3,12 @@ using System.Collections.Generic;
 using System.Linq;
 using Unity.VisualScripting;
 using UnityEngine;
+using UnityEngine.InputSystem;
+using UnityEngine.UI;
 
 public class PlayerQuest : MonoBehaviour
 {
+    //public QuestItem questItem;
 
     public List<QuestItem> questItems = new List<QuestItem>();
 
@@ -13,6 +16,16 @@ public class PlayerQuest : MonoBehaviour
 
     // Nhận nhiệm vụ 
 
+    private void Start()
+    {
+        
+        if (playerQuestPanel == null)
+        {
+            playerQuestPanel = FindAnyObjectByType<PaneQuest>();
+        }
+       
+        
+    }
     public void TakeQuest(QuestItem questItem)
     {
 
