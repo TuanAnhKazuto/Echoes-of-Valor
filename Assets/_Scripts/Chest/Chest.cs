@@ -6,8 +6,14 @@ public class Chest : MonoBehaviour
     public GameObject mpPrefab;
     public GameObject expPrefab;
     public Transform spawnPoint;
+    Animator animator;
 
     private bool isOpened = false;
+
+    private void Start()
+    {
+        animator = GetComponent<Animator>();
+    }
 
     void OnTriggerEnter(Collider other)
     {
@@ -16,7 +22,10 @@ public class Chest : MonoBehaviour
         if (other.CompareTag("Player"))
         {
             isOpened = true;
-            OpenChest();
+            //OpenChest();
+            animator.SetBool("Open", true);
+            Invoke(nameof(OpenChest), 0.5f);
+            Destroy(gameObject, 5f);
         }
     }
 
