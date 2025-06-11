@@ -1,10 +1,14 @@
-using UnityEngine;
+﻿using UnityEngine;
 
 public class CharacterStats : MonoBehaviour
 {
     public PlayerHealthBar healthBar;
 
     [Header("Base Stats")]
+    public int playerId;
+    public string playerName;
+    public string characterClass;
+
     public int level = 1;
     public float maxHealth = 100f;
     public float currentHealth;
@@ -31,7 +35,7 @@ public class CharacterStats : MonoBehaviour
         currentMana = maxMana;
     }
 
-    public int TotalDamage => baseDamage + (equippedWeapon != null ? equippedWeapon.GetDamage() : 0);
+    public int TotalDamage => baseDamage + (equippedWeapon != null ? equippedWeapon.GetDamage() : 1);
     public int TotalDefense => baseDefense + (equippedWeapon != null ? equippedWeapon.GetDefense() : 0);
 
     public void TakeDamage(float damage)
@@ -46,18 +50,27 @@ public class CharacterStats : MonoBehaviour
             Die();
         }
     }
+    public void Heal(float amount)
+    {
+        currentHealth = Mathf.Min(currentHealth + amount, maxHealth);
+        healthBar.UpdateHealth((int)currentHealth, (int)maxHealth);
+    }
 
     private void Die()
     {
         Debug.Log($"{gameObject.name} has died.");
         // Handle death logic here, e.g., respawn, game over, etc.
+        // Hiển thị Panel Thất Bại
+        GameResult gameResult = FindAnyObjectByType<GameResult>();
+        if (gameResult != null)
+            gameResult.ShowFailPanel();
     }
 
     private void OnTriggerEnter(Collider other)
     {
         if(other.gameObject.transform.CompareTag("EnemyHitBox"))
         {
-            
+            TakeDamage(20f);
         }
     }
 
@@ -65,7 +78,7 @@ public class CharacterStats : MonoBehaviour
     {
         if (Input.GetKeyDown(KeyCode.I)) 
         {
-            TakeDamage(10f); 
+            Heal(10f); 
         }
     }
 }

@@ -1,13 +1,15 @@
-﻿using UnityEngine;
-using UnityEngine.Experimental.GlobalIllumination;
+﻿using Unity.Cinemachine;
+using UnityEngine;
 
 public class PlayerController : MonoBehaviour
 {
     public Animator animator;
     // movement variables
     [Header("Movement Settings")]
+    public bool canMove = true;
     public CharacterController controller;
     public Transform cam;
+    public CinemachineCamera freeLookCam;
 
     public float moveSpeed;
     public float speed = 6f;
@@ -58,6 +60,13 @@ public class PlayerController : MonoBehaviour
 
         cam  = Camera.main.transform;
 
+        freeLookCam = FindAnyObjectByType<CinemachineCamera>();
+        if (freeLookCam != null)
+        {
+            freeLookCam.Follow = transform;
+            freeLookCam.LookAt = transform;
+        }
+
         isAttacking = false;
     }
 
@@ -76,21 +85,26 @@ public class PlayerController : MonoBehaviour
 
     private void MouseControll()
     {
-        if(Input.GetKey(KeyCode.LeftAlt) || Input.GetKey(KeyCode.RightAlt))
+        if(Input.GetKey(KeyCode.LeftAlt))
         {
             Cursor.lockState = CursorLockMode.None;
             Cursor.visible = true;
         }
-      
+        else if(Input.GetKeyDown(KeyCode.RightAlt))
+        {
+            Cursor.lockState = CursorLockMode.Locked;
+            Cursor.visible = false;
+        }
     }
 
     private void Movement()
     {
+        
         float horizontal = Input.GetAxisRaw("Horizontal");
         float vertical = Input.GetAxisRaw("Vertical");
         Vector3 direction = new Vector3(horizontal, 0f, vertical).normalized;
         animator.SetFloat("Speed", direction.magnitude);
-
+        if (!canMove) return;
 
         if (direction.magnitude >= 0.1f)
         {
@@ -141,6 +155,7 @@ public class PlayerController : MonoBehaviour
             isJumping = true;
         }
 
+
         velocity.y += gravity * Time.deltaTime;
         controller.Move(velocity * Time.deltaTime);
         animator.SetBool("IsFalling", !isGrounded && velocity.y < 0);
@@ -148,7 +163,7 @@ public class PlayerController : MonoBehaviour
 
     private void Dash()
     {
-        if (Input.GetMouseButtonDown(1) && !isDashing && currentStamina >= 10f)
+        if (Input.GetKeyDown(KeyCode.LeftShift) && !isDashing && currentStamina >= 10f)
         {
             isDashing = true;
             dashTimer = dashDuration;

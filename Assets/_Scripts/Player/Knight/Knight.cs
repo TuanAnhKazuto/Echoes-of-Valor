@@ -5,6 +5,11 @@ public class Knight : MonoBehaviour
     public PlayerController player;
     Animator anim;
 
+    public Transform currentTarget;
+    public float curTargetRange;
+    public float normalAttackRange = 3.5f;
+    public float skillAttackRange = 8f;
+
     public float coolDownTime = 0.8f;
     private float nextAttackTime = 0f;
     public static int noOfClicks = 0;
@@ -15,11 +20,41 @@ public class Knight : MonoBehaviour
     {
         anim = player.animator;
         player.isAttacking = false;
+        curTargetRange = normalAttackRange;
     }
 
     private void Update()
     {
         Attack();
+    }
+
+    public void FindClosestEnemy()
+    {
+        GameObject[] enemies = GameObject.FindGameObjectsWithTag("Enemy");
+
+        float closestDistance = Mathf.Infinity;
+        Transform closest = null;
+
+        foreach (GameObject enemy in enemies)
+        {
+            float distance = Vector3.Distance(player.transform.position, enemy.transform.position);
+
+            if (distance < closestDistance && distance <= curTargetRange)
+            {
+                closestDistance = distance;
+                closest = enemy.transform;
+            }
+        }
+
+        currentTarget = closest;
+
+        if (currentTarget != null)
+        {
+            // Xoay nhân vật hướng về mục tiêu
+            Vector3 direction = (currentTarget.position - player.transform.position).normalized;
+            direction.y = 0; // bỏ trục Y nếu game 3D
+            player.transform.rotation = Quaternion.LookRotation(direction);
+        }
     }
 
     void Attack()
@@ -67,6 +102,7 @@ public class Knight : MonoBehaviour
         {
             if (Input.GetMouseButtonDown(0))
             {
+                FindClosestEnemy();
                 OnClick();
                 player.isAttacking = true;
             }

@@ -1,4 +1,4 @@
-using Unity.VisualScripting;
+﻿using Unity.VisualScripting;
 using UnityEngine;
 using UnityEngine.AI;
 
@@ -48,6 +48,10 @@ public class SkeletonRogue : MonoBehaviour
             {
                 animator.SetBool("IsAttack", true);
                 agent.speed = 0f;
+
+                Vector3 direction = (player.position - transform.position).normalized;
+                direction.y = 0; // bỏ trục Y nếu game 3D
+                transform.rotation = Quaternion.LookRotation(direction);
             }
             else
             {
@@ -62,12 +66,4 @@ public class SkeletonRogue : MonoBehaviour
         GameObject arrow = Instantiate(arrowPrefab, firePoint.transform.position, firePoint.rotation);
         //arrow.gameObject.transform.Rotate(-90, 0, 0);
     }
-
-    private void OnDrawGizmos()
-    {
-        Gizmos.color = Color.red;
-        Gizmos.DrawWireSphere(transform.position, radiusLookAt);
-    }
-
-    
 }

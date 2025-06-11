@@ -1,4 +1,4 @@
-using System.Collections;
+﻿using System.Collections;
 using System.Collections.Generic;
 using TMPro;
 using Unity.VisualScripting;
@@ -39,6 +39,13 @@ public class InventoryManager : MonoBehaviour
 
         Instance = this;
         DontDestroyOnLoad(gameObject);
+
+       
+        //if (itemContentPane == null)
+        //{
+        //    itemContentPane = GameObject.Find("Content").transform;
+
+        //}
     }
 
 
@@ -98,6 +105,5 @@ public class InventoryManager : MonoBehaviour
             Debug.Log("add item done");
         }
     }
-
 
 }
