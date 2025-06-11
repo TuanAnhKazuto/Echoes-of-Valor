@@ -3,7 +3,7 @@
 public class EnemyMovementManual : MonoBehaviour
 {
     [Header("Cài đặt AI")]
-    public Transform player;
+    private Transform player;
     public float moveSpeed = 3f;
     public float chaseRange = 10f;
     public float attackRange = 8f;
@@ -21,6 +21,8 @@ public class EnemyMovementManual : MonoBehaviour
         {
             animator = GetComponent<Animator>(); // Tự động gán nếu quên kéo trong Inspector
         }
+        
+        player = FindObjectOfType<PlayerController>().transform;
     }
 
     void Update()
@@ -80,24 +82,40 @@ public class EnemyMovementManual : MonoBehaviour
         {
             lastAttackTime = Time.time;
 
+            // 
+            DealDamage();
+            
             // Gọi animation trigger Shoot (nếu có Animation Event sẽ gọi DealDamage)
-            if (animator != null)
-            {
-                animator.SetTrigger("Shoot");
-            }
+            // if (animator != null)
+            // {
+            //     animator.SetTrigger("Shoot");
+            // }
         }
     }
 
     // Hàm này nên được gọi bằng animation event tại thời điểm ra đòn
     public void DealDamage()
     {
+        Debug.Log("damage");
         if (player != null)
         {
-            HEALTH health = player.GetComponent<HEALTH>();
+            CharacterStats health = player.GetComponent<CharacterStats>();
             if (health != null)
             {
                 health.TakeDamage(damage);
             }
         }
     }
+
+    public void Attack()
+    {
+        
+    }
+
+    public void OnAniStart()
+    {
+        
+    }
+    
+    public void OnAniEnd(){}
 }
