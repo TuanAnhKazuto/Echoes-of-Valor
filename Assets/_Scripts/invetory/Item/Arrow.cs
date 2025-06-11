@@ -79,7 +79,7 @@ public class Arrow : MonoBehaviour
 
     void HitTarget(GameObject enemy)
     {
-        EnemyHealth health = enemy.GetComponent<EnemyHealth>();
+        EnemyStats health = enemy.GetComponent<EnemyStats>();
         if (health != null)
         {
             health.TakeDamage((int)damage);
