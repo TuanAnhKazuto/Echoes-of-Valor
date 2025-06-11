@@ -106,6 +106,8 @@ GameObject:
   - component: {fileID: 216316317990235033}
   - component: {fileID: 8052791504092897511}
   - component: {fileID: 2999388582640537426}
+  - component: {fileID: 1110985747521761453}
+  - component: {fileID: 2024918250546287898}
   m_Layer: 0
   m_Name: RougeCharacter
   m_TagString: Untagged
@@ -168,6 +170,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   animator: {fileID: 2954932895530067493}
+  canMove: 1
   controller: {fileID: 8301337596851904348}
   cam: {fileID: 0}
   freeLookCam: {fileID: 0}
@@ -223,6 +226,36 @@ MonoBehaviour:
   bombPrefab: {fileID: 707570775920124371, guid: ae82a15666a3f8243988a0ab217ac93e, type: 3}
   throwPoint: {fileID: 7658488389466934415}
   throwForce: 10
+--- !u!114 &1110985747521761453
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 7930215287068475354}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 9d0b4c15e9ec1014f865199298478b06, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  inventoryUI: {fileID: 0}
+  freeLookCamera: {fileID: 0}
+  isInventoryOpen: 0
+  inventoryManager: {fileID: 0}
+--- !u!114 &2024918250546287898
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 7930215287068475354}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 375af0af9130355499c1428cc4cde02f, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  exp: 0
+  expText: {fileID: 0}
 --- !u!1001 &2318182036025237363
 PrefabInstance:
   m_ObjectHideFlags: 0
