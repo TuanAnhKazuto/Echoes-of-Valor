@@ -8,7 +8,11 @@ public class Arrow : MonoBehaviour
     private bool isFlying = false;
 
     public float speed = 15f;
+    public float damage = 20f;
     public Vector3 arrowRotationOffset = Vector3.zero;
+
+    public ParticleSystem hitEffect;
+    public ParticleSystem aoeImpactEffect;
 
     public void SetTarget(Transform enemy)
     {
@@ -42,7 +46,7 @@ public class Arrow : MonoBehaviour
 
             if (dir.magnitude <= distanceThisFrame)
             {
-                HitTarget();
+                HitTarget(target.gameObject);
                 return;
             }
 
@@ -56,8 +60,37 @@ public class Arrow : MonoBehaviour
         }
     }
 
-    void HitTarget()
+    void OnTriggerEnter(Collider other)
     {
+        if (!isFlying) return;
+
+        if (other.CompareTag("Enemy"))
+        {
+            HitTarget(other.gameObject);
+        }
+        else if (other.gameObject.layer == LayerMask.NameToLayer("Ground"))
+        {
+            if (aoeImpactEffect != null)
+                Instantiate(aoeImpactEffect, transform.position, Quaternion.identity);
+
+            Destroy(gameObject);
+        }
+    }
+
+    void HitTarget(GameObject enemy)
+    {
+        EnemyHealth health = enemy.GetComponent<EnemyHealth>();
+        if (health != null)
+        {
+            health.TakeDamage((int)damage);
+        }
+
+        if (hitEffect != null)
+            Instantiate(hitEffect, transform.position, Quaternion.identity);
+
+        if (aoeImpactEffect != null)
+            Instantiate(aoeImpactEffect, transform.position, Quaternion.identity);
+
         Destroy(gameObject);
     }
 }
