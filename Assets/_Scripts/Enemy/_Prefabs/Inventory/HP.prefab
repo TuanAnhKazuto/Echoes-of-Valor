@@ -15,7 +15,6 @@ GameObject:
   - component: {fileID: 1846549165033268889}
   - component: {fileID: 6760768373434825165}
   - component: {fileID: 6856759733727061434}
-  - component: {fileID: 7642221894565197199}
   m_Layer: 0
   m_Name: HP
   m_TagString: Item
@@ -173,25 +172,3 @@ BoxCollider:
   serializedVersion: 3
   m_Size: {x: 0.15, y: 0.11, z: 0.15}
   m_Center: {x: 0.00000063329935, y: -0.26, z: 0.000000346452}
---- !u!64 &7642221894565197199
-MeshCollider:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 3826594298048161205}
-  m_Material: {fileID: 0}
-  m_IncludeLayers:
-    serializedVersion: 2
-    m_Bits: 0
-  m_ExcludeLayers:
-    serializedVersion: 2
-    m_Bits: 0
-  m_LayerOverridePriority: 0
-  m_IsTrigger: 0
-  m_ProvidesContacts: 0
-  m_Enabled: 1
-  serializedVersion: 5
-  m_Convex: 0
-  m_CookingOptions: 30
-  m_Mesh: {fileID: 483428488724548822, guid: c5d50275ecc08df44b705da8a35eebf8, type: 3}
