@@ -94,7 +94,7 @@ public class EnemyMovementManual : MonoBehaviour
     }
 
     // Hàm này nên được gọi bằng animation event tại thời điểm ra đòn
-    public void DealDamage()
+    public virtual void DealDamage()
     {
         Debug.Log("damage");
         if (player != null)
@@ -103,10 +103,17 @@ public class EnemyMovementManual : MonoBehaviour
             if (health != null)
             {
                 health.TakeDamage(damage);
+                SpawnBullet(health);
             }
+            
         }
     }
 
+    public virtual void SpawnBullet(CharacterStats characterStats)
+    {
+        
+    }
+    
     public void Attack()
     {
         
