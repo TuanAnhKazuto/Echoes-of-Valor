@@ -1,4 +1,5 @@
 ﻿using UnityEngine;
+using UnityEngine.SceneManagement;
 
 public class CharacterStats : MonoBehaviour
 {
@@ -25,7 +26,10 @@ public class CharacterStats : MonoBehaviour
     {
         if (healthBar == null)
         {
-            healthBar = FindAnyObjectByType<PlayerHealthBar>();
+            if (SceneManager.GetActiveScene().name == "CharacterCreation")
+                return;
+            else
+                healthBar = FindAnyObjectByType<PlayerHealthBar>();
         }
     }
 
