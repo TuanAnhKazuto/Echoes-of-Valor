@@ -108,6 +108,8 @@ GameObject:
   - component: {fileID: 2999388582640537426}
   - component: {fileID: 1110985747521761453}
   - component: {fileID: 2024918250546287898}
+  - component: {fileID: 6426136120541408155}
+  - component: {fileID: 2516268073084848591}
   m_Layer: 0
   m_Name: RougeCharacter
   m_TagString: Player
@@ -257,6 +259,33 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   exp: 0
   expText: {fileID: 0}
+--- !u!114 &6426136120541408155
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 7930215287068475354}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 7e379d10794a657448af3690d1a0111b, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  questItems: []
+  playerQuestPanel: {fileID: 0}
+--- !u!114 &2516268073084848591
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 7930215287068475354}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: a735513318b837f4eb3ea8847f7a6f21, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  fKey: {fileID: 0}
 --- !u!1001 &2318182036025237363
 PrefabInstance:
   m_ObjectHideFlags: 0
