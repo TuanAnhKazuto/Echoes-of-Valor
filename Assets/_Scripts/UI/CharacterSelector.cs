@@ -7,10 +7,13 @@ public class CharacterSelector : MonoBehaviour
 {
     public TMP_InputField nameInput;
     public string _characterClass;
+    public int _playerId;
 
     public Button[] characterButtons;
     public Button selectButton;
     public TextMeshProUGUI messageText;
+
+    Vector3 startPosition = new(113, 2, -170);
 
     private int selectedCharacterIndex = -1;
 
@@ -64,10 +67,15 @@ public class CharacterSelector : MonoBehaviour
             ShowMessage("Vui lòng chọn một nhân vật.");
             return;
         }
+
+        _playerId = PlayerIdGenerator.GetNextAvailableId();
         CreateNewPlayer(playerName);
 
+        PlayerPrefs.SetInt("SelectedPlayerId", _playerId);
+        PlayerPrefs.Save();
+
         ShowMessage("Chọn nhân vật thành công ");
-        //SceneManager.LoadScene("Scene1");
+        SceneManager.LoadScene("Scene1");
     }
 
     public PlayerData CreateNewPlayer(string name)
@@ -77,14 +85,17 @@ public class CharacterSelector : MonoBehaviour
         {
             PlayerData _data = new()
             {
-                playerId = PlayerIdGenerator.GetNextAvailableId(),
+                playerId = _playerId,
                 playerName = name,
                 characterClass = _characterClass,
                 level = 1,
                 health = 100,
                 damage = 10,
                 defense = 5,
-                worldLevel = 1
+                worldLevel = 1,
+                positionX = startPosition.x,
+                positionY = startPosition.y,
+                positionZ = startPosition.z
             };
             SaveSystem.SaveGame(_data);
             data = _data;
@@ -93,14 +104,17 @@ public class CharacterSelector : MonoBehaviour
         {
             PlayerData _data = new()
             {
-                playerId = PlayerIdGenerator.GetNextAvailableId(),
+                playerId = _playerId,
                 playerName = name,
                 characterClass = _characterClass,
                 level = 1,
                 health = 80,
                 damage = 15,
                 defense = 3,
-                worldLevel = 1
+                worldLevel = 1,
+                positionX = startPosition.x,
+                positionY = startPosition.y,
+                positionZ = startPosition.z
             };
             SaveSystem.SaveGame(_data);
             data = _data;
@@ -109,14 +123,17 @@ public class CharacterSelector : MonoBehaviour
         {
             PlayerData _data = new()
             {
-                playerId = PlayerIdGenerator.GetNextAvailableId(),
+                playerId = _playerId,
                 playerName = name,
                 characterClass = _characterClass,
                 level = 1,
                 health = 70,
                 damage = 20,
                 defense = 2,
-                worldLevel = 1
+                worldLevel = 1,
+                positionX = startPosition.x,
+                positionY = startPosition.y,
+                positionZ = startPosition.z
             };
             SaveSystem.SaveGame(_data);
             data = _data;
