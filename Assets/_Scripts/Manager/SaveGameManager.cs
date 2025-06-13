@@ -1,19 +1,27 @@
 using UnityEngine;
+using UnityEngine.SceneManagement;
 
 public class SaveGameManager : MonoBehaviour
 {
     public CharacterStats player;
     public PlayerData curData;
 
+    public int loadPlayerId;
+
     private void Start()
     {
-        player = FindFirstObjectByType<CharacterStats>();
+        curData = SaveSystem.LoadGame(loadPlayerId);
 
-        curData = SaveSystem.LoadGame();
-
-        LoadPosition();
-
-
+        if (player == null)
+        {
+            if (SceneManager.GetActiveScene().name == "CharacterCreation")
+                return;
+            else
+            {
+                player = FindAnyObjectByType<CharacterStats>();
+                LoadPosition();
+            }
+        }
     }
 
     public void LoadStats()
@@ -24,11 +32,11 @@ public class SaveGameManager : MonoBehaviour
     private void LoadPosition()
     {
         player.transform.position = new Vector3
-    (
-        curData.positionX,
-        curData.positionY,
-        curData.positionZ
-    );
+        (
+            curData.positionX,
+            curData.positionY,
+            curData.positionZ
+        );
 
         player.transform.rotation = Quaternion.Euler(0, curData.rotationY, 0);
 
