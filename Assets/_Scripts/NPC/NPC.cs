@@ -3,15 +3,17 @@ using System.Collections.Generic;
 using TMPro;
 using Unity.VisualScripting;
 using UnityEngine;
+using UnityEngine.UI;
 
 public class NPC : MonoBehaviour
 {
     public GameObject npcChatPanel;
     public TextMeshProUGUI chatText;
-    public GameObject yes;
     [HideInInspector] public bool isChating;
     Coroutine coroutine;
     public int maxline;
+    public Button yesButton;
+    public NpcChatSetup panelSetup;
 
     // đoạn chat
     public string[] chat;
@@ -19,23 +21,27 @@ public class NPC : MonoBehaviour
     public QuestItem questItem;
 
     //Player
-    public PlayerQuest PlayerQuests;
+    public PlayerQuest playerQuests;
 
     private void Awake()
     {
-        yes.SetActive(false);
-        npcChatPanel.SetActive(true);
-        npcChatPanel.SetActive(false);
-
+        panelSetup = FindAnyObjectByType<NpcChatSetup>();
     }
+    private void Start()
+    {
+        npcChatPanel  = panelSetup.ChatPanel;
+        chatText = panelSetup.ChatText.GetComponent<TextMeshProUGUI>();
+        yesButton = panelSetup.YesBtn.GetComponent<Button>();
+    }
+
 
 
     private void OnTriggerEnter(Collider other)
     {
         if (other.gameObject.CompareTag("Player"))
         {
-            PlayerQuests = other.gameObject.GetComponent<PlayerQuest>();
-            //yes.SetActive(true);
+            playerQuests = other.gameObject.GetComponent<PlayerQuest>();
+            //yesButton.gameObject.SetActive(true);
         }
     }
 
@@ -44,7 +50,6 @@ public class NPC : MonoBehaviour
         if (other.gameObject.CompareTag("Player") && Input.GetKeyDown(KeyCode.F) && !isChating)
         {
             isChating = true;
-            //yes.SetActive(false);
             npcChatPanel.SetActive(true);
             coroutine = StartCoroutine(ReadChat());
         }
@@ -54,12 +59,7 @@ public class NPC : MonoBehaviour
     {
         if (other.gameObject.CompareTag("Player"))
         {
-            yes.SetActive(false);
-            if (PlayerQuests != null)
-            {
-                //PlayerQuests.TakeQuest(questItem);
-
-            }
+            yesButton.gameObject.SetActive(false);
 
             if (isChating)
             {
@@ -98,7 +98,11 @@ public class NPC : MonoBehaviour
             yield return new WaitForSeconds(0.5f);
 
         }
-        yes.SetActive(true);
+        yesButton.gameObject.SetActive(true);
+
+        yesButton = GameObject.FindWithTag("YesBtn").GetComponent<Button>();
+        yesButton.onClick.AddListener(HidePanel);
+        yesButton.onClick.AddListener(() => playerQuests.TakeQuest(questItem));
         isChating = false;
 
     }
@@ -106,7 +110,6 @@ public class NPC : MonoBehaviour
     public void HidePanel()
     {
         npcChatPanel.SetActive(false);
-
     }
 
 

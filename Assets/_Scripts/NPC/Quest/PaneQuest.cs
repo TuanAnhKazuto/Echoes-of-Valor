@@ -20,6 +20,7 @@ public class PaneQuest : MonoBehaviour
     {
         rect = GetComponent<RectTransform>();
         initialPosition = rect.anchoredPosition;
+       
     }
 
     void Update()
