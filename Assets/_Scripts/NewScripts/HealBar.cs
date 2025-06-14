@@ -5,6 +5,7 @@ public class HealthBar : MonoBehaviour
 {
     [Header("UI")]
     public Slider healthSlider;
+    public Canvas canvas;
 
     [Header("Target & Offset")]
     public Transform target; // Nhân vật cần theo dõi
@@ -15,6 +16,7 @@ public class HealthBar : MonoBehaviour
     void Start()
     {
         mainCam = Camera.main;
+        canvas.worldCamera = mainCam;
     }
 
     public void SetMaxHealth(float maxHealth)
