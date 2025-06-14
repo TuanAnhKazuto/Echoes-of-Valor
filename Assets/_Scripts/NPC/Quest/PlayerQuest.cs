@@ -44,6 +44,7 @@ public class PlayerQuest : MonoBehaviour
     // Cập nhật tiến trình nhiệm vụ
     public void UpdateQuest(string tag)
     {
+        Debug.Log(" tag : " + tag);
         foreach (var quest in questItems)
         {
             if (quest.TargetItemtag == tag && !quest.IsComplete())
