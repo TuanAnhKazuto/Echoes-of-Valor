@@ -1,4 +1,4 @@
-using UnityEngine;
+﻿using UnityEngine;
 
 public class Projectile : MonoBehaviour
 {
@@ -8,7 +8,7 @@ public class Projectile : MonoBehaviour
     public void Initialize(float damageAmount)
     {
         damage = damageAmount;
-        Destroy(gameObject, 3f);
+        Destroy(gameObject, 3f); 
     }
 
     void Update()
@@ -18,10 +18,19 @@ public class Projectile : MonoBehaviour
 
     private void OnTriggerEnter(Collider other)
     {
-        if (other.CompareTag("Enemy"))
+        if (other.CompareTag("Enemy") || other.CompareTag("Boss"))
         {
-            other.GetComponent<Enemy>()?.TakeDamage(damage);
-            Destroy(gameObject);
+            EnemyStats enemy = other.GetComponent<EnemyStats>();
+            if (enemy != null)
+            {
+                enemy.TakeDamage(damage);
+            }
+
+            Destroy(gameObject); 
+        }
+        else if (!other.CompareTag("Player")) 
+        {
+            Destroy(gameObject); 
         }
     }
 }
