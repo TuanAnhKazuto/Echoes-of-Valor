@@ -15,11 +15,13 @@ public class Mage_Movement : EnemyMovementManual
 
     private IEnumerator IEShoot(Transform target, Transform bullet)
     {
-        while (Vector3.Distance(bullet.position, target.position) > 0.1f)
+        Vector3 targetPos = target.position + new Vector3(0, 1.5f, 0); // CHỐT 1 LẦN
+
+        while (bullet != null && Vector3.Distance(bullet.position, targetPos) > 0.1f)
         {
             bullet.position = Vector3.MoveTowards(
                 bullet.position,
-                target.position + new Vector3(0, 1.5f, 0),
+                targetPos,
                 speed * Time.deltaTime
             );
 
@@ -31,4 +33,5 @@ public class Mage_Movement : EnemyMovementManual
             Destroy(bullet.gameObject);
         }
     }
+
 }
