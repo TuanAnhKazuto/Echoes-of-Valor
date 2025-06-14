@@ -40,7 +40,7 @@ public class InventoryManager : MonoBehaviour
         Instance = this;
         DontDestroyOnLoad(gameObject);
 
-
+        // dong lay
         if (itemContentPane == null)
         {
             itemContentPane = GameObject.Find("Content").transform;
