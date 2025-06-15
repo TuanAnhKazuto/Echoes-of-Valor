@@ -3,7 +3,7 @@
 public class EnemyMovementManual : MonoBehaviour
 {
     [Header("Cài đặt AI")]
-    private Transform player;
+    public Transform player { get; set; }
     public float moveSpeed = 3f;
     public float chaseRange = 10f;
     public float attackRange = 8f;
@@ -91,8 +91,20 @@ public class EnemyMovementManual : MonoBehaviour
             //     animator.SetTrigger("Shoot");
             // }
         }
+
+        DirectPlayer();
     }
 
+    private void DirectPlayer()
+    {
+        Vector3 direction = (player.position - transform.position).normalized;
+        if (direction != Vector3.zero)
+        {
+            Quaternion toRotation = Quaternion.LookRotation(direction);
+            transform.rotation = Quaternion.Slerp(transform.rotation, toRotation, 5f * Time.deltaTime);
+        }
+    }
+    
     // Hàm này nên được gọi bằng animation event tại thời điểm ra đòn
     public virtual void DealDamage()
     {

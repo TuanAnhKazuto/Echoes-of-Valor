@@ -1522,7 +1522,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   moveSpeed: 3
-  chaseRange: 10
+  chaseRange: 20
   attackRange: 2
   attackCooldown: 1.5
   damage: 10
@@ -1547,7 +1547,7 @@ BoxCollider:
   m_Enabled: 1
   serializedVersion: 3
   m_Size: {x: 1, y: 1, z: 1}
-  m_Center: {x: 0, y: -0, z: 0}
+  m_Center: {x: 0, y: 0.51, z: 0}
 --- !u!54 &606657046240874741
 Rigidbody:
   m_ObjectHideFlags: 0
@@ -2385,7 +2385,7 @@ PrefabInstance:
     - target: {fileID: 4602224580024776575, guid: 92eacdebc9e914adcbfa3659c5ec324e, type: 3}
       propertyPath: target
       value: 
-      objectReference: {fileID: 6710236184829948240}
+      objectReference: {fileID: 0}
     - target: {fileID: 5727049555119868826, guid: 92eacdebc9e914adcbfa3659c5ec324e, type: 3}
       propertyPath: m_Name
       value: CanvasHealBar (1)
