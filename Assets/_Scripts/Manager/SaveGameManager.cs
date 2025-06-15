@@ -4,16 +4,33 @@ public class SaveGameManager : MonoBehaviour
 {
     public CharacterStats player;
     public PlayerData curData;
+    public int seletectedId;
+    public bool isCharacterSpawned = false;
+
+    public int loadPlayerId;
 
     private void Start()
     {
-        player = FindFirstObjectByType<CharacterStats>();
+        seletectedId = PlayerPrefs.GetInt("SelectedPlayerId");
 
-        curData = SaveSystem.LoadGame();
+        curData = SaveSystem.LoadGame(seletectedId);        
+    }
 
+    private void Update()
+    {
+        if (isCharacterSpawned)
+        {
+            if (!isCharacterSpawned) return;
+            Invoke(nameof(Load), 0.5f);
+            return;
+        }
+    }
+
+    private void Load()
+    {
+        player = FindAnyObjectByType<CharacterStats>();
         LoadPosition();
-
-
+        isCharacterSpawned = false;
     }
 
     public void LoadStats()
@@ -23,15 +40,12 @@ public class SaveGameManager : MonoBehaviour
 
     private void LoadPosition()
     {
-        player.transform.position = new Vector3
-    (
-        curData.positionX,
-        curData.positionY,
-        curData.positionZ
-    );
-
-        player.transform.rotation = Quaternion.Euler(0, curData.rotationY, 0);
-
+        player.transform.SetPositionAndRotation(new Vector3
+            (
+                curData.positionX,
+                curData.positionY,
+                curData.positionZ
+            ), Quaternion.Euler(0, curData.rotationY, 0));
     }
 
     public void SaveGame()

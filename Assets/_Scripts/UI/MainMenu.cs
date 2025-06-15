@@ -3,37 +3,22 @@ using UnityEngine.SceneManagement;
 
 public class MainMenu : MonoBehaviour
 {
-    public string newGameSceneName = "GameScene";
-    public GameObject optionsPanel;
+    public GameObject canvasSetting;
+    public GameObject mainMenu;
 
-    public void OnNewGame()
+    public void OnPlayGame()
     {
         PlayerPrefs.DeleteAll(); 
-        SceneManager.LoadScene(newGameSceneName);
+        SceneManager.LoadScene("CharacterCreation");
     }
 
-    public void OnContinue()
+
+    public void OnSetting(bool isOpen)
     {
-        if (PlayerPrefs.HasKey("SavedScene"))
-        {
-            string savedScene = PlayerPrefs.GetString("SavedScene");
-            SceneManager.LoadScene(savedScene);
-        }
-        else
-        {
-            Debug.Log("No saved game found!");
-        }
+        canvasSetting.SetActive(isOpen);
+        mainMenu.SetActive(!isOpen);
     }
 
-    public void OnOptions()
-    {
-        optionsPanel.SetActive(true);
-    }
-
-    public void OnCloseOptions()
-    {
-        optionsPanel.SetActive(false);
-    }
 
     public void OnQuit()
     {

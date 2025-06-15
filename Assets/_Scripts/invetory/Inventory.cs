@@ -15,15 +15,16 @@ public class Inventory : MonoBehaviour
     public bool isInventoryOpen = false; // Trạng thái Inventory
 
     [HideInInspector] public InventoryManager inventoryManager;
+    InventorySetup inventorySetup;
 
     private void Start()
     {
-        GameObject ivtr = GameObject.FindWithTag("InventoryManager");
-        inventoryManager = ivtr.GetComponent<InventoryManager>();
+        inventoryManager = FindAnyObjectByType<InventoryManager>();
+        inventorySetup = FindAnyObjectByType<InventorySetup>();
 
         if (inventoryUI == null)
         {
-            inventoryUI = GameObject.Find("Window Inventory");
+            inventoryUI = inventorySetup.InventoryWindown;
         }
 
         if (freeLookCamera == null)

@@ -71,16 +71,41 @@ public class SkillShoot : MonoBehaviour
         Transform target = FindNearestEnemy();
         if (target == null || shootPoint == null || normalArrowPrefab == null) return;
 
-        float offset = 0.3f;
+        float offset = 0.1f;
         Vector3 leftPos = shootPoint.position - shootPoint.right * offset;
         Vector3 rightPos = shootPoint.position + shootPoint.right * offset;
 
         Vector3 targetPos = target.position + Vector3.up * 1.5f;
         Vector3 dir = (targetPos - shootPoint.position).normalized;
 
-        ShootArrow(normalArrowPrefab, leftPos, dir, normalArrowDamage * 3f);
-        ShootArrow(normalArrowPrefab, rightPos, dir, normalArrowDamage * 3f);
+        GameObject leftArrow = Instantiate(normalArrowPrefab, leftPos, Quaternion.LookRotation(dir));
+        Arrow arrowScriptL = leftArrow.GetComponent<Arrow>();
+        if (arrowScriptL != null)
+        {
+            arrowScriptL.speed = arrowSpeed;
+            arrowScriptL.SetTarget(target);
+        }
+        ArrowDamage dmgL = leftArrow.GetComponent<ArrowDamage>();
+        if (dmgL != null)
+        {
+            dmgL.damage = normalArrowDamage * 3f;
+        }
+
+        GameObject rightArrow = Instantiate(normalArrowPrefab, rightPos, Quaternion.LookRotation(dir));
+        Arrow arrowScriptR = rightArrow.GetComponent<Arrow>();
+        if (arrowScriptR != null)
+        {
+            arrowScriptR.speed = arrowSpeed;
+            arrowScriptR.SetTarget(target); 
+        }
+
+        ArrowDamage dmgR = rightArrow.GetComponent<ArrowDamage>();
+        if (dmgR != null)
+        {
+            dmgR.damage = normalArrowDamage * 3f;
+        }
     }
+
 
     IEnumerator ArrowRain()
     {

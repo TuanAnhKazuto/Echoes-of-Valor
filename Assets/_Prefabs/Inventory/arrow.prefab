@@ -13,6 +13,7 @@ GameObject:
   - component: {fileID: 3989172526984827939}
   - component: {fileID: 1593838229166126327}
   - component: {fileID: 3587584481523249687}
+  - component: {fileID: 8287637525615954774}
   m_Layer: 0
   m_Name: arrow
   m_TagString: Untagged
@@ -101,7 +102,10 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   speed: 20
+  damage: 20
   arrowRotationOffset: {x: 90, y: 0, z: 0}
+  hitEffect: {fileID: 0}
+  aoeImpactEffect: {fileID: 0}
 --- !u!54 &3587584481523249687
 Rigidbody:
   m_ObjectHideFlags: 0
@@ -129,3 +133,24 @@ Rigidbody:
   m_Interpolate: 0
   m_Constraints: 0
   m_CollisionDetection: 0
+--- !u!65 &8287637525615954774
+BoxCollider:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 3978407562330990411}
+  m_Material: {fileID: 0}
+  m_IncludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_ExcludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_LayerOverridePriority: 0
+  m_IsTrigger: 1
+  m_ProvidesContacts: 0
+  m_Enabled: 1
+  serializedVersion: 3
+  m_Size: {x: 0.117339954, y: 0.7485465, z: 0.10162633}
+  m_Center: {x: -0.0000034398008, y: -0.008655369, z: 0.01693503}

@@ -14529,6 +14529,8 @@ GameObject:
   - component: {fileID: 4488691279180108614}
   - component: {fileID: 8485477649292675016}
   - component: {fileID: 82805111867389606}
+  - component: {fileID: -5929869519614254179}
+  - component: {fileID: -6365432411634748350}
   m_Layer: 0
   m_Name: MageCharacter
   m_TagString: Player
@@ -14683,6 +14685,33 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   exp: 0
   expText: {fileID: 0}
+--- !u!114 &-5929869519614254179
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 3432828208371693777}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 7e379d10794a657448af3690d1a0111b, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  questItems: []
+  playerQuestPanel: {fileID: 0}
+--- !u!114 &-6365432411634748350
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 3432828208371693777}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: a735513318b837f4eb3ea8847f7a6f21, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  fKey: {fileID: 0}
 --- !u!1 &6172984158577316107
 GameObject:
   m_ObjectHideFlags: 0

@@ -5,7 +5,7 @@ public class PlayerTarget : MonoBehaviour
 {
     public GameObject arrowPrefab;
     public Transform shootPoint;
-    public float shootCooldown = 2f; // bug 
+    public float shootCooldown = 2f; 
     public float shootDelay = 0.75f;   
 
     private float lastShootTime = -Mathf.Infinity;

@@ -21,6 +21,11 @@ public class SkillController : MonoBehaviour
     private float skill2Timer = 0f;
     private float skill3Timer = 0f;
 
+    private void Start()
+    {
+        animator = GetComponent<Animator>();
+    }
+
     void Update()
     {
         if (fireBreathOnCooldown)
@@ -41,7 +46,7 @@ public class SkillController : MonoBehaviour
 
         if (Input.GetKey(KeyCode.Alpha1) && !fireBreathOnCooldown)
         {
-            animator.SetBool("Skill1", true);
+            animator.SetBool("Skil1", true);
         }
         if (Input.GetKeyUp(KeyCode.Alpha1) && isUsingFireBreath)
         {
@@ -90,7 +95,7 @@ public class SkillController : MonoBehaviour
 
     void UseTripleAOE()
     {
-        //animator.SetTrigger("Attack2");
+        animator.SetTrigger("Attack2");
         Instantiate(BigBallPrefab, firePoint.position + Vector3.left, firePoint.rotation);
         skill3Timer = 0f;
     }

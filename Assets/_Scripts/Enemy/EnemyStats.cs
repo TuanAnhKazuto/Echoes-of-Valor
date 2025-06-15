@@ -1,4 +1,4 @@
-using TMPro;
+﻿using TMPro;
 using UnityEngine;
 
 public class EnemyStats : MonoBehaviour
@@ -50,6 +50,26 @@ public class EnemyStats : MonoBehaviour
     {
         currentHealth -= (int)damage;
         healthBar.UpdateHealth(currentHealth, maxHealth);
+
+        if (currentHealth <= 0)
+        {
+            // Tìm Player và cập nhật tiến trình nhiệm vụ
+            GameObject player = GameObject.FindGameObjectWithTag("Player");
+            if (player != null)
+            {
+                Debug.Log("tìm thấy player: " + player);
+                var playerQuest = player.GetComponent<PlayerQuest>();
+                if (playerQuest != null)
+                {
+                    Debug.Log(" Tìm thấy playerQuest");
+                    playerQuest.UpdateQuest(gameObject.tag); // Gửi tag của enemy
+                    Debug.Log("Enemy tag =" + gameObject.tag);
+                }
+            }
+
+
+            Destroy(gameObject);
+        }
     }
 
     private void OnTriggerEnter(Collider other)
@@ -65,4 +85,5 @@ public class EnemyStats : MonoBehaviour
             TakeDamage(skillDamage.damgeSkill);
         }
     }
+
 }

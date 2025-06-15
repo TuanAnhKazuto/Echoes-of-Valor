@@ -1181,6 +1181,8 @@ GameObject:
   - component: {fileID: 4656843496498232716}
   - component: {fileID: 2987594514679051766}
   - component: {fileID: 2548190139823987596}
+  - component: {fileID: 8281338608645403561}
+  - component: {fileID: 2386410769987612654}
   m_Layer: 3
   m_Name: KnightChar
   m_TagString: Player
@@ -1335,6 +1337,33 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   exp: 0
   expText: {fileID: 0}
+--- !u!114 &8281338608645403561
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 5428599474284752997}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 7e379d10794a657448af3690d1a0111b, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  questItems: []
+  playerQuestPanel: {fileID: 0}
+--- !u!114 &2386410769987612654
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 5428599474284752997}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: a735513318b837f4eb3ea8847f7a6f21, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  fKey: {fileID: 0}
 --- !u!1 &6020767039364578528
 GameObject:
   m_ObjectHideFlags: 0
@@ -2251,7 +2280,7 @@ PrefabInstance:
     m_Modifications:
     - target: {fileID: 4005100084169640724, guid: 7c839b7eae1a9514f86368c1fef0bd47, type: 3}
       propertyPath: m_VersionIndex
-      value: 939
+      value: 972
       objectReference: {fileID: 0}
     - target: {fileID: 5774715856320653376, guid: 7c839b7eae1a9514f86368c1fef0bd47, type: 3}
       propertyPath: m_Name

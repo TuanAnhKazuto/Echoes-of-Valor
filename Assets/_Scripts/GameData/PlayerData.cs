@@ -18,8 +18,10 @@ public class PlayerData
     public float positionZ;
     public float rotationY;
 
-    public int weaponId;
-    public int weaponLevel;
+    public WeaponData[] weapons;
+
+    //public int weaponId;
+    //public int weaponLevel;
 
     public int worldLevel;
 }
