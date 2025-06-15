@@ -16,7 +16,7 @@ GameObject:
   - component: {fileID: 8609973440224909533}
   m_Layer: 0
   m_Name: BigBall
-  m_TagString: Untagged
+  m_TagString: PlayerHitBox
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -123,8 +123,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: b4c9c295eff38da4ca67a555ff82cb45, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  speed: 10
-  explosionDelay: 1.5
+  speed: 8
+  explosionDelay: 1
   enemyLayer:
     serializedVersion: 2
     m_Bits: 128
