@@ -110,6 +110,7 @@ GameObject:
   - component: {fileID: 2024918250546287898}
   - component: {fileID: 6426136120541408155}
   - component: {fileID: 2516268073084848591}
+  - component: {fileID: 7882318273370962249}
   m_Layer: 0
   m_Name: RougeCharacter
   m_TagString: Player
@@ -286,6 +287,41 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   fKey: {fileID: 0}
+--- !u!114 &7882318273370962249
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 7930215287068475354}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 783bca73d7e03f744ae97eb046fb7c6c, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  healthBar: {fileID: 0}
+  playerId: 101
+  playerName: 
+  characterClass: Knight
+  level: 1
+  maxHealth: 100
+  currentHealth: 0
+  currentMana: 0
+  maxMana: 100
+  baseDamage: 10
+  baseDefense: 5
+  equippedWeapon:
+    weaponID: 
+    weaponName: 
+    waponLevel: 1
+    maxWaponLevel: 60
+    breakthroughLevel: 1
+    baseDamage: 0
+    damagePerLevel: 3
+    damagePerBreakthrough: 6
+    baseDefense: 0
+    defensePerLevel: 3
+    defensePerBreakthrough: 6
 --- !u!1001 &2318182036025237363
 PrefabInstance:
   m_ObjectHideFlags: 0
