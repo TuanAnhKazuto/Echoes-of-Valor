@@ -131,6 +131,7 @@ GameObject:
   - component: {fileID: 5419667281095187636}
   - component: {fileID: 4712310576297389421}
   - component: {fileID: 2696430597383162602}
+  - component: {fileID: 4656844050705155411}
   m_Layer: 0
   m_Name: Chests
   m_TagString: Untagged
@@ -227,8 +228,8 @@ BoxCollider:
   m_ProvidesContacts: 0
   m_Enabled: 1
   serializedVersion: 3
-  m_Size: {x: 1.6, y: 0.60000026, z: 1.245803}
-  m_Center: {x: 0, y: 0.29999977, z: 0.022901058}
+  m_Size: {x: 2.064813, y: 1.4543629, z: 1.6683395}
+  m_Center: {x: -0.03428197, y: 0.6923597, z: -0.000128343}
 --- !u!114 &4712310576297389421
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -241,9 +242,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 88709e60885a81d4795c301799561de5, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  hpPrefab: {fileID: 0}
-  mpPrefab: {fileID: 0}
-  expPrefab: {fileID: 0}
+  hpPrefab: {fileID: 3826594298048161205, guid: e8cefcfea3a3f4d46a0bd06ebaa75611, type: 3}
+  mpPrefab: {fileID: 694108709114642616, guid: afd5ae8213ad200458bafb63ad6a4bc8, type: 3}
+  expPrefab: {fileID: 3628897259695132979, guid: 5a52602f8cf0f944b8739922da4efe26, type: 3}
   spawnPoint: {fileID: 1947154464639300732}
 --- !u!95 &2696430597383162602
 Animator:
@@ -267,3 +268,24 @@ Animator:
   m_AllowConstantClipSamplingOptimization: 1
   m_KeepAnimatorStateOnDisable: 0
   m_WriteDefaultValuesOnDisable: 0
+--- !u!65 &4656844050705155411
+BoxCollider:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 8312637853224617091}
+  m_Material: {fileID: 0}
+  m_IncludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_ExcludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_LayerOverridePriority: 0
+  m_IsTrigger: 0
+  m_ProvidesContacts: 0
+  m_Enabled: 1
+  serializedVersion: 3
+  m_Size: {x: 1.6, y: 0.60000026, z: 1.245803}
+  m_Center: {x: 0, y: 0.30000028, z: 0.022901058}
