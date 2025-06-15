@@ -93,6 +93,7 @@ public class CharacterSelector : MonoBehaviour
                 damage = 10,
                 defense = 5,
                 worldLevel = 1,
+                sceneName = "Scene1",
                 positionX = startPosition.x,
                 positionY = startPosition.y,
                 positionZ = startPosition.z
@@ -112,6 +113,7 @@ public class CharacterSelector : MonoBehaviour
                 damage = 15,
                 defense = 3,
                 worldLevel = 1,
+                sceneName = "Scene1",
                 positionX = startPosition.x,
                 positionY = startPosition.y,
                 positionZ = startPosition.z
@@ -131,6 +133,7 @@ public class CharacterSelector : MonoBehaviour
                 damage = 20,
                 defense = 2,
                 worldLevel = 1,
+                sceneName = "Scene1",
                 positionX = startPosition.x,
                 positionY = startPosition.y,
                 positionZ = startPosition.z
