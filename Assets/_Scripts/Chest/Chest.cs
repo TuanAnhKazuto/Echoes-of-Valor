@@ -24,7 +24,7 @@ public class Chest : MonoBehaviour
             isOpened = true;
             //OpenChest();
             animator.SetBool("Open", true);
-            Invoke(nameof(OpenChest), 0.5f);
+            Invoke(nameof(OpenChest), 1f);
             Destroy(gameObject, 5f);
         }
     }

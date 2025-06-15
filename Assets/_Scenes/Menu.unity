@@ -3852,7 +3852,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 0
+  m_IsActive: 1
 --- !u!224 &251181150
 RectTransform:
   m_ObjectHideFlags: 0
@@ -6794,7 +6794,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!224 &401078398
 RectTransform:
   m_ObjectHideFlags: 0
@@ -18550,7 +18550,7 @@ GameObject:
   - component: {fileID: 1143619546}
   - component: {fileID: 1143619545}
   m_Layer: 5
-  m_Name: Button
+  m_Name: Back
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -36078,11 +36078,17 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 3cea2d2e238f49c4993a35aedbbebd00, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  bulletPrefab: {fileID: 4835795885790367263, guid: f2f77979c0045514f9f38c1ed1667514, type: 3}
   fireBreathEffect: {fileID: 4209997914145111215, guid: 9c8a7ccf06912aa4c9dd58f2e417d423, type: 3}
-  BigBallPrefab: {fileID: 2795806856581110241, guid: 3bd1834ecf4604e42bb389dfbc81d074, type: 3}
-  firePoint: {fileID: 4234129186512558154}
   fireBreathCooldown: 1
+  BigBallPrefab: {fileID: 2795806856581110241, guid: 3bd1834ecf4604e42bb389dfbc81d074, type: 3}
+  cloudObject: {fileID: 0}
+  cloudHomePosition: {fileID: 0}
+  lightningVFXPrefab: {fileID: 0}
+  cloudDetectionRadius: 20
+  heightAboveEnemy: 5
+  lightningInterval: 1
+  bulletPrefab: {fileID: 4835795885790367263, guid: f2f77979c0045514f9f38c1ed1667514, type: 3}
+  firePoint: {fileID: 4234129186512558154}
   skill2Cooldown: 1
   skill3Cooldown: 1
 --- !u!114 &2624498910326952918
