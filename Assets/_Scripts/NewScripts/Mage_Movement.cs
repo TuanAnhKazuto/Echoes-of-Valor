@@ -15,7 +15,6 @@ public class Mage_Movement : EnemyMovementManual
     public override void SpawnBullet(CharacterStats characterStats)
     {
         GameObject bulletClone = Instantiate(bullet);
-        bulletClone.GetComponent<MageBullet>().damge = 10;
         bulletClone.transform.position = transform.position + new Vector3(0, 1.5f, 0);
         StartCoroutine(IEShoot(characterStats.transform, bulletClone.transform));
     }
