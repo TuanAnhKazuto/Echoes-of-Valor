@@ -17,7 +17,7 @@ public class SkillController : MonoBehaviour
 
     [Header("Skill 3 Lightning Cloud")]
     public GameObject cloudObject;
-    public Transform cloudHomePosition;
+    public Transform cloudPoint;
     public GameObject lightningVFXPrefab;
     public float cloudDetectionRadius = 20f;
     public float heightAboveEnemy = 5f;
@@ -124,17 +124,12 @@ public class SkillController : MonoBehaviour
         isCloudAttacking = true;
         skill3Timer = 0f;
 
-        // Kích hoạt đám mây
         cloudObject.SetActive(true);
-
-        // Reset scale nếu vô tình bị sai
         cloudObject.transform.localScale = Vector3.one;
 
-        // Khi KHÔNG có enemy
         if (enemy == null)
         {
-            cloudObject.transform.position = cloudHomePosition.position + Vector3.up * 5f;
-            Debug.Log("No enemy: Cloud stays at home position");
+            cloudObject.transform.position = cloudPoint.position + Vector3.up * 5f;
 
             yield return new WaitForSeconds(3f);
             cloudObject.SetActive(false);
@@ -142,22 +137,24 @@ public class SkillController : MonoBehaviour
             yield break;
         }
 
-        // Khi CÓ enemy
         Vector3 aboveTarget = enemy.position + Vector3.up * heightAboveEnemy;
         cloudObject.transform.position = aboveTarget;
-        Debug.Log("Cloud moved above enemy: " + enemy.name);
 
         for (int i = 0; i < 5; i++)
         {
             GameObject vfx = Instantiate(lightningVFXPrefab, cloudObject.transform.position, Quaternion.identity);
 
-            // Gây sát thương xung quanh
-            Collider[] hits = Physics.OverlapSphere(cloudObject.transform.position, 2f);
+            Collider[] hits = Physics.OverlapSphere(cloudObject.transform.position, 5f); 
+
             foreach (var hit in hits)
             {
                 if (hit.CompareTag("Enemy") || hit.CompareTag("Boss"))
                 {
-                    hit.GetComponent<Enemy>()?.TakeDamage(40f);
+                    var stats = hit.GetComponent<EnemyStats>();
+                    if (stats != null)
+                    {
+                        stats.TakeDamage(40f);
+                    }
                 }
             }
 
@@ -165,14 +162,9 @@ public class SkillController : MonoBehaviour
             yield return new WaitForSeconds(lightningInterval);
         }
 
-        yield return new WaitForSeconds(0.5f);
         cloudObject.SetActive(false);
         isCloudAttacking = false;
     }
-
-
-
-
 
     IEnumerator SkillTarget(float radius, System.Action<Transform> onTargetFound)
     {

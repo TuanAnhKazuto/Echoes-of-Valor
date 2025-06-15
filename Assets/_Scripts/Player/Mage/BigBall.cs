@@ -9,6 +9,8 @@ public class BigBall : MonoBehaviour
     public float[] radii = { 2f, 4f, 6f };
     public float[] damages = { 250f, 170f, 100f };
 
+    public GameObject explosionVFX; 
+
     private void Start()
     {
         Invoke(nameof(Explode), explosionDelay);
@@ -35,6 +37,13 @@ public class BigBall : MonoBehaviour
                 }
             }
         }
+
+        if (explosionVFX != null)
+        {
+            GameObject vfx = Instantiate(explosionVFX, transform.position, Quaternion.identity);
+            Destroy(vfx, 3f);
+        }
+
 
         Destroy(gameObject);
     }
