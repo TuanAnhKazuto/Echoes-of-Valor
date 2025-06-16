@@ -1,4 +1,4 @@
-using UnityEngine;
+﻿using UnityEngine;
 
 public class BigBall : MonoBehaviour
 {
@@ -8,6 +8,8 @@ public class BigBall : MonoBehaviour
 
     public float[] radii = { 2f, 4f, 6f };
     public float[] damages = { 250f, 170f, 100f };
+
+    public GameObject explosionVFX; 
 
     private void Start()
     {
@@ -24,10 +26,22 @@ public class BigBall : MonoBehaviour
         for (int i = 0; i < radii.Length; i++)
         {
             Collider[] enemies = Physics.OverlapSphere(transform.position, radii[i], enemyLayer);
-            foreach (var enemy in enemies)
+
+            foreach (var enemyCollider in enemies)
             {
-                enemy.GetComponent<Enemy>()?.TakeDamage(damages[i]);
+                EnemyStats enemy = enemyCollider.GetComponent<EnemyStats>();
+                if (enemy != null)
+                {
+                    enemy.TakeDamage(damages[i]);
+                    Debug.Log("Damage= " + damages[i]);
+                }
             }
+        }
+
+        if (explosionVFX != null)
+        {
+            GameObject vfx = Instantiate(explosionVFX, transform.position, Quaternion.identity);
+            Destroy(vfx, 3f);
         }
 
 

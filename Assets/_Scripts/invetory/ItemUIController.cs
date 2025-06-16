@@ -25,8 +25,6 @@ public class ItemUIController : MonoBehaviour
     
     public void Remove()
     {
-        //if(player.curStamina >= player.maxStm || playerHealth.curHp >= playerHealth.maxHp) return;
-
         InventoryManager.Instance.Remove(item);
         Destroy(this.gameObject);
     }
@@ -44,9 +42,19 @@ public class ItemUIController : MonoBehaviour
                 FindAnyObjectByType<EXP>().IncreaseExp(item.value);
                 break;
            
-            case ItemType.Mp:
-                FindAnyObjectByType<CharacterStats>().Heal(item.value);
+            case ItemType.Cor:
+                FindAnyObjectByType<Co>().IncreaseCor(item.value);
                 break;
+            case ItemType.CorLarge:
+                FindAnyObjectByType<Co>().IncreaseCorLarge(item.value);
+                break;
+            case ItemType.CorMedium:
+                FindAnyObjectByType<Co>().IncreaseCorMedium(item.value);
+                break;
+            case ItemType.CorSmall:
+                FindAnyObjectByType<Co>().IncreaseCorSmall(item.value);
+                break;
+
         }
         Remove();
         InventoryManager.Instance.DisplayInventory(); 
