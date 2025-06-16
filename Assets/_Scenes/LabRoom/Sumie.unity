@@ -1180,9 +1180,18 @@ MonoBehaviour:
   m_GameObject: {fileID: 1202010742}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 18c5aa97851604941818092dc106ecc6, type: 3}
+  m_Script: {fileID: 11500000, guid: a1c9dc04733e146d78ff687edacd5f76, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  enemies:
+  - {fileID: 7871548034013092425, guid: 427658f7e07d8c44c80619f509f52ac3, type: 3}
+  - {fileID: 6710236184829948240, guid: 8115681f75c9077489fb3abb2cd5b35c, type: 3}
+  spawnPoints:
+  - {fileID: 2019530496}
+  - {fileID: 865797405}
+  - {fileID: 955400993}
+  spawnCount: 4
+  timeSpawn: 15
 --- !u!4 &1202010744
 Transform:
   m_ObjectHideFlags: 0
