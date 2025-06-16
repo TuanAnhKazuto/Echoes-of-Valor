@@ -148,6 +148,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   healthBar: {fileID: 0}
+  manaBar: {fileID: 0}
   playerId: 0
   playerName: 
   characterClass: 
@@ -300,7 +301,7 @@ Transform:
   m_GameObject: {fileID: 8753659312364194447}
   serializedVersion: 2
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 0, y: 3, z: 4}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
@@ -847,13 +848,16 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   fireBreathEffect: {fileID: 1205743036525761959}
   fireBreathCooldown: 3
+  fireBreathManaCost: 10
   BigBallPrefab: {fileID: 2795806856581110241, guid: 3bd1834ecf4604e42bb389dfbc81d074, type: 3}
+  bigBallManaCost: 20
   cloudObject: {fileID: 1396122884846544811, guid: 3186625dfa5d87947a083d918ca741ee, type: 3}
-  cloudPoint: {fileID: 0}
+  cloudPoint: {fileID: 4262984465319460703}
   lightningVFXPrefab: {fileID: 4275125198743759256, guid: 5998fcfe8339f8249b4756f6319bfcea, type: 3}
   cloudDetectionRadius: 20
   heightAboveEnemy: 5
   lightningInterval: 1
+  lightningCloudManaCost: 25
   bulletPrefab: {fileID: 4835795885790367263, guid: f2f77979c0045514f9f38c1ed1667514, type: 3}
   firePoint: {fileID: 6731332533602058168}
   skill2Cooldown: 6
@@ -958,10 +962,42 @@ PrefabInstance:
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
-    m_AddedComponents: []
+    m_AddedComponents:
+    - targetCorrespondingSourceObject: {fileID: 1452987402129485006, guid: b43c61955286f6b44a26073f7d8e0083, type: 3}
+      insertIndex: -1
+      addedObject: {fileID: 7018845904667862965}
   m_SourcePrefab: {fileID: 100100000, guid: b43c61955286f6b44a26073f7d8e0083, type: 3}
+--- !u!114 &3036206347466371210 stripped
+MonoBehaviour:
+  m_CorrespondingSourceObject: {fileID: 6856060812503227933, guid: b43c61955286f6b44a26073f7d8e0083, type: 3}
+  m_PrefabInstance: {fileID: 8432809354243075735}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 7002348884218626649}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: fe87c0e1cc204ed48ad3b37840f39efc, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!224 &4292695885020816440 stripped
 RectTransform:
   m_CorrespondingSourceObject: {fileID: 5662681988378495663, guid: b43c61955286f6b44a26073f7d8e0083, type: 3}
   m_PrefabInstance: {fileID: 8432809354243075735}
   m_PrefabAsset: {fileID: 0}
+--- !u!1 &7002348884218626649 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 1452987402129485006, guid: b43c61955286f6b44a26073f7d8e0083, type: 3}
+  m_PrefabInstance: {fileID: 8432809354243075735}
+  m_PrefabAsset: {fileID: 0}
+--- !u!114 &7018845904667862965
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 7002348884218626649}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 83b5f399e1d5eeb43afa1e8ef9a53dd1, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  manaFillImage: {fileID: 3036206347466371210}
