@@ -27,6 +27,7 @@ public class SaveSlotUI : MonoBehaviour
         _sceneName = data.sceneName;
 
         selectButton.onClick.AddListener(() => SelectThisSave());
+        deleteButton.onClick.AddListener(() => DeleteSave());
     }
 
     void SelectThisSave()
@@ -37,4 +38,9 @@ public class SaveSlotUI : MonoBehaviour
         UnityEngine.SceneManagement.SceneManager.LoadScene(_sceneName);
     }
 
+    void DeleteSave()
+    {
+        SaveSystem.DeleteSave(_playerId);
+        Destroy(gameObject);
+    }
 }

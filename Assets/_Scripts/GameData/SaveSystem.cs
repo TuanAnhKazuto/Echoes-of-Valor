@@ -1,4 +1,4 @@
-using UnityEngine;
+﻿using UnityEngine;
 using System.IO;
 public static class SaveSystem
 {
@@ -30,4 +30,20 @@ public static class SaveSystem
         Debug.LogWarning($"No save file found for player ID {playerId}");
         return null;
     }
+
+    public static void DeleteSave(int playerId)
+    {
+        string path = Path.Combine(Application.persistentDataPath, $"playerId_{playerId}.json");
+
+        if (File.Exists(path))
+        {
+            File.Delete(path);
+            Debug.Log($"Đã xóa file save của player ID: {playerId}");
+        }
+        else
+        {
+            Debug.LogWarning("Không tìm thấy file để xóa.");
+        }
+    }
+
 }
