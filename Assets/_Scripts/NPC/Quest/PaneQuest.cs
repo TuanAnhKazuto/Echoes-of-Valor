@@ -54,7 +54,9 @@ public class PaneQuest : MonoBehaviour
         foreach (var item in questItems)
         {
             var questItem = Instantiate(questItemPrefab, questItemPrefab.transform.parent);
-            questItem.text = $"{item.QuetsItemName} : {item.currentAmount}/{item.questTargetAmount}";
+            //questItem.text = $"{item.QuetsItemName} : {item.currentAmount}/{item.questTargetAmount}";
+            questItem.text = $"{item.QuetsItemName} : {item.currentAmount}/{item.questTargetAmount}" +
+                 (item.IsComplete() ? " (Hoàn thành)" : "");
             questItem.gameObject.SetActive(true);
         }
     }
@@ -80,7 +82,7 @@ public class PaneQuest : MonoBehaviour
     IEnumerator MovingPanel(bool show)
     {
         Vector2 targetPos = show
-            ? new Vector2(initialPosition.x + 300f, initialPosition.y)
+            ? new Vector2(initialPosition.x + 320f, initialPosition.y)
             : new Vector2(initialPosition.x - 5f, initialPosition.y);
 
         while (Vector2.Distance(rect.anchoredPosition, targetPos) > 1f)

@@ -8174,7 +8174,6 @@ RectTransform:
   m_Children:
   - {fileID: 883876997}
   - {fileID: 1112234179}
-  - {fileID: 1143619544}
   m_Father: {fileID: 1022258152}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
@@ -16270,6 +16269,7 @@ RectTransform:
   m_ConstrainProportionsScale: 0
   m_Children:
   - {fileID: 501903396}
+  - {fileID: 1143619544}
   m_Father: {fileID: 130134293}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 0}
@@ -18122,17 +18122,17 @@ RectTransform:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1143619543}
-  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
   m_LocalPosition: {x: 0, y: 0, z: 0}
-  m_LocalScale: {x: 0.25531408, y: 0.25531408, z: 0.25531408}
+  m_LocalScale: {x: 3.0213723, y: 3.0213723, z: 3.0213723}
   m_ConstrainProportionsScale: 0
   m_Children:
   - {fileID: 290920270}
-  m_Father: {fileID: 501903396}
+  m_Father: {fileID: 1022258152}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
-  m_AnchoredPosition: {x: -34.3, y: 34.7}
+  m_AnchoredPosition: {x: -408.84195, y: 395.95694}
   m_SizeDelta: {x: 160, y: 30}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &1143619545
@@ -18178,7 +18178,19 @@ MonoBehaviour:
   m_TargetGraphic: {fileID: 1143619546}
   m_OnClick:
     m_PersistentCalls:
-      m_Calls: []
+      m_Calls:
+      - m_Target: {fileID: 1072618929}
+        m_TargetAssemblyTypeName: MenuSetting, Assembly-CSharp
+        m_MethodName: OnBack
+        m_Mode: 1
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
 --- !u!114 &1143619546
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -35131,7 +35143,7 @@ MonoBehaviour:
   fireBreathCooldown: 1
   BigBallPrefab: {fileID: 2795806856581110241, guid: 3bd1834ecf4604e42bb389dfbc81d074, type: 3}
   cloudObject: {fileID: 0}
-  cloudHomePosition: {fileID: 0}
+  cloudPoint: {fileID: 0}
   lightningVFXPrefab: {fileID: 0}
   cloudDetectionRadius: 20
   heightAboveEnemy: 5

@@ -33,7 +33,6 @@ public class BigBall : MonoBehaviour
                 if (enemy != null)
                 {
                     enemy.TakeDamage(damages[i]);
-                    Debug.Log("Damage= " + damages[i]);
                 }
             }
         }
