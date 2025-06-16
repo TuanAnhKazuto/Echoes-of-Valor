@@ -45,15 +45,15 @@ public class ItemUIController : MonoBehaviour
             case ItemType.Cor:
                 FindAnyObjectByType<Co>().IncreaseCor(item.value);
                 break;
-            case ItemType.CorLarge:
-                FindAnyObjectByType<Co>().IncreaseCorLarge(item.value);
-                break;
-            case ItemType.CorMedium:
-                FindAnyObjectByType<Co>().IncreaseCorMedium(item.value);
-                break;
-            case ItemType.CorSmall:
-                FindAnyObjectByType<Co>().IncreaseCorSmall(item.value);
-                break;
+            //case ItemType.CorLarge:
+            //    FindAnyObjectByType<Co>().IncreaseCorLarge(item.value);
+            //    break;
+            //case ItemType.CorMedium:
+            //    FindAnyObjectByType<Co>().IncreaseCorMedium(item.value);
+            //    break;
+            //case ItemType.CorSmall:
+            //    FindAnyObjectByType<Co>().IncreaseCorSmall(item.value);
+            //    break;
 
         }
         Remove();

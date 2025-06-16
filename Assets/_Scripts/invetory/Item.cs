@@ -5,7 +5,9 @@ using UnityEngine;
 
 public enum ItemType
 {
-    Hp, Mp, Xp, Cor, CorLarge, CorMedium, CorSmall
+    Hp, Mp, Xp, Ultimate, Cor, MediumMp, MediumHp, MediumXp, MediumUltimate,
+
+
 
 }
 

@@ -15,23 +15,29 @@ public class Co : MonoBehaviour
     public void IncreaseCor(int value)
     {
         cor += value;
-        cointext.text = "" + cor.ToString();
-    }
-    public void IncreaseCorLarge(int value)
-    {
+            cointext.text = "" + cor.ToString();
         CorLarge += value;
-        cointext.text = "" + CorLarge.ToString();
-    }
-    public void IncreaseCorMedium(int value)
-    {
+            cointext.text = "" + CorLarge.ToString();
         CorMedium += value;
-        cointext.text = "" + CorMedium.ToString();
-    }
-    public void IncreaseCorSmall(int value)
-    {
+            cointext.text = "" + CorMedium.ToString();
         CorSmall += value;
-        cointext.text = "" + CorSmall.ToString();
+            cointext.text = "" + CorSmall.ToString();
     }
+    //public void IncreaseCorLarge(int value)
+    //{
+    //    CorLarge += value;
+    //    cointext.text = "" + CorLarge.ToString();
+    //}
+    //public void IncreaseCorMedium(int value)
+    //{
+    //    CorMedium += value;
+    //    cointext.text = "" + CorMedium.ToString();
+    //}
+    //public void IncreaseCorSmall(int value)
+    //{
+    //    CorSmall += value;
+    //    cointext.text = "" + CorSmall.ToString();
+    //}
 
     private void Start()
     {
