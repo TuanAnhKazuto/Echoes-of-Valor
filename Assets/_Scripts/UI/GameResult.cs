@@ -51,7 +51,7 @@ public class GameResult : MonoBehaviour
             ShowVictoryPanel();
         }
 
-        if (Input.GetKeyDown(KeyCode.Tab))
+        if (Input.GetKeyDown(KeyCode.P))
         {
             OnPause();
         }

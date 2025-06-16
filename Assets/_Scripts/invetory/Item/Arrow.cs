@@ -7,12 +7,23 @@ public class Arrow : MonoBehaviour
     private bool hasTarget = false;
     private bool isFlying = false;
 
+    [Header("Arrow Settings")]
     public float speed = 15f;
     public float damage = 20f;
     public Vector3 arrowRotationOffset = Vector3.zero;
 
+    [Header("Effects")]
     public ParticleSystem hitEffect;
     public ParticleSystem aoeImpactEffect;
+    public ArrowStuckEffect arrowStuckEffect;
+
+    private void Start()
+    {
+        if (arrowStuckEffect == null)
+        {
+            arrowStuckEffect = FindFirstObjectByType<ArrowStuckEffect>();
+        }
+    }
 
     public void SetTarget(Transform enemy)
     {
@@ -73,6 +84,9 @@ public class Arrow : MonoBehaviour
             if (aoeImpactEffect != null)
                 Instantiate(aoeImpactEffect, transform.position, Quaternion.identity);
 
+            if (arrowStuckEffect != null)
+                arrowStuckEffect.SpawnStuckArrow(transform.position, transform.rotation);
+
             Destroy(gameObject);
         }
     }
@@ -90,6 +104,9 @@ public class Arrow : MonoBehaviour
 
         if (aoeImpactEffect != null)
             Instantiate(aoeImpactEffect, transform.position, Quaternion.identity);
+
+        if (arrowStuckEffect != null)
+            arrowStuckEffect.SpawnStuckArrow(transform.position, transform.rotation, enemy.transform);
 
         Destroy(gameObject);
     }
