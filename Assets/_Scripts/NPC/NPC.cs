@@ -20,8 +20,11 @@ public class NPC : MonoBehaviour
     // đoạn chat
     public string[] chat;
     // nhiệm vụ
-    public QuestItem questItem;
+    public QuestItem questItem;// 1 nhiệm vụ
 
+    public List<QuestItem> questList;  // Chuỗi nhiệm vụ
+    private int currentQuestIndex = 0;
+    private QuestItem CurrentQuest => questList[currentQuestIndex];
     //Player
     public PlayerQuest playerQuests;
 
@@ -53,31 +56,36 @@ public class NPC : MonoBehaviour
         {
             playerQuests = other.GetComponent<PlayerQuest>();
 
-            if (questGiven && playerQuests.HasCompletedQuest(questItem))
+            if (currentQuestIndex >= questList.Count)
             {
-                // Đã hoàn thành, cho trả nhiệm vụ và nhận thưởng
-                playerQuests.CompleteQuest(questItem, 100);
-                chatText.text = $"Tuyệt vời! Đây là phần thưởng 100 vàng cho bạn.";
-                questCompleted = true;
                 npcChatPanel.SetActive(true);
+                chatText.text = "Bạn đã hoàn thành tất cả nhiệm vụ rồi. Cảm ơn bạn!";
+                Invoke(nameof(HidePanel), 2f);
+                return;
+            }
+
+            if (playerQuests.HasCompletedQuest(CurrentQuest))
+            {
+                playerQuests.CompleteQuest(CurrentQuest, 100);
+                npcChatPanel.SetActive(true);
+                chatText.text = $"Tốt lắm! Nhận 100 vàng!";
+                currentQuestIndex++; // sang nhiệm vụ mới
+                questGiven = false; // reset để đọc thoại mới
                 Invoke(nameof(HidePanel), 2f);
             }
             else if (!questGiven)
             {
-                // Chưa nhận, cho xem cốt truyện + nhận nhiệm vụ
                 isChating = true;
                 npcChatPanel.SetActive(true);
                 coroutine = StartCoroutine(ReadChat());
             }
             else
             {
-                // Đã nhận nhưng chưa xong
                 npcChatPanel.SetActive(true);
-                chatText.text = $"Bạn chưa hoàn thành nhiệm vụ: {questItem.QuetsItemName}";
+                chatText.text = $"Nhiệm vụ chưa hoàn thành: {CurrentQuest.QuetsItemName}";
                 Invoke(nameof(HidePanel), 2f);
             }
         }
-
     }
 
     private void OnTriggerExit(Collider other)
@@ -130,26 +138,24 @@ public class NPC : MonoBehaviour
         // Nếu người chơi đã hoàn thành nhiệm vụ
         yesButton.onClick.AddListener(() =>
         {
-            if (playerQuests.HasCompletedQuest(questItem))
+            if (playerQuests.HasCompletedQuest(CurrentQuest))
             {
-                // Trả nhiệm vụ và nhận thưởng
-                playerQuests.CompleteQuest(questItem, 100);
+                playerQuests.CompleteQuest(CurrentQuest, 100);
                 chatText.text = $"Tốt lắm! Đây là 100 vàng cho phần thưởng.";
 
-                // (Tùy chọn) Giao nhiệm vụ mới - nếu bạn muốn
-                // questItem = nhiệm vụ tiếp theo nếu có
+               // giao nhiem vu moi
             }
-            else if (!playerQuests.questItems.Contains(questItem))
+            else if (!playerQuests.questItems.Contains(CurrentQuest))
             {
                 // Giao nhiệm vụ nếu chưa nhận
-                playerQuests.TakeQuest(questItem);
-                chatText.text = $"Bạn đã nhận nhiệm vụ: {questItem.QuetsItemName}";
+                playerQuests.TakeQuest(CurrentQuest);
+                chatText.text = $"Bạn đã nhận nhiệm vụ: {CurrentQuest.QuetsItemName}";
                 questGiven = true;
             }
             else
             {
                 // Nếu nhiệm vụ đang làm nhưng chưa hoàn thành
-                chatText.text = $"Bạn vẫn chưa hoàn thành nhiệm vụ: {questItem.QuetsItemName}";
+                chatText.text = $"Bạn vẫn chưa hoàn thành nhiệm vụ: {CurrentQuest.QuetsItemName}";
             }
 
             yesButton.gameObject.SetActive(false);
