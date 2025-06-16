@@ -8,43 +8,33 @@ public class Co : MonoBehaviour
     public int CorLarge;
     public int CorMedium;
     public int CorSmall;
-    
 
-    public TextMeshProUGUI cointext; 
+
+    InventorySetup inventorySetupCor;
+    public TextMeshProUGUI coin;
 
     public void IncreaseCor(int value)
     {
         cor += value;
-            cointext.text = "" + cor.ToString();
+        coin.text = "" + cor.ToString();
         CorLarge += value;
-            cointext.text = "" + CorLarge.ToString();
+        coin.text = "" + CorLarge.ToString();
         CorMedium += value;
-            cointext.text = "" + CorMedium.ToString();
+        coin.text = "" + CorMedium.ToString();
         CorSmall += value;
-            cointext.text = "" + CorSmall.ToString();
+        coin.text = "" + CorSmall.ToString();
     }
-    //public void IncreaseCorLarge(int value)
-    //{
-    //    CorLarge += value;
-    //    cointext.text = "" + CorLarge.ToString();
-    //}
-    //public void IncreaseCorMedium(int value)
-    //{
-    //    CorMedium += value;
-    //    cointext.text = "" + CorMedium.ToString();
-    //}
-    //public void IncreaseCorSmall(int value)
-    //{
-    //    CorSmall += value;
-    //    cointext.text = "" + CorSmall.ToString();
-    //}
-
     private void Start()
     {
+        inventorySetupCor = FindAnyObjectByType<InventorySetup>();
+        //if (cointext == null)
+        //{
+        //    cointext = GameObject.Find("Co")?.GetComponent<TextMeshProUGUI>();
+        //}
 
-        if (cointext == null)
+        if (inventorySetupCor != null)
         {
-            cointext = GameObject.Find("Co")?.GetComponent<TextMeshProUGUI>();
+            coin = inventorySetupCor.Cor.GetComponentInChildren<TextMeshProUGUI>();
         }
     }
 }

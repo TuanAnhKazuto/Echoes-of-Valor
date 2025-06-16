@@ -47,6 +47,7 @@ GameObject:
   - component: {fileID: 82805111867389606}
   - component: {fileID: -5929869519614254179}
   - component: {fileID: -6365432411634748350}
+  - component: {fileID: -7115150667254349503}
   m_Layer: 0
   m_Name: MageCharacter
   m_TagString: Player
@@ -226,6 +227,23 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   fKey: {fileID: 0}
+--- !u!114 &-7115150667254349503
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 3432828208371693777}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: fb8747f9194e36e4290059e0992bdcee, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  cor: 0
+  CorLarge: 0
+  CorMedium: 0
+  CorSmall: 0
+  coin: {fileID: 0}
 --- !u!1 &6172984158577316107
 GameObject:
   m_ObjectHideFlags: 0
@@ -831,7 +849,7 @@ MonoBehaviour:
   fireBreathCooldown: 3
   BigBallPrefab: {fileID: 2795806856581110241, guid: 3bd1834ecf4604e42bb389dfbc81d074, type: 3}
   cloudObject: {fileID: 1396122884846544811, guid: 3186625dfa5d87947a083d918ca741ee, type: 3}
-  cloudHomePosition: {fileID: 4262984465319460703}
+  cloudPoint: {fileID: 0}
   lightningVFXPrefab: {fileID: 4275125198743759256, guid: 5998fcfe8339f8249b4756f6319bfcea, type: 3}
   cloudDetectionRadius: 20
   heightAboveEnemy: 5
