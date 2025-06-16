@@ -111,6 +111,7 @@ GameObject:
   - component: {fileID: 6426136120541408155}
   - component: {fileID: 2516268073084848591}
   - component: {fileID: 7882318273370962249}
+  - component: {fileID: -4977907219923604040}
   m_Layer: 0
   m_Name: RougeCharacter
   m_TagString: Player
@@ -322,6 +323,23 @@ MonoBehaviour:
     baseDefense: 0
     defensePerLevel: 3
     defensePerBreakthrough: 6
+--- !u!114 &-4977907219923604040
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 7930215287068475354}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: fb8747f9194e36e4290059e0992bdcee, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  cor: 0
+  CorLarge: 0
+  CorMedium: -1
+  CorSmall: 0
+  coin: {fileID: 0}
 --- !u!1001 &2318182036025237363
 PrefabInstance:
   m_ObjectHideFlags: 0
