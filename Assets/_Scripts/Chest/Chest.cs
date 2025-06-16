@@ -1,10 +1,12 @@
-﻿using UnityEngine;
+﻿using System.Collections.Generic;
+using UnityEngine;
 
 public class Chest : MonoBehaviour
 {
     public GameObject hpPrefab;
     public GameObject mpPrefab;
     public GameObject expPrefab;
+    public GameObject corPrefab;
     public Transform spawnPoint;
     Animator animator;
 
@@ -22,7 +24,6 @@ public class Chest : MonoBehaviour
         if (other.CompareTag("Player"))
         {
             isOpened = true;
-            //OpenChest();
             animator.SetBool("Open", true);
             Invoke(nameof(OpenChest), 1f);
             Destroy(gameObject, 5f);
@@ -31,9 +32,21 @@ public class Chest : MonoBehaviour
 
     void OpenChest()
     {
-        DropItem(hpPrefab);
-        DropItem(mpPrefab);
-        DropItem(expPrefab);
+        // Tạo danh sách vật phẩm
+        List<GameObject> itemList = new List<GameObject> { hpPrefab, mpPrefab, expPrefab, corPrefab };
+
+        // Random 2 vật phẩm khác nhau
+        for (int i = 0; i < 2; i++)
+        {
+            if (itemList.Count == 0) break;
+
+            int randomIndex = Random.Range(0, itemList.Count);
+            GameObject selectedItem = itemList[randomIndex];
+
+            DropItem(selectedItem);
+
+            itemList.RemoveAt(randomIndex); // Xóa khỏi danh sách để không trùng
+        }
     }
 
     void DropItem(GameObject itemPrefab)
@@ -44,7 +57,6 @@ public class Chest : MonoBehaviour
         Rigidbody rb = item.GetComponent<Rigidbody>();
         if (rb != null)
         {
-            // Bay lên và lệch sang trái/phải
             Vector3 force = new Vector3(Random.Range(-1f, 5f), Random.Range(5f, 7f), Random.Range(-1f, 5f));
             rb.AddForce(force, ForceMode.Impulse);
         }

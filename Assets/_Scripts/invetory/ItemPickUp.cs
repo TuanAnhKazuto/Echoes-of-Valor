@@ -10,7 +10,7 @@ public class ItemPickUp : MonoBehaviour
     {
         if (item.itemType == ItemType.Cor)
         {
-            // cộng vào
+            
             Co coSystem = FindAnyObjectByType<Co>();
             if (coSystem != null)
             {
@@ -24,8 +24,7 @@ public class ItemPickUp : MonoBehaviour
 
         Destroy(this.gameObject); 
 
-        //Destroy(this.gameObject);
-        //InventoryManager.Instance.Add(item);
+        
     }
 
     private void OnTriggerEnter(Collider other)
