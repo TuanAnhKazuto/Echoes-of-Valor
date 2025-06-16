@@ -64,5 +64,27 @@ public class PlayerQuest : MonoBehaviour
         }
     }
 
+    // Kiểm tra nhiệm vụ đã hoàn thành
+    public bool HasCompletedQuest(QuestItem questItem)
+    {
+        return questItems.Contains(questItem) && questItem.IsComplete();
+    }
+
+    // Trả nhiệm vụ, xóa khỏi danh sách và nhận vàng
+    public void CompleteQuest(QuestItem questItem, int reward)
+    {
+        if (HasCompletedQuest(questItem))
+        {
+            questItems.Remove(questItem);
+            Debug.Log($"Đã trả nhiệm vụ: {questItem.QuetsItemName}, nhận {reward} vàng");
+
+            // Cộng vàng
+            FindAnyObjectByType<Co>().IncreaseCor(reward);
+
+            // Cập nhật bảng hiển thị nhiệm vụ
+            playerQuestPanel.ShowAllQuestItem(questItems);
+        }
+    }
+
 
 }
