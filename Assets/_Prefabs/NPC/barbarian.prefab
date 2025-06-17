@@ -472,7 +472,7 @@ Animator:
   m_GameObject: {fileID: 1343332333537823140}
   m_Enabled: 1
   m_Avatar: {fileID: 9000000, guid: 0b3da1f3c3be7b14bbbc3e7c0295b0b4, type: 2}
-  m_Controller: {fileID: 0}
+  m_Controller: {fileID: 9100000, guid: 66de59b741669454dae51003d753f15c, type: 2}
   m_CullingMode: 0
   m_UpdateMode: 0
   m_ApplyRootMotion: 0
@@ -523,10 +523,19 @@ MonoBehaviour:
   maxline: 0
   yesButton: {fileID: 0}
   panelSetup: {fileID: 0}
-  chat:
-  - aaaaaaa
-  - ssssss
-  - dddddd
+  questChats:
+  - lines:
+    - aaaaaaaaaaaaa
+    - cccccccccccc
+    - bbbbbbbbbbbb
+  - lines:
+    - 5555555555
+    - 666666
+    - 4444444
+  - lines:
+    - 888888
+    - 9999999
+    - 76777777
   questItem: {fileID: 7104119817309547941}
   questList:
   - {fileID: 7104119817309547941}
@@ -545,7 +554,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: b977159dd6da00a46953de8959e0d201, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  QuetsItemName: "\u0111\xE1nh b\u1EA1i 1 Enemy N\u1ECF"
+  QuetsItemName: "nhi\u1EC7m v\u1EE5 s\u1ED1 1 \u0111\xE1nh enemy"
   questTargetAmount: 1
   currentAmount: 0
   TargetItemtag: 
