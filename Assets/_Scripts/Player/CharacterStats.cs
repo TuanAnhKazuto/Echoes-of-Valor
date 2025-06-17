@@ -60,18 +60,28 @@ public class CharacterStats : MonoBehaviour
         currentHealth = Mathf.Min(currentHealth + amount, maxHealth);
         healthBar.UpdateHealth((int)currentHealth, (int)maxHealth);
     }
-
+   
     public bool ConsumeMana(float amount)
     {
-        if (currentMana >= amount)
+        if (amount > 0)
         {
-            currentMana -= amount;
-            manaBar.UpdateMana(currentMana, maxMana);
-            return true;
+            
+            if (currentMana >= amount)
+            {
+                currentMana -= amount;
+                manaBar.UpdateMana(currentMana, maxMana);
+                return true;
+            }
+            else
+            {
+                return false;
+            }
         }
         else
         {
-            return false;
+            currentMana = Mathf.Min(currentMana - amount, maxMana);
+            manaBar.UpdateMana(currentMana, maxMana);
+            return true;
         }
     }
 
