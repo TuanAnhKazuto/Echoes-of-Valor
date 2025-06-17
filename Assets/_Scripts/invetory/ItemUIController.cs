@@ -44,8 +44,9 @@ public class ItemUIController : MonoBehaviour
             case ItemType.Cor:
                 FindAnyObjectByType<Co>().IncreaseCor(item.value);
                 break;
+
             case ItemType.Mp:
-                FindAnyObjectByType<CharacterStats>().ConsumeMana(item.value);
+                FindAnyObjectByType<CharacterStats>().ConsumeMana( -item.value);
                 break;
 
 
