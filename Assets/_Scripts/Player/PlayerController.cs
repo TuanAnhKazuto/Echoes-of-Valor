@@ -10,6 +10,7 @@ public class PlayerController : MonoBehaviour
     public CharacterController controller;
     public Transform cam;
     public CinemachineCamera freeLookCam;
+    public Transform targetForCam;
 
     public float moveSpeed;
     public float speed = 6f;
@@ -63,8 +64,8 @@ public class PlayerController : MonoBehaviour
         freeLookCam = FindAnyObjectByType<CinemachineCamera>();
         if (freeLookCam != null)
         {
-            freeLookCam.Follow = transform;
-            freeLookCam.LookAt = transform;
+            freeLookCam.Follow = targetForCam;
+            freeLookCam.LookAt = targetForCam;
         }
 
         isAttacking = false;
