@@ -1,5 +1,6 @@
 ﻿using UnityEngine;
 using System.Collections;
+using static SkeletonNecromancer;
 
 public class SkillShoot : MonoBehaviour
 {
@@ -17,25 +18,42 @@ public class SkillShoot : MonoBehaviour
     public ParticleSystem fireArrowEffectPrefab;
     public ParticleSystem aoeImpactEffectPrefab;
 
+    public float fireArrowManaCost = 17f;
+    public float doubleArrowManaCost = 18f;
+    public float arrowRainManaCost = 70f;
+
+    private CharacterStats characterStats;
+
     void Start()
     {
         if (animator == null)
             animator = GetComponent<Animator>();
+
+        characterStats = GetComponentInParent<CharacterStats>();
     }
 
     void Update()
     {
         if (Input.GetKeyDown(KeyCode.Alpha1))
         {
-            if (animator) animator.SetTrigger("Attack3");
+            if (characterStats != null && characterStats.ConsumeMana(fireArrowManaCost))
+            {
+                if (animator) animator.SetTrigger("Attack3");
+            }
         }
         else if (Input.GetKeyDown(KeyCode.Alpha2))
         {
-            if (animator) animator.SetTrigger("Attack2");
+            if (characterStats != null && characterStats.ConsumeMana(doubleArrowManaCost))
+            {
+                if (animator) animator.SetTrigger("Attack2");
+            }
         }
         else if (Input.GetKeyDown(KeyCode.Alpha3))
         {
-            StartCoroutine(ArrowRain());
+            if(characterStats != null && characterStats.ConsumeMana(arrowRainManaCost))
+            {
+                StartCoroutine(ArrowRain());
+            }
         }
     }
 

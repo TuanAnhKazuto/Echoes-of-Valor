@@ -4,6 +4,7 @@ using System.Collections;
 public class SkillController : MonoBehaviour
 {
     private Animator animator;
+    private CharacterStats characterStats;
 
     [Header("Skill 1 Fire Breath")]
     public GameObject fireBreathEffect;
@@ -11,9 +12,11 @@ public class SkillController : MonoBehaviour
     private float fireBreathTimer = 0f;
     private bool fireBreathOnCooldown = false;
     private bool isUsingFireBreath = false;
+    public float fireBreathManaCost = 10f;
 
     [Header("Skill 2 Big Ball")]
     public GameObject BigBallPrefab;
+    public float bigBallManaCost = 20f;
 
     [Header("Skill 3 Lightning Cloud")]
     public GameObject cloudObject;
@@ -23,10 +26,11 @@ public class SkillController : MonoBehaviour
     public float heightAboveEnemy = 5f;
     public float lightningInterval = 1f;
     private bool isCloudAttacking = false;
+    public float lightningCloudManaCost = 25f;
 
     [Header("Common")]
     public GameObject bulletPrefab;
-    public Transform firePoint; 
+    public Transform firePoint;
 
     public float skill2Cooldown = 6f;
     public float skill3Cooldown = 6f;
@@ -36,12 +40,14 @@ public class SkillController : MonoBehaviour
     private void Start()
     {
         animator = GetComponent<Animator>();
+        characterStats = GetComponentInParent<CharacterStats>();
     }
 
     void Update()
     {
         if (fireBreathOnCooldown)
             fireBreathTimer += Time.deltaTime;
+
         if (fireBreathOnCooldown && fireBreathTimer >= fireBreathCooldown)
         {
             fireBreathOnCooldown = false;
@@ -69,7 +75,10 @@ public class SkillController : MonoBehaviour
 
         if (Input.GetKey(KeyCode.Alpha1) && !fireBreathOnCooldown)
         {
-            animator.SetBool("Skill1", true);
+            if (!isUsingFireBreath && characterStats.ConsumeMana(fireBreathManaCost))
+            {
+                animator.SetBool("Skill1", true);
+            }
         }
 
         if (Input.GetKeyUp(KeyCode.Alpha1) && isUsingFireBreath)
@@ -79,17 +88,22 @@ public class SkillController : MonoBehaviour
 
         if (Input.GetKeyDown(KeyCode.Alpha2) && skill2Timer >= skill2Cooldown)
         {
-            animator.SetTrigger("Attack2");
+            if (characterStats.ConsumeMana(bigBallManaCost))
+            {
+                animator.SetTrigger("Attack2");
+            }
         }
 
         if (Input.GetKeyDown(KeyCode.Alpha3) && skill3Timer >= skill3Cooldown && !isCloudAttacking)
         {
-            StartCoroutine(SkillTarget(cloudDetectionRadius, (enemy) =>
+            if (characterStats.ConsumeMana(lightningCloudManaCost))
             {
-                StartCoroutine(ExecuteLightningSkill(enemy));
-            }));
+                StartCoroutine(SkillTarget(cloudDetectionRadius, (enemy) =>
+                {
+                    StartCoroutine(ExecuteLightningSkill(enemy));
+                }));
+            }
         }
-
     }
 
     void NormalAttack()
@@ -144,7 +158,7 @@ public class SkillController : MonoBehaviour
         {
             GameObject vfx = Instantiate(lightningVFXPrefab, cloudObject.transform.position, Quaternion.identity);
 
-            Collider[] hits = Physics.OverlapSphere(cloudObject.transform.position, 5f); 
+            Collider[] hits = Physics.OverlapSphere(cloudObject.transform.position, 5f);
 
             foreach (var hit in hits)
             {

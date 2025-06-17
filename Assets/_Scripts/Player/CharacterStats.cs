@@ -3,6 +3,7 @@
 public class CharacterStats : MonoBehaviour
 {
     public PlayerHealthBar healthBar;
+    public PlayerManaBar manaBar;
 
     [Header("Base Stats")]
     public int playerId;
@@ -26,6 +27,10 @@ public class CharacterStats : MonoBehaviour
         if (healthBar == null)
         {
             healthBar = FindAnyObjectByType<PlayerHealthBar>();
+        }
+        if (manaBar == null)
+        {
+            manaBar = FindAnyObjectByType<PlayerManaBar>();
         }
     }
 
@@ -55,6 +60,21 @@ public class CharacterStats : MonoBehaviour
         currentHealth = Mathf.Min(currentHealth + amount, maxHealth);
         healthBar.UpdateHealth((int)currentHealth, (int)maxHealth);
     }
+
+    public bool ConsumeMana(float amount)
+    {
+        if (currentMana >= amount)
+        {
+            currentMana -= amount;
+            manaBar.UpdateMana(currentMana, maxMana);
+            return true;
+        }
+        else
+        {
+            return false;
+        }
+    }
+
 
     private void Die()
     {
