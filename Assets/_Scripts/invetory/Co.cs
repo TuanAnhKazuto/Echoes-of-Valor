@@ -16,22 +16,17 @@ public class Co : MonoBehaviour
     public void IncreaseCor(int value)
     {
         cor += value;
-        coin.text = "" + cor.ToString();
         CorLarge += value;
-        coin.text = "" + CorLarge.ToString();
         CorMedium += value;
-        coin.text = "" + CorMedium.ToString();
         CorSmall += value;
-        coin.text = "" + CorSmall.ToString();
+
+        // Hiển thị tổng Cor
+        if (coin != null)
+            coin.text = cor.ToString();
     }
     private void Start()
     {
         inventorySetupCor = FindAnyObjectByType<InventorySetup>();
-        //if (cointext == null)
-        //{
-        //    cointext = GameObject.Find("Co")?.GetComponent<TextMeshProUGUI>();
-        //}
-
         if (inventorySetupCor != null)
         {
             coin = inventorySetupCor.Cor.GetComponentInChildren<TextMeshProUGUI>();

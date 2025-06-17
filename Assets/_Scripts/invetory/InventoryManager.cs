@@ -102,7 +102,7 @@ public class InventoryManager : MonoBehaviour
             obj.GetComponent<ItemUIController>().SetItem(inventoryItem.item);
 
 
-            Debug.Log("add item done");
+            
         }
     }
 

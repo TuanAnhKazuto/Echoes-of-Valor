@@ -1,4 +1,5 @@
-﻿using System.Collections;
+﻿using System;
+using System.Collections;
 using System.Collections.Generic;
 using TMPro;
 using Unity.VisualScripting;
@@ -7,6 +8,7 @@ using UnityEngine.UI;
 
 public class NPC : MonoBehaviour
 {
+    // panel NPC và tự động gắn
     public GameObject npcChatPanel;
     public TextMeshProUGUI chatText;
     [HideInInspector] public bool isChating;
@@ -15,16 +17,28 @@ public class NPC : MonoBehaviour
     public Button yesButton;
     public NpcChatSetup panelSetup;
     private bool questGiven = false;
-    private bool questCompleted = false;
+
+
+    // khóa di chuyển 
+    public PlayerController playerController;
+
 
     // đoạn chat
-    public string[] chat;
-    // nhiệm vụ
-    public QuestItem questItem;// 1 nhiệm vụ
+    [System.Serializable]
+    public class QuestDialogue
+    {
+        [TextArea(2, 5)]
+        public List<string> lines;
+    }
+    // đoạn thoại cốt truyện
+    [Header("Đoạn thoại theo từng nhiệm vụ")]
+    public List<QuestDialogue> questChats = new List<QuestDialogue>();
 
-    public List<QuestItem> questList;  // Chuỗi nhiệm vụ
+    // nhiệm vụ
+    public List<QuestItem> questList;  
     private int currentQuestIndex = 0;
     private QuestItem CurrentQuest => questList[currentQuestIndex];
+
     //Player
     public PlayerQuest playerQuests;
 
@@ -34,6 +48,7 @@ public class NPC : MonoBehaviour
     }
     private void Start()
     {
+        
         npcChatPanel  = panelSetup.ChatPanel;
         chatText = panelSetup.ChatText.GetComponent<TextMeshProUGUI>();
         yesButton = panelSetup.YesBtn.GetComponent<Button>();
@@ -46,45 +61,18 @@ public class NPC : MonoBehaviour
         if (other.gameObject.CompareTag("Player"))
         {
             playerQuests = other.gameObject.GetComponent<PlayerQuest>();
-            //yesButton.gameObject.SetActive(true);
+            playerController = other.gameObject.GetComponent<PlayerController>();
+
         }
     }
 
     private void OnTriggerStay(Collider other)
     {
-        if (other.gameObject.CompareTag("Player") && Input.GetKeyDown(KeyCode.F) && !isChating)
+        if (other.gameObject.CompareTag("Player"))
         {
-            playerQuests = other.GetComponent<PlayerQuest>();
-
-            if (currentQuestIndex >= questList.Count)
-            {
-                npcChatPanel.SetActive(true);
-                chatText.text = "Bạn đã hoàn thành tất cả nhiệm vụ rồi. Cảm ơn bạn!";
-                Invoke(nameof(HidePanel), 2f);
-                return;
-            }
-
-            if (playerQuests.HasCompletedQuest(CurrentQuest))
-            {
-                playerQuests.CompleteQuest(CurrentQuest, 100);
-                npcChatPanel.SetActive(true);
-                chatText.text = $"Tốt lắm! Nhận 100 vàng!";
-                currentQuestIndex++; // sang nhiệm vụ mới
-                questGiven = false; // reset để đọc thoại mới
-                Invoke(nameof(HidePanel), 2f);
-            }
-            else if (!questGiven)
-            {
-                isChating = true;
-                npcChatPanel.SetActive(true);
-                coroutine = StartCoroutine(ReadChat());
-            }
-            else
-            {
-                npcChatPanel.SetActive(true);
-                chatText.text = $"Nhiệm vụ chưa hoàn thành: {CurrentQuest.QuetsItemName}";
-                Invoke(nameof(HidePanel), 2f);
-            }
+            // Chỉ cập nhật player nếu chưa gán
+            if (playerQuests == null)
+                playerQuests = other.GetComponent<PlayerQuest>();
         }
     }
 
@@ -108,17 +96,15 @@ public class NPC : MonoBehaviour
 
     IEnumerator ReadChat()
     {
+        List<string> currentChat = (questChats != null && currentQuestIndex < questChats.Count && questChats[currentQuestIndex] != null)
+    ? questChats[currentQuestIndex].lines
+    : new List<string> { $"Bạn có nhiệm vụ: {CurrentQuest.QuetsItemName}" };
 
-        foreach (var line in chat)
+        playerController.canMove = false;
+
+        foreach (var line in currentChat)
         {
             chatText.text = "";
-
-            if (Input.GetKeyDown(KeyCode.Q))
-            {
-                chatText.text = line;
-            }
-            else
-            {
                 for (int i = 0; i < line.Length; i++)
                 {
 
@@ -126,9 +112,9 @@ public class NPC : MonoBehaviour
                     yield return new WaitForSeconds(0.1f);
 
                 }
-            }
+            //}
 
-            yield return new WaitForSeconds(0.5f);
+            yield return new WaitForSeconds(0.3f);
 
         }
         yesButton.gameObject.SetActive(true);
@@ -140,10 +126,11 @@ public class NPC : MonoBehaviour
         {
             if (playerQuests.HasCompletedQuest(CurrentQuest))
             {
+                // giao nhiệm vụ
                 playerQuests.CompleteQuest(CurrentQuest, 100);
                 chatText.text = $"Tốt lắm! Đây là 100 vàng cho phần thưởng.";
 
-               // giao nhiem vu moi
+               
             }
             else if (!playerQuests.questItems.Contains(CurrentQuest))
             {
@@ -159,18 +146,60 @@ public class NPC : MonoBehaviour
             }
 
             yesButton.gameObject.SetActive(false);
-            Invoke(nameof(HidePanel), 2f); // Ẩn panel sau 2 giây
+            Invoke(nameof(HidePanel), 2f); 
         });
 
         isChating = false;
 
 
     }
+ 
+
+    public void ManualTrigger()
+    {
+        if (isChating) return;
+
+        if (currentQuestIndex >= questList.Count)
+        {
+            npcChatPanel.SetActive(true);
+            chatText.text = "Bạn đã hoàn thành tất cả nhiệm vụ rồi. Cảm ơn bạn";
+            Invoke(nameof(HidePanel), 2f);
+            return;
+        }
+
+        if (playerQuests.HasCompletedQuest(CurrentQuest))
+        {
+            playerQuests.CompleteQuest(CurrentQuest, 100);
+            npcChatPanel.SetActive(true);
+            chatText.text = $"Tốt lắm!Nhận 100 vàng";
+            currentQuestIndex++;
+            questGiven = false;
+            Invoke(nameof(HidePanel), 2f);
+        }
+        else if (!questGiven)
+        {
+            isChating = true;
+            npcChatPanel.SetActive(true);
+            playerController.canMove = false;
+            coroutine = StartCoroutine(ReadChat());
+        }
+        else
+        {
+            npcChatPanel.SetActive(true);
+            chatText.text = $"Nhiệm vụ chưa hoàn thành: {CurrentQuest.QuetsItemName}";
+            Invoke(nameof(HidePanel), 2f);
+        }
+    }
+
+
     // Nhận nhiệm vụ và đóng bảng chat
     public void HidePanel()
     {
         npcChatPanel.SetActive(false);
+
+        if (playerController != null)
+        {
+            playerController.canMove = true;
+        }
     }
-
-
 }

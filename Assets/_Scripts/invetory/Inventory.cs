@@ -36,7 +36,7 @@ public class Inventory : MonoBehaviour
 
     void Update()
     {
-        // Nhấn phím E để mở/đóng Inventory
+        
         if (Input.GetKeyDown(KeyCode.E))
         {
             ToggleInventory();
