@@ -1,5 +1,6 @@
 ﻿using UnityEngine;
 using UnityEngine.AI;
+using System.Collections;
 
 public class SkeletonNecromancer : MonoBehaviour
 {
@@ -8,24 +9,27 @@ public class SkeletonNecromancer : MonoBehaviour
     public float maxDistance = 50f;
     public Animator animator;
 
-    public float attackRange = 2f;       // Khoảng cách giữ khi tấn công
-    public float rotationSpeed = 5f;     // Tốc độ quay mặt
-    public float attackCooldown = 2f;    // Thời gian hồi chiêu
+    public float attackRange = 2f;
+    public float rotationSpeed = 5f;
+    public float attackCooldown = 2f;
     private float lastAttackTime;
 
     private Transform target;
     private Vector3 originalePosition;
 
+    private BossStats bossStats;
+    private Coroutine spinAttackRoutine;
+
     public enum CharacterState
     {
         Normal,
-        Attack
+        Attack,
+        SpinAttack
     }
     public CharacterState currentState;
 
     void Start()
     {
-        // Tự động tìm Player
         GameObject playerObj = GameObject.FindWithTag("Player");
         if (playerObj != null)
         {
@@ -33,6 +37,7 @@ public class SkeletonNecromancer : MonoBehaviour
         }
 
         originalePosition = transform.position;
+        bossStats = GetComponent<BossStats>();
     }
 
     void Update()
@@ -42,43 +47,62 @@ public class SkeletonNecromancer : MonoBehaviour
         float distanceToTarget = Vector3.Distance(target.position, transform.position);
         float distanceToOrigin = Vector3.Distance(originalePosition, transform.position);
 
-        if (distanceToTarget <= radius && distanceToOrigin <= maxDistance)
+        bool lowHealth = bossStats != null && bossStats.isLowHealth;
+
+        if (!lowHealth && (distanceToTarget > radius || distanceToOrigin > maxDistance))
         {
-            if (distanceToTarget > attackRange)
-            {
-                navMeshAgent.isStopped = false;
-                navMeshAgent.SetDestination(target.position);
-                animator.SetFloat("Speed", navMeshAgent.velocity.magnitude);
-                ChangeState(CharacterState.Normal);
-            }
-            else
-            {
-                navMeshAgent.isStopped = true;
-                animator.SetFloat("Speed", 0);
+            ReturnToOrigin();
+            return;
+        }
 
-                RotateTowardsTarget();
-
-                if (Time.time >= lastAttackTime + attackCooldown)
-                {
-                    ChangeState(CharacterState.Attack);
-                    lastAttackTime = Time.time;
-                }
-            }
+        if (distanceToTarget > attackRange)
+        {
+            navMeshAgent.isStopped = false;
+            navMeshAgent.SetDestination(target.position);
+            animator.SetFloat("Speed", navMeshAgent.velocity.magnitude);
+            StopSpinIfNeeded();
+            ChangeState(CharacterState.Normal);
         }
         else
         {
-            navMeshAgent.isStopped = false;
-            navMeshAgent.SetDestination(originalePosition);
-            float distanceBack = Vector3.Distance(originalePosition, transform.position);
-            animator.SetFloat("Speed", navMeshAgent.velocity.magnitude);
+            navMeshAgent.isStopped = true;
+            animator.SetFloat("Speed", 0);
+            RotateTowardsTarget();
 
-            if (distanceBack < 1f)
+            if (Time.time >= lastAttackTime + attackCooldown)
             {
-                animator.SetFloat("Speed", 0);
-            }
+                if (lowHealth)
+                {
+                    if (spinAttackRoutine == null)
+                    {
+                        spinAttackRoutine = StartCoroutine(PlaySpinAttack());
+                    }
+                }
+                else
+                {
+                    ChangeState(CharacterState.Attack);
+                }
 
-            ChangeState(CharacterState.Normal);
+                lastAttackTime = Time.time;
+            }
         }
+    }
+
+    void ReturnToOrigin()
+    {
+        navMeshAgent.isStopped = false;
+        navMeshAgent.SetDestination(originalePosition);
+        animator.SetFloat("Speed", navMeshAgent.velocity.magnitude);
+
+        if (Vector3.Distance(transform.position, originalePosition) < 1f)
+        {
+            animator.SetFloat("Speed", 0);
+        }
+
+        animator.SetBool("Attack", false);
+        animator.SetBool("IsSpinning", false);
+        ChangeState(CharacterState.Normal);
+        StopSpinIfNeeded();
     }
 
     private void RotateTowardsTarget()
@@ -94,20 +118,41 @@ public class SkeletonNecromancer : MonoBehaviour
 
     private void ChangeState(CharacterState newState)
     {
-
-        // Chỉ ngăn đổi trạng thái nếu KHÔNG phải Attack
         if (currentState == newState && newState != CharacterState.Attack)
             return;
 
-        if (newState == CharacterState.Attack)
-        {
-            animator.SetBool("Attack", true);
-        }
-        else
-        {
-            animator.SetBool("Attack", false);
-        }
+        animator.SetBool("Attack", newState == CharacterState.Attack);
+        animator.SetBool("IsSpinning", newState == CharacterState.SpinAttack);
 
         currentState = newState;
+    }
+
+    private IEnumerator PlaySpinAttack()
+    {
+        ChangeState(CharacterState.SpinAttack);
+        animator.SetBool("IsSpinning", true);
+
+        yield return new WaitForSeconds(3f);
+
+        animator.SetBool("IsSpinning", false);
+        ChangeState(CharacterState.Normal);
+
+        spinAttackRoutine = null;
+    }
+
+    private void StopSpinIfNeeded()
+    {
+        if (spinAttackRoutine != null)
+        {
+            StopCoroutine(spinAttackRoutine);
+            spinAttackRoutine = null;
+            animator.SetBool("IsSpinning", false);
+        }
+    }
+
+    // ✅ Gọi hàm này khi Boss chuyển dạng
+    public void BoostSpeed(float amount)
+    {
+        navMeshAgent.speed += amount;
     }
 }
