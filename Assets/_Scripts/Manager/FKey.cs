@@ -7,6 +7,7 @@ public class FKey : MonoBehaviour
 {
     public GameObject fKey;
     bool isShowFKey;
+    private NPC currentNPC;
 
 
 
@@ -26,13 +27,15 @@ public class FKey : MonoBehaviour
 
     private void Update()
     {
-        if (isShowFKey)
+        if (isShowFKey && Input.GetKeyDown(KeyCode.F))
         {
-            if(Input.GetKeyDown(KeyCode.F))
+            HideFKey(); // ẩn nút F khi nhấn
+
+            if (currentNPC != null)
             {
-                HideFKey();
+                // Giả lập việc "kích hoạt" đối thoại
+                currentNPC.ManualTrigger();
             }
-            
         }
     }
 
@@ -41,6 +44,7 @@ public class FKey : MonoBehaviour
         if (other.gameObject.CompareTag("NPC"))
         {
             ShowFKey();
+            currentNPC = other.GetComponent<NPC>();
         }
     }
 
@@ -49,6 +53,7 @@ public class FKey : MonoBehaviour
         if (other.gameObject.CompareTag("NPC"))
         {
             HideFKey();
+            currentNPC = null;
         }
     }
 
