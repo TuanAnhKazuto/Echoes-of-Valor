@@ -16,11 +16,18 @@ public class Knight : MonoBehaviour
     float lastClickedTime = 0f;
     float maxComboDelay = 1f;
 
+    public SwordTrailController trailEffect;
+
     private void Start()
     {
         anim = player.animator;
         player.isAttacking = false;
         curTargetRange = normalAttackRange;
+
+        if (trailEffect != null)
+        {
+            trailEffect.StopTrail();
+        }
     }
 
     private void Update()
@@ -116,6 +123,7 @@ public class Knight : MonoBehaviour
         if (noOfClicks == 1)
         {
             anim.SetBool("IsAttack1", true);
+            PlaySwordTrail();
         }
         noOfClicks = Mathf.Clamp(noOfClicks, 0, 5);
 
@@ -123,21 +131,40 @@ public class Knight : MonoBehaviour
         {
             anim.SetBool("IsAttack1", false);
             anim.SetBool("IsAttack2", true);
+            PlaySwordTrail();
         }
         if (noOfClicks >= 3 && anim.GetCurrentAnimatorStateInfo(0).normalizedTime > 0.7f && anim.GetCurrentAnimatorStateInfo(0).IsName("Attack2"))
         {
             anim.SetBool("IsAttack2", false);
             anim.SetBool("IsAttack3", true);
+            PlaySwordTrail();
         }
         if (noOfClicks >= 4 && anim.GetCurrentAnimatorStateInfo(0).normalizedTime > 0.7f && anim.GetCurrentAnimatorStateInfo(0).IsName("Attack3"))
         {
             anim.SetBool("IsAttack3", false);
             anim.SetBool("IsAttack4", true);
+            PlaySwordTrail();
         }
         if (noOfClicks >= 5 && anim.GetCurrentAnimatorStateInfo(0).normalizedTime > 0.7f && anim.GetCurrentAnimatorStateInfo(0).IsName("Attack4"))
         {
             anim.SetBool("IsAttack4", false);
             anim.SetBool("IsAttack5", true);
+        }
+    }
+    void PlaySwordTrail()
+    {
+        if (trailEffect != null)
+        {
+            trailEffect.StartTrail();
+            Invoke("StopTrail", 0.3f); 
+        }
+    }
+
+    void StopTrail()
+    {
+        if (trailEffect != null)
+        {
+            trailEffect.StopTrail();
         }
     }
 }
