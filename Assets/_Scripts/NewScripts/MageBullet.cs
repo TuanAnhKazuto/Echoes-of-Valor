@@ -11,5 +11,10 @@ public class MageBullet : MonoBehaviour
             characterStats.TakeDamage(damge);
             Destroy(gameObject);
         }
+
+        if (other.gameObject.name.Contains("Cube"))
+        {
+            Destroy(gameObject);
+        }
     }
 }

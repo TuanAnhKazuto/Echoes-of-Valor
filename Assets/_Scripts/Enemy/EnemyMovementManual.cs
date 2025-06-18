@@ -71,10 +71,18 @@ public class EnemyMovementManual : MonoBehaviour
 
         if (direction != Vector3.zero)
         {
-            Quaternion toRotation = Quaternion.LookRotation(direction);
+            // Bỏ thành phần Y để tránh nghiêng lên/xuống
+            Vector3 flatDirection = new Vector3(direction.x, 0f, direction.z);
+
+            // Tính rotation chỉ quanh trục Y
+            Quaternion toRotation = Quaternion.LookRotation(flatDirection);
+
+            // Quay dần dần
             transform.rotation = Quaternion.Slerp(transform.rotation, toRotation, 5f * Time.deltaTime);
         }
     }
+
+
 
     void TryAttack()
     {
@@ -100,7 +108,13 @@ public class EnemyMovementManual : MonoBehaviour
         Vector3 direction = (player.position - transform.position).normalized;
         if (direction != Vector3.zero)
         {
-            Quaternion toRotation = Quaternion.LookRotation(direction);
+            // Bỏ thành phần Y để tránh nghiêng lên/xuống
+            Vector3 flatDirection = new Vector3(direction.x, 0f, direction.z);
+
+            // Tính rotation chỉ quanh trục Y
+            Quaternion toRotation = Quaternion.LookRotation(flatDirection);
+
+            // Quay dần dần
             transform.rotation = Quaternion.Slerp(transform.rotation, toRotation, 5f * Time.deltaTime);
         }
     }
