@@ -1419,17 +1419,6 @@ PrefabInstance:
     m_AddedGameObjects: []
     m_AddedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: a241dca576e4aa4498e622aac9d9f321, type: 3}
---- !u!114 &267592023 stripped
-MonoBehaviour:
-  m_CorrespondingSourceObject: {fileID: 2633098270899814034, guid: 4d2ee5f6a7438074ca0779ca792324ba, type: 3}
-  m_PrefabInstance: {fileID: 5551996370193906124}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 0}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 30ac5e4993cc02546b59ee5eab29c90a, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
 --- !u!1 &309630349
 GameObject:
   m_ObjectHideFlags: 0
@@ -8970,17 +8959,6 @@ MonoBehaviour:
   m_LightCookieSize: {x: 1, y: 1}
   m_LightCookieOffset: {x: 0, y: 0}
   m_SoftShadowQuality: 0
---- !u!114 &1606705311 stripped
-MonoBehaviour:
-  m_CorrespondingSourceObject: {fileID: 5836847598259700786, guid: 4d2ee5f6a7438074ca0779ca792324ba, type: 3}
-  m_PrefabInstance: {fileID: 5551996370193906124}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 0}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 30ac5e4993cc02546b59ee5eab29c90a, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
 --- !u!1 &1615469125
 GameObject:
   m_ObjectHideFlags: 0
@@ -11427,14 +11405,14 @@ PrefabInstance:
     serializedVersion: 3
     m_TransformParent: {fileID: 0}
     m_Modifications:
-    - target: {fileID: 4656843496498232716, guid: 4d2ee5f6a7438074ca0779ca792324ba, type: 3}
-      propertyPath: 'equippedWeapons.Array.data[0]'
-      value: 
-      objectReference: {fileID: 1606705311}
-    - target: {fileID: 4656843496498232716, guid: 4d2ee5f6a7438074ca0779ca792324ba, type: 3}
-      propertyPath: 'equippedWeapons.Array.data[1]'
-      value: 
-      objectReference: {fileID: 267592023}
+    - target: {fileID: 2548190139823987596, guid: 4d2ee5f6a7438074ca0779ca792324ba, type: 3}
+      propertyPath: m_Enabled
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 2987594514679051766, guid: 4d2ee5f6a7438074ca0779ca792324ba, type: 3}
+      propertyPath: m_Enabled
+      value: 1
+      objectReference: {fileID: 0}
     - target: {fileID: 4842269802902040384, guid: 4d2ee5f6a7438074ca0779ca792324ba, type: 3}
       propertyPath: m_LocalPosition.x
       value: 29.42
@@ -11479,17 +11457,13 @@ PrefabInstance:
       propertyPath: m_Name
       value: KnightChar
       objectReference: {fileID: 0}
-    - target: {fileID: 5428599474284752997, guid: 4d2ee5f6a7438074ca0779ca792324ba, type: 3}
-      propertyPath: m_IsActive
-      value: 0
-      objectReference: {fileID: 0}
     - target: {fileID: 8219310280919571435, guid: 4d2ee5f6a7438074ca0779ca792324ba, type: 3}
       propertyPath: m_Mesh
       value: 
       objectReference: {fileID: 656842184}
     - target: {fileID: 8219310280919571435, guid: 4d2ee5f6a7438074ca0779ca792324ba, type: 3}
       propertyPath: m_VersionIndex
-      value: 1011
+      value: 1014
       objectReference: {fileID: 0}
     - target: {fileID: 8818820891007266406, guid: 4d2ee5f6a7438074ca0779ca792324ba, type: 3}
       propertyPath: m_Mesh
