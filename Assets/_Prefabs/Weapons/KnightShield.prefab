@@ -9,7 +9,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 3575393576315311589}
-  - component: {fileID: 2846867776968362899}
+  - component: {fileID: -2519071088119852975}
   m_Layer: 0
   m_Name: KnightShield
   m_TagString: Untagged
@@ -35,7 +35,7 @@ Transform:
   - {fileID: 8324865105400804104}
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!114 &2846867776968362899
+--- !u!114 &-2519071088119852975
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -44,15 +44,27 @@ MonoBehaviour:
   m_GameObject: {fileID: 441961288626625830}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: f56d93c256658a746814ebcd784d71cd, type: 3}
+  m_Script: {fileID: 11500000, guid: 30ac5e4993cc02546b59ee5eab29c90a, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  weaponID: 102
+  weaponName: Shield
+  weaponLevel: 1
+  maxWeaponLevel: 60
+  breakthroughLevel: 1
+  baseDamage: 0
+  damagePerLevel: 0
+  damagePerBreakthrough: 0
+  baseDefense: 5
+  defensePerLevel: 3
+  defensePerBreakthrough: 6
+  weaponBreakthrough: 1
+  weaponDamage: 0
+  damageBonusWhenUpdate: 5
   baseWeapon: {fileID: 8900275450987988936}
   lowWeapon: {fileID: 6491524915204482070}
   highWeapon: {fileID: 8704345478240004530}
-  weaponLevel: 1
-  weaponBreakthrough: 1
-  weaponDamage: 0
+  currentObj: {fileID: 0}
 --- !u!1001 &6257732258934905159
 PrefabInstance:
   m_ObjectHideFlags: 0

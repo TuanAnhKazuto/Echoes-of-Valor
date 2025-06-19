@@ -9,7 +9,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 3831330876474124827}
-  - component: {fileID: 4068894684602893722}
+  - component: {fileID: 5388304877305832849}
   m_Layer: 3
   m_Name: KnightSword
   m_TagString: Untagged
@@ -36,7 +36,7 @@ Transform:
   - {fileID: 3464288827920088935}
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!114 &4068894684602893722
+--- !u!114 &5388304877305832849
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -45,15 +45,27 @@ MonoBehaviour:
   m_GameObject: {fileID: 5038433345891412904}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: f56d93c256658a746814ebcd784d71cd, type: 3}
+  m_Script: {fileID: 11500000, guid: 30ac5e4993cc02546b59ee5eab29c90a, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  weaponID: 101
+  weaponName: Sword
+  weaponLevel: 1
+  maxWeaponLevel: 60
+  breakthroughLevel: 1
+  baseDamage: 5
+  damagePerLevel: 3
+  damagePerBreakthrough: 6
+  baseDefense: 0
+  defensePerLevel: 0
+  defensePerBreakthrough: 0
+  weaponBreakthrough: 1
+  weaponDamage: 0
+  damageBonusWhenUpdate: 5
   baseWeapon: {fileID: 201297885571690165}
   lowWeapon: {fileID: 5215950503018735425}
   highWeapon: {fileID: 2104084770849965280}
-  weaponLevel: 1
-  weaponBreakthrough: 1
-  weaponDamage: 0
+  currentObj: {fileID: 0}
 --- !u!1001 &1011707436605936612
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -323,7 +335,8 @@ PrefabInstance:
       propertyPath: m_TagString
       value: PlayerSkill
       objectReference: {fileID: 0}
-    m_RemovedComponents: []
+    m_RemovedComponents:
+    - {fileID: 8841758003085454197, guid: 21dec2566c729fc4d919652ef887f0a6, type: 3}
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
     m_AddedComponents:

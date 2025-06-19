@@ -1200,7 +1200,7 @@ Transform:
   m_GameObject: {fileID: 5428599474284752997}
   serializedVersion: 2
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 0, y: 1.079, z: 0}
+  m_LocalPosition: {x: 29.42, y: 1.079, z: -11.86}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children:
@@ -1288,6 +1288,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   healthBar: {fileID: 0}
+  manaBar: {fileID: 0}
   playerId: 101
   playerName: 
   characterClass: Knight
@@ -1299,28 +1300,8 @@ MonoBehaviour:
   baseDamage: 10
   baseDefense: 5
   equippedWeapons:
-  - weaponID: 
-    weaponName: 
-    waponLevel: 0
-    maxWaponLevel: 0
-    breakthroughLevel: 0
-    baseDamage: 0
-    damagePerLevel: 0
-    damagePerBreakthrough: 0
-    baseDefense: 0
-    defensePerLevel: 0
-    defensePerBreakthrough: 0
-  - weaponID: 
-    weaponName: 
-    waponLevel: 0
-    maxWaponLevel: 0
-    breakthroughLevel: 0
-    baseDamage: 0
-    damagePerLevel: 0
-    damagePerBreakthrough: 0
-    baseDefense: 0
-    defensePerLevel: 0
-    defensePerBreakthrough: 0
+  - {fileID: 5836847598259700786}
+  - {fileID: 2633098270899814034}
 --- !u!114 &2987594514679051766
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -2222,15 +2203,52 @@ PrefabInstance:
       propertyPath: m_Name
       value: KnightSword
       objectReference: {fileID: 0}
-    m_RemovedComponents:
-    - {fileID: 1752676249747609928, guid: 675c0e8d847c7d84abd2bcdb8de9a1fe, type: 3}
+    - target: {fileID: 5388304877305832849, guid: 675c0e8d847c7d84abd2bcdb8de9a1fe, type: 3}
+      propertyPath: lowWeapon
+      value: 
+      objectReference: {fileID: 6027355699799820002}
+    - target: {fileID: 5388304877305832849, guid: 675c0e8d847c7d84abd2bcdb8de9a1fe, type: 3}
+      propertyPath: baseWeapon
+      value: 
+      objectReference: {fileID: 1804984778383200022}
+    - target: {fileID: 5388304877305832849, guid: 675c0e8d847c7d84abd2bcdb8de9a1fe, type: 3}
+      propertyPath: highWeapon
+      value: 
+      objectReference: {fileID: 501177983585707331}
+    m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
     m_AddedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 675c0e8d847c7d84abd2bcdb8de9a1fe, type: 3}
+--- !u!1 &501177983585707331 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 2104084770849965280, guid: 675c0e8d847c7d84abd2bcdb8de9a1fe, type: 3}
+  m_PrefabInstance: {fileID: 2001778892511977891}
+  m_PrefabAsset: {fileID: 0}
+--- !u!1 &1804984778383200022 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 201297885571690165, guid: 675c0e8d847c7d84abd2bcdb8de9a1fe, type: 3}
+  m_PrefabInstance: {fileID: 2001778892511977891}
+  m_PrefabAsset: {fileID: 0}
 --- !u!4 &3381113059789818808 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: 3831330876474124827, guid: 675c0e8d847c7d84abd2bcdb8de9a1fe, type: 3}
+  m_PrefabInstance: {fileID: 2001778892511977891}
+  m_PrefabAsset: {fileID: 0}
+--- !u!114 &5836847598259700786 stripped
+MonoBehaviour:
+  m_CorrespondingSourceObject: {fileID: 5388304877305832849, guid: 675c0e8d847c7d84abd2bcdb8de9a1fe, type: 3}
+  m_PrefabInstance: {fileID: 2001778892511977891}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 30ac5e4993cc02546b59ee5eab29c90a, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+--- !u!1 &6027355699799820002 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 5215950503018735425, guid: 675c0e8d847c7d84abd2bcdb8de9a1fe, type: 3}
   m_PrefabInstance: {fileID: 2001778892511977891}
   m_PrefabAsset: {fileID: 0}
 --- !u!1001 &5009166521625006335
@@ -2243,7 +2261,7 @@ PrefabInstance:
     m_Modifications:
     - target: {fileID: 4005100084169640724, guid: 7c839b7eae1a9514f86368c1fef0bd47, type: 3}
       propertyPath: m_VersionIndex
-      value: 972
+      value: 1005
       objectReference: {fileID: 0}
     - target: {fileID: 5774715856320653376, guid: 7c839b7eae1a9514f86368c1fef0bd47, type: 3}
       propertyPath: m_Name
@@ -2323,6 +2341,18 @@ PrefabInstance:
     serializedVersion: 3
     m_TransformParent: {fileID: 3055909298789161464}
     m_Modifications:
+    - target: {fileID: -2519071088119852975, guid: af783a964d19c8d468eb016424ba5afd, type: 3}
+      propertyPath: lowWeapon
+      value: 
+      objectReference: {fileID: 2564330875862452949}
+    - target: {fileID: -2519071088119852975, guid: af783a964d19c8d468eb016424ba5afd, type: 3}
+      propertyPath: baseWeapon
+      value: 
+      objectReference: {fileID: 145508827121428747}
+    - target: {fileID: -2519071088119852975, guid: af783a964d19c8d468eb016424ba5afd, type: 3}
+      propertyPath: highWeapon
+      value: 
+      objectReference: {fileID: 93694627202238321}
     - target: {fileID: 441961288626625830, guid: af783a964d19c8d468eb016424ba5afd, type: 3}
       propertyPath: m_Name
       value: KnightShield
@@ -2372,6 +2402,32 @@ PrefabInstance:
     m_AddedGameObjects: []
     m_AddedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: af783a964d19c8d468eb016424ba5afd, type: 3}
+--- !u!1 &93694627202238321 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 8704345478240004530, guid: af783a964d19c8d468eb016424ba5afd, type: 3}
+  m_PrefabInstance: {fileID: 8755229518262005443}
+  m_PrefabAsset: {fileID: 0}
+--- !u!1 &145508827121428747 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 8900275450987988936, guid: af783a964d19c8d468eb016424ba5afd, type: 3}
+  m_PrefabInstance: {fileID: 8755229518262005443}
+  m_PrefabAsset: {fileID: 0}
+--- !u!1 &2564330875862452949 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 6491524915204482070, guid: af783a964d19c8d468eb016424ba5afd, type: 3}
+  m_PrefabInstance: {fileID: 8755229518262005443}
+  m_PrefabAsset: {fileID: 0}
+--- !u!114 &2633098270899814034 stripped
+MonoBehaviour:
+  m_CorrespondingSourceObject: {fileID: -2519071088119852975, guid: af783a964d19c8d468eb016424ba5afd, type: 3}
+  m_PrefabInstance: {fileID: 8755229518262005443}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 30ac5e4993cc02546b59ee5eab29c90a, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!4 &5196744262912949030 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: 3575393576315311589, guid: af783a964d19c8d468eb016424ba5afd, type: 3}
