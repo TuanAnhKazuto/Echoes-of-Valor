@@ -4,6 +4,8 @@ public class SaveGameManager : MonoBehaviour
 {
     public CharacterStats playerStats;
     public PlayerData curData;
+    public WeaponData[] weaponsData;
+
     public WeaponStats[] equippedWeapons;
     public int selectedId;
     public bool isCharacterSpawned = false;
@@ -45,21 +47,21 @@ public class SaveGameManager : MonoBehaviour
         {
             if (curData.weapons != null && i < curData.weapons.Length)
             {
-                WeaponData data = curData.weapons[i];
+                weaponsData[i] = curData.weapons[i];
 
-                equippedWeapons[i].weaponID = data.weaponID;
-                equippedWeapons[i].weaponName = data.weaponName;
-                equippedWeapons[i].weaponLevel = data.weaponLevel;
-                equippedWeapons[i].maxWeaponLevel = data.maxWeaponLevel;
-                equippedWeapons[i].weaponBreakthrough = data.breakthroughLevel;
+                equippedWeapons[i].weaponID = weaponsData[i].weaponID;
+                equippedWeapons[i].weaponName = weaponsData[i].weaponName;
+                equippedWeapons[i].weaponLevel = weaponsData[i].weaponLevel;
+                equippedWeapons[i].maxWeaponLevel = weaponsData[i].maxWeaponLevel;
+                equippedWeapons[i].weaponBreakthrough = weaponsData[i].breakthroughLevel;
 
-                equippedWeapons[i].baseDamage = data.curDamage;
-                equippedWeapons[i].damagePerLevel = data.damagePerLevel;
-                equippedWeapons[i].damagePerBreakthrough = data.damagePerBreakthrough;
+                equippedWeapons[i].baseDamage = weaponsData[i].curDamage;
+                equippedWeapons[i].damagePerLevel = weaponsData[i].damagePerLevel;
+                equippedWeapons[i].damagePerBreakthrough = weaponsData[i].damagePerBreakthrough;
 
-                equippedWeapons[i].baseDefense = data.curDefense;
-                equippedWeapons[i].defensePerLevel = data.defensePerLevel;
-                equippedWeapons[i].defensePerBreakthrough = data.defensePerBreakthrough;
+                equippedWeapons[i].baseDefense = weaponsData[i].curDefense;
+                equippedWeapons[i].defensePerLevel = weaponsData[i].defensePerLevel;
+                equippedWeapons[i].defensePerBreakthrough = weaponsData[i].defensePerBreakthrough;
             }
         }
     }
@@ -106,6 +108,27 @@ public class SaveGameManager : MonoBehaviour
         curData.positionY = playerStats.transform.position.y;
         curData.positionZ = playerStats.transform.position.z;
         curData.rotationY = playerStats.transform.rotation.eulerAngles.y;
+
+        for (int i = 0; i < equippedWeapons.Length; i++)
+        {
+            if (i < curData.weapons.Length)
+            {
+                curData.weapons[i] = new WeaponData
+                {
+                    weaponID = equippedWeapons[i].weaponID,
+                    weaponName = equippedWeapons[i].weaponName,
+                    weaponLevel = equippedWeapons[i].weaponLevel,
+                    maxWeaponLevel = equippedWeapons[i].maxWeaponLevel,
+                    breakthroughLevel = equippedWeapons[i].weaponBreakthrough,
+                    curDamage = equippedWeapons[i].baseDamage,
+                    damagePerLevel = equippedWeapons[i].damagePerLevel,
+                    damagePerBreakthrough = equippedWeapons[i].damagePerBreakthrough,
+                    curDefense = equippedWeapons[i].baseDefense,
+                    defensePerLevel = equippedWeapons[i].defensePerLevel,
+                    defensePerBreakthrough = equippedWeapons[i].defensePerBreakthrough
+                };
+            }
+        }
 
         SaveSystem.SaveGame(curData);
     }

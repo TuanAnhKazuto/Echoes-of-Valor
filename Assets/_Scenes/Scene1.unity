@@ -38534,6 +38534,7 @@ MonoBehaviour:
     rotationY: 0
     weapons: []
     worldLevel: 0
+  weaponsData: []
   equippedWeapons: []
   selectedId: 0
   isCharacterSpawned: 0
@@ -80252,6 +80253,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 6877e7542211e8749ae913e74b1965a0, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  saveGameManager: {fileID: 340300461}
 --- !u!54 &646458899
 Rigidbody:
   m_ObjectHideFlags: 0
@@ -98407,6 +98409,30 @@ PrefabInstance:
     - target: {fileID: 5157200671929800224, guid: a332b3f1af9dfd44ab1952783f49ef4a, type: 3}
       propertyPath: m_Name
       value: Canvas Inventory (1)
+      objectReference: {fileID: 0}
+    - target: {fileID: 7755890983922414507, guid: a332b3f1af9dfd44ab1952783f49ef4a, type: 3}
+      propertyPath: m_AnchorMax.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 7755890983922414507, guid: a332b3f1af9dfd44ab1952783f49ef4a, type: 3}
+      propertyPath: m_AnchorMin.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 7755890983922414507, guid: a332b3f1af9dfd44ab1952783f49ef4a, type: 3}
+      propertyPath: m_SizeDelta.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 7755890983922414507, guid: a332b3f1af9dfd44ab1952783f49ef4a, type: 3}
+      propertyPath: m_SizeDelta.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 7755890983922414507, guid: a332b3f1af9dfd44ab1952783f49ef4a, type: 3}
+      propertyPath: m_AnchoredPosition.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 7755890983922414507, guid: a332b3f1af9dfd44ab1952783f49ef4a, type: 3}
+      propertyPath: m_AnchoredPosition.y
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 8722712839027987314, guid: a332b3f1af9dfd44ab1952783f49ef4a, type: 3}
       propertyPath: m_AnchorMax.x
@@ -256771,6 +256797,30 @@ PrefabInstance:
     - target: {fileID: 5157200671929800224, guid: a332b3f1af9dfd44ab1952783f49ef4a, type: 3}
       propertyPath: m_Name
       value: Canvas Inventory
+      objectReference: {fileID: 0}
+    - target: {fileID: 7755890983922414507, guid: a332b3f1af9dfd44ab1952783f49ef4a, type: 3}
+      propertyPath: m_AnchorMax.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 7755890983922414507, guid: a332b3f1af9dfd44ab1952783f49ef4a, type: 3}
+      propertyPath: m_AnchorMin.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 7755890983922414507, guid: a332b3f1af9dfd44ab1952783f49ef4a, type: 3}
+      propertyPath: m_SizeDelta.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 7755890983922414507, guid: a332b3f1af9dfd44ab1952783f49ef4a, type: 3}
+      propertyPath: m_SizeDelta.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 7755890983922414507, guid: a332b3f1af9dfd44ab1952783f49ef4a, type: 3}
+      propertyPath: m_AnchoredPosition.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 7755890983922414507, guid: a332b3f1af9dfd44ab1952783f49ef4a, type: 3}
+      propertyPath: m_AnchoredPosition.y
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 8722712839027987314, guid: a332b3f1af9dfd44ab1952783f49ef4a, type: 3}
       propertyPath: m_AnchorMax.x
