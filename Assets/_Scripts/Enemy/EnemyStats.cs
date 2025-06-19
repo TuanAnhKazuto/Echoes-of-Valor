@@ -4,7 +4,6 @@ using UnityEngine;
 public class EnemyStats : MonoBehaviour
 {
     [Header("Component")]
-    public PlayerData playerData;
     public CharacterStats characterStats;
 
     public EnemyHealthBar healthBar;
@@ -23,16 +22,6 @@ public class EnemyStats : MonoBehaviour
 
     [Header("Quest")]
     public string questTag = "Enemy_Main";
-    
-
-
-    private void Awake()
-    {
-        if (characterStats == null)
-        {
-            characterStats = FindAnyObjectByType<CharacterStats>();
-        }
-    }
 
     private void Start()
     {
@@ -78,6 +67,11 @@ public class EnemyStats : MonoBehaviour
     {
         if (other.gameObject.CompareTag("PlayerHitBox"))
         {
+            if(characterStats == null)
+            {
+                characterStats = other.GetComponentInParent<CharacterStats>();
+            }
+
             TakeDamage(characterStats.TotalDamage);
         }
 

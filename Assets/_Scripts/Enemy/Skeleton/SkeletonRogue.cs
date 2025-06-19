@@ -9,6 +9,7 @@ public class SkeletonRogue : MonoBehaviour
     private float originalSpeed = 6f;
 
     [SerializeField] private bool isSpawned = false;
+    SaveGameManager saveGameManager;
 
     NavMeshAgent agent;
     Transform player;
@@ -19,7 +20,8 @@ public class SkeletonRogue : MonoBehaviour
 
     private void Awake()
     {
-        player = GameObject.FindGameObjectWithTag("Player").transform;
+        saveGameManager = FindAnyObjectByType<SaveGameManager>();
+
         agent = GetComponent<NavMeshAgent>();
         animator = GetComponent<Animator>();
         
@@ -27,6 +29,11 @@ public class SkeletonRogue : MonoBehaviour
 
     private void Update()
     {
+        if (saveGameManager.isCharacterSpawned)
+        {
+            player = GameObject.FindGameObjectWithTag("Player").transform;
+        }
+
         if (!animator.GetCurrentAnimatorStateInfo(0).IsName("Spawn_Ground_Skeletons"))
         {
             isSpawned = true;
