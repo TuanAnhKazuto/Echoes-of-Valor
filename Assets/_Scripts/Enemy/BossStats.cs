@@ -29,6 +29,9 @@ public class BossStats : MonoBehaviour
 
     private SkeletonNecromancer enemyAI;
 
+    [Header("Quest")]
+    public string questTag = "Enemy_Main";
+
     private void Awake()
     {
         if (characterStats == null)
