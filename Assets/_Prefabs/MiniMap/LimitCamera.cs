@@ -4,9 +4,19 @@ using System.Collections;
 
 public class LimitCamera : MonoBehaviour
 {
-    public GameObject Player; 
-    private void LateUpdate()
+    public GameObject Player;
+    public SaveGameManager saveGameManager;
+
+    private void Update()
     {
-        transform.position = new Vector3(Player.transform.position.x, 40 , Player.transform.position.z);
+        Invoke(nameof(GetPlayerObj), 0.2f);
+    }
+
+    private void GetPlayerObj()
+    {
+        if (saveGameManager.isCharacterSpawned)
+        {
+            Player = FindAnyObjectByType<CharacterStats>().gameObject;
+        }
     }
 }

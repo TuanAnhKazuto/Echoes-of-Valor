@@ -2,15 +2,15 @@ using UnityEngine;
 
 public class NpcEngineer : MonoBehaviour
 {
-    // Start is called once before the first execution of Update after the MonoBehaviour is created
-    void Start()
-    {
-        
-    }
+    public GameObject upgradeWeaponPanel;
 
-    // Update is called once per frame
-    void Update()
+    private void OnTriggerStay(Collider other)
     {
-        
+        if(other.CompareTag("Player") && Input.GetKeyDown(KeyCode.F))
+        {
+            upgradeWeaponPanel.SetActive(true);
+            Cursor.lockState= CursorLockMode.None;
+            Cursor.visible = true;
+        }
     }
 }
