@@ -20,7 +20,7 @@ public class CharacterStats : MonoBehaviour
     public int baseDefense = 5;
 
     [Header("Equipment")]
-    public WeaponData equippedWeapon;
+    public WeaponStats[] equippedWeapons;
 
     private void Awake()
     {
@@ -40,8 +40,9 @@ public class CharacterStats : MonoBehaviour
         currentMana = maxMana;
     }
 
-    public int TotalDamage => baseDamage + (equippedWeapon != null ? equippedWeapon.GetDamage() : 1);
-    public int TotalDefense => baseDefense + (equippedWeapon != null ? equippedWeapon.GetDefense() : 0);
+    public int TotalDamage => baseDamage + (equippedWeapons[0]?.GetDamage() ?? 0) + (equippedWeapons[1]?.GetDamage() ?? 0);
+
+    public int TotalDefense => baseDamage + (equippedWeapons[0]?.GetDefense() ?? 0) + (equippedWeapons[1]?.GetDefense() ?? 0);
 
     public void TakeDamage(float damage)
     {

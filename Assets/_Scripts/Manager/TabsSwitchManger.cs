@@ -5,6 +5,15 @@ public class TabsSwitchManger : MonoBehaviour
     public GameObject[] tabs;
     public GameObject[] weaponObj;
 
+    private void Start()
+    {
+        tabs[0].SetActive(true);
+        tabs[1].SetActive(false);
+
+        weaponObj[0].SetActive(true);
+        weaponObj[1].SetActive(false);
+    }
+
     public void SwitchToTab(int tabIndex)
     {
         foreach (GameObject tab in tabs)

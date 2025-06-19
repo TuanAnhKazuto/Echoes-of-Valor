@@ -4,16 +4,17 @@ public class SaveGameManager : MonoBehaviour
 {
     public CharacterStats playerStats;
     public PlayerData curData;
-    public int seletectedId;
+    public WeaponStats[] equippedWeapons;
+    public int selectedId;
     public bool isCharacterSpawned = false;
 
     public int loadPlayerId;
 
     private void Start()
     {
-        seletectedId = PlayerPrefs.GetInt("SelectedPlayerId");
+        selectedId = PlayerPrefs.GetInt("SelectedPlayerId");
 
-        curData = SaveSystem.LoadGame(seletectedId);        
+        curData = SaveSystem.LoadGame(selectedId);        
     }
 
     private void Update()
@@ -29,9 +30,38 @@ public class SaveGameManager : MonoBehaviour
     private void Load()
     {
         playerStats = FindAnyObjectByType<CharacterStats>();
+        equippedWeapons = playerStats.equippedWeapons;
+
         LoadPosition();
         LoadStats();
+        LoadWeapons();
+
         isCharacterSpawned = false;
+    }
+
+    private void LoadWeapons()
+    {
+        for (int i = 0; i < equippedWeapons.Length; i++)
+        {
+            if (curData.weapons != null && i < curData.weapons.Length)
+            {
+                WeaponData data = curData.weapons[i];
+
+                equippedWeapons[i].weaponID = data.weaponID;
+                equippedWeapons[i].weaponName = data.weaponName;
+                equippedWeapons[i].weaponLevel = data.weaponLevel;
+                equippedWeapons[i].maxWeaponLevel = data.maxWeaponLevel;
+                equippedWeapons[i].weaponBreakthrough = data.breakthroughLevel;
+
+                equippedWeapons[i].baseDamage = data.curDamage;
+                equippedWeapons[i].damagePerLevel = data.damagePerLevel;
+                equippedWeapons[i].damagePerBreakthrough = data.damagePerBreakthrough;
+
+                equippedWeapons[i].baseDefense = data.curDefense;
+                equippedWeapons[i].defensePerLevel = data.defensePerLevel;
+                equippedWeapons[i].defensePerBreakthrough = data.defensePerBreakthrough;
+            }
+        }
     }
 
     public void LoadStats()
