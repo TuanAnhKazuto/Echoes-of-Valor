@@ -1802,7 +1802,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: b977159dd6da00a46953de8959e0d201, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  QuetsItemName: nhiem vu 4 danh 1 enemy
+  QuetsItemName: nhiem vu 2 danh 1 enemy
   questTargetAmount: 1
   currentAmount: 0
   TargetItemtag: 
@@ -1964,6 +1964,10 @@ PrefabInstance:
       propertyPath: m_Name
       value: barbarian
       objectReference: {fileID: 0}
+    - target: {fileID: 1343332333537823140, guid: 3f457b0604d84b140a2f3df12ea405bc, type: 3}
+      propertyPath: m_TagString
+      value: NPC
+      objectReference: {fileID: 0}
     - target: {fileID: 3614428877932804171, guid: 3f457b0604d84b140a2f3df12ea405bc, type: 3}
       propertyPath: m_LocalPosition.x
       value: 14.3855915
@@ -2005,6 +2009,14 @@ PrefabInstance:
       value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 8835601500180365127, guid: 3f457b0604d84b140a2f3df12ea405bc, type: 3}
+      propertyPath: questList.Array.size
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 8835601500180365127, guid: 3f457b0604d84b140a2f3df12ea405bc, type: 3}
+      propertyPath: questChats.Array.size
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 8835601500180365127, guid: 3f457b0604d84b140a2f3df12ea405bc, type: 3}
       propertyPath: 'questList.Array.data[1]'
       value: 
       objectReference: {fileID: 628645139}
@@ -2012,6 +2024,18 @@ PrefabInstance:
       propertyPath: 'questList.Array.data[2]'
       value: 
       objectReference: {fileID: 111468058}
+    - target: {fileID: 8835601500180365127, guid: 3f457b0604d84b140a2f3df12ea405bc, type: 3}
+      propertyPath: 'questChats.Array.data[1].lines.Array.data[0]'
+      value: "m\xE0y \u0111\xE3 nh\u1EADn n\xF3 nhi\u1EC7m v\u1EE5 3"
+      objectReference: {fileID: 0}
+    - target: {fileID: 8835601500180365127, guid: 3f457b0604d84b140a2f3df12ea405bc, type: 3}
+      propertyPath: 'questChats.Array.data[1].lines.Array.data[1]'
+      value: "run s\u1EE3 v\u1EDBi nhi\u1EC7m v\u1EE5 3 \u0111i "
+      objectReference: {fileID: 0}
+    - target: {fileID: 8835601500180365127, guid: 3f457b0604d84b140a2f3df12ea405bc, type: 3}
+      propertyPath: 'questChats.Array.data[1].lines.Array.data[2]'
+      value: hehehe
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
@@ -3686,6 +3710,63 @@ PrefabInstance:
     m_AddedGameObjects: []
     m_AddedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 8535ce2e568cdaf4aaf0a89c6463238d, type: 3}
+--- !u!1001 &4696422949557099762
+PrefabInstance:
+  m_ObjectHideFlags: 0
+  serializedVersion: 2
+  m_Modification:
+    serializedVersion: 3
+    m_TransformParent: {fileID: 0}
+    m_Modifications:
+    - target: {fileID: 943754170287042422, guid: 3dbf211848fa9f3439e5a977c14727c1, type: 3}
+      propertyPath: m_Name
+      value: druid
+      objectReference: {fileID: 0}
+    - target: {fileID: 4799318295304171106, guid: 3dbf211848fa9f3439e5a977c14727c1, type: 3}
+      propertyPath: m_LocalPosition.x
+      value: 10.214949
+      objectReference: {fileID: 0}
+    - target: {fileID: 4799318295304171106, guid: 3dbf211848fa9f3439e5a977c14727c1, type: 3}
+      propertyPath: m_LocalPosition.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 4799318295304171106, guid: 3dbf211848fa9f3439e5a977c14727c1, type: 3}
+      propertyPath: m_LocalPosition.z
+      value: 19.58069
+      objectReference: {fileID: 0}
+    - target: {fileID: 4799318295304171106, guid: 3dbf211848fa9f3439e5a977c14727c1, type: 3}
+      propertyPath: m_LocalRotation.w
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 4799318295304171106, guid: 3dbf211848fa9f3439e5a977c14727c1, type: 3}
+      propertyPath: m_LocalRotation.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 4799318295304171106, guid: 3dbf211848fa9f3439e5a977c14727c1, type: 3}
+      propertyPath: m_LocalRotation.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 4799318295304171106, guid: 3dbf211848fa9f3439e5a977c14727c1, type: 3}
+      propertyPath: m_LocalRotation.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 4799318295304171106, guid: 3dbf211848fa9f3439e5a977c14727c1, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 4799318295304171106, guid: 3dbf211848fa9f3439e5a977c14727c1, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 4799318295304171106, guid: 3dbf211848fa9f3439e5a977c14727c1, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.z
+      value: 0
+      objectReference: {fileID: 0}
+    m_RemovedComponents: []
+    m_RemovedGameObjects: []
+    m_AddedGameObjects: []
+    m_AddedComponents: []
+  m_SourcePrefab: {fileID: 100100000, guid: 3dbf211848fa9f3439e5a977c14727c1, type: 3}
 --- !u!1001 &5493880879923451891
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -3917,6 +3998,14 @@ PrefabInstance:
       propertyPath: m_Name
       value: GiaLang
       objectReference: {fileID: 0}
+    - target: {fileID: 6629266651557617969, guid: 7f8a0d0558e82a34ebfc272fb304533f, type: 3}
+      propertyPath: m_TagString
+      value: NPC
+      objectReference: {fileID: 0}
+    - target: {fileID: 6847407132193323700, guid: 7f8a0d0558e82a34ebfc272fb304533f, type: 3}
+      propertyPath: npcType
+      value: 1
+      objectReference: {fileID: 0}
     - target: {fileID: 6847407132193323700, guid: 7f8a0d0558e82a34ebfc272fb304533f, type: 3}
       propertyPath: questList.Array.size
       value: 1
@@ -3935,7 +4024,7 @@ PrefabInstance:
       objectReference: {fileID: 94500553823069728, guid: 00837975987da844ab961d0773f8e92f, type: 3}
     - target: {fileID: 6847407132193323700, guid: 7f8a0d0558e82a34ebfc272fb304533f, type: 3}
       propertyPath: 'questChats.Array.data[0].lines.Array.data[0]'
-      value: "m\xE0y \u0111\xE3 nh\u1EADn nhi\u1EC7m v\u1EE5 4"
+      value: "m\xE0y \u0111\xE3 nh\u1EADn nhi\u1EC7m v\u1EE5 2\n"
       objectReference: {fileID: 0}
     - target: {fileID: 6847407132193323700, guid: 7f8a0d0558e82a34ebfc272fb304533f, type: 3}
       propertyPath: 'questChats.Array.data[1].lines.Array.data[0]'
@@ -4262,3 +4351,4 @@ SceneRoots:
   - {fileID: 1168554591}
   - {fileID: 6480314673307123456}
   - {fileID: 911079082}
+  - {fileID: 4696422949557099762}
