@@ -2137,7 +2137,11 @@ PrefabInstance:
     m_Modifications:
     - target: {fileID: 606657046240874741, guid: 8115681f75c9077489fb3abb2cd5b35c, type: 3}
       propertyPath: m_UseGravity
-      value: 0
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 606657046240874741, guid: 8115681f75c9077489fb3abb2cd5b35c, type: 3}
+      propertyPath: m_Constraints
+      value: 96
       objectReference: {fileID: 0}
     - target: {fileID: 606657046240874741, guid: 8115681f75c9077489fb3abb2cd5b35c, type: 3}
       propertyPath: m_Interpolate
@@ -2145,7 +2149,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 606657046240874741, guid: 8115681f75c9077489fb3abb2cd5b35c, type: 3}
       propertyPath: m_IsKinematic
-      value: 1
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 606657046240874741, guid: 8115681f75c9077489fb3abb2cd5b35c, type: 3}
       propertyPath: m_CollisionDetection
@@ -2153,7 +2157,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 3736392973152749119, guid: 8115681f75c9077489fb3abb2cd5b35c, type: 3}
       propertyPath: m_IsTrigger
-      value: 1
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 5119238362372598836, guid: 8115681f75c9077489fb3abb2cd5b35c, type: 3}
       propertyPath: m_Camera
