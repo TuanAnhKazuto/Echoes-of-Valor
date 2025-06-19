@@ -22,6 +22,14 @@ public class NPC : MonoBehaviour
     // khóa di chuyển 
     public PlayerController playerController;
 
+    // phân loại nhiệm vụ theo từng NPC chính phụ và thêm.
+    public enum NpcType
+    {
+        MainQuest,
+        SideQuest,
+        Merchant
+    }
+    public NpcType npcType;
 
     // đoạn chat
     [System.Serializable]
@@ -58,7 +66,7 @@ public class NPC : MonoBehaviour
 
     private void OnTriggerEnter(Collider other)
     {
-        if (other.gameObject.CompareTag("Player"))
+        if (other.CompareTag("Player"))
         {
             playerQuests = other.gameObject.GetComponent<PlayerQuest>();
             playerController = other.gameObject.GetComponent<PlayerController>();
@@ -189,6 +197,12 @@ public class NPC : MonoBehaviour
             chatText.text = $"Nhiệm vụ chưa hoàn thành: {CurrentQuest.QuetsItemName}";
             Invoke(nameof(HidePanel), 2f);
         }
+        //if (npcType == NpcType.Merchant)
+        //{
+        //    // Mở cửa hàng thay vì giao nhiệm vụ
+        //    Debug.Log("Mở shop bán đồ.");
+        //    return;
+        //}
     }
 
 

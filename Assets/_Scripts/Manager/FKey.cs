@@ -41,10 +41,14 @@ public class FKey : MonoBehaviour
 
     private void OnTriggerEnter(Collider other)
     {
-        if (other.gameObject.CompareTag("NPC"))
+        if (other.CompareTag("NPC")) // Duy nhất 1 tag chung cho tất cả NPC
         {
-            ShowFKey();
             currentNPC = other.GetComponent<NPC>();
+
+            if (currentNPC != null)
+            {
+                ShowFKey(); // Hiện nút F
+            }
         }
     }
 
