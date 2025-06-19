@@ -48,7 +48,7 @@ public class PlayerQuest : MonoBehaviour
             if (quest.TargetItemtag == tag && !quest.IsComplete())
             {
                 quest.UpdateQuestProgress();
-                //Debug.Log($"Tiến trình nhiệm vụ {quest.QuetsItemName}: {quest.currentAmount}/{quest.questTargetAmount}");
+                Debug.Log($"Tiến trình nhiệm vụ {quest.QuetsItemName}: {quest.currentAmount}/{quest.questTargetAmount}");
 
                 // Cập nhật hiển thị
                 playerQuestPanel.ShowAllQuestItem(questItems);
@@ -56,7 +56,7 @@ public class PlayerQuest : MonoBehaviour
                 // Kiểm tra hoàn thành
                 if (quest.IsComplete())
                 {
-                    //Debug.Log($"Hoàn thành nhiệm vụ: {quest.QuetsItemName}!");
+                    Debug.Log($"Hoàn thành nhiệm vụ: {quest.QuetsItemName}!");
                 }
             }
         }
@@ -74,7 +74,7 @@ public class PlayerQuest : MonoBehaviour
         if (HasCompletedQuest(questItem))
         {
             questItems.Remove(questItem);
-            //Debug.Log($"Đã trả nhiệm vụ: {questItem.QuetsItemName}, nhận {reward} vàng");
+            Debug.Log($"Đã trả nhiệm vụ: {questItem.QuetsItemName}, nhận {reward} vàng");
 
             // Cộng vàng
             FindAnyObjectByType<Co>().IncreaseCor(reward);
