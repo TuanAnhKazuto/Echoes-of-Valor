@@ -1239,7 +1239,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 2823577116262180202, guid: 5e980f304a07c544da8720f6c853d2c1, type: 3}
       propertyPath: m_IsActive
-      value: 0
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 6523245326600972667, guid: 5e980f304a07c544da8720f6c853d2c1, type: 3}
       propertyPath: m_LocalPosition.x
@@ -1285,6 +1285,10 @@ PrefabInstance:
       propertyPath: m_Mesh
       value: 
       objectReference: {fileID: 1892018202}
+    - target: {fileID: 6909246540911259261, guid: 5e980f304a07c544da8720f6c853d2c1, type: 3}
+      propertyPath: m_VersionIndex
+      value: 948
+      objectReference: {fileID: 0}
     - target: {fileID: 8215263962542451337, guid: 5e980f304a07c544da8720f6c853d2c1, type: 3}
       propertyPath: m_Mesh
       value: 
@@ -1547,7 +1551,7 @@ PrefabInstance:
       objectReference: {fileID: 1685409482}
     - target: {fileID: 4793506392912358699, guid: a241dca576e4aa4498e622aac9d9f321, type: 3}
       propertyPath: m_VersionIndex
-      value: 951
+      value: 954
       objectReference: {fileID: 0}
     - target: {fileID: 6178342869959526041, guid: a241dca576e4aa4498e622aac9d9f321, type: 3}
       propertyPath: questTag
@@ -1658,6 +1662,18 @@ PrefabInstance:
     serializedVersion: 3
     m_TransformParent: {fileID: 911079082}
     m_Modifications:
+    - target: {fileID: 94500553823069728, guid: 00837975987da844ab961d0773f8e92f, type: 3}
+      propertyPath: rewardAmount
+      value: 1000
+      objectReference: {fileID: 0}
+    - target: {fileID: 94500553823069728, guid: 00837975987da844ab961d0773f8e92f, type: 3}
+      propertyPath: QuetsItemName
+      value: "nhi\u1EC7m v\u1EE5 s\u1ED1 3 \u0111\xE1nh 1 boss"
+      objectReference: {fileID: 0}
+    - target: {fileID: 94500553823069728, guid: 00837975987da844ab961d0773f8e92f, type: 3}
+      propertyPath: TargetItemtag
+      value: Boss
+      objectReference: {fileID: 0}
     - target: {fileID: 3084340734633395692, guid: 00837975987da844ab961d0773f8e92f, type: 3}
       propertyPath: m_Name
       value: QuestB
@@ -1745,6 +1761,7 @@ MonoBehaviour:
   questTargetAmount: 1
   currentAmount: 0
   TargetItemtag: Enemy_Side
+  rewardAmount: 100
 --- !u!4 &992296397
 Transform:
   m_ObjectHideFlags: 0
@@ -1760,6 +1777,37 @@ Transform:
   m_Children: []
   m_Father: {fileID: 911079082}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!1 &994549345
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 994549346}
+  m_Layer: 0
+  m_Name: GameObject
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &994549346
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 994549345}
+  serializedVersion: 2
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 38.02, y: 2.5199976, z: 10.617173}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 0}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1001 &1053277323
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -1774,7 +1822,7 @@ PrefabInstance:
       objectReference: {fileID: 878227741}
     - target: {fileID: 4793506392912358699, guid: a241dca576e4aa4498e622aac9d9f321, type: 3}
       propertyPath: m_VersionIndex
-      value: 951
+      value: 954
       objectReference: {fileID: 0}
     - target: {fileID: 6178342869959526041, guid: a241dca576e4aa4498e622aac9d9f321, type: 3}
       propertyPath: questTag
@@ -1798,7 +1846,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 7713735878304070000, guid: a241dca576e4aa4498e622aac9d9f321, type: 3}
       propertyPath: m_LocalPosition.z
-      value: 13.1
+      value: 39.31
       objectReference: {fileID: 0}
     - target: {fileID: 7713735878304070000, guid: a241dca576e4aa4498e622aac9d9f321, type: 3}
       propertyPath: m_LocalRotation.w
@@ -1968,9 +2016,13 @@ PrefabInstance:
       value: 2
       objectReference: {fileID: 0}
     - target: {fileID: 8835601500180365127, guid: 3f457b0604d84b140a2f3df12ea405bc, type: 3}
-      propertyPath: 'questList.Array.data[1]'
+      propertyPath: 'questList.Array.data[0]'
       value: 
       objectReference: {fileID: 628645139}
+    - target: {fileID: 8835601500180365127, guid: 3f457b0604d84b140a2f3df12ea405bc, type: 3}
+      propertyPath: 'questList.Array.data[1]'
+      value: 
+      objectReference: {fileID: 111468058}
     - target: {fileID: 8835601500180365127, guid: 3f457b0604d84b140a2f3df12ea405bc, type: 3}
       propertyPath: 'questList.Array.data[2]'
       value: 
@@ -4252,7 +4304,7 @@ PrefabInstance:
       objectReference: {fileID: 1978671780}
     - target: {fileID: 3332497819805338839, guid: a3ab25a7754e6ac4fba673d3a2735466, type: 3}
       propertyPath: m_VersionIndex
-      value: 957
+      value: 960
       objectReference: {fileID: 0}
     - target: {fileID: 6850392680811805700, guid: a3ab25a7754e6ac4fba673d3a2735466, type: 3}
       propertyPath: m_LocalPosition.x
@@ -4384,3 +4436,4 @@ SceneRoots:
   - {fileID: 6480314673307123456}
   - {fileID: 911079082}
   - {fileID: 4696422949557099762}
+  - {fileID: 994549346}

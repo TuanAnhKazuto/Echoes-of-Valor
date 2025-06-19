@@ -69,20 +69,19 @@ public class PlayerQuest : MonoBehaviour
     }
 
     // Trả nhiệm vụ, xóa khỏi danh sách và nhận vàng
-    public void CompleteQuest(QuestItem questItem, int reward)
+    public void CompleteQuest(QuestItem questItem)
     {
         if (HasCompletedQuest(questItem))
         {
             questItems.Remove(questItem);
-            Debug.Log($"Đã trả nhiệm vụ: {questItem.QuetsItemName}, nhận {reward} vàng");
+            Debug.Log($"Đã trả nhiệm vụ: {questItem.QuetsItemName}, nhận {questItem.rewardAmount} vàng");
 
-            // Cộng vàng
-            FindAnyObjectByType<Co>().IncreaseCor(reward);
+            FindAnyObjectByType<Co>().IncreaseCor(questItem.rewardAmount);
 
-            // Cập nhật bảng hiển thị nhiệm vụ
             playerQuestPanel.ShowAllQuestItem(questItems);
         }
     }
+
 
 
 }

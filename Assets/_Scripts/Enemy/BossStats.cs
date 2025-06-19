@@ -25,6 +25,8 @@ public class BossStats : MonoBehaviour
     [HideInInspector] public bool isLowHealth = false;
     private bool hasTransformed = false;
 
+    [SerializeField] private string questTag = "Boss";
+
     private SkeletonNecromancer enemyAI;
 
     [Header("Quest")]
@@ -65,13 +67,14 @@ public class BossStats : MonoBehaviour
 
         if (currentHealth <= 0)
         {
+
             GameObject player = GameObject.FindGameObjectWithTag("Player");
             if (player != null)
             {
                 var playerQuest = player.GetComponent<PlayerQuest>();
                 if (playerQuest != null)
                 {
-                    playerQuest.UpdateQuest(gameObject.tag);
+                    playerQuest.UpdateQuest(questTag);
                 }
             }
 
