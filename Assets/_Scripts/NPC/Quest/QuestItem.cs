@@ -9,16 +9,19 @@ public class QuestItem : MonoBehaviour
     public int questTargetAmount; // số lượng cần tìm
     public int currentAmount ; //số lượng hiện tại 
     public string TargetItemtag; // tag của item cần tìm
+    public int rewardAmount = 100;
+
 
     // Kiểm tra hoàn thành
     private void Start()
     {
-        //TargetItemtag = "Enemy";
+        
 
     }
     public bool IsComplete()
     {
         return currentAmount >= questTargetAmount;
+
     }
 
     // Cập nhật số lượng item

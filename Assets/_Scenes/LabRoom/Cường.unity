@@ -1239,7 +1239,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 2823577116262180202, guid: 5e980f304a07c544da8720f6c853d2c1, type: 3}
       propertyPath: m_IsActive
-      value: 0
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 6523245326600972667, guid: 5e980f304a07c544da8720f6c853d2c1, type: 3}
       propertyPath: m_LocalPosition.x
@@ -1285,6 +1285,10 @@ PrefabInstance:
       propertyPath: m_Mesh
       value: 
       objectReference: {fileID: 1892018202}
+    - target: {fileID: 6909246540911259261, guid: 5e980f304a07c544da8720f6c853d2c1, type: 3}
+      propertyPath: m_VersionIndex
+      value: 948
+      objectReference: {fileID: 0}
     - target: {fileID: 8215263962542451337, guid: 5e980f304a07c544da8720f6c853d2c1, type: 3}
       propertyPath: m_Mesh
       value: 
@@ -1658,6 +1662,18 @@ PrefabInstance:
     serializedVersion: 3
     m_TransformParent: {fileID: 911079082}
     m_Modifications:
+    - target: {fileID: 94500553823069728, guid: 00837975987da844ab961d0773f8e92f, type: 3}
+      propertyPath: rewardAmount
+      value: 1000
+      objectReference: {fileID: 0}
+    - target: {fileID: 94500553823069728, guid: 00837975987da844ab961d0773f8e92f, type: 3}
+      propertyPath: QuetsItemName
+      value: "nhi\u1EC7m v\u1EE5 s\u1ED1 3 \u0111\xE1nh 1 boss"
+      objectReference: {fileID: 0}
+    - target: {fileID: 94500553823069728, guid: 00837975987da844ab961d0773f8e92f, type: 3}
+      propertyPath: TargetItemtag
+      value: Boss
+      objectReference: {fileID: 0}
     - target: {fileID: 3084340734633395692, guid: 00837975987da844ab961d0773f8e92f, type: 3}
       propertyPath: m_Name
       value: QuestB
@@ -1745,6 +1761,7 @@ MonoBehaviour:
   questTargetAmount: 1
   currentAmount: 0
   TargetItemtag: Enemy_Side
+  rewardAmount: 100
 --- !u!4 &992296397
 Transform:
   m_ObjectHideFlags: 0
@@ -1798,7 +1815,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 7713735878304070000, guid: a241dca576e4aa4498e622aac9d9f321, type: 3}
       propertyPath: m_LocalPosition.z
-      value: 13.1
+      value: 39.31
       objectReference: {fileID: 0}
     - target: {fileID: 7713735878304070000, guid: a241dca576e4aa4498e622aac9d9f321, type: 3}
       propertyPath: m_LocalRotation.w
@@ -1968,9 +1985,13 @@ PrefabInstance:
       value: 2
       objectReference: {fileID: 0}
     - target: {fileID: 8835601500180365127, guid: 3f457b0604d84b140a2f3df12ea405bc, type: 3}
-      propertyPath: 'questList.Array.data[1]'
+      propertyPath: 'questList.Array.data[0]'
       value: 
       objectReference: {fileID: 628645139}
+    - target: {fileID: 8835601500180365127, guid: 3f457b0604d84b140a2f3df12ea405bc, type: 3}
+      propertyPath: 'questList.Array.data[1]'
+      value: 
+      objectReference: {fileID: 111468058}
     - target: {fileID: 8835601500180365127, guid: 3f457b0604d84b140a2f3df12ea405bc, type: 3}
       propertyPath: 'questList.Array.data[2]'
       value: 

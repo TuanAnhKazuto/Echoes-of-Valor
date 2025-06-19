@@ -27,7 +27,8 @@ public class NPC : MonoBehaviour
     {
         MainQuest,
         SideQuest,
-        Merchant
+        Merchant,
+        Boss
     }
     public NpcType npcType;
 
@@ -135,10 +136,10 @@ public class NPC : MonoBehaviour
             if (playerQuests.HasCompletedQuest(CurrentQuest))
             {
                 // giao nhiệm vụ
-                playerQuests.CompleteQuest(CurrentQuest, 100);
-                chatText.text = $"Tốt lắm! Đây là 100 vàng cho phần thưởng.";
+                playerQuests.CompleteQuest(CurrentQuest);
+                chatText.text = $"Tốt lắm! Bạn nhận được {CurrentQuest.rewardAmount} vàng cho phần thưởng."; // ✅
 
-               
+
             }
             else if (!playerQuests.questItems.Contains(CurrentQuest))
             {
@@ -177,9 +178,9 @@ public class NPC : MonoBehaviour
 
         if (playerQuests.HasCompletedQuest(CurrentQuest))
         {
-            playerQuests.CompleteQuest(CurrentQuest, 100);
+            playerQuests.CompleteQuest(CurrentQuest);
             npcChatPanel.SetActive(true);
-            chatText.text = $"Tốt lắm!Nhận 100 vàng";
+            chatText.text = $"Tốt lắm! Bạn nhận được {CurrentQuest.rewardAmount} vàng cho phần thưởng."; // ✅
             currentQuestIndex++;
             questGiven = false;
             Invoke(nameof(HidePanel), 2f);
