@@ -21,6 +21,11 @@ public class EnemyStats : MonoBehaviour
     public float healthPerLevel = 20f;
     public float damagePerLevel = 5f;
 
+    [Header("Quest")]
+    public string questTag = "Enemy_Main";
+    
+
+
     private void Awake()
     {
         if (characterStats == null)
@@ -53,17 +58,14 @@ public class EnemyStats : MonoBehaviour
 
         if (currentHealth <= 0)
         {
-            // Tìm Player và cập nhật tiến trình nhiệm vụ
             GameObject player = GameObject.FindGameObjectWithTag("Player");
             if (player != null)
             {
-                Debug.Log("tìm thấy player: " + player);
                 var playerQuest = player.GetComponent<PlayerQuest>();
                 if (playerQuest != null)
                 {
-                    Debug.Log(" Tìm thấy playerQuest");
-                    playerQuest.UpdateQuest(gameObject.tag); // Gửi tag của enemy
-                    Debug.Log("Enemy tag =" + gameObject.tag);
+                    playerQuest.UpdateQuest(questTag);
+                    Debug.Log($"Cập nhật nhiệm vụ với questTag: {questTag}");
                 }
             }
 

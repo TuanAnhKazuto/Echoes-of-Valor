@@ -13,7 +13,8 @@ public class QuestItem : MonoBehaviour
     // Kiểm tra hoàn thành
     private void Start()
     {
-        TargetItemtag = "Enemy";
+        //TargetItemtag = "Enemy";
+
     }
     public bool IsComplete()
     {
