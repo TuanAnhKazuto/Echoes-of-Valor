@@ -118,12 +118,12 @@ public class NPC : MonoBehaviour
                 {
 
                     chatText.text += line[i];
-                    yield return new WaitForSeconds(0.1f);
+                    yield return new WaitForSeconds(0.05f);
 
                 }
             //}
 
-            yield return new WaitForSeconds(0.3f);
+            yield return new WaitForSeconds(0.5f);
 
         }
         yesButton.gameObject.SetActive(true);
