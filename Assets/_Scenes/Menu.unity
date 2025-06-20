@@ -20366,6 +20366,103 @@ AudioSource:
     m_PreInfinity: 2
     m_PostInfinity: 2
     m_RotationOrder: 4
+--- !u!82 &1271755509
+AudioSource:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1271755504}
+  m_Enabled: 1
+  serializedVersion: 4
+  OutputAudioMixerGroup: {fileID: 0}
+  m_audioClip: {fileID: 8300000, guid: 515b9220c3abb9042bafe26c78ab586b, type: 3}
+  m_Resource: {fileID: 8300000, guid: 515b9220c3abb9042bafe26c78ab586b, type: 3}
+  m_PlayOnAwake: 1
+  m_Volume: 1
+  m_Pitch: 1
+  Loop: 0
+  Mute: 0
+  Spatialize: 0
+  SpatializePostEffects: 0
+  Priority: 128
+  DopplerLevel: 1
+  MinDistance: 1
+  MaxDistance: 500
+  Pan2D: 0
+  rolloffMode: 0
+  BypassEffects: 0
+  BypassListenerEffects: 0
+  BypassReverbZones: 0
+  rolloffCustomCurve:
+    serializedVersion: 2
+    m_Curve:
+    - serializedVersion: 3
+      time: 0
+      value: 1
+      inSlope: 0
+      outSlope: 0
+      tangentMode: 0
+      weightedMode: 0
+      inWeight: 0.33333334
+      outWeight: 0.33333334
+    - serializedVersion: 3
+      time: 1
+      value: 0
+      inSlope: 0
+      outSlope: 0
+      tangentMode: 0
+      weightedMode: 0
+      inWeight: 0.33333334
+      outWeight: 0.33333334
+    m_PreInfinity: 2
+    m_PostInfinity: 2
+    m_RotationOrder: 4
+  panLevelCustomCurve:
+    serializedVersion: 2
+    m_Curve:
+    - serializedVersion: 3
+      time: 0
+      value: 0
+      inSlope: 0
+      outSlope: 0
+      tangentMode: 0
+      weightedMode: 0
+      inWeight: 0.33333334
+      outWeight: 0.33333334
+    m_PreInfinity: 2
+    m_PostInfinity: 2
+    m_RotationOrder: 4
+  spreadCustomCurve:
+    serializedVersion: 2
+    m_Curve:
+    - serializedVersion: 3
+      time: 0
+      value: 0
+      inSlope: 0
+      outSlope: 0
+      tangentMode: 0
+      weightedMode: 0
+      inWeight: 0.33333334
+      outWeight: 0.33333334
+    m_PreInfinity: 2
+    m_PostInfinity: 2
+    m_RotationOrder: 4
+  reverbZoneMixCustomCurve:
+    serializedVersion: 2
+    m_Curve:
+    - serializedVersion: 3
+      time: 0
+      value: 1
+      inSlope: 0
+      outSlope: 0
+      tangentMode: 0
+      weightedMode: 0
+      inWeight: 0.33333334
+      outWeight: 0.33333334
+    m_PreInfinity: 2
+    m_PostInfinity: 2
+    m_RotationOrder: 4
 --- !u!4 &1272005110 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: 5477816622616487384, guid: 7e654d6a03fe4ba43afe601748539795, type: 3}
@@ -33157,6 +33254,9 @@ PrefabInstance:
     - targetCorrespondingSourceObject: {fileID: 3848160036667330911, guid: 7e654d6a03fe4ba43afe601748539795, type: 3}
       insertIndex: -1
       addedObject: {fileID: 1271755507}
+    - targetCorrespondingSourceObject: {fileID: 3848160036667330911, guid: 7e654d6a03fe4ba43afe601748539795, type: 3}
+      insertIndex: -1
+      addedObject: {fileID: 1271755509}
   m_SourcePrefab: {fileID: 100100000, guid: 7e654d6a03fe4ba43afe601748539795, type: 3}
 --- !u!1001 &2095979036
 PrefabInstance:
@@ -34697,6 +34797,7 @@ MonoBehaviour:
   controller: {fileID: 986040163603520215}
   cam: {fileID: 0}
   freeLookCam: {fileID: 0}
+  targetForCam: {fileID: 0}
   moveSpeed: 0
   speed: 6
   sprintSpeed: 10
@@ -34912,6 +35013,7 @@ MonoBehaviour:
   controller: {fileID: 9135456543362581464}
   cam: {fileID: 0}
   freeLookCam: {fileID: 0}
+  targetForCam: {fileID: 0}
   moveSpeed: 0
   speed: 6
   sprintSpeed: 10
@@ -35141,13 +35243,16 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   fireBreathEffect: {fileID: 4209997914145111215, guid: 9c8a7ccf06912aa4c9dd58f2e417d423, type: 3}
   fireBreathCooldown: 1
+  fireBreathManaCost: 10
   BigBallPrefab: {fileID: 2795806856581110241, guid: 3bd1834ecf4604e42bb389dfbc81d074, type: 3}
+  bigBallManaCost: 20
   cloudObject: {fileID: 0}
   cloudPoint: {fileID: 0}
   lightningVFXPrefab: {fileID: 0}
   cloudDetectionRadius: 20
   heightAboveEnemy: 5
   lightningInterval: 1
+  lightningCloudManaCost: 25
   bulletPrefab: {fileID: 4835795885790367263, guid: f2f77979c0045514f9f38c1ed1667514, type: 3}
   firePoint: {fileID: 4234129186512558154}
   skill2Cooldown: 1
@@ -35249,6 +35354,9 @@ MonoBehaviour:
     m_Bits: 128
   fireArrowEffectPrefab: {fileID: 707945679033740699, guid: 43bb30dacbef0cc48a9750f19c5d23a1, type: 3}
   aoeImpactEffectPrefab: {fileID: 707945679033740699, guid: 43bb30dacbef0cc48a9750f19c5d23a1, type: 3}
+  fireArrowManaCost: 17
+  doubleArrowManaCost: 18
+  arrowRainManaCost: 70
 --- !u!1 &3120260983361224791
 GameObject:
   m_ObjectHideFlags: 0
@@ -35297,6 +35405,7 @@ MonoBehaviour:
   controller: {fileID: 2345223944294553080}
   cam: {fileID: 0}
   freeLookCam: {fileID: 0}
+  targetForCam: {fileID: 0}
   moveSpeed: 0
   speed: 6
   sprintSpeed: 12
@@ -35529,6 +35638,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   healthBar: {fileID: 0}
+  manaBar: {fileID: 0}
   playerId: 0
   playerName: 
   characterClass: 
@@ -35539,18 +35649,7 @@ MonoBehaviour:
   maxMana: 100
   baseDamage: 10
   baseDefense: 5
-  equippedWeapon:
-    weaponID: 
-    weaponName: 
-    waponLevel: 1
-    maxWaponLevel: 60
-    breakthroughLevel: 1
-    baseDamage: 0
-    damagePerLevel: 3
-    damagePerBreakthrough: 6
-    baseDefense: 0
-    defensePerLevel: 3
-    defensePerBreakthrough: 6
+  equippedWeapons: []
 --- !u!4 &4842269802484399186
 Transform:
   m_ObjectHideFlags: 0
@@ -36215,6 +36314,7 @@ MonoBehaviour:
   normalAttackRange: 3.5
   skillAttackRange: 8
   coolDownTime: 0.8
+  trailEffect: {fileID: 0}
 --- !u!114 &8733521551505269948
 MonoBehaviour:
   m_ObjectHideFlags: 0
