@@ -32,6 +32,11 @@ public class WeaponUI3DSetup : MonoBehaviour
         UI3DCam = FindAnyObjectByType<ComponentInUI3DCam>();
     }
 
+    public void ClosePanle()
+    {
+        gameObject.SetActive(false);
+    }
+
     private void Start()
     {
         if (saveGameManager.playerStats.characterClass == "Knight")
