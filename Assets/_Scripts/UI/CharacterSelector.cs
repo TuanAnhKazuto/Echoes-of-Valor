@@ -75,7 +75,7 @@ public class CharacterSelector : MonoBehaviour
         PlayerPrefs.Save();
 
         ShowMessage("Chọn nhân vật thành công ");
-        SceneManager.LoadScene("Scene1");
+        SceneManager.LoadScene("CutScene");
     }
 
     public PlayerData CreateNewPlayer(string name)
@@ -143,6 +143,11 @@ public class CharacterSelector : MonoBehaviour
         }
 
         return data;
+    }
+
+    public void HomeBtn()
+    {
+        SceneManager.LoadScene("Menu");
     }
 
     private void ShowMessage(string msg)
