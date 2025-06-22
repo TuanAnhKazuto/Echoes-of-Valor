@@ -21,20 +21,22 @@ public class WeaponUI3DSetup : MonoBehaviour
     public ComponentInUI3DCam UI3DCam;
 
     [Header("Switch Weapon Setup")]
-    public TabsSwitchManger tabsSwitchMg;
+    public TabsController tabsController;
     public UpdateWpUI[] updateWpUI;
 
 
     private void Awake()
     {
-        tabsSwitchMg = GetComponentInChildren<TabsSwitchManger>();
+        tabsController = GetComponentInChildren<TabsController>();
 
         UI3DCam = FindAnyObjectByType<ComponentInUI3DCam>();
     }
 
-    public void ClosePanle()
+    public void ClosePanel()
     {
         gameObject.SetActive(false);
+        Cursor.lockState = CursorLockMode.Locked;
+        Cursor.visible = false;
     }
 
     private void Start()
@@ -52,12 +54,12 @@ public class WeaponUI3DSetup : MonoBehaviour
                 if(i == 0)
                 {
                     updateWpUI[i].linkIndexWp2UI = UI3DCam.SwordUIObj.GetComponent<LinkIndexWp2UI>();
-                    tabsSwitchMg.weaponObj[i] = UI3DCam.SwordUIObj;
+                    tabsController.weaponObj[i] = UI3DCam.SwordUIObj;
                 }
                 if (i == 1)
                 {
                     updateWpUI[i].linkIndexWp2UI = UI3DCam.ShieldUIObj.GetComponent<LinkIndexWp2UI>();
-                    tabsSwitchMg.weaponObj[i] = UI3DCam.ShieldUIObj;
+                    tabsController.weaponObj[i] = UI3DCam.ShieldUIObj;
                 }
             }
         }
@@ -72,8 +74,8 @@ public class WeaponUI3DSetup : MonoBehaviour
             }
 
             UI3DCam.RogueWeapon.SetActive(true);
-            tabsSwitchMg.weaponObj[0] = UI3DCam.BowUIObj;
-            tabsSwitchMg.weaponObj[1] = UI3DCam.KnifeUIObj;
+            tabsController.weaponObj[0] = UI3DCam.BowUIObj;
+            tabsController.weaponObj[1] = UI3DCam.KnifeUIObj;
         }
         else if (saveGameManager.playerStats.characterClass == "Mage")
         {
@@ -86,8 +88,8 @@ public class WeaponUI3DSetup : MonoBehaviour
             }
 
             UI3DCam.MageWeapon.SetActive(true);
-            tabsSwitchMg.weaponObj[0] = UI3DCam.StaffUIObj;
-            tabsSwitchMg.weaponObj[1] = UI3DCam.MageBookUIObj;
+            tabsController.weaponObj[0] = UI3DCam.StaffUIObj;
+            tabsController.weaponObj[1] = UI3DCam.MageBookUIObj;
         }
     }
 }

@@ -1,5 +1,6 @@
 using TMPro;
 using UnityEngine;
+using UnityEngine.UI;
 
 public class UpdateWpUI : MonoBehaviour
 {
@@ -9,15 +10,22 @@ public class UpdateWpUI : MonoBehaviour
     [Header("UI Elements")]
     public TextMeshProUGUI weaponNameText;
     public TextMeshProUGUI weaponLevelText;
+    public TextMeshProUGUI weaponBreakthroughText;
     public TextMeshProUGUI weaponDamageText;
     public TextMeshProUGUI weaponDefenseText;
 
+    public Slider upgradeValuerSlider;
     public TextMeshProUGUI levelUpdateText;
+
+    public GameObject updateSystemObj;
+    public GameObject messengerObj;
+
     int levelsToAdd = 1;
 
     private void Start()
     {
         Invoke(nameof(RefreshDisplay), 0.2f);
+        upgradeValuerSlider.maxValue = weaponStats.maxWeaponLevel;
     }
 
     private void Update()
@@ -25,42 +33,35 @@ public class UpdateWpUI : MonoBehaviour
         linkIndexWp2UI.ChangeWeaponUI(weaponStats.weaponBreakthrough);
     }
 
+    public void UpdaterValuerUpgrade()
+    {
+        levelUpdateText.text = upgradeValuerSlider.value.ToString();
+    }
+
     public void UpdateBtn()
     {
-        if (weaponStats.weaponLevel >= 60) return;
-
-        levelsToAdd = 1;
-        levelUpdateText.text = levelsToAdd.ToString();
-
-        if (int.TryParse(levelUpdateText.text, out int parsed))
-        {
-            levelsToAdd = Mathf.Clamp(parsed, 1, 60);
-        }
+        levelsToAdd = (int)upgradeValuerSlider.value;
 
         weaponStats.LevelUpdate(levelsToAdd);
-        RefreshDisplay();
-    }
 
-    public void AddBtn()
-    {
-        if(levelsToAdd >= 60) return;
-        levelsToAdd++;
-        levelUpdateText.text = levelsToAdd.ToString();
-    }
-    public void SubtractBtn()
-    {
-        if (levelsToAdd <= 1) return;
-        levelsToAdd--;
-        levelUpdateText.text = levelsToAdd.ToString();
+        upgradeValuerSlider.maxValue = weaponStats.maxWeaponLevel - weaponStats.weaponLevel;
+
+        if (weaponStats.isMaxLevel)
+        {
+            messengerObj.SetActive(true);
+            updateSystemObj.SetActive(false);
+        }
+        RefreshDisplay();
     }
 
     void RefreshDisplay()
     {
         weaponNameText.text = "Name: " + weaponStats.weaponName;
         weaponLevelText.text = "Level: " + weaponStats.weaponLevel.ToString();
-        weaponDamageText.text = "Damage: " + weaponStats.weaponDamage.ToString("F1");
-        weaponDefenseText.text = "Defense: " + weaponStats.weaponBreakthrough.ToString("F1");
+        weaponBreakthroughText.text = "Breakthrough: " + weaponStats.weaponBreakthrough.ToString();
+        weaponDamageText.text = "Damage: " + weaponStats.baseDamage.ToString();
+        weaponDefenseText.text = "Defense: " + weaponStats.baseDefense.ToString();
 
-        levelUpdateText.text = "1";
+        upgradeValuerSlider.value = 1;
     }
 }

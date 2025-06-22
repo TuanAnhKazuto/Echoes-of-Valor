@@ -1,6 +1,7 @@
-﻿using UnityEngine;
+﻿using TMPro;
+using UnityEngine;
 
-public class TabsSwitchManger : MonoBehaviour
+public class TabsController : MonoBehaviour
 {
     public GameObject[] tabs;
     public GameObject[] weaponObj;
