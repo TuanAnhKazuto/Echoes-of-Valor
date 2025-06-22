@@ -5,8 +5,9 @@ public class PlayerTarget : MonoBehaviour
 {
     public GameObject arrowPrefab;
     public Transform shootPoint;
-    public float shootCooldown = 2f; 
-    public float shootDelay = 0.75f;   
+    public float shootCooldown = 1f;
+    public float shootDelay = 0.25f;
+    public Transform characterTransform; // Gán Player chính ở đây (giống SkillShoot)
 
     private float lastShootTime = -Mathf.Infinity;
     private Transform targetEnemy;
@@ -14,15 +15,16 @@ public class PlayerTarget : MonoBehaviour
 
     void Update()
     {
-        FindNearestEnemy();
-
-        if (targetEnemy != null)
-        {
-            RotateTowardsTarget(targetEnemy.position);
-        }
-
         if (Input.GetMouseButtonDown(0))
         {
+            // Tìm mục tiêu trong phạm vi 25f
+            targetEnemy = FindNearestEnemy(25f);
+
+            if (targetEnemy != null)
+            {
+                LookAtTarget(targetEnemy);
+            }
+
             if (!isWaitingToShoot && Time.time - lastShootTime >= shootCooldown)
             {
                 StartCoroutine(DelayedShoot());
@@ -33,7 +35,8 @@ public class PlayerTarget : MonoBehaviour
     IEnumerator DelayedShoot()
     {
         isWaitingToShoot = true;
-        yield return new WaitForSeconds(shootDelay); 
+        yield return new WaitForSeconds(shootDelay);
+
         if (Time.time - lastShootTime >= shootCooldown)
         {
             ShootArrow();
@@ -43,7 +46,7 @@ public class PlayerTarget : MonoBehaviour
         isWaitingToShoot = false;
     }
 
-    void FindNearestEnemy()
+    Transform FindNearestEnemy(float range)
     {
         GameObject[] enemies = GameObject.FindGameObjectsWithTag("Enemy");
         float minDistance = Mathf.Infinity;
@@ -52,24 +55,26 @@ public class PlayerTarget : MonoBehaviour
         foreach (GameObject enemy in enemies)
         {
             float dist = Vector3.Distance(transform.position, enemy.transform.position);
-            if (dist <= 13f && dist < minDistance)
+            if (dist <= range && dist < minDistance)
             {
                 minDistance = dist;
                 nearest = enemy.transform;
             }
         }
 
-        targetEnemy = nearest;
+        return nearest;
     }
 
-    void RotateTowardsTarget(Vector3 targetPos)
+    void LookAtTarget(Transform target)
     {
-        Vector3 direction = targetPos - transform.position;
-        direction.y = 0;
+        if (characterTransform == null || target == null) return;
+
+        Vector3 direction = (target.position - characterTransform.position).normalized;
+        direction.y = 0f;
+
         if (direction != Vector3.zero)
         {
-            Quaternion lookRotation = Quaternion.LookRotation(direction);
-            transform.rotation = Quaternion.Slerp(transform.rotation, lookRotation, Time.deltaTime * 10f);
+            characterTransform.rotation = Quaternion.LookRotation(direction);
         }
     }
 

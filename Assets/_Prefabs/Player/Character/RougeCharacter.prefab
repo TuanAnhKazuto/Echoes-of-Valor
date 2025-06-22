@@ -247,8 +247,9 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   arrowPrefab: {fileID: 3978407562330990411, guid: c5b66375f340a6e449c8c9c2797a9e28, type: 3}
   shootPoint: {fileID: 1716526554844869900}
-  shootCooldown: 2
-  shootDelay: 0.75
+  shootCooldown: 1
+  shootDelay: 0.25
+  characterTransform: {fileID: 1169232364258169769}
 --- !u!114 &2999388582640537426
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -256,7 +257,7 @@ MonoBehaviour:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 7930215287068475354}
-  m_Enabled: 1
+  m_Enabled: 0
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: da88fb22f6be09c459c62cff80b9c7fb, type: 3}
   m_Name: 

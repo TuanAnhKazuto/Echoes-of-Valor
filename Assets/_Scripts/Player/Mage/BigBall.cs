@@ -7,7 +7,7 @@ public class BigBall : MonoBehaviour
     public LayerMask enemyLayer;
 
     public float[] radii = { 2f, 4f, 6f };
-    public float[] damages = { 250f, 170f, 100f };
+    public float[] damages = { 250f, 120f, 60f };
 
     public GameObject explosionVFX; 
 
