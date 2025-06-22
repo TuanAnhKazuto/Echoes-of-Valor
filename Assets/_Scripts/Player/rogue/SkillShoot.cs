@@ -20,7 +20,7 @@ public class SkillShoot : MonoBehaviour
 
     public float fireArrowManaCost = 17f;
     public float doubleArrowManaCost = 18f;
-    public float arrowRainManaCost = 70f;
+    public float arrowRainManaCost = 170f;
 
     private CharacterStats characterStats;
 
@@ -36,6 +36,11 @@ public class SkillShoot : MonoBehaviour
     {
         if (Input.GetKeyDown(KeyCode.Alpha1))
         {
+            Transform target = FindNearestEnemy(25);
+            if (target != null)
+            {
+                LookAtTarget(target);
+            }
             if (characterStats != null && characterStats.ConsumeMana(fireArrowManaCost))
             {
                 if (animator) animator.SetTrigger("Attack3");
@@ -43,6 +48,11 @@ public class SkillShoot : MonoBehaviour
         }
         else if (Input.GetKeyDown(KeyCode.Alpha2))
         {
+            Transform target = FindNearestEnemy(25);
+            if (target != null)
+            {
+                LookAtTarget(target);
+            }
             if (characterStats != null && characterStats.ConsumeMana(doubleArrowManaCost))
             {
                 if (animator) animator.SetTrigger("Attack2");
@@ -50,7 +60,12 @@ public class SkillShoot : MonoBehaviour
         }
         else if (Input.GetKeyDown(KeyCode.Alpha3))
         {
-            if(characterStats != null && characterStats.ConsumeMana(arrowRainManaCost))
+            Transform target = FindNearestEnemy(25);
+            if (target != null)
+            {
+                LookAtTarget(target);
+            }
+            if (characterStats != null && characterStats.ConsumeMana(arrowRainManaCost))
             {
                 StartCoroutine(ArrowRain());
             }
@@ -189,9 +204,9 @@ public class SkillShoot : MonoBehaviour
         }
     }
 
-    Transform FindNearestEnemy()
+    Transform FindNearestEnemy(float range = 20f)
     {
-        Collider[] enemies = Physics.OverlapSphere(transform.position, 20f, enemyLayer);
+        Collider[] enemies = Physics.OverlapSphere(transform.position, range, enemyLayer);
         Transform nearest = null;
         float minDist = Mathf.Infinity;
 
@@ -206,4 +221,18 @@ public class SkillShoot : MonoBehaviour
         }
         return nearest;
     }
+    void LookAtTarget(Transform target)
+    {
+        Transform playerTransform = transform.root; 
+
+        Vector3 direction = (target.position - playerTransform.position).normalized;
+        direction.y = 0f; 
+
+        if (direction != Vector3.zero)
+        {
+            Quaternion lookRotation = Quaternion.LookRotation(direction);
+            playerTransform.rotation = lookRotation; 
+        }
+    }
+
 }

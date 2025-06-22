@@ -5,6 +5,7 @@ public class SkillController : MonoBehaviour
 {
     private Animator animator;
     private CharacterStats characterStats;
+    public Transform characterTransform;
 
     [Header("Skill 1 Fire Breath")]
     public GameObject fireBreathEffect;
@@ -16,7 +17,7 @@ public class SkillController : MonoBehaviour
 
     [Header("Skill 2 Big Ball")]
     public GameObject BigBallPrefab;
-    public float bigBallManaCost = 20f;
+    public float bigBallManaCost = 80f;
 
     [Header("Skill 3 Lightning Cloud")]
     public GameObject cloudObject;
@@ -63,15 +64,13 @@ public class SkillController : MonoBehaviour
             {
                 if (enemy != null)
                 {
-                    Vector3 dir = (enemy.position - transform.position).normalized;
-                    dir.y = 0f;
-                    if (dir != Vector3.zero)
-                        transform.rotation = Quaternion.LookRotation(dir);
+                    LookAtTarget(enemy); 
                 }
 
                 animator.SetTrigger("Attack");
             }));
         }
+
 
         if (Input.GetKey(KeyCode.Alpha1) && !fireBreathOnCooldown)
         {
@@ -202,4 +201,17 @@ public class SkillController : MonoBehaviour
         yield return null;
         onTargetFound?.Invoke(nearestEnemy);
     }
+    void LookAtTarget(Transform target)
+    {
+        if (characterTransform == null || target == null) return;
+
+        Vector3 direction = (target.position - characterTransform.position).normalized;
+        direction.y = 0f;
+
+        if (direction != Vector3.zero)
+        {
+            characterTransform.rotation = Quaternion.LookRotation(direction);
+        }
+    }
+
 }
