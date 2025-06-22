@@ -40,9 +40,9 @@ public class CharacterStats : MonoBehaviour
         currentMana = maxMana;
     }
 
-    public int TotalDamage => baseDamage + (equippedWeapons[0]?.GetDamage() ?? 0) + (equippedWeapons[1]?.GetDamage() ?? 0);
+    public int TotalDamage => baseDamage + (equippedWeapons[0]?.baseDamage ?? 0) + (equippedWeapons[1]?.baseDamage ?? 0);
 
-    public int TotalDefense => baseDamage + (equippedWeapons[0]?.GetDefense() ?? 0) + (equippedWeapons[1]?.GetDefense() ?? 0);
+    public int TotalDefense => baseDamage + (equippedWeapons[1]?.baseDefense ?? 0) + (equippedWeapons[1]?.baseDefense ?? 0);
 
     public void TakeDamage(float damage)
     {

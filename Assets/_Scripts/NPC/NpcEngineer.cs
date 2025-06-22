@@ -8,9 +8,14 @@ public class NpcEngineer : MonoBehaviour
     {
         if(other.CompareTag("Player") && Input.GetKeyDown(KeyCode.F))
         {
-            upgradeWeaponPanel.SetActive(true);
-            Cursor.lockState= CursorLockMode.None;
-            Cursor.visible = true;
+            Invoke(nameof(ShowPanel), 2f);
         }
+    }
+
+    private void ShowPanel()
+    {
+        upgradeWeaponPanel.SetActive(true);
+        Cursor.lockState = CursorLockMode.None;
+        Cursor.visible = true;
     }
 }
