@@ -43,11 +43,6 @@ public class WeaponStats : MonoBehaviour
         return defense;
     }
 
-    public void Start()
-    {
-        RankUpdateControl(); // Set initial weapon model
-    }
-
     public void LevelUpdate(int levelsToAdd)
     {
         for (int i = 0; i < levelsToAdd; i++)

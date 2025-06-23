@@ -1,3 +1,4 @@
+using TMPro;
 using UnityEngine;
 using UnityEngine.UI;
 
@@ -10,6 +11,8 @@ public class PlayerHealthBar : MonoBehaviour
     public Image greenFillImg;
     public Image yellowFillImg;
     public Image redFillImg;
+
+    public TextMeshProUGUI nameText;
 
     public void UpdateHealth(int currentHealth, int maxHealth)
     {
