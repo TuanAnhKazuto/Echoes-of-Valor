@@ -1534,7 +1534,8 @@ GameObject:
   - component: {fileID: 7713735878304070000}
   - component: {fileID: 1283718047148153270}
   - component: {fileID: 4470778822035619694}
-  - component: {fileID: 5834333616896532354}
+  - component: {fileID: 3996359702207466690}
+  - component: {fileID: 2931901205732895995}
   - component: {fileID: 6178342869959526041}
   - component: {fileID: 2938735291668699248}
   - component: {fileID: 5099905241375679236}
@@ -1616,7 +1617,7 @@ NavMeshAgent:
   m_BaseOffset: 0
   m_WalkableMask: 4294967295
   m_ObstacleAvoidanceType: 4
---- !u!114 &5834333616896532354
+--- !u!114 &3996359702207466690
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -1625,12 +1626,25 @@ MonoBehaviour:
   m_GameObject: {fileID: 6329946028441545229}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 9871357641cb4c047a0bc494dfd9dbbd, type: 3}
+  m_Script: {fileID: 11500000, guid: d5e6a870402c6584290e08f48ebe518b, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  radiusLookAt: 20
+  radiusLookAt: 10
   attackRange: 8
   isSpawned: 0
+  animator: {fileID: 0}
+--- !u!114 &2931901205732895995
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 6329946028441545229}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 90624537d4bea93459807976626b1249, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
   arrowPrefab: {fileID: 4728223573417189928, guid: e7073cbbffe003042a2c9bc54d8a9dad, type: 3}
   firePoint: {fileID: 7300617296076394209}
 --- !u!114 &6178342869959526041
@@ -1645,24 +1659,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: e6237329c387c1441b5a50c644246241, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  playerData:
-    playerId: 0
-    playerName: 
-    characterClass: 
-    level: 0
-    exp: 0
-    health: 0
-    defense: 0
-    damage: 0
-    skillPoints: 0
-    sceneName: 
-    positionX: 0
-    positionY: 0
-    positionZ: 0
-    rotationY: 0
-    weaponId: 0
-    weaponLevel: 0
-    worldLevel: 0
   characterStats: {fileID: 0}
   healthBar: {fileID: 5694015210394947982}
   levelText: {fileID: 3481354416243501187}
@@ -1670,8 +1666,9 @@ MonoBehaviour:
   maxHealth: 100
   currentHealth: 0
   baseDamage: 10
-  healthPerLevel: 20
+  healthPerLevel: 10
   damagePerLevel: 5
+  questTag: Enemy_Main
 --- !u!54 &2938735291668699248
 Rigidbody:
   m_ObjectHideFlags: 0
@@ -2483,7 +2480,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 4091844351836130732, guid: 21480abdbaf0ea144a2e9e0a2fcfdcd7, type: 3}
       propertyPath: m_VersionIndex
-      value: 942
+      value: 972
       objectReference: {fileID: 0}
     - target: {fileID: 4637267906321539526, guid: 21480abdbaf0ea144a2e9e0a2fcfdcd7, type: 3}
       propertyPath: m_LocalScale.y

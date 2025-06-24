@@ -2,21 +2,18 @@
 using UnityEngine;
 using UnityEngine.AI;
 
-public class SkeletonRogue : MonoBehaviour
+public class SkeletonMovement : MonoBehaviour
 {
     public float radiusLookAt = 10f;
     public float attackRange = 8f;
     private float originalSpeed = 6f;
 
-    [SerializeField] private bool isSpawned = false;
+    public bool isSpawned = false;
     SaveGameManager saveGameManager;
 
     NavMeshAgent agent;
     Transform player;
-    Animator animator;
-
-    public GameObject arrowPrefab;
-    public Transform firePoint;
+    public Animator animator;
 
     private void Awake()
     {
@@ -66,11 +63,5 @@ public class SkeletonRogue : MonoBehaviour
                 agent.speed = originalSpeed;
             }
         }
-    }
-
-    public void Attack()
-    {
-        GameObject arrow = Instantiate(arrowPrefab, firePoint.transform.position, firePoint.rotation);
-        //arrow.gameObject.transform.Rotate(-90, 0, 0);
     }
 }

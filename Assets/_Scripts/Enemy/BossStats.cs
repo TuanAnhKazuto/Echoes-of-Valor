@@ -10,7 +10,9 @@ public class BossStats : MonoBehaviour
     [Header("AI Control")]
     public Animator enemyAnimator;
     public EnemyHealthBar healthBar;
-    public TextMeshProUGUI levelText;
+    public TextMeshProUGUI levelText; // Hiển thị cấp độ boss
+    public TextMeshProUGUI nameText;  // Hiển thị tên boss
+    public GameObject bossUIRoot;     // Gốc chứa toàn bộ UI boss
 
     [Header("Base Stats")]
     public int level = 1;
@@ -22,21 +24,30 @@ public class BossStats : MonoBehaviour
     public float healthPerLevel = 20f;
     public float damagePerLevel = 5f;
 
+    [Header("Health Bar Settings")]
+    public float showHealthRange = 10f;
+
     [HideInInspector] public bool isLowHealth = false;
     private bool hasTransformed = false;
+    private bool isPlayerNear = false;
 
     [SerializeField] private string questTag = "Boss";
 
     private SkeletonNecromancer enemyAI;
+    private Transform player;
+
+   
 
     private void Awake()
     {
         if (characterStats == null)
-        {
             characterStats = FindAnyObjectByType<CharacterStats>();
-        }
 
         enemyAI = GetComponent<SkeletonNecromancer>();
+
+        GameObject playerObj = GameObject.FindGameObjectWithTag("Player");
+        if (playerObj != null)
+            player = playerObj.transform;
     }
 
     private void Start()
@@ -44,6 +55,40 @@ public class BossStats : MonoBehaviour
         currentHealth = maxHealth;
         levelText.text = "Lv. " + level.ToString();
         healthBar.UpdateHealth(currentHealth, maxHealth);
+
+        HideHealthUI(); // Ẩn UI lúc đầu
+    }
+
+    private void Update()
+    {
+        if (player != null)
+        {
+            float distance = Vector3.Distance(transform.position, player.position);
+            if (distance <= showHealthRange && !isPlayerNear)
+            {
+                ShowHealthUI();
+            }
+            else if (distance > showHealthRange && isPlayerNear)
+            {
+                HideHealthUI();
+            }
+        }
+    }
+
+    private void ShowHealthUI()
+    {
+        isPlayerNear = true;
+
+        if (bossUIRoot != null && !bossUIRoot.activeSelf)
+            bossUIRoot.SetActive(true);
+    }
+
+    private void HideHealthUI()
+    {
+        isPlayerNear = false;
+
+        if (bossUIRoot != null && bossUIRoot.activeSelf)
+            bossUIRoot.SetActive(false);
     }
 
     public void LevelUp()
@@ -64,21 +109,20 @@ public class BossStats : MonoBehaviour
 
         if (currentHealth <= 0)
         {
-
-            GameObject player = GameObject.FindGameObjectWithTag("Player");
-            if (player != null)
+            GameObject playerObj = GameObject.FindGameObjectWithTag("Player");
+            if (playerObj != null)
             {
-                var playerQuest = player.GetComponent<PlayerQuest>();
+                var playerQuest = playerObj.GetComponent<PlayerQuest>();
                 if (playerQuest != null)
                 {
                     playerQuest.UpdateQuest(questTag);
                 }
             }
 
+            HideHealthUI(); // Ẩn UI khi boss chết
             Destroy(gameObject);
         }
 
-        // Kích hoạt trạng thái LowHealth
         if (!isLowHealth && currentHealth <= maxHealth / 2)
         {
             isLowHealth = true;
@@ -86,10 +130,10 @@ public class BossStats : MonoBehaviour
 
             if (!hasTransformed)
             {
-                baseDamage += 10; // Tăng 10 sát thương
+                baseDamage += 10;
                 if (enemyAI != null)
                 {
-                    enemyAI.BoostSpeed(5f); // Tăng tốc độ chạy
+                    enemyAI.BoostSpeed(5f);
                 }
                 hasTransformed = true;
             }
@@ -98,15 +142,16 @@ public class BossStats : MonoBehaviour
 
     private void OnTriggerEnter(Collider other)
     {
-        if (other.gameObject.CompareTag("PlayerHitBox"))
+        if (other.CompareTag("PlayerHitBox"))
         {
             TakeDamage(characterStats.TotalDamage);
         }
 
-        if (other.gameObject.CompareTag("PlayerSkill"))
+        if (other.CompareTag("PlayerSkill"))
         {
-            var skillDamage = other.gameObject.GetComponent<SkillInfo>();
-            TakeDamage(skillDamage.damgeSkill);
+            SkillInfo skillDamage = other.GetComponent<SkillInfo>();
+            if (skillDamage != null)
+                TakeDamage(skillDamage.damgeSkill);
         }
     }
 }
