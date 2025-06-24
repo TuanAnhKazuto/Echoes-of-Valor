@@ -498,6 +498,7 @@ GameObject:
   - component: {fileID: 5020070436520202107}
   - component: {fileID: 1604975555854684291}
   - component: {fileID: 6115472370546269997}
+  - component: {fileID: 6170067010798494200}
   m_Layer: 7
   m_Name: Skeleton_Necromancer
   m_TagString: Boss
@@ -675,15 +676,40 @@ MonoBehaviour:
     worldLevel: 0
   characterStats: {fileID: 0}
   enemyAnimator: {fileID: 5176556245031628319}
-  healthBar: {fileID: 4809861898446629930}
-  levelText: {fileID: 4437587313076573479}
+  healthBar: {fileID: 0}
+  levelText: {fileID: 0}
+  nameText: {fileID: 0}
+  bossUIRoot: {fileID: 0}
   level: 20
-  maxHealth: 150
+  maxHealth: 200
   currentHealth: 0
   baseDamage: 10
   healthPerLevel: 20
   damagePerLevel: 5
+  showHealthRange: 10
   isLowHealth: 0
+  questTag: Boss
+--- !u!65 &6170067010798494200
+BoxCollider:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2823577116262180202}
+  m_Material: {fileID: 0}
+  m_IncludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_ExcludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_LayerOverridePriority: 0
+  m_IsTrigger: 1
+  m_ProvidesContacts: 0
+  m_Enabled: 1
+  serializedVersion: 3
+  m_Size: {x: 2.5, y: 2.5, z: 2.5}
+  m_Center: {x: 0, y: 1.15, z: 0}
 --- !u!1 &2827416901105063161
 GameObject:
   m_ObjectHideFlags: 0
@@ -2061,7 +2087,8 @@ PrefabInstance:
       value: 0
       objectReference: {fileID: 0}
     m_RemovedComponents: []
-    m_RemovedGameObjects: []
+    m_RemovedGameObjects:
+    - {fileID: 4133966006306657612, guid: a37aa45d354db4f41ab9230e719e63a2, type: 3}
     m_AddedGameObjects: []
     m_AddedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: a37aa45d354db4f41ab9230e719e63a2, type: 3}
@@ -2070,28 +2097,6 @@ Transform:
   m_CorrespondingSourceObject: {fileID: 8622254637171329238, guid: a37aa45d354db4f41ab9230e719e63a2, type: 3}
   m_PrefabInstance: {fileID: 6199612956608357512}
   m_PrefabAsset: {fileID: 0}
---- !u!114 &4437587313076573479 stripped
-MonoBehaviour:
-  m_CorrespondingSourceObject: {fileID: 7754082576716362159, guid: a37aa45d354db4f41ab9230e719e63a2, type: 3}
-  m_PrefabInstance: {fileID: 6199612956608357512}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 0}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: f4688fdb7df04437aeb418b961361dc5, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
---- !u!114 &4809861898446629930 stripped
-MonoBehaviour:
-  m_CorrespondingSourceObject: {fileID: 1497865560855414946, guid: a37aa45d354db4f41ab9230e719e63a2, type: 3}
-  m_PrefabInstance: {fileID: 6199612956608357512}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 0}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 592bdc31af283a54b895fbe6abd00fa4, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
 --- !u!1001 &7434235572375069649
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -2102,7 +2107,7 @@ PrefabInstance:
     m_Modifications:
     - target: {fileID: 4091844351836130732, guid: 21480abdbaf0ea144a2e9e0a2fcfdcd7, type: 3}
       propertyPath: m_VersionIndex
-      value: 945
+      value: 966
       objectReference: {fileID: 0}
     - target: {fileID: 4637267906321539526, guid: 21480abdbaf0ea144a2e9e0a2fcfdcd7, type: 3}
       propertyPath: m_LocalPosition.x
