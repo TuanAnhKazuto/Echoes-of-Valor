@@ -6,6 +6,8 @@ public class CharacterSpawner : MonoBehaviour
     public GameObject roguePrefab;
     public GameObject magePrefab;
     public GameObject characterSpawn;
+
+    private Vector3 spawnPos;
     
     public SaveGameManager saveGameManager;
 
@@ -30,11 +32,13 @@ public class CharacterSpawner : MonoBehaviour
         {
             characterSpawn = magePrefab;
         }
+
+        spawnPos = new Vector3(curData.positionX, curData.positionY, curData.positionZ);
     }
 
     private void Start()
     {
-        Instantiate(characterSpawn, gameObject.transform.position, Quaternion.identity);
+        Instantiate(characterSpawn, spawnPos, Quaternion.identity);
         saveGameManager.isCharacterSpawned = true;
     }
 }
