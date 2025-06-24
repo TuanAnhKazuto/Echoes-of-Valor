@@ -36,6 +36,8 @@ public class BossStats : MonoBehaviour
     private SkeletonNecromancer enemyAI;
     private Transform player;
 
+   
+
     private void Awake()
     {
         if (characterStats == null)
