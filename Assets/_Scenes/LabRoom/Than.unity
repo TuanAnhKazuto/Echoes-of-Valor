@@ -1164,6 +1164,10 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 1438744389530561592, guid: 328c9e4df1285444c848cc9208c74293, type: 3}
+      propertyPath: m_PixelsPerUnitMultiplier
+      value: 1
+      objectReference: {fileID: 0}
     - target: {fileID: 3552280572791401462, guid: 328c9e4df1285444c848cc9208c74293, type: 3}
       propertyPath: m_Name
       value: CanvasHealthBoss
@@ -1560,12 +1564,20 @@ PrefabInstance:
       objectReference: {fileID: 1793459026}
     - target: {fileID: 6115472370546269997, guid: 5e980f304a07c544da8720f6c853d2c1, type: 3}
       propertyPath: maxHealth
-      value: 200
+      value: 1000
       objectReference: {fileID: 0}
     - target: {fileID: 6115472370546269997, guid: 5e980f304a07c544da8720f6c853d2c1, type: 3}
       propertyPath: bossUIRoot
       value: 
       objectReference: {fileID: 545844467}
+    - target: {fileID: 6115472370546269997, guid: 5e980f304a07c544da8720f6c853d2c1, type: 3}
+      propertyPath: vfxSpawnPoint
+      value: 
+      objectReference: {fileID: 2199936757037786344, guid: 057453848b11ebb49b6ce76da70834aa, type: 3}
+    - target: {fileID: 6115472370546269997, guid: 5e980f304a07c544da8720f6c853d2c1, type: 3}
+      propertyPath: scytheVFXPrefab
+      value: 
+      objectReference: {fileID: 3949181544896133370, guid: 057453848b11ebb49b6ce76da70834aa, type: 3}
     - target: {fileID: 6523245326600972667, guid: 5e980f304a07c544da8720f6c853d2c1, type: 3}
       propertyPath: m_LocalPosition.x
       value: 1360.6881
@@ -1612,7 +1624,7 @@ PrefabInstance:
       objectReference: {fileID: 1451705371}
     - target: {fileID: 6909246540911259261, guid: 5e980f304a07c544da8720f6c853d2c1, type: 3}
       propertyPath: m_VersionIndex
-      value: 969
+      value: 975
       objectReference: {fileID: 0}
     - target: {fileID: 8215263962542451337, guid: 5e980f304a07c544da8720f6c853d2c1, type: 3}
       propertyPath: m_Mesh
