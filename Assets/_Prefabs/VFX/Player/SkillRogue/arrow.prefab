@@ -14,6 +14,7 @@ GameObject:
   - component: {fileID: 1593838229166126327}
   - component: {fileID: 3587584481523249687}
   - component: {fileID: 8287637525615954774}
+  - component: {fileID: 7434206037491250040}
   m_Layer: 0
   m_Name: arrow
   m_TagString: Untagged
@@ -129,7 +130,7 @@ Rigidbody:
     m_Bits: 0
   m_ImplicitCom: 1
   m_ImplicitTensor: 1
-  m_UseGravity: 1
+  m_UseGravity: 0
   m_IsKinematic: 0
   m_Interpolate: 0
   m_Constraints: 0
@@ -155,3 +156,16 @@ BoxCollider:
   serializedVersion: 3
   m_Size: {x: 0.117339954, y: 0.7485465, z: 0.10162633}
   m_Center: {x: -0.0000034398008, y: -0.008655369, z: 0.01693503}
+--- !u!114 &7434206037491250040
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 3978407562330990411}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 958595f810cbad648a97a63530f40de8, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  lifetime: 20
