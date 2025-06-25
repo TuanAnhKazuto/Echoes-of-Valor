@@ -105,7 +105,7 @@ public class Knight : MonoBehaviour
             noOfClicks = 0;
             player.isAttacking = false;
         }
-        if (Time.time > nextAttackTime)
+        if (Time.time > nextAttackTime && CanAcceptInput())
         {
             if (Input.GetMouseButtonDown(0))
             {
@@ -114,6 +114,12 @@ public class Knight : MonoBehaviour
                 player.isAttacking = true;
             }
         }
+    }
+    bool CanAcceptInput()
+    {
+        var state = anim.GetCurrentAnimatorStateInfo(0);
+        return state.IsName("Attack1") || state.IsName("Attack2") || state.IsName("Attack3") ||
+               state.IsName("Attack4") || state.IsName("Attack5") || state.IsName("Idle") || state.IsName("Movement");
     }
 
     void OnClick()

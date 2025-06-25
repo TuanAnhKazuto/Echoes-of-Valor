@@ -1,4 +1,5 @@
-﻿using TMPro;
+﻿using System.Collections;
+using TMPro;
 using UnityEngine;
 
 public class EnemyStats : MonoBehaviour
@@ -29,16 +30,9 @@ public class EnemyStats : MonoBehaviour
         skeletonMovement = GetComponent<SkeletonMovement>();
 
         currentHealth = maxHealth;
+        skeletonMovement.animator.SetFloat("HP", currentHealth);
         levelText.text = "Lv. " + level.ToString();
         healthBar.UpdateHealth(currentHealth, maxHealth);
-    }
-
-    private void Update()
-    {
-        if (Input.GetKeyDown(KeyCode.L))
-        {
-            TakeDamage(1);
-        }
     }
 
     public void LevelUp()
@@ -53,14 +47,20 @@ public class EnemyStats : MonoBehaviour
 
     public void TakeDamage(float damage)
     {
+        bool isDie;
+
         currentHealth -= (int)damage;
         healthBar.UpdateHealth(currentHealth, maxHealth);
+        skeletonMovement.animator.SetFloat("HP", currentHealth);
 
         skeletonMovement.animator.SetLayerWeight(1, 0.7f);
         skeletonMovement.animator.SetBool("Hit", true); 
 
         if (currentHealth <= 0)
         {
+            currentHealth = 0;
+            healthBar.UpdateHealth(currentHealth, maxHealth);
+
             GameObject player = GameObject.FindGameObjectWithTag("Player");
             if (player != null)
             {
@@ -72,7 +72,10 @@ public class EnemyStats : MonoBehaviour
                 }
             }
 
-            Destroy(gameObject);
+            if (!skeletonMovement.animator.GetCurrentAnimatorStateInfo(0).IsName("Death_C_Skeletons")) 
+                return;
+            else
+                Destroy(gameObject);
         }
     }
 
