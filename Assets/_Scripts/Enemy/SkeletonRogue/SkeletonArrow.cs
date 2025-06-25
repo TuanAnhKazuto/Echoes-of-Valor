@@ -9,16 +9,18 @@ public class SkeletonArrow : MonoBehaviour
     private void Start()
     {
         Destroy(gameObject, lifeTime);
+        //Transform player = GameObject.FindGameObjectWithTag("Player").transform;
+        //transform.LookAt(player.position);
     }
 
     private void Update()
     {
-        transform.position += transform.up * -speed * Time.deltaTime;
+        transform.position += -speed * Time.deltaTime * transform.up;
     }
 
-    private void OnCollisionEnter(Collision collision)
+    private void OnTriggerEnter(Collider other)
     {
-        if (collision.gameObject.CompareTag("Player") || collision.gameObject.CompareTag("Ground"))
+        if (other.gameObject.CompareTag("Player") || other.gameObject.CompareTag("Ground"))
         {
             Destroy(gameObject);
         }
