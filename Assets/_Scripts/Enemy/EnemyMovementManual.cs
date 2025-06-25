@@ -3,7 +3,7 @@
 public class EnemyMovementManual : MonoBehaviour
 {
     [Header("Cài đặt AI")]
-    public Transform player;
+    public Transform player { get; set; }
     public float moveSpeed = 3f;
     public float chaseRange = 10f;
     public float attackRange = 8f;
@@ -21,6 +21,8 @@ public class EnemyMovementManual : MonoBehaviour
         {
             animator = GetComponent<Animator>(); // Tự động gán nếu quên kéo trong Inspector
         }
+
+        player = FindObjectOfType<PlayerController>().transform;
     }
 
     void Update()
@@ -69,8 +71,13 @@ public class EnemyMovementManual : MonoBehaviour
 
         if (direction != Vector3.zero)
         {
-            Quaternion toRotation = Quaternion.LookRotation(direction);
+            Vector3 flatDirection = new Vector3(direction.x, 0f, direction.z);
+            Quaternion toRotation = Quaternion.LookRotation(flatDirection);
             transform.rotation = Quaternion.Slerp(transform.rotation, toRotation, 5f * Time.deltaTime);
+
+            // Giữ chân chạm đất (chỉ xoay quanh trục Y)
+            Vector3 euler = transform.rotation.eulerAngles;
+            transform.rotation = Quaternion.Euler(0f, euler.y, 0f);
         }
     }
 
@@ -79,25 +86,56 @@ public class EnemyMovementManual : MonoBehaviour
         if (Time.time - lastAttackTime >= attackCooldown)
         {
             lastAttackTime = Time.time;
+            DealDamage();
+        }
 
-            // Gọi animation trigger Shoot (nếu có Animation Event sẽ gọi DealDamage)
-            if (animator != null)
+        DirectPlayer();
+    }
+
+    private void DirectPlayer()
+    {
+        Vector3 direction = (player.position - transform.position).normalized;
+
+        if (direction != Vector3.zero)
+        {
+            Vector3 flatDirection = new Vector3(direction.x, 0f, direction.z);
+            Quaternion toRotation = Quaternion.LookRotation(flatDirection);
+            transform.rotation = Quaternion.Slerp(transform.rotation, toRotation, 5f * Time.deltaTime);
+
+            // Giữ chân chạm đất (chỉ xoay quanh trục Y)
+            Vector3 euler = transform.rotation.eulerAngles;
+            transform.rotation = Quaternion.Euler(0f, euler.y, 0f);
+        }
+    }
+
+    public virtual void DealDamage()
+    {
+        Debug.Log("damage");
+
+        if (player != null)
+        {
+            CharacterStats health = player.GetComponent<CharacterStats>();
+            if (health != null)
             {
-                animator.SetTrigger("Shoot");
+                health.TakeDamage(damage);
+                SpawnBullet(health);
             }
         }
     }
 
-    // Hàm này nên được gọi bằng animation event tại thời điểm ra đòn
-    public void DealDamage()
+    public virtual void SpawnBullet(CharacterStats characterStats)
     {
-        if (player != null)
-        {
-            HEALTH health = player.GetComponent<HEALTH>();
-            if (health != null)
-            {
-                health.TakeDamage(damage);
-            }
-        }
+    }
+
+    public void Attack()
+    {
+    }
+
+    public void OnAniStart()
+    {
+    }
+
+    public void OnAniEnd()
+    {
     }
 }
