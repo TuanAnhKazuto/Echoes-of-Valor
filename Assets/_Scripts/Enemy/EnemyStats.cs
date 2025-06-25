@@ -5,6 +5,7 @@ public class EnemyStats : MonoBehaviour
 {
     [Header("Component")]
     public CharacterStats characterStats;
+    public SkeletonMovement skeletonMovement;
 
     public EnemyHealthBar healthBar;
     public TextMeshProUGUI levelText;
@@ -25,9 +26,19 @@ public class EnemyStats : MonoBehaviour
 
     private void Start()
     {
+        skeletonMovement = GetComponent<SkeletonMovement>();
+
         currentHealth = maxHealth;
         levelText.text = "Lv. " + level.ToString();
         healthBar.UpdateHealth(currentHealth, maxHealth);
+    }
+
+    private void Update()
+    {
+        if (Input.GetKeyDown(KeyCode.L))
+        {
+            TakeDamage(1);
+        }
     }
 
     public void LevelUp()
@@ -45,6 +56,9 @@ public class EnemyStats : MonoBehaviour
         currentHealth -= (int)damage;
         healthBar.UpdateHealth(currentHealth, maxHealth);
 
+        skeletonMovement.animator.SetLayerWeight(1, 0.7f);
+        skeletonMovement.animator.SetBool("Hit", true); 
+
         if (currentHealth <= 0)
         {
             GameObject player = GameObject.FindGameObjectWithTag("Player");
@@ -58,21 +72,26 @@ public class EnemyStats : MonoBehaviour
                 }
             }
 
-
             Destroy(gameObject);
         }
+    }
+
+    public void OffTakeDamageAnim()
+    {
+        skeletonMovement.animator.SetLayerWeight(1, 0f); 
+        skeletonMovement.animator.SetBool("Hit", false);
     }
 
     private void OnTriggerEnter(Collider other)
     {
         if (other.gameObject.CompareTag("PlayerHitBox"))
         {
-            if(characterStats == null)
+            if (characterStats == null)
             {
                 characterStats = other.GetComponentInParent<CharacterStats>();
             }
 
-            TakeDamage(characterStats.TotalDamage);
+            TakeDamage(characterStats.baseDamage);
         }
 
         if (other.gameObject.CompareTag("PlayerSkill"))
