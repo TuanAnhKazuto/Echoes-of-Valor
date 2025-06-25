@@ -40,10 +40,11 @@ public class PlayerController : MonoBehaviour
     private Vector3 dashDirection;
 
     // Sprint
-    private bool isSprinting = false;
+    public bool isSprinting = false;
 
     // Stamina
     [Header("Stamina Settings")]
+    public PlayerStaminaBar staminaBar;
     public float maxStamina = 100f;
     public float currentStamina;
     public float staminaDrainRate = 15f;
@@ -62,6 +63,8 @@ public class PlayerController : MonoBehaviour
         cam  = Camera.main.transform;
 
         freeLookCam = FindAnyObjectByType<CinemachineCamera>();
+        staminaBar = FindAnyObjectByType<PlayerStaminaBar>();
+
         if (freeLookCam != null)
         {
             freeLookCam.Follow = targetForCam;
@@ -75,7 +78,7 @@ public class PlayerController : MonoBehaviour
     {
         Dash();
         HandleStamina();
-        MouseControll();
+        MouseController();
         if (!isDashing)
         {
             Jump();
@@ -84,7 +87,7 @@ public class PlayerController : MonoBehaviour
         }
     }
 
-    private void MouseControll()
+    private void MouseController()
     {
         if(Input.GetKey(KeyCode.LeftAlt))
         {
@@ -100,7 +103,6 @@ public class PlayerController : MonoBehaviour
 
     private void Movement()
     {
-        
         float horizontal = Input.GetAxisRaw("Horizontal");
         float vertical = Input.GetAxisRaw("Vertical");
         Vector3 direction = new Vector3(horizontal, 0f, vertical).normalized;
@@ -133,6 +135,8 @@ public class PlayerController : MonoBehaviour
             isSprinting = false;
             animator.SetBool("RunWhichWeapon", false);
         }
+
+        staminaBar.UpdateBar((int)currentStamina, (int)maxStamina);
     }
 
     private void Jump()
