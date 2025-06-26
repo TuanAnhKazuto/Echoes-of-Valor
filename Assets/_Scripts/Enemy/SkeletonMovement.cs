@@ -8,8 +8,11 @@ public class SkeletonMovement : MonoBehaviour
     public float attackRange = 8f;
     private float originalSpeed = 6f;
 
+    Transform startTransform;
+
     public bool isSpawned = false;
     SaveGameManager saveGameManager;
+    EnemyStats enemyStats;
 
     NavMeshAgent agent;
     Transform player;
@@ -21,7 +24,10 @@ public class SkeletonMovement : MonoBehaviour
 
         agent = GetComponent<NavMeshAgent>();
         animator = GetComponent<Animator>();
-        
+        enemyStats = GetComponent<EnemyStats>();
+
+        startTransform = transform;
+
     }
 
     private void Update()
@@ -36,6 +42,7 @@ public class SkeletonMovement : MonoBehaviour
             isSpawned = true;
         }
         if (!isSpawned) return;
+        if(enemyStats.isDie) return;
         Movement();    
     }
 
