@@ -18,6 +18,8 @@ public class EnemyStats : MonoBehaviour
 
     public float baseDamage = 10f;
 
+    public bool isDie = false;
+
     [Header("LevelUp")]
     public float healthPerLevel = 20f;
     public float damagePerLevel = 5f;
@@ -47,8 +49,6 @@ public class EnemyStats : MonoBehaviour
 
     public void TakeDamage(float damage)
     {
-        bool isDie;
-
         currentHealth -= (int)damage;
         healthBar.UpdateHealth(currentHealth, maxHealth);
         skeletonMovement.animator.SetFloat("HP", currentHealth);
@@ -58,8 +58,12 @@ public class EnemyStats : MonoBehaviour
 
         if (currentHealth <= 0)
         {
+            isDie = true;
             currentHealth = 0;
             healthBar.UpdateHealth(currentHealth, maxHealth);
+            healthBar.gameObject.SetActive(false);
+            healthBar.cursorTarget.SetActive(false);
+            skeletonMovement.animator.SetLayerWeight(1, 0f);
 
             GameObject player = GameObject.FindGameObjectWithTag("Player");
             if (player != null)
@@ -71,12 +75,12 @@ public class EnemyStats : MonoBehaviour
                     Debug.Log($"Cập nhật nhiệm vụ với questTag: {questTag}");
                 }
             }
-
-            if (!skeletonMovement.animator.GetCurrentAnimatorStateInfo(0).IsName("Death_C_Skeletons")) 
-                return;
-            else
-                Destroy(gameObject);
         }
+    }
+
+    public void Death()
+    {
+        Destroy(gameObject);
     }
 
     public void OffTakeDamageAnim()
@@ -94,7 +98,7 @@ public class EnemyStats : MonoBehaviour
                 characterStats = other.GetComponentInParent<CharacterStats>();
             }
 
-            TakeDamage(characterStats.baseDamage);
+            TakeDamage(characterStats.TotalDamage);
         }
 
         if (other.gameObject.CompareTag("PlayerSkill"))

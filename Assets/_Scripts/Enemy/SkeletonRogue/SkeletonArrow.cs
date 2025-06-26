@@ -4,13 +4,11 @@ public class SkeletonArrow : MonoBehaviour
 {
     [SerializeField] private float speed = 20f;
     [SerializeField] private float lifeTime = 5f;
-    private float arrowRotationX;
+    public float damage;
 
     private void Start()
     {
         Destroy(gameObject, lifeTime);
-        //Transform player = GameObject.FindGameObjectWithTag("Player").transform;
-        //transform.LookAt(player.position);
     }
 
     private void Update()
