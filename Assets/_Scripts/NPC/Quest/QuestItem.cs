@@ -11,6 +11,13 @@ public class QuestItem : MonoBehaviour
     public string TargetItemtag; // tag của item cần tìm
     public int rewardAmount = 100;
 
+    [Header("Mô tả nhiệm vụ")]
+    [TextArea(2, 5)]
+    public string description;
+    [Header("Gợi ý")]
+    [TextArea(1, 3)]
+    public string hint;
+
 
     // Kiểm tra hoàn thành
     private void Start()
