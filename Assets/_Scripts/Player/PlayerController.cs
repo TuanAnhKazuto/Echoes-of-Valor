@@ -11,7 +11,6 @@ public class PlayerController : MonoBehaviour
     public Transform cam;
     public CinemachineCamera freeLookCam;
     public Transform targetForCam;
-    CharacterStats characterStats;
 
     public float moveSpeed;
     public float speed = 6f;
@@ -65,7 +64,6 @@ public class PlayerController : MonoBehaviour
 
         freeLookCam = FindAnyObjectByType<CinemachineCamera>();
         staminaBar = FindAnyObjectByType<PlayerStaminaBar>();
-        characterStats = GetComponent<CharacterStats>();
 
         if (freeLookCam != null)
         {
@@ -78,7 +76,6 @@ public class PlayerController : MonoBehaviour
 
     private void Update()
     {
-        if (characterStats.isDied) return;
         Dash();
         HandleStamina();
         MouseController();

@@ -886,8 +886,8 @@ BoxCollider:
   m_ProvidesContacts: 0
   m_Enabled: 1
   serializedVersion: 3
-  m_Size: {x: 1.83, y: 1.24, z: 1.5223274}
-  m_Center: {x: 0, y: 0, z: 0.22116375}
+  m_Size: {x: 2.14, y: 2.02, z: 2.76}
+  m_Center: {x: 0, y: 0, z: 0.66}
 --- !u!1 &4327955396333990964
 GameObject:
   m_ObjectHideFlags: 0
@@ -1270,6 +1270,8 @@ MonoBehaviour:
   dashSpeed: 20
   dashDuration: 0.3
   isDashing: 0
+  isSprinting: 0
+  staminaBar: {fileID: 0}
   maxStamina: 100
   currentStamina: 0
   staminaDrainRate: 15
@@ -1289,6 +1291,8 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   healthBar: {fileID: 0}
   manaBar: {fileID: 0}
+  animator: {fileID: 3134795728209042399}
+  CursorTarget: {fileID: 1560439069126834367}
   playerId: 101
   playerName: 
   characterClass: Knight
@@ -1299,6 +1303,7 @@ MonoBehaviour:
   maxMana: 100
   baseDamage: 10
   baseDefense: 5
+  isDied: 0
   equippedWeapons:
   - {fileID: 5836847598259700786}
   - {fileID: 2633098270899814034}
@@ -1924,6 +1929,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   player: {fileID: 7343371498176557}
+  characterStats: {fileID: 4656843496498232716}
   currentTarget: {fileID: 0}
   curTargetRange: 0
   normalAttackRange: 3.5
@@ -2336,7 +2342,7 @@ PrefabInstance:
     m_Modifications:
     - target: {fileID: 4005100084169640724, guid: 7c839b7eae1a9514f86368c1fef0bd47, type: 3}
       propertyPath: m_VersionIndex
-      value: 1020
+      value: 1044
       objectReference: {fileID: 0}
     - target: {fileID: 5774715856320653376, guid: 7c839b7eae1a9514f86368c1fef0bd47, type: 3}
       propertyPath: m_Name
@@ -2406,6 +2412,11 @@ PrefabInstance:
 --- !u!4 &1402176356582653951 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: 6264970658845011712, guid: 7c839b7eae1a9514f86368c1fef0bd47, type: 3}
+  m_PrefabInstance: {fileID: 5009166521625006335}
+  m_PrefabAsset: {fileID: 0}
+--- !u!1 &1560439069126834367 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 5774715856320653376, guid: 7c839b7eae1a9514f86368c1fef0bd47, type: 3}
   m_PrefabInstance: {fileID: 5009166521625006335}
   m_PrefabAsset: {fileID: 0}
 --- !u!1001 &8755229518262005443
