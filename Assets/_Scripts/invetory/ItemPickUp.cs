@@ -32,6 +32,11 @@ public class ItemPickUp : MonoBehaviour
         if (other.gameObject.CompareTag("Player"))
         {
             PickUp();
+            PlayerQuest playerQuest = other.GetComponent<PlayerQuest>();
+            if (playerQuest != null)
+            {
+                playerQuest.UpdateQuest(gameObject.tag);
+            }
         }
     }
 }

@@ -55,8 +55,15 @@ public class PaneQuest : MonoBehaviour
         {
             var questItem = Instantiate(questItemPrefab, questItemPrefab.transform.parent);
             //questItem.text = $"{item.QuetsItemName} : {item.currentAmount}/{item.questTargetAmount}";
-            questItem.text = $"{item.QuetsItemName} : {item.currentAmount}/{item.questTargetAmount}" +
-                 (item.IsComplete() ? " (Hoàn thành)" : "");
+            //questItem.text = $"{item.QuetsItemName} : {item.currentAmount}/{item.questTargetAmount}" +
+            //     (item.IsComplete() ? " (Hoàn thành)" : "");
+            questItem.text =
+    $"<b><size=110%><color=#FFD700>{item.QuetsItemName}</color></size></b>\n" +
+    $"<size=90%><i><color=#C0C0C0>{item.description}</color></i></size>\n" +
+    $"<b><color=white>Tiến độ:</color></b> <b><color={(item.IsComplete() ? "#00FF00" : "#FF6347")}>{item.currentAmount}/{item.questTargetAmount}</color></b> " +
+    $"{(item.IsComplete() ? "<b><color=#00FF00>(Hoàn thành)</color></b>" : "")}\n" +
+    $"<size=90%><i><color=#87CEFA> Chỉ dẫn:</color> <color=#D3D3D3>{item.hint}</color></i></size>";
+
             questItem.gameObject.SetActive(true);
         }
     }
