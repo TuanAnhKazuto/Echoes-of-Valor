@@ -309,11 +309,11 @@ AnimatorStateMachine:
   - {fileID: 3561586467127498669}
   m_EntryTransitions: []
   m_StateMachineTransitions:
+  - first: {fileID: -1718797290323585513}
+    second: []
   - first: {fileID: -2052273526810583091}
     second:
     - {fileID: -3791401416155464487}
-  - first: {fileID: -1718797290323585513}
-    second: []
   m_StateMachineBehaviours: []
   m_AnyStatePosition: {x: 50, y: 20, z: 0}
   m_EntryPosition: {x: 50, y: 120, z: 0}
@@ -1047,7 +1047,7 @@ AnimatorController:
     m_Controller: {fileID: 9100000}
   - m_Name: HP
     m_Type: 1
-    m_DefaultFloat: 0
+    m_DefaultFloat: 100
     m_DefaultInt: 0
     m_DefaultBool: 0
     m_Controller: {fileID: 9100000}
