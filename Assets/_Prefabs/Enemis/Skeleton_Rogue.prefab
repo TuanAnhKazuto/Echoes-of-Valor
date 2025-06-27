@@ -1661,6 +1661,8 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   arrowPrefab: {fileID: 4728223573417189928, guid: e7073cbbffe003042a2c9bc54d8a9dad, type: 3}
   firePoint: {fileID: 7300617296076394209}
+  SkeletonArrow: {fileID: 0}
+  enemyStats: {fileID: 0}
 --- !u!114 &6178342869959526041
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -1674,8 +1676,8 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   characterStats: {fileID: 0}
-  skeletonMovement: {fileID: 0}
-  healthBar: {fileID: 0}
+  skeletonMovement: {fileID: 3996359702207466690}
+  healthBar: {fileID: 1300917398243729421}
   levelText: {fileID: 3481354416243501187}
   level: 10
   maxHealth: 100
@@ -2435,6 +2437,17 @@ PrefabInstance:
     m_AddedGameObjects: []
     m_AddedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: a37aa45d354db4f41ab9230e719e63a2, type: 3}
+--- !u!114 &1300917398243729421 stripped
+MonoBehaviour:
+  m_CorrespondingSourceObject: {fileID: 5314670992015391009, guid: a37aa45d354db4f41ab9230e719e63a2, type: 3}
+  m_PrefabInstance: {fileID: 6614741533299513644}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 592bdc31af283a54b895fbe6abd00fa4, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!4 &3198732797642068474 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: 8622254637171329238, guid: a37aa45d354db4f41ab9230e719e63a2, type: 3}

@@ -13,8 +13,15 @@ public class SaveSlotUI : MonoBehaviour
     public Button selectButton;
     public Button deleteButton;
 
+    Loading loadingController;
+
     private int _playerId;
     private string _sceneName;
+
+    private void Start()
+    {
+        loadingController = FindAnyObjectByType<Loading>();
+    }
 
     public void Setup(PlayerData data)
     {
@@ -35,7 +42,8 @@ public class SaveSlotUI : MonoBehaviour
         PlayerPrefs.SetInt("SelectedPlayerID", _playerId);
         PlayerPrefs.Save();
 
-        UnityEngine.SceneManagement.SceneManager.LoadScene(_sceneName);
+        loadingController.LoadScene(_sceneName);
+        //UnityEngine.SceneManagement.SceneManager.LoadScene(_sceneName);
     }
 
     void DeleteSave()
