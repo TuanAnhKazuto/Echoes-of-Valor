@@ -5,7 +5,6 @@ public class EnemyHealthBar : MonoBehaviour
 {
     public Image fillBar;
 
-    public GameObject cursorTarget;
     public void UpdateHealth(int curHealth, int maxHealth)
     {
         fillBar.fillAmount = (float)curHealth / (float)maxHealth;

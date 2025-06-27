@@ -3,7 +3,6 @@
 public class Knight : MonoBehaviour
 {
     public PlayerController player;
-    public CharacterStats characterStats;
     Animator anim;
 
     public Transform currentTarget;

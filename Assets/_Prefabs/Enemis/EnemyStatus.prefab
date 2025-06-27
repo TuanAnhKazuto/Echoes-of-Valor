@@ -9,7 +9,8 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 8772715978560754454}
-  m_Layer: 7
+  - component: {fileID: 1497865560855414946}
+  m_Layer: 5
   m_Name: Hpbar
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -37,6 +38,21 @@ RectTransform:
   m_AnchoredPosition: {x: 0, y: 0}
   m_SizeDelta: {x: 100, y: 100}
   m_Pivot: {x: 0.5, y: 0.5}
+--- !u!114 &1497865560855414946
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2458774950660318683}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 592bdc31af283a54b895fbe6abd00fa4, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  fillBar: {fileID: 4503092124701692663}
+  fillBar1: {fileID: 4503092124701692663}
+  fillBar2: {fileID: 4503092124701692663}
 --- !u!1 &2523590866079831260
 GameObject:
   m_ObjectHideFlags: 0
@@ -48,7 +64,7 @@ GameObject:
   - component: {fileID: 690639594741414085}
   - component: {fileID: 8047868745699770849}
   - component: {fileID: 4503092124701692663}
-  m_Layer: 7
+  m_Layer: 5
   m_Name: Fill
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -124,7 +140,7 @@ GameObject:
   - component: {fileID: 8788017089851702332}
   - component: {fileID: 1219938160099643004}
   - component: {fileID: 6593229190830178699}
-  m_Layer: 7
+  m_Layer: 5
   m_Name: Canvas
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -226,7 +242,7 @@ GameObject:
   - component: {fileID: 1071572712526747162}
   - component: {fileID: 6513429803442497255}
   - component: {fileID: 9145571671495039355}
-  m_Layer: 7
+  m_Layer: 5
   m_Name: Bg
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -301,7 +317,7 @@ GameObject:
   - component: {fileID: 3300927209616679722}
   - component: {fileID: 3548725235567648875}
   - component: {fileID: 7754082576716362159}
-  m_Layer: 7
+  m_Layer: 5
   m_Name: levelText
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -436,8 +452,7 @@ GameObject:
   m_Component:
   - component: {fileID: 8622254637171329238}
   - component: {fileID: 7461623994981994248}
-  - component: {fileID: 5314670992015391009}
-  m_Layer: 7
+  m_Layer: 0
   m_Name: EnemyStatus
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -472,17 +487,3 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: ab666a3c138c96740a64bdc6f9e69acc, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
---- !u!114 &5314670992015391009
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 7932952837240173653}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 592bdc31af283a54b895fbe6abd00fa4, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  fillBar: {fileID: 4503092124701692663}
-  cursorTarget: {fileID: 0}

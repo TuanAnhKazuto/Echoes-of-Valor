@@ -8,7 +8,7 @@ public class NpcEngineer : MonoBehaviour
     {
         if(other.CompareTag("Player") && Input.GetKeyDown(KeyCode.F))
         {
-            Invoke(nameof(ShowPanel), 1f);
+            Invoke(nameof(ShowPanel), 2f);
         }
     }
 

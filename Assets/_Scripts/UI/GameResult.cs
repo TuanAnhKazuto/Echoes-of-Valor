@@ -71,8 +71,6 @@ public class GameResult : MonoBehaviour
     {
         if (panelLost != null)
             panelLost.SetActive(true);
-        Cursor.lockState = CursorLockMode.None;
-        Cursor.visible = true;
 
         UpdateTimeScale();
     }
@@ -81,8 +79,6 @@ public class GameResult : MonoBehaviour
     {
         if (panelVictory != null)
             panelVictory.SetActive(true);
-        Cursor.lockState = CursorLockMode.None;
-        Cursor.visible = true;
 
         UpdateTimeScale();
     }
@@ -102,8 +98,6 @@ public class GameResult : MonoBehaviour
                 characterStats.currentMana = characterStats.maxMana;
 
                 characterStats.healthBar.UpdateHealth((int)characterStats.currentHealth, (int)characterStats.maxHealth);
-                characterStats.animator.SetFloat("HP", characterStats.currentHealth);
-                characterStats.isDied = false;
             }
         }
         UpdateTimeScale();
