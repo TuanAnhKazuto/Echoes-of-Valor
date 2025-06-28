@@ -117,7 +117,8 @@ public class CharacterStats : MonoBehaviour
 
         if(other.gameObject.transform.CompareTag("EnemyHitBox"))
         {
-            TakeDamage(20f);
+            EnemyStats enemyStats = other.GetComponentInParent<EnemyStats>();
+            TakeDamage(enemyStats.baseDamage);
         }
     }
 
