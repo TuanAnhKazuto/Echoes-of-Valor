@@ -11,6 +11,8 @@ public class Next : MonoBehaviour
 
     private void Start()
     {
+        Cursor.lockState = CursorLockMode.None;
+        Cursor.visible = true;
         screenVideo.SetActive(true);
         StartCoroutine(WaitCutSceneEnd());
     }
@@ -25,5 +27,7 @@ public class Next : MonoBehaviour
     {
         screenVideo.SetActive(false);
         loadingController.LoadScene(sceneName);
+        Cursor.lockState = CursorLockMode.Locked;
+        Cursor.visible = false;
     }
 }
