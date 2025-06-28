@@ -39,7 +39,7 @@ public class SaveSlotUI : MonoBehaviour
 
     void SelectThisSave()
     {
-        PlayerPrefs.SetInt("SelectedPlayerID", _playerId);
+        PlayerPrefs.SetInt("SelectedPlayerId", _playerId);
         PlayerPrefs.Save();
 
         loadingController.LoadScene(_sceneName);

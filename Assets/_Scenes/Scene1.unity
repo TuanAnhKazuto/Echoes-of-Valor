@@ -17741,6 +17741,10 @@ PrefabInstance:
     serializedVersion: 3
     m_TransformParent: {fileID: 0}
     m_Modifications:
+    - target: {fileID: 426350705080597118, guid: b43c61955286f6b44a26073f7d8e0083, type: 3}
+      propertyPath: saneGameManager
+      value: 
+      objectReference: {fileID: 1028513665}
     - target: {fileID: 867456223102489884, guid: b43c61955286f6b44a26073f7d8e0083, type: 3}
       propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_Target
       value: 
@@ -113577,7 +113581,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 6877e7542211e8749ae913e74b1965a0, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  saveGameManager: {fileID: 0}
+  saveGameManager: {fileID: 1028513665}
+  loadingScreen: {fileID: 308282993}
 --- !u!54 &646458899
 Rigidbody:
   m_ObjectHideFlags: 0
@@ -248984,7 +248989,7 @@ PrefabInstance:
     - target: {fileID: 2084112010687008588, guid: ca1998f865fc71e4db1590094f47b43b, type: 3}
       propertyPath: saveGameManager
       value: 
-      objectReference: {fileID: 0}
+      objectReference: {fileID: 1028513665}
     - target: {fileID: 6778092126549791300, guid: ca1998f865fc71e4db1590094f47b43b, type: 3}
       propertyPath: m_Name
       value: UpgrateWeaponCanvas
