@@ -102,12 +102,13 @@ public class Tutorial : MonoBehaviour
     void NextStep()
     {
         step++;
-        if (step >= 6)
+        if (step >= 5)
         {
             tutorialText.text = "YEHhh Bạn đã hoàn thành hướng dẫn!";
             confirmButton.gameObject.SetActive(false);
             tutorialPanel.SetActive(true);
 
+            StartCoroutine(CloseTutorialAfterDelay());
         }
         else
         {
