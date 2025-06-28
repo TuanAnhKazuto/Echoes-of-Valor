@@ -14,7 +14,7 @@ public class LoadSceneManager : MonoBehaviour
             saveGameManager.curData.sceneName = "Scene2";
             SaveSystem.SaveGame(saveGameManager.curData);
 
-            loadingScreen.LoadScene("Scene2");
+            loadingScreen.LoadScene("CutScene 2");
         }
     }
 }

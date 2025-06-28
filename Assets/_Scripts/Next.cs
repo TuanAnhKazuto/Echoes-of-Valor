@@ -6,6 +6,8 @@ public class Next : MonoBehaviour
 {
     public Loading loadingController;
     public GameObject screenVideo;
+    public float timeToWait;
+    public string sceneName;
 
     private void Start()
     {
@@ -15,13 +17,13 @@ public class Next : MonoBehaviour
 
     IEnumerator WaitCutSceneEnd()
     {
-        yield return new WaitForSeconds(79f);
+        yield return new WaitForSeconds(timeToWait);
         NextBtn();
     }
 
     public void NextBtn()
     {
         screenVideo.SetActive(false);
-        loadingController.LoadScene("Scene1");
+        loadingController.LoadScene(sceneName);
     }
 }
