@@ -13,18 +13,12 @@ public class GameResult : MonoBehaviour
     private bool isPaused = false;
 
     [Header("Player Settings")]
-    public GameObject player;
+    public SaveGameManager saneGameManager;
     private Vector3 startPosition;
     private CharacterStats characterStats;
 
     private void Start()
     {
-        if (player != null)
-        {
-            startPosition = player.transform.position;
-            characterStats = player.GetComponent<CharacterStats>();
-        }
-
         if (panelPause != null)
             panelPause.SetActive(false);
 
@@ -35,12 +29,18 @@ public class GameResult : MonoBehaviour
                 continueButton = found.GetComponent<Button>();
         }
 
+
         if (continueButton != null)
             continueButton.onClick.AddListener(OnPause);
     }
 
     private void Update()
     {
+        if (saneGameManager.isCharacterSpawned)
+        {
+            characterStats = saneGameManager.playerStats;
+        }
+
         if (Input.GetKeyDown(KeyCode.Alpha9))
         {
             ShowFailPanel();
@@ -92,9 +92,9 @@ public class GameResult : MonoBehaviour
         if (panelLost != null) panelLost.SetActive(false);
         if (panelVictory != null) panelVictory.SetActive(false);
 
-        if (player != null)
+        if (characterStats != null)
         {
-            player.transform.position = startPosition;
+            characterStats.gameObject.transform.position = startPosition;
 
             if (characterStats != null)
             {
