@@ -1,4 +1,6 @@
 ﻿using UnityEngine;
+using UnityEngine.UI;
+using TMPro;
 
 public class MenuSetting : MonoBehaviour
 {
@@ -7,10 +9,15 @@ public class MenuSetting : MonoBehaviour
     public GameObject canvasThank;
     public GameObject canvasHelp;
 
-    [Header("Sound Toggles")]
-    public GameObject onMusic, offMusic;
-    public GameObject onSFX, offSFX;
-    public GameObject onMaster, offMaster;
+    [Header("Sliders")]
+    public Slider masterSlider;
+    public Slider musicSlider;
+    public Slider sfxSlider;
+
+    [Header("Volume Text")]
+    public TextMeshProUGUI masterVolumeText;
+    public TextMeshProUGUI musicVolumeText;
+    public TextMeshProUGUI sfxVolumeText;
 
     public AudioSource musicSource;
     public AudioSource sfxSource;
@@ -20,7 +27,11 @@ public class MenuSetting : MonoBehaviour
     void Start()
     {
         CloseAllCanvas();
-        UpdateSoundUI();
+        LoadAudioSettings();
+
+        masterSlider.onValueChanged.AddListener(SetMasterVolume);
+        musicSlider.onValueChanged.AddListener(SetMusicVolume);
+        sfxSlider.onValueChanged.AddListener(SetSFXVolume);
     }
 
     public void ShowCanvas(GameObject canvas)
@@ -46,42 +57,51 @@ public class MenuSetting : MonoBehaviour
         canvasThank.SetActive(false);
     }
 
-    public void ToggleMaster(bool on)
+    void SetMasterVolume(float value)
     {
-        AudioListener.volume = on ? 1f : 0f;
-        UpdateSoundUI();
+        AudioListener.volume = value;
+        PlayerPrefs.SetFloat("MasterVolume", value);
+        UpdateVolumeText(masterVolumeText, "Master", value);
     }
 
-    public void ToggleMusic(bool on)
+    void SetMusicVolume(float value)
     {
         if (musicSource != null)
-        {
-            musicSource.mute = !on;
-        }
-        UpdateSoundUI();
+            musicSource.volume = value;
+        PlayerPrefs.SetFloat("MusicVolume", value);
+        UpdateVolumeText(musicVolumeText, "Music", value);
     }
 
-    public void ToggleSFX(bool on)
+    void SetSFXVolume(float value)
     {
         if (sfxSource != null)
-        {
-            sfxSource.mute = !on;
-        }
-        UpdateSoundUI();
+            sfxSource.volume = value;
+        PlayerPrefs.SetFloat("SFXVolume", value);
+        UpdateVolumeText(sfxVolumeText, "SFX", value);
+    }
+    //Save Volume
+    void LoadAudioSettings()
+    {
+        float master = PlayerPrefs.GetFloat("MasterVolume", 1f);
+        float music = PlayerPrefs.GetFloat("MusicVolume", 1f);
+        float sfx = PlayerPrefs.GetFloat("SFXVolume", 1f);
+
+        masterSlider.value = master;
+        musicSlider.value = music;
+        sfxSlider.value = sfx;
+
+        AudioListener.volume = master;
+        if (musicSource != null) musicSource.volume = music;
+        if (sfxSource != null) sfxSource.volume = sfx;
+
+        UpdateVolumeText(masterVolumeText, "Master", master);
+        UpdateVolumeText(musicVolumeText, "Music", music);
+        UpdateVolumeText(sfxVolumeText, "SFX", sfx);
     }
 
-    void UpdateSoundUI()
+    void UpdateVolumeText(TextMeshProUGUI text, string label, float value)
     {
-        bool musicOn = !musicSource.mute;
-        onMusic.SetActive(!musicOn);  
-        offMusic.SetActive(musicOn);  
-
-        bool sfxOn = !sfxSource.mute;
-        onSFX.SetActive(!sfxOn);
-        offSFX.SetActive(sfxOn);
-
-        bool masterOn = AudioListener.volume > 0f;
-        onMaster.SetActive(!masterOn);
-        offMaster.SetActive(masterOn);
+        int percent = Mathf.RoundToInt(value * 100f);
+        text.text = $"{percent}";
     }
 }
