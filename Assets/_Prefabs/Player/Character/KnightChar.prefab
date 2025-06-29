@@ -1031,7 +1031,7 @@ Transform:
   m_GameObject: {fileID: 4476123385917625323}
   serializedVersion: 2
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalPosition: {x: 0, y: -0.05, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
@@ -1254,11 +1254,11 @@ MonoBehaviour:
   cam: {fileID: 0}
   freeLookCam: {fileID: 0}
   targetForCam: {fileID: 3101052238522731769}
-  moveSpeed: 0
-  speed: 6
-  sprintSpeed: 10
-  jumpHeight: 3
-  gravity: -24.525
+  moveSpeed: 20
+  speed: 10
+  sprintSpeed: 20
+  jumpHeight: 5
+  gravity: -49.05
   turnSmoothTime: 0.1
   isJumping: 0
   groundCheck: {fileID: 4445559505987426195}
@@ -1266,14 +1266,14 @@ MonoBehaviour:
   groundMask:
     serializedVersion: 2
     m_Bits: 64
-  dashDistance: 5
-  dashSpeed: 20
+  dashDistance: 8
+  dashSpeed: 25
   dashDuration: 0.3
   isDashing: 0
   isSprinting: 0
   staminaBar: {fileID: 0}
   maxStamina: 100
-  currentStamina: 0
+  currentStamina: 100
   staminaDrainRate: 15
   staminaRegenRate: 10
   isAttacking: 0
@@ -1935,6 +1935,12 @@ MonoBehaviour:
   normalAttackRange: 3.5
   skillAttackRange: 20
   coolDownTime: 0.8
+  animAtkName:
+  - Attack1
+  - Attack2
+  - Attack3
+  - Attack4
+  - Attack5
   trailEffect: {fileID: 4457653115868579895}
 --- !u!114 &5792600079328538093
 MonoBehaviour:
@@ -1961,7 +1967,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 0a08632a9c1c8fb4391e715d7eb3feb9, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  animator: {fileID: 0}
+  animator: {fileID: 3134795728209042399}
   excaliburLevel: 1
   excarliburCooldown: 6
 --- !u!1 &8998727911122777749
@@ -2342,7 +2348,7 @@ PrefabInstance:
     m_Modifications:
     - target: {fileID: 4005100084169640724, guid: 7c839b7eae1a9514f86368c1fef0bd47, type: 3}
       propertyPath: m_VersionIndex
-      value: 1044
+      value: 1059
       objectReference: {fileID: 0}
     - target: {fileID: 5774715856320653376, guid: 7c839b7eae1a9514f86368c1fef0bd47, type: 3}
       propertyPath: m_Name

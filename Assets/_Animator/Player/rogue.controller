@@ -309,11 +309,11 @@ AnimatorStateMachine:
   - {fileID: 3561586467127498669}
   m_EntryTransitions: []
   m_StateMachineTransitions:
-  - first: {fileID: -1718797290323585513}
-    second: []
   - first: {fileID: -2052273526810583091}
     second:
     - {fileID: -3791401416155464487}
+  - first: {fileID: -1718797290323585513}
+    second: []
   m_StateMachineBehaviours: []
   m_AnyStatePosition: {x: 50, y: 20, z: 0}
   m_EntryPosition: {x: 50, y: 120, z: 0}
@@ -568,7 +568,7 @@ AnimatorState:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_Name: Running
-  m_Speed: 1.2
+  m_Speed: 2
   m_CycleOffset: 0
   m_Transitions:
   - {fileID: -8421881783697335507}
@@ -627,7 +627,7 @@ AnimatorState:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_Name: Run_Which_Weapon
-  m_Speed: 1.3
+  m_Speed: 2.3
   m_CycleOffset: 0
   m_Transitions:
   - {fileID: 1295249765743677031}
@@ -731,7 +731,7 @@ AnimatorStateMachine:
   m_AnyStatePosition: {x: 50, y: 20, z: 0}
   m_EntryPosition: {x: 50, y: 120, z: 0}
   m_ExitPosition: {x: 1060, y: 110, z: 0}
-  m_ParentStateMachinePosition: {x: 800, y: 20, z: 0}
+  m_ParentStateMachinePosition: {x: 810, y: 20, z: 0}
   m_DefaultState: {fileID: -5960078724104678735}
 --- !u!1101 &-1855398650144984045
 AnimatorStateTransition:
@@ -1420,7 +1420,7 @@ AnimatorState:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_Name: Attack Reload
-  m_Speed: 3
+  m_Speed: 2
   m_CycleOffset: 0
   m_Transitions:
   - {fileID: 7968867478604319341}
@@ -2006,7 +2006,7 @@ AnimatorState:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_Name: Run_When_Combat
-  m_Speed: 1
+  m_Speed: 2
   m_CycleOffset: 0
   m_Transitions:
   - {fileID: 5127465552827674085}
