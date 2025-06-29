@@ -103,11 +103,22 @@ public class PlayerController : MonoBehaviour
 
     private void Movement()
     {
-        float horizontal = Input.GetAxisRaw("Horizontal");
-        float vertical = Input.GetAxisRaw("Vertical");
+        float horizontal;
+        float vertical;
+        if (!canMove)
+        {
+            horizontal = 0f;
+            vertical = 0f;
+        }
+        else
+        {
+            horizontal = Input.GetAxis("Horizontal");
+            vertical = Input.GetAxis("Vertical");
+        }
         Vector3 direction = new Vector3(horizontal, 0f, vertical).normalized;
         animator.SetFloat("Speed", direction.magnitude);
-        if (!canMove) return;
+
+        
 
         if (direction.magnitude >= 0.1f)
         {
@@ -126,6 +137,7 @@ public class PlayerController : MonoBehaviour
                 if (currentStamina <= 0f)
                 {
                     currentStamina = 0f;
+                    animator.SetBool("RunWhichWeapon", false);
                     isSprinting = false;
                 }
             }
