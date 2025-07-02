@@ -21,6 +21,9 @@ public class FieldOfViewEditor : Editor
         Handles.color = Color.red;
         Handles.DrawWireArc(fov.transform.position, Vector3.up, Vector3.forward, 360, fov.ditectionRadius);
 
+        Handles.color = Color.blue;
+        Handles.DrawWireArc(fov.transform.position, Vector3.up, Vector3.forward, 360, fov.attackRange);
+
         if (fov.canSeePlayer)
         {
             Handles.color = Color.green;
