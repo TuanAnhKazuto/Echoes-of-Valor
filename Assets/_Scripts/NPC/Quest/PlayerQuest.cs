@@ -15,6 +15,9 @@ public class PlayerQuest : MonoBehaviour
 
     // Nhận nhiệm vụ 
 
+    // chỉ dẫn nhiệm vụ
+    public QuestMarkerManager markerManager;
+
     private void Start()
     {
         
@@ -22,8 +25,13 @@ public class PlayerQuest : MonoBehaviour
         {
             playerQuestPanel = FindAnyObjectByType<PaneQuest>();
         }
-       
         
+        if (markerManager == null)
+        {
+            markerManager = FindAnyObjectByType<QuestMarkerManager>();
+        }
+
+
     }
     public void TakeQuest(QuestItem questItem)
     {
@@ -35,7 +43,11 @@ public class PlayerQuest : MonoBehaviour
         if (check == null) 
         questItems.Add(questItem);
 
-     
+        if (questItem.questLocation != null)
+        {
+            markerManager.ShowMarker(questItem);
+        }
+
         playerQuestPanel.ShowAllQuestItem(questItems);
     }
 
@@ -74,6 +86,11 @@ public class PlayerQuest : MonoBehaviour
         if (HasCompletedQuest(questItem))
         {
             questItems.Remove(questItem);
+
+            if (questItem.questLocation != null)
+            {
+                markerManager.HideMarker(questItem);
+            }
             Debug.Log($"Đã trả nhiệm vụ: {questItem.QuetsItemName}, nhận {questItem.rewardAmount} vàng");
 
             FindAnyObjectByType<Co>().IncreaseCor(questItem.rewardAmount);
