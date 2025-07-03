@@ -19,6 +19,7 @@ public class SkeletonNecromancer : MonoBehaviour
 
     private BossStats bossStats;
     private Coroutine spinAttackRoutine;
+    private bool isDead = false;
 
     public enum CharacterState
     {
@@ -42,7 +43,7 @@ public class SkeletonNecromancer : MonoBehaviour
 
     void Update()
     {
-        if (target == null) return;
+        if (isDead || target == null) return;
 
         float distanceToTarget = Vector3.Distance(target.position, transform.position);
         float distanceToOrigin = Vector3.Distance(originalePosition, transform.position);
@@ -150,9 +151,28 @@ public class SkeletonNecromancer : MonoBehaviour
         }
     }
 
-    // ✅ Gọi hàm này khi Boss chuyển dạng
     public void BoostSpeed(float amount)
     {
         navMeshAgent.speed += amount;
+    }
+
+    // ✅ Gọi khi boss chết
+    public void Die()
+    {
+        if (isDead) return;
+
+        isDead = true;
+        navMeshAgent.isStopped = true;
+        animator.SetTrigger("Die");
+
+        StopSpinIfNeeded();
+        this.enabled = false;
+
+        // Tắt collider nếu cần
+        Collider col = GetComponent<Collider>();
+        if (col != null) col.enabled = false;
+
+        // Xoá game object sau 3 giây (hoặc thời gian animation Death)
+        Destroy(gameObject, 3f);
     }
 }
