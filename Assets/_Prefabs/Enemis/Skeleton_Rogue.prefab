@@ -1127,7 +1127,6 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 7300617296076394209}
-  - component: {fileID: 5347981295853735984}
   m_Layer: 7
   m_Name: FirePoint
   m_TagString: Untagged
@@ -1150,19 +1149,6 @@ Transform:
   m_Children: []
   m_Father: {fileID: 7713735878304070000}
   m_LocalEulerAnglesHint: {x: -90, y: 0, z: 0}
---- !u!114 &5347981295853735984
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 3406543892699119361}
-  m_Enabled: 0
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: fa2e3349e6f598c4ebbb365c8a49fc04, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  player: {fileID: 0}
 --- !u!1 &3891011630353891688
 GameObject:
   m_ObjectHideFlags: 0
@@ -1643,10 +1629,20 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: d5e6a870402c6584290e08f48ebe518b, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  radiusLookAt: 10
-  attackRange: 8
+  radiusLookAt: 20
+  attackRange: 14
   isSpawned: 0
+  player: {fileID: 0}
   animator: {fileID: 0}
+  agent: 100
+  ditectionRadius: 7
+  targetMask:
+    serializedVersion: 2
+    m_Bits: 8
+  obstructionMask:
+    serializedVersion: 2
+    m_Bits: 1024
+  canSeePlayer: 0
 --- !u!114 &2931901205732895995
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -2474,7 +2470,7 @@ PrefabInstance:
     m_Modifications:
     - target: {fileID: 4091844351836130732, guid: 21480abdbaf0ea144a2e9e0a2fcfdcd7, type: 3}
       propertyPath: m_VersionIndex
-      value: 987
+      value: 1020
       objectReference: {fileID: 0}
     - target: {fileID: 4637267906321539526, guid: 21480abdbaf0ea144a2e9e0a2fcfdcd7, type: 3}
       propertyPath: m_LocalScale.y

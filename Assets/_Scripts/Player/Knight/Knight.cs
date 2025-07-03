@@ -17,6 +17,8 @@ public class Knight : MonoBehaviour
     float lastClickedTime = 0f;
     float maxComboDelay = 1f;
 
+    public string[] animAtkName = new string[] { "Attack1", "Attack2", "Attack3", "Attack4", "Attack5" };
+
     public SwordTrailController trailEffect;
 
     private void Start()
@@ -67,6 +69,28 @@ public class Knight : MonoBehaviour
 
     void Attack()
     {
+        if (Input.GetMouseButton(0))
+        {
+            anim.SetBool("IsAttack", true);
+            player.canMove = false;
+        }
+        else
+        {
+            for(int i = 0; i <= 4; i++)
+            {
+                //Debug.Log($"Checking animation state: {animAtkName[i]}");
+                if (anim.GetCurrentAnimatorStateInfo(0).IsName(animAtkName[i]) && anim.GetCurrentAnimatorStateInfo(0).normalizedTime >= 1f)
+                {
+                    anim.SetBool("IsAttack", false);
+                    player.canMove = true;
+                }
+            }
+        }
+    }
+
+    void AttackOld()
+    {
+        // Old version of the code
         if (player.isDashing)
         {
             player.isAttacking = false;
@@ -116,6 +140,7 @@ public class Knight : MonoBehaviour
             }
         }
     }
+
     bool CanAcceptInput()
     {
         var state = anim.GetCurrentAnimatorStateInfo(0);

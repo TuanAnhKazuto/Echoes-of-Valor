@@ -13,9 +13,9 @@ public class GameResult : MonoBehaviour
     private bool isPaused = false;
 
     [Header("Player Settings")]
-    public SaveGameManager saneGameManager;
+    public SaveGameManager saveGameManager;
     private Vector3 startPosition;
-    private CharacterStats characterStats;
+    public CharacterStats characterStats;
 
     private void Start()
     {
@@ -29,16 +29,19 @@ public class GameResult : MonoBehaviour
                 continueButton = found.GetComponent<Button>();
         }
 
-
         if (continueButton != null)
             continueButton.onClick.AddListener(OnPause);
     }
 
     private void Update()
     {
-        if (saneGameManager.isCharacterSpawned)
+
+        if (saveGameManager.isCharacterSpawned)
         {
-            characterStats = saneGameManager.playerStats;
+            if (characterStats == null)
+                characterStats = saveGameManager.playerStats;
+            else
+                return;
         }
 
         if (Input.GetKeyDown(KeyCode.Alpha9))
