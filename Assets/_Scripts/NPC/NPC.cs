@@ -121,7 +121,6 @@ public class NPC : MonoBehaviour
                     yield return new WaitForSeconds(0.05f);
 
                 }
-            //}
 
             yield return new WaitForSeconds(0.5f);
 
@@ -130,40 +129,78 @@ public class NPC : MonoBehaviour
         yesButton = GameObject.FindWithTag("YesBtn").GetComponent<Button>();
         yesButton.onClick.RemoveAllListeners();
 
-        // Nếu người chơi đã hoàn thành nhiệm vụ
+
         yesButton.onClick.AddListener(() =>
         {
             if (playerQuests.HasCompletedQuest(CurrentQuest))
             {
-                // giao nhiệm vụ
-                playerQuests.CompleteQuest(CurrentQuest);
-                chatText.text = $"Tốt lắm! Bạn nhận được {CurrentQuest.rewardAmount} vàng cho phần thưởng."; // ✅
+                QuestItem finishedQuest = CurrentQuest;
+                yesButton.gameObject.SetActive(false);
 
-
+                StartCoroutine(ShowAfterCompleteDialogue(finishedQuest));
             }
             else if (!playerQuests.questItems.Contains(CurrentQuest))
             {
-                // Giao nhiệm vụ nếu chưa nhận
                 playerQuests.TakeQuest(CurrentQuest);
                 chatText.text = $"Bạn đã nhận nhiệm vụ: {CurrentQuest.QuetsItemName}";
                 questGiven = true;
+
+                yesButton.gameObject.SetActive(false);
+                Invoke(nameof(HidePanel), 2f);
             }
             else
             {
-                // Nếu nhiệm vụ đang làm nhưng chưa hoàn thành
                 chatText.text = $"Bạn vẫn chưa hoàn thành nhiệm vụ: {CurrentQuest.QuetsItemName}";
+                yesButton.gameObject.SetActive(false);
+                Invoke(nameof(HidePanel), 2f);
             }
-
-            yesButton.gameObject.SetActive(false);
-            Invoke(nameof(HidePanel), 2f); 
         });
 
         isChating = false;
 
 
     }
- 
 
+    IEnumerator CompleteAfterDelay(float delay)
+    {
+        yield return new WaitForSeconds(delay);
+
+        playerQuests.CompleteQuest(CurrentQuest);
+        currentQuestIndex++;
+        questGiven = false;
+
+        if (currentQuestIndex >= questList.Count)
+        {
+            chatText.text = "Bạn đã hoàn thành tất cả nhiệm vụ rồi. Cảm ơn bạn.";
+        }
+
+        yesButton.gameObject.SetActive(false);
+        Invoke(nameof(HidePanel), 2f);
+    }
+    // đọc thoại khi xong
+    IEnumerator ShowAfterCompleteDialogue(QuestItem finishedQuest)
+    {
+        yield return new WaitForSeconds(1f);
+
+        string dialogue = string.IsNullOrEmpty(finishedQuest.completeDialogue)
+            ? $"Bạn đã hoàn thành nhiệm vụ và nhận được {finishedQuest.rewardAmount} vàng."
+            : finishedQuest.completeDialogue;
+
+        chatText.text = dialogue;
+
+        yield return new WaitForSeconds(2.5f);
+        playerQuests.CompleteQuest(finishedQuest);
+        currentQuestIndex++;
+        questGiven = false;
+
+        if (currentQuestIndex >= questList.Count)
+        {
+            chatText.text = "Bạn đã hoàn thành tất cả nhiệm vụ rồi. Cảm ơn bạn.";
+            yield return new WaitForSeconds(2f);
+        }
+
+        HidePanel();
+    }
     public void ManualTrigger()
     {
         if (isChating) return;
@@ -178,12 +215,11 @@ public class NPC : MonoBehaviour
 
         if (playerQuests.HasCompletedQuest(CurrentQuest))
         {
-            playerQuests.CompleteQuest(CurrentQuest);
             npcChatPanel.SetActive(true);
-            chatText.text = $"Tốt lắm! Bạn nhận được {CurrentQuest.rewardAmount} vàng cho phần thưởng."; // ✅
-            currentQuestIndex++;
-            questGiven = false;
-            Invoke(nameof(HidePanel), 2f);
+            yesButton.gameObject.SetActive(false);
+
+            QuestItem finishedQuest = CurrentQuest;
+            StartCoroutine(ShowAfterCompleteDialogue(finishedQuest));
         }
         else if (!questGiven)
         {
@@ -198,12 +234,6 @@ public class NPC : MonoBehaviour
             chatText.text = $"Nhiệm vụ chưa hoàn thành: {CurrentQuest.QuetsItemName}";
             Invoke(nameof(HidePanel), 2f);
         }
-        //if (npcType == NpcType.Merchant)
-        //{
-        //    // Mở cửa hàng thay vì giao nhiệm vụ
-        //    Debug.Log("Mở shop bán đồ.");
-        //    return;
-        //}
     }
 
 

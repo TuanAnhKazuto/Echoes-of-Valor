@@ -1,5 +1,6 @@
 ﻿using TMPro;
 using UnityEngine;
+using System.Collections;
 
 public class BossStats : MonoBehaviour
 {
@@ -10,9 +11,9 @@ public class BossStats : MonoBehaviour
     [Header("AI Control")]
     public Animator enemyAnimator;
     public EnemyHealthBar healthBar;
-    public TextMeshProUGUI levelText; // Hiển thị cấp độ boss
-    public TextMeshProUGUI nameText;  // Hiển thị tên boss
-    public GameObject bossUIRoot;     // Gốc chứa toàn bộ UI boss
+    public TextMeshProUGUI levelText;
+    public TextMeshProUGUI nameText;
+    public GameObject bossUIRoot;
 
     [Header("Base Stats")]
     public int level = 1;
@@ -36,27 +37,52 @@ public class BossStats : MonoBehaviour
     private SkeletonNecromancer enemyAI;
     private Transform player;
 
-   
-
     private void Awake()
     {
-        if (characterStats == null)
-            characterStats = FindAnyObjectByType<CharacterStats>();
-
+        // Tự động lấy AI
         enemyAI = GetComponent<SkeletonNecromancer>();
 
-        GameObject playerObj = GameObject.FindGameObjectWithTag("Player");
-        if (playerObj != null)
-            player = playerObj.transform;
+        // Bắt đầu coroutine đợi player spawn
+        StartCoroutine(FindPlayerAndStats());
+    }
+
+    private IEnumerator FindPlayerAndStats()
+    {
+        // Đợi player được spawn nếu dùng hệ thống Spawn
+        while (player == null || characterStats == null)
+        {
+            GameObject playerObj = GameObject.FindGameObjectWithTag("Player");
+            if (playerObj != null)
+            {
+                player = playerObj.transform;
+                characterStats = playerObj.GetComponent<CharacterStats>();
+            }
+
+            yield return null; // đợi 1 frame
+        }
     }
 
     private void Start()
     {
         currentHealth = maxHealth;
-        levelText.text = "Lv. " + level.ToString();
-        healthBar.UpdateHealth(currentHealth, maxHealth);
 
-        HideHealthUI(); // Ẩn UI lúc đầu
+        // Gán UI nếu chưa gán sẵn
+        if (bossUIRoot == null)
+            bossUIRoot = transform.Find("BossUIRoot")?.gameObject;
+
+        if (healthBar == null)
+            healthBar = GetComponentInChildren<EnemyHealthBar>();
+
+        if (levelText == null && bossUIRoot != null)
+            levelText = bossUIRoot.GetComponentInChildren<TextMeshProUGUI>();
+
+        if (levelText != null)
+            levelText.text = "Lv. " + level.ToString();
+
+        if (healthBar != null)
+            healthBar.UpdateHealth(currentHealth, maxHealth);
+
+        HideHealthUI();
     }
 
     private void Update()
@@ -78,7 +104,6 @@ public class BossStats : MonoBehaviour
     private void ShowHealthUI()
     {
         isPlayerNear = true;
-
         if (bossUIRoot != null && !bossUIRoot.activeSelf)
             bossUIRoot.SetActive(true);
     }
@@ -86,7 +111,6 @@ public class BossStats : MonoBehaviour
     private void HideHealthUI()
     {
         isPlayerNear = false;
-
         if (bossUIRoot != null && bossUIRoot.activeSelf)
             bossUIRoot.SetActive(false);
     }
@@ -97,30 +121,28 @@ public class BossStats : MonoBehaviour
         maxHealth += (int)healthPerLevel;
         baseDamage += damagePerLevel;
         currentHealth = maxHealth;
-        levelText.text = "Lv. " + level.ToString();
-        healthBar.UpdateHealth(currentHealth, maxHealth);
+
+        if (levelText != null)
+            levelText.text = "Lv. " + level.ToString();
+
+        if (healthBar != null)
+            healthBar.UpdateHealth(currentHealth, maxHealth);
     }
 
     public void TakeDamage(float damage)
     {
+        if (currentHealth <= 0) return;
+
         currentHealth -= (int)damage;
         currentHealth = Mathf.Clamp(currentHealth, 0, maxHealth);
-        healthBar.UpdateHealth(currentHealth, maxHealth);
+
+        if (healthBar != null)
+            healthBar.UpdateHealth(currentHealth, maxHealth);
 
         if (currentHealth <= 0)
         {
-            GameObject playerObj = GameObject.FindGameObjectWithTag("Player");
-            if (playerObj != null)
-            {
-                var playerQuest = playerObj.GetComponent<PlayerQuest>();
-                if (playerQuest != null)
-                {
-                    playerQuest.UpdateQuest(questTag);
-                }
-            }
-
-            HideHealthUI(); // Ẩn UI khi boss chết
-            Destroy(gameObject);
+            HandleDeath();
+            return;
         }
 
         if (!isLowHealth && currentHealth <= maxHealth / 2)
@@ -132,19 +154,37 @@ public class BossStats : MonoBehaviour
             {
                 baseDamage += 10;
                 if (enemyAI != null)
-                {
                     enemyAI.BoostSpeed(5f);
-                }
+
                 hasTransformed = true;
             }
         }
+    }
+
+    private void HandleDeath()
+    {
+        HideHealthUI();
+
+        GameObject playerObj = GameObject.FindGameObjectWithTag("Player");
+        if (playerObj != null)
+        {
+            var playerQuest = playerObj.GetComponent<PlayerQuest>();
+            if (playerQuest != null)
+                playerQuest.UpdateQuest(questTag);
+        }
+
+        if (enemyAI != null)
+            enemyAI.Die();
     }
 
     private void OnTriggerEnter(Collider other)
     {
         if (other.CompareTag("PlayerHitBox"))
         {
-            TakeDamage(characterStats.TotalDamage);
+            if (characterStats != null)
+                TakeDamage(characterStats.TotalDamage);
+            else
+                Debug.LogWarning("characterStats is null when hit by PlayerHitBox.");
         }
 
         if (other.CompareTag("PlayerSkill"))
@@ -152,6 +192,8 @@ public class BossStats : MonoBehaviour
             SkillInfo skillDamage = other.GetComponent<SkillInfo>();
             if (skillDamage != null)
                 TakeDamage(skillDamage.damgeSkill);
+            else
+                Debug.LogWarning("Missing SkillInfo on PlayerSkill object.");
         }
     }
 }

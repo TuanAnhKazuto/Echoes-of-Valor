@@ -6,7 +6,6 @@ public class QuestFollowTarget : MonoBehaviour
     private Transform player;
     public float hideDistance = 10f; // khoảng cách ẩn/hiện
     public float extraHeight = 0.5f;
-
     private Canvas canvas;
 
     void Start()

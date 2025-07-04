@@ -19,6 +19,8 @@ public class SkeletonNecromancer : MonoBehaviour
 
     private BossStats bossStats;
     private Coroutine spinAttackRoutine;
+    private bool isDead = false;
+    private bool isTrackingPlayer = false;
 
     public enum CharacterState
     {
@@ -30,19 +32,30 @@ public class SkeletonNecromancer : MonoBehaviour
 
     void Start()
     {
-        GameObject playerObj = GameObject.FindWithTag("Player");
-        if (playerObj != null)
-        {
-            target = playerObj.transform;
-        }
-
         originalePosition = transform.position;
         bossStats = GetComponent<BossStats>();
+
+        StartCoroutine(FindPlayerTarget());
+    }
+
+    private IEnumerator FindPlayerTarget()
+    {
+        while (target == null)
+        {
+            GameObject playerObj = GameObject.FindWithTag("Player");
+            if (playerObj != null)
+            {
+                target = playerObj.transform;
+                isTrackingPlayer = true;
+            }
+
+            yield return null; // đợi 1 frame
+        }
     }
 
     void Update()
     {
-        if (target == null) return;
+        if (isDead || !isTrackingPlayer || target == null) return;
 
         float distanceToTarget = Vector3.Distance(target.position, transform.position);
         float distanceToOrigin = Vector3.Distance(originalePosition, transform.position);
@@ -150,9 +163,25 @@ public class SkeletonNecromancer : MonoBehaviour
         }
     }
 
-    // ✅ Gọi hàm này khi Boss chuyển dạng
     public void BoostSpeed(float amount)
     {
         navMeshAgent.speed += amount;
+    }
+
+    public void Die()
+    {
+        if (isDead) return;
+
+        isDead = true;
+        navMeshAgent.isStopped = true;
+        animator.SetTrigger("Die");
+
+        StopSpinIfNeeded();
+        this.enabled = false;
+
+        Collider col = GetComponent<Collider>();
+        if (col != null) col.enabled = false;
+
+        Destroy(gameObject, 3f);
     }
 }
