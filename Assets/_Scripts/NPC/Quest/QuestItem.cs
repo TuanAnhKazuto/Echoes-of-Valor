@@ -12,6 +12,9 @@ public class QuestItem : MonoBehaviour
     public int rewardAmount = 100;
     [Header("Vị trí chỉ dẫn nhiệm vụ (tùy chọn)")]
     public Transform questLocation;
+    // thoại khi hoàn thành
+    [TextArea(2, 5)]
+    public string completeDialogue;
 
     [Header("Mô tả nhiệm vụ")]
     [TextArea(2, 5)]

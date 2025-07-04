@@ -1504,6 +1504,9 @@ MonoBehaviour:
   TargetItemtag: Item
   rewardAmount: 50
   questLocation: {fileID: 543450653696474102}
+  completeDialogue: "C\u1EA3m \u01A1n b\u1EA1n! Gi\u1EDD h\xE3y \u0111\u1EBFn khu
+    r\u1EEBng ph\xEDa \u0110\xF4ng \u0111\u1EC3 g\u1EB7p ng\u01B0\u1EDDi \u0111\u01B0a
+    th\u01B0.\n"
   description: "\u201CNg\u01B0\u1EDDi d\xE2n \u0111ang b\u1ECB Skeleton ph\xE1 r\u1ED1i,
     h\xE3y ti\xEAu di\u1EC7t ch\xFAng.\u201D"
   hint: "\u201CRa b\xECa r\u1EEBng ph\xEDa t\xE2y \u0111\u1EC3 t\xECm b\u1ECDn Skeleton.\u201D"
@@ -3258,6 +3261,10 @@ PrefabInstance:
     - target: {fileID: 3570489826529476478, guid: 057466769ba0df8408875d0538cae2e7, type: 3}
       propertyPath: TargetItemtag
       value: Enemy_Main
+      objectReference: {fileID: 0}
+    - target: {fileID: 3570489826529476478, guid: 057466769ba0df8408875d0538cae2e7, type: 3}
+      propertyPath: completeDialogue
+      value: "ch\xFAc m\u1EEBng gi\u1EDD h\xE3y \u0111\u1EBFn l\xE0ng \u0111i"
       objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
