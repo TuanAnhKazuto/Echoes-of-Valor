@@ -73,13 +73,13 @@ public class PlayerQuest : MonoBehaviour
         }
     }
 
-    // Kiểm tra nhiệm vụ đã hoàn thành
+    
     public bool HasCompletedQuest(QuestItem questItem)
     {
         return questItems.Contains(questItem) && questItem.IsComplete();
     }
 
-    // Trả nhiệm vụ, xóa khỏi danh sách và nhận vàng
+    
     public void CompleteQuest(QuestItem questItem)
     {
         if (HasCompletedQuest(questItem))
