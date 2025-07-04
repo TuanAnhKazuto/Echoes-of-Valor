@@ -1254,8 +1254,10 @@ GameObject:
   m_Component:
   - component: {fileID: 4878330041215445210}
   - component: {fileID: 6273308179463782836}
-  - component: {fileID: 1940443819401079136}
   - component: {fileID: 6847407132193323700}
+  - component: {fileID: 8246533032923648686}
+  - component: {fileID: 1940443819401079136}
+  - component: {fileID: -1906394197294519438}
   m_Layer: 0
   m_Name: GiaLang
   m_TagString: NPC
@@ -1307,27 +1309,6 @@ Animator:
   m_AllowConstantClipSamplingOptimization: 1
   m_KeepAnimatorStateOnDisable: 0
   m_WriteDefaultValuesOnDisable: 0
---- !u!65 &1940443819401079136
-BoxCollider:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 6629266651557617969}
-  m_Material: {fileID: 0}
-  m_IncludeLayers:
-    serializedVersion: 2
-    m_Bits: 0
-  m_ExcludeLayers:
-    serializedVersion: 2
-    m_Bits: 0
-  m_LayerOverridePriority: 0
-  m_IsTrigger: 1
-  m_ProvidesContacts: 0
-  m_Enabled: 1
-  serializedVersion: 3
-  m_Size: {x: 4.078637, y: 0.7229525, z: 2.4818354}
-  m_Center: {x: 0.030898096, y: 0.55300844, z: 0.7899127}
 --- !u!114 &6847407132193323700
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -1366,6 +1347,77 @@ MonoBehaviour:
   - {fileID: 3570489826529476478, guid: 057466769ba0df8408875d0538cae2e7, type: 3}
   - {fileID: 94500553823069728, guid: 00837975987da844ab961d0773f8e92f, type: 3}
   playerQuests: {fileID: 0}
+--- !u!136 &8246533032923648686
+CapsuleCollider:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 6629266651557617969}
+  m_Material: {fileID: 0}
+  m_IncludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_ExcludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_LayerOverridePriority: 0
+  m_IsTrigger: 0
+  m_ProvidesContacts: 0
+  m_Enabled: 1
+  serializedVersion: 2
+  m_Radius: 0.49297282
+  m_Height: 2.0660295
+  m_Direction: 1
+  m_Center: {x: -1.2025641e-11, y: 1.1466773, z: -0.007027179}
+--- !u!65 &1940443819401079136
+BoxCollider:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 6629266651557617969}
+  m_Material: {fileID: 0}
+  m_IncludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_ExcludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_LayerOverridePriority: 0
+  m_IsTrigger: 1
+  m_ProvidesContacts: 0
+  m_Enabled: 1
+  serializedVersion: 3
+  m_Size: {x: 4.078637, y: 0.7229525, z: 2.4818354}
+  m_Center: {x: 0.030898096, y: 0.55300844, z: 0.7899127}
+--- !u!54 &-1906394197294519438
+Rigidbody:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 6629266651557617969}
+  serializedVersion: 4
+  m_Mass: 1
+  m_Drag: 0
+  m_AngularDrag: 0.05
+  m_CenterOfMass: {x: 0, y: 0, z: 0}
+  m_InertiaTensor: {x: 1, y: 1, z: 1}
+  m_InertiaRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_IncludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_ExcludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_ImplicitCom: 1
+  m_ImplicitTensor: 1
+  m_UseGravity: 0
+  m_IsKinematic: 1
+  m_Interpolate: 0
+  m_Constraints: 0
+  m_CollisionDetection: 1
 --- !u!1 &7019479162482307331
 GameObject:
   m_ObjectHideFlags: 0

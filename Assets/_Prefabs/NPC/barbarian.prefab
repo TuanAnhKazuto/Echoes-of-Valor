@@ -430,9 +430,11 @@ GameObject:
   m_Component:
   - component: {fileID: 3614428877932804171}
   - component: {fileID: 2756539879680246703}
-  - component: {fileID: 821427696681870948}
   - component: {fileID: 8835601500180365127}
   - component: {fileID: 7104119817309547941}
+  - component: {fileID: 9093751962229122491}
+  - component: {fileID: 821427696681870948}
+  - component: {fileID: 1930930095559562530}
   m_Layer: 0
   m_Name: barbarian
   m_TagString: NPC
@@ -484,27 +486,6 @@ Animator:
   m_AllowConstantClipSamplingOptimization: 1
   m_KeepAnimatorStateOnDisable: 0
   m_WriteDefaultValuesOnDisable: 0
---- !u!65 &821427696681870948
-BoxCollider:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1343332333537823140}
-  m_Material: {fileID: 0}
-  m_IncludeLayers:
-    serializedVersion: 2
-    m_Bits: 0
-  m_ExcludeLayers:
-    serializedVersion: 2
-    m_Bits: 0
-  m_LayerOverridePriority: 0
-  m_IsTrigger: 1
-  m_ProvidesContacts: 0
-  m_Enabled: 1
-  serializedVersion: 3
-  m_Size: {x: 4.078637, y: 0.7229525, z: 2.4818354}
-  m_Center: {x: 0.030898096, y: 0.55300844, z: 0.7899127}
 --- !u!114 &8835601500180365127
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -524,6 +505,7 @@ MonoBehaviour:
   yesButton: {fileID: 0}
   panelSetup: {fileID: 0}
   playerController: {fileID: 0}
+  npcType: 0
   questChats:
   - lines:
     - "m\xE0y \u0111\xE3 nh\u1EADn nhi\u1EC7m v\u1EE5 1 "
@@ -558,6 +540,81 @@ MonoBehaviour:
   questTargetAmount: 1
   currentAmount: 0
   TargetItemtag: 
+  rewardAmount: 100
+  questLocation: {fileID: 0}
+  description: 
+  hint: 
+--- !u!136 &9093751962229122491
+CapsuleCollider:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1343332333537823140}
+  m_Material: {fileID: 0}
+  m_IncludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_ExcludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_LayerOverridePriority: 0
+  m_IsTrigger: 0
+  m_ProvidesContacts: 0
+  m_Enabled: 1
+  serializedVersion: 2
+  m_Radius: 0.5
+  m_Height: 2.0856044
+  m_Direction: 1
+  m_Center: {x: 0, y: 1.237389, z: 0}
+--- !u!65 &821427696681870948
+BoxCollider:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1343332333537823140}
+  m_Material: {fileID: 0}
+  m_IncludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_ExcludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_LayerOverridePriority: 0
+  m_IsTrigger: 1
+  m_ProvidesContacts: 0
+  m_Enabled: 1
+  serializedVersion: 3
+  m_Size: {x: 4.078637, y: 0.98562086, z: 2.4818354}
+  m_Center: {x: 0.030898098, y: 0.6843427, z: 0.78991264}
+--- !u!54 &1930930095559562530
+Rigidbody:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1343332333537823140}
+  serializedVersion: 4
+  m_Mass: 1
+  m_Drag: 0
+  m_AngularDrag: 0.05
+  m_CenterOfMass: {x: 0, y: 0, z: 0}
+  m_InertiaTensor: {x: 1, y: 1, z: 1}
+  m_InertiaRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_IncludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_ExcludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_ImplicitCom: 1
+  m_ImplicitTensor: 1
+  m_UseGravity: 0
+  m_IsKinematic: 1
+  m_Interpolate: 0
+  m_Constraints: 0
+  m_CollisionDetection: 1
 --- !u!1 &1721452658914073605
 GameObject:
   m_ObjectHideFlags: 0
