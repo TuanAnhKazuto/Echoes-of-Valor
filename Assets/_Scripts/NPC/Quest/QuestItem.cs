@@ -10,6 +10,8 @@ public class QuestItem : MonoBehaviour
     public int currentAmount ; //số lượng hiện tại 
     public string TargetItemtag; // tag của item cần tìm
     public int rewardAmount = 100;
+    [Header("Vị trí chỉ dẫn nhiệm vụ (tùy chọn)")]
+    public Transform questLocation;
 
     [Header("Mô tả nhiệm vụ")]
     [TextArea(2, 5)]

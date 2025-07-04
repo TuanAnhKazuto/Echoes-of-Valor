@@ -97,6 +97,10 @@ public class Arrow : MonoBehaviour
         if (health != null)
         {
             health.TakeDamage((int)damage);
+            // Hiệu ứng trừ Máu
+            Vector3 popupPos = enemy.transform.position + Vector3.up * 2f;
+            DamagePopupSpawner.Instance.ShowDamage(popupPos, (int)damage, Color.red);
+
         }
 
         if (hitEffect != null)

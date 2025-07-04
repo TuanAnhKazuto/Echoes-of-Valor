@@ -10,9 +10,9 @@ public class BossStats : MonoBehaviour
     [Header("AI Control")]
     public Animator enemyAnimator;
     public EnemyHealthBar healthBar;
-    public TextMeshProUGUI levelText; // Hiển thị cấp độ boss
-    public TextMeshProUGUI nameText;  // Hiển thị tên boss
-    public GameObject bossUIRoot;     // Gốc chứa toàn bộ UI boss
+    public TextMeshProUGUI levelText;
+    public TextMeshProUGUI nameText;
+    public GameObject bossUIRoot;
 
     [Header("Base Stats")]
     public int level = 1;
@@ -36,8 +36,6 @@ public class BossStats : MonoBehaviour
     private SkeletonNecromancer enemyAI;
     private Transform player;
 
-   
-
     private void Awake()
     {
         if (characterStats == null)
@@ -56,7 +54,7 @@ public class BossStats : MonoBehaviour
         levelText.text = "Lv. " + level.ToString();
         healthBar.UpdateHealth(currentHealth, maxHealth);
 
-        HideHealthUI(); // Ẩn UI lúc đầu
+        HideHealthUI();
     }
 
     private void Update()
@@ -103,24 +101,16 @@ public class BossStats : MonoBehaviour
 
     public void TakeDamage(float damage)
     {
+        if (currentHealth <= 0) return;
+
         currentHealth -= (int)damage;
         currentHealth = Mathf.Clamp(currentHealth, 0, maxHealth);
         healthBar.UpdateHealth(currentHealth, maxHealth);
 
         if (currentHealth <= 0)
         {
-            GameObject playerObj = GameObject.FindGameObjectWithTag("Player");
-            if (playerObj != null)
-            {
-                var playerQuest = playerObj.GetComponent<PlayerQuest>();
-                if (playerQuest != null)
-                {
-                    playerQuest.UpdateQuest(questTag);
-                }
-            }
-
-            HideHealthUI(); // Ẩn UI khi boss chết
-            Destroy(gameObject);
+            HandleDeath();
+            return;
         }
 
         if (!isLowHealth && currentHealth <= maxHealth / 2)
@@ -137,6 +127,26 @@ public class BossStats : MonoBehaviour
                 }
                 hasTransformed = true;
             }
+        }
+    }
+
+    private void HandleDeath()
+    {
+        HideHealthUI();
+
+        GameObject playerObj = GameObject.FindGameObjectWithTag("Player");
+        if (playerObj != null)
+        {
+            var playerQuest = playerObj.GetComponent<PlayerQuest>();
+            if (playerQuest != null)
+            {
+                playerQuest.UpdateQuest(questTag);
+            }
+        }
+
+        if (enemyAI != null)
+        {
+            enemyAI.Die(); // Gọi animator trigger "Die" và destroy sau đó
         }
     }
 

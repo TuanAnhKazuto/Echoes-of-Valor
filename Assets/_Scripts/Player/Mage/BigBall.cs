@@ -33,6 +33,8 @@ public class BigBall : MonoBehaviour
                 if (enemy != null)
                 {
                     enemy.TakeDamage(damages[i]);
+                    Vector3 popupPos = enemy.transform.position + Vector3.up * 2f;
+                    DamagePopupSpawner.Instance.ShowDamage(popupPos, (int)damages[i], Color.red);
                 }
             }
         }

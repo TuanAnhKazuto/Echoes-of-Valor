@@ -167,6 +167,8 @@ public class SkillController : MonoBehaviour
                     if (stats != null)
                     {
                         stats.TakeDamage(40f);
+                        Vector3 popupPos = hit.transform.position + Vector3.up * 2f;
+                        DamagePopupSpawner.Instance.ShowDamage(popupPos, 40, Color.red);
                     }
                 }
             }

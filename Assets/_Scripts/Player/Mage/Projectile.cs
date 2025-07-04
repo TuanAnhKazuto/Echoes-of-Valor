@@ -8,6 +8,7 @@ public class Projectile : MonoBehaviour
     public void Initialize(float damageAmount)
     {
         damage = damageAmount;
+
         Destroy(gameObject, 3f); 
     }
 
@@ -24,6 +25,8 @@ public class Projectile : MonoBehaviour
             if (enemy != null)
             {
                 enemy.TakeDamage(damage);
+                Vector3 popupPos = enemy.transform.position + Vector3.up * 2f;
+                DamagePopupSpawner.Instance.ShowDamage(popupPos, (int)damage, Color.red);
             }
 
             Destroy(gameObject); 
