@@ -72675,19 +72675,19 @@ PrefabInstance:
     - target: {fileID: 6115472370546269997, guid: 5e980f304a07c544da8720f6c853d2c1, type: 3}
       propertyPath: nameText
       value: 
-      objectReference: {fileID: 0}
+      objectReference: {fileID: 632479406}
     - target: {fileID: 6115472370546269997, guid: 5e980f304a07c544da8720f6c853d2c1, type: 3}
       propertyPath: healthBar
       value: 
-      objectReference: {fileID: 0}
+      objectReference: {fileID: 632479407}
     - target: {fileID: 6115472370546269997, guid: 5e980f304a07c544da8720f6c853d2c1, type: 3}
       propertyPath: levelText
       value: 
-      objectReference: {fileID: 0}
+      objectReference: {fileID: 632479405}
     - target: {fileID: 6115472370546269997, guid: 5e980f304a07c544da8720f6c853d2c1, type: 3}
       propertyPath: bossUIRoot
       value: 
-      objectReference: {fileID: 0}
+      objectReference: {fileID: 632479408}
     - target: {fileID: 6523245326600972667, guid: 5e980f304a07c544da8720f6c853d2c1, type: 3}
       propertyPath: m_LocalPosition.x
       value: -67.81683
@@ -72741,6 +72741,44 @@ PrefabInstance:
     m_AddedGameObjects: []
     m_AddedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 5e980f304a07c544da8720f6c853d2c1, type: 3}
+--- !u!114 &632479405 stripped
+MonoBehaviour:
+  m_CorrespondingSourceObject: {fileID: 2929307795495556863, guid: 5e980f304a07c544da8720f6c853d2c1, type: 3}
+  m_PrefabInstance: {fileID: 632479404}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: f4688fdb7df04437aeb418b961361dc5, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+--- !u!114 &632479406 stripped
+MonoBehaviour:
+  m_CorrespondingSourceObject: {fileID: 8303365808617268426, guid: 5e980f304a07c544da8720f6c853d2c1, type: 3}
+  m_PrefabInstance: {fileID: 632479404}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: f4688fdb7df04437aeb418b961361dc5, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+--- !u!114 &632479407 stripped
+MonoBehaviour:
+  m_CorrespondingSourceObject: {fileID: 535438929399386254, guid: 5e980f304a07c544da8720f6c853d2c1, type: 3}
+  m_PrefabInstance: {fileID: 632479404}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 592bdc31af283a54b895fbe6abd00fa4, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+--- !u!1 &632479408 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 1146212424761197132, guid: 5e980f304a07c544da8720f6c853d2c1, type: 3}
+  m_PrefabInstance: {fileID: 632479404}
+  m_PrefabAsset: {fileID: 0}
 --- !u!4 &632479413 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: 6523245326600972667, guid: 5e980f304a07c544da8720f6c853d2c1, type: 3}
@@ -168442,6 +168480,7 @@ MonoBehaviour:
   currentAmount: 0
   TargetItemtag: Enemy_Main
   rewardAmount: 1000
+  questLocation: {fileID: 0}
   description: "Ti\xEAu di\u1EC7t nh\u1EEFng t\xEAn cung th\u1EE7 c\xF3 \u0111\u1ED9i
     m\u0169."
   hint: "Ch\xFAng n\u1EB1m xa h\u01A1n v\xE0o khu r\u1EEBng b\xEAn ph\u1EA3i khi
