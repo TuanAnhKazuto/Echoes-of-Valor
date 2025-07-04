@@ -134,9 +134,7 @@ public class NPC : MonoBehaviour
         {
             if (playerQuests.HasCompletedQuest(CurrentQuest))
             {
-                QuestItem finishedQuest = CurrentQuest; // lưu lại tránh bị nhảy index
-
-                playerQuests.CompleteQuest(finishedQuest);
+                QuestItem finishedQuest = CurrentQuest;
                 yesButton.gameObject.SetActive(false);
 
                 StartCoroutine(ShowAfterCompleteDialogue(finishedQuest));
@@ -182,15 +180,16 @@ public class NPC : MonoBehaviour
     // đọc thoại khi xong
     IEnumerator ShowAfterCompleteDialogue(QuestItem finishedQuest)
     {
-        yield return new WaitForSeconds(1f); 
+        yield return new WaitForSeconds(1f);
 
         string dialogue = string.IsNullOrEmpty(finishedQuest.completeDialogue)
-            ? "Bạn đã hoàn thành nhiệm vụ!"
+            ? $"Bạn đã hoàn thành nhiệm vụ và nhận được {finishedQuest.rewardAmount} vàng."
             : finishedQuest.completeDialogue;
 
         chatText.text = dialogue;
 
-        yield return new WaitForSeconds(2.5f); 
+        yield return new WaitForSeconds(2.5f);
+        playerQuests.CompleteQuest(finishedQuest);
         currentQuestIndex++;
         questGiven = false;
 
