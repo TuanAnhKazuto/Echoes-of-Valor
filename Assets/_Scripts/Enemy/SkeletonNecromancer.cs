@@ -20,6 +20,7 @@ public class SkeletonNecromancer : MonoBehaviour
     private BossStats bossStats;
     private Coroutine spinAttackRoutine;
     private bool isDead = false;
+    private bool isTrackingPlayer = false;
 
     public enum CharacterState
     {
@@ -31,19 +32,30 @@ public class SkeletonNecromancer : MonoBehaviour
 
     void Start()
     {
-        GameObject playerObj = GameObject.FindWithTag("Player");
-        if (playerObj != null)
-        {
-            target = playerObj.transform;
-        }
-
         originalePosition = transform.position;
         bossStats = GetComponent<BossStats>();
+
+        StartCoroutine(FindPlayerTarget());
+    }
+
+    private IEnumerator FindPlayerTarget()
+    {
+        while (target == null)
+        {
+            GameObject playerObj = GameObject.FindWithTag("Player");
+            if (playerObj != null)
+            {
+                target = playerObj.transform;
+                isTrackingPlayer = true;
+            }
+
+            yield return null; // đợi 1 frame
+        }
     }
 
     void Update()
     {
-        if (isDead || target == null) return;
+        if (isDead || !isTrackingPlayer || target == null) return;
 
         float distanceToTarget = Vector3.Distance(target.position, transform.position);
         float distanceToOrigin = Vector3.Distance(originalePosition, transform.position);
@@ -156,7 +168,6 @@ public class SkeletonNecromancer : MonoBehaviour
         navMeshAgent.speed += amount;
     }
 
-    // ✅ Gọi khi boss chết
     public void Die()
     {
         if (isDead) return;
@@ -168,11 +179,9 @@ public class SkeletonNecromancer : MonoBehaviour
         StopSpinIfNeeded();
         this.enabled = false;
 
-        // Tắt collider nếu cần
         Collider col = GetComponent<Collider>();
         if (col != null) col.enabled = false;
 
-        // Xoá game object sau 3 giây (hoặc thời gian animation Death)
         Destroy(gameObject, 3f);
     }
 }
