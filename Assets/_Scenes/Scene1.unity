@@ -103920,6 +103920,7 @@ MonoBehaviour:
   currentAmount: 0
   TargetItemtag: 
   rewardAmount: 0
+  questLocation: {fileID: 0}
   description: "\u0110\u1EBFn l\xE0ng g\u1EB7p Grok c\u1EF1u chi\u1EBFn binh"
   hint: "\u0110i th\u1EB3ng ph\xEDa \u0111\u01B0\u1EDDng m\xF2n"
 --- !u!4 &578498784
@@ -198524,6 +198525,63 @@ Transform:
   m_CorrespondingSourceObject: {fileID: 2065004245279738417, guid: 6d35f3befa11c3f49ac6b0964dd94444, type: 3}
   m_PrefabInstance: {fileID: 1029274314}
   m_PrefabAsset: {fileID: 0}
+--- !u!1001 &1029417618
+PrefabInstance:
+  m_ObjectHideFlags: 0
+  serializedVersion: 2
+  m_Modification:
+    serializedVersion: 3
+    m_TransformParent: {fileID: 0}
+    m_Modifications:
+    - target: {fileID: 6770937028485134880, guid: 29a1be644aebe8e438f592da667c4bf8, type: 3}
+      propertyPath: m_LocalPosition.x
+      value: 7.3643775
+      objectReference: {fileID: 0}
+    - target: {fileID: 6770937028485134880, guid: 29a1be644aebe8e438f592da667c4bf8, type: 3}
+      propertyPath: m_LocalPosition.y
+      value: 3.015215
+      objectReference: {fileID: 0}
+    - target: {fileID: 6770937028485134880, guid: 29a1be644aebe8e438f592da667c4bf8, type: 3}
+      propertyPath: m_LocalPosition.z
+      value: 4.4792824
+      objectReference: {fileID: 0}
+    - target: {fileID: 6770937028485134880, guid: 29a1be644aebe8e438f592da667c4bf8, type: 3}
+      propertyPath: m_LocalRotation.w
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 6770937028485134880, guid: 29a1be644aebe8e438f592da667c4bf8, type: 3}
+      propertyPath: m_LocalRotation.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 6770937028485134880, guid: 29a1be644aebe8e438f592da667c4bf8, type: 3}
+      propertyPath: m_LocalRotation.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 6770937028485134880, guid: 29a1be644aebe8e438f592da667c4bf8, type: 3}
+      propertyPath: m_LocalRotation.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 6770937028485134880, guid: 29a1be644aebe8e438f592da667c4bf8, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 6770937028485134880, guid: 29a1be644aebe8e438f592da667c4bf8, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 6770937028485134880, guid: 29a1be644aebe8e438f592da667c4bf8, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 7289708376347514893, guid: 29a1be644aebe8e438f592da667c4bf8, type: 3}
+      propertyPath: m_Name
+      value: QuestMarkerManager
+      objectReference: {fileID: 0}
+    m_RemovedComponents: []
+    m_RemovedGameObjects: []
+    m_AddedGameObjects: []
+    m_AddedComponents: []
+  m_SourcePrefab: {fileID: 100100000, guid: 29a1be644aebe8e438f592da667c4bf8, type: 3}
 --- !u!1 &1029680051 stripped
 GameObject:
   m_CorrespondingSourceObject: {fileID: 919132149155446097, guid: effa14375a650e44b83200148fd559c1, type: 3}
@@ -346016,7 +346074,7 @@ GameObject:
   - component: {fileID: 1707359570}
   - component: {fileID: 1707359569}
   m_Layer: 0
-  m_Name: QuesstC
+  m_Name: QuestC
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -346039,7 +346097,9 @@ MonoBehaviour:
   currentAmount: 0
   TargetItemtag: Enemy_Side
   rewardAmount: 100
-  description: "Ti\xEAu di\u1EC7t 1  t\xEAn Bone Wraith"
+  questLocation: {fileID: 1840903074}
+  description: "Ti\xEAu di\u1EC7t 1  t\xEAn Bone Wraith tr\u1EDF l\u1EA1i khi ho\xE0n
+    th\xE0nh nhi\u1EC7m v\u1EE5"
   hint: "Di chuy\u1EC3n t\u1EDBi \u0111\u01B0\u1EDDng m\xF2n ph\xEDa b\xEAn ph\u1EA3i"
 --- !u!4 &1707359570
 Transform:
@@ -374536,6 +374596,11 @@ MeshCollider:
   m_Convex: 0
   m_CookingOptions: 30
   m_Mesh: {fileID: 1558066980788563671, guid: 3bb2689b1e95b774084828267e86bec4, type: 3}
+--- !u!4 &1840903074 stripped
+Transform:
+  m_CorrespondingSourceObject: {fileID: 7713735878304070000, guid: a241dca576e4aa4498e622aac9d9f321, type: 3}
+  m_PrefabInstance: {fileID: 1423807415}
+  m_PrefabAsset: {fileID: 0}
 --- !u!1 &1841042698 stripped
 GameObject:
   m_CorrespondingSourceObject: {fileID: 919132149155446097, guid: 65e09aa143aef994cbe30fae27865e24, type: 3}
@@ -451031,6 +451096,7 @@ SceneRoots:
   - {fileID: 1870020745}
   - {fileID: 898252890}
   - {fileID: 404539315}
+  - {fileID: 1029417618}
   - {fileID: 171870196}
   - {fileID: 67325077}
   - {fileID: 1816435172}

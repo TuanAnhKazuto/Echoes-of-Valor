@@ -31,7 +31,6 @@ public class PlayerQuest : MonoBehaviour
             markerManager = FindAnyObjectByType<QuestMarkerManager>();
         }
 
-
     }
     public void TakeQuest(QuestItem questItem)
     {

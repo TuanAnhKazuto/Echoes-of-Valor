@@ -34,7 +34,7 @@ public class Tutorial : MonoBehaviour
             return;
         }
 
-        Time.timeScale = 0f;
+        //Time.timeScale = 0f;
         StartCoroutine(WaitForPlayer());
 
         welcomePanel.SetActive(true);
