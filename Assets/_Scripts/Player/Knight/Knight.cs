@@ -72,6 +72,7 @@ public class Knight : MonoBehaviour
         if (Input.GetMouseButton(0))
         {
             anim.SetBool("IsAttack", true);
+            FindClosestEnemy();
             player.canMove = false;
         }
         else

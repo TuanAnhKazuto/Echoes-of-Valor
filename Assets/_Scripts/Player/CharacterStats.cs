@@ -120,6 +120,12 @@ public class CharacterStats : MonoBehaviour
             EnemyStats enemyStats = other.GetComponentInParent<EnemyStats>();
             TakeDamage(enemyStats.baseDamage);
         }
+
+        if(other.gameObject.CompareTag("BossHitBox"))
+        {
+            BossGolem bossGolem = other.GetComponentInParent<BossGolem>();
+            TakeDamage(bossGolem.baseDamage);
+        }
     }
 
     private void Update()

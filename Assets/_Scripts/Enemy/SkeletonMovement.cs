@@ -115,7 +115,7 @@ public class SkeletonMovement : MonoBehaviour
         }
     }
 
-    private void Movement()
+    public void Movement()
     {
         float distance = Vector3.Distance(transform.position, player.position);
 
