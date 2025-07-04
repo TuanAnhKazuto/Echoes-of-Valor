@@ -27,6 +27,9 @@ public class EnemyStats : MonoBehaviour
     [Header("Quest")]
     public string questTag = "Enemy_Main";
 
+    [Header("VFX")]
+    public GameObject damagePopupPrefab;
+
     private void Start()
     {
         skeletonMovement = GetComponent<SkeletonMovement>();
@@ -35,6 +38,7 @@ public class EnemyStats : MonoBehaviour
         skeletonMovement.animator.SetFloat("HP", currentHealth);
         levelText.text = "Lv. " + level.ToString();
         healthBar.UpdateHealth(currentHealth, maxHealth);
+
     }
 
     public void LevelUp()
@@ -54,7 +58,14 @@ public class EnemyStats : MonoBehaviour
         skeletonMovement.animator.SetFloat("HP", currentHealth);
 
         skeletonMovement.animator.SetLayerWeight(1, 0.7f);
-        skeletonMovement.animator.SetBool("Hit", true); 
+        skeletonMovement.animator.SetBool("Hit", true);
+
+        if (damagePopupPrefab != null)
+        {
+            GameObject popup = Instantiate(damagePopupPrefab, transform.position + Vector3.up * 2f, Quaternion.identity);
+            popup.SetActive(true); 
+            popup.GetComponent<DamagePopup>().Setup((int)damage, Color.red);
+        }
 
         if (currentHealth <= 0)
         {
