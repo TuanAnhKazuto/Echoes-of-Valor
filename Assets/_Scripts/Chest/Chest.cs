@@ -32,10 +32,8 @@ public class Chest : MonoBehaviour
 
     void OpenChest()
     {
-        // Tạo danh sách vật phẩm
         List<GameObject> itemList = new List<GameObject> { hpPrefab, mpPrefab, expPrefab, corPrefab };
 
-        // Random 2 vật phẩm khác nhau
         for (int i = 0; i < 2; i++)
         {
             if (itemList.Count == 0) break;
@@ -44,8 +42,7 @@ public class Chest : MonoBehaviour
             GameObject selectedItem = itemList[randomIndex];
 
             DropItem(selectedItem);
-
-            itemList.RemoveAt(randomIndex); // Xóa khỏi danh sách để không trùng
+            itemList.RemoveAt(randomIndex);
         }
     }
 
@@ -57,7 +54,9 @@ public class Chest : MonoBehaviour
         Rigidbody rb = item.GetComponent<Rigidbody>();
         if (rb != null)
         {
-            Vector3 force = new Vector3(Random.Range(-1f, 5f), Random.Range(5f, 7f), Random.Range(-1f, 5f));
+            // Hướng trước mặt rương (có thể chỉnh độ lệch nhỏ)
+            Vector3 forward = transform.forward.normalized;
+            Vector3 force = forward * Random.Range(4f, 6f) + Vector3.up * Random.Range(4f, 6f);
             rb.AddForce(force, ForceMode.Impulse);
         }
     }
