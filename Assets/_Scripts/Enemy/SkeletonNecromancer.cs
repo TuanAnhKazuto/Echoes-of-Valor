@@ -30,10 +30,17 @@ public class SkeletonNecromancer : MonoBehaviour
     }
     public CharacterState currentState;
 
+    [Header("Audio Settings")]
+    public AudioClip attackSound;        // Nếu muốn phát khi vung đòn
+    public AudioClip spinAttackSound;    // Khi tấn công quay
+    public AudioClip hitSound;           // ✅ Khi trúng đòn
+    private AudioSource audioSource;
+
     void Start()
     {
         originalePosition = transform.position;
         bossStats = GetComponent<BossStats>();
+        audioSource = GetComponent<AudioSource>();
 
         StartCoroutine(FindPlayerTarget());
     }
@@ -49,7 +56,7 @@ public class SkeletonNecromancer : MonoBehaviour
                 isTrackingPlayer = true;
             }
 
-            yield return null; // đợi 1 frame
+            yield return null;
         }
     }
 
@@ -183,5 +190,32 @@ public class SkeletonNecromancer : MonoBehaviour
         if (col != null) col.enabled = false;
 
         Destroy(gameObject, 3f);
+    }
+
+    // ✅ Gọi từ Animation Event đúng lúc ra đòn
+    public void DealDamageToPlayer()
+    {
+        if (target != null && bossStats != null)
+        {
+            CharacterStats playerStats = target.GetComponent<CharacterStats>();
+            if (playerStats != null)
+            {
+                playerStats.TakeDamage(bossStats.baseDamage);
+
+                if (hitSound != null && audioSource != null)
+                {
+                    audioSource.pitch = Random.Range(0.95f, 1.05f); // chống lặp đều
+                    audioSource.PlayOneShot(hitSound);
+                    audioSource.pitch = 1f;
+                }
+            }
+        }
+    }
+
+    // (Tuỳ chọn) Gọi từ Animation Event nếu muốn phát âm xoay
+    public void PlaySpinAttackSound()
+    {
+        if (spinAttackSound != null && audioSource != null)
+            audioSource.PlayOneShot(spinAttackSound);
     }
 }
