@@ -28,6 +28,10 @@ public class BossStats : MonoBehaviour
     [Header("Health Bar Settings")]
     public float showHealthRange = 10f;
 
+    [Header("Low Health VFX")]
+    public GameObject lowHealthVFXPrefab;
+    private GameObject activeLowHealthVFX;
+
     [HideInInspector] public bool isLowHealth = false;
     private bool hasTransformed = false;
     private bool isPlayerNear = false;
@@ -39,16 +43,16 @@ public class BossStats : MonoBehaviour
 
     private void Awake()
     {
-        // Tự động lấy AI
         enemyAI = GetComponent<SkeletonNecromancer>();
-
-        // Bắt đầu coroutine đợi player spawn
         StartCoroutine(FindPlayerAndStats());
+
+        // Ngăn VFX chạy ngay khi load
+        if (activeLowHealthVFX != null)
+            Destroy(activeLowHealthVFX);
     }
 
     private IEnumerator FindPlayerAndStats()
     {
-        // Đợi player được spawn nếu dùng hệ thống Spawn
         while (player == null || characterStats == null)
         {
             GameObject playerObj = GameObject.FindGameObjectWithTag("Player");
@@ -57,16 +61,15 @@ public class BossStats : MonoBehaviour
                 player = playerObj.transform;
                 characterStats = playerObj.GetComponent<CharacterStats>();
             }
-
-            yield return null; // đợi 1 frame
+            yield return null;
         }
     }
 
     private void Start()
     {
+        lowHealthVFXPrefab.SetActive(false);
         currentHealth = maxHealth;
 
-        // Gán UI nếu chưa gán sẵn
         if (bossUIRoot == null)
             bossUIRoot = transform.Find("BossUIRoot")?.gameObject;
 
@@ -83,6 +86,10 @@ public class BossStats : MonoBehaviour
             healthBar.UpdateHealth(currentHealth, maxHealth);
 
         HideHealthUI();
+
+        // Đảm bảo tắt VFX ngay khi bắt đầu
+        if (activeLowHealthVFX != null)
+            Destroy(activeLowHealthVFX);
     }
 
     private void Update()
@@ -145,17 +152,25 @@ public class BossStats : MonoBehaviour
             return;
         }
 
+        // Nếu máu < 50% và chưa ở trạng thái LowHealth
         if (!isLowHealth && currentHealth <= maxHealth / 2)
         {
             isLowHealth = true;
             enemyAnimator?.SetBool("LowHealth", true);
 
+            // ✅ Bật VFX
+            if (lowHealthVFXPrefab != null && activeLowHealthVFX == null)
+            {
+                lowHealthVFXPrefab.SetActive(true);
+                
+            }
+
+            // ✅ Tăng sức mạnh
             if (!hasTransformed)
             {
                 baseDamage += 10;
                 if (enemyAI != null)
                     enemyAI.BoostSpeed(5f);
-
                 hasTransformed = true;
             }
         }
@@ -164,6 +179,9 @@ public class BossStats : MonoBehaviour
     private void HandleDeath()
     {
         HideHealthUI();
+
+        if (activeLowHealthVFX != null)
+            Destroy(activeLowHealthVFX); // ✅ Tắt VFX khi chết
 
         GameObject playerObj = GameObject.FindGameObjectWithTag("Player");
         if (playerObj != null)
@@ -183,8 +201,6 @@ public class BossStats : MonoBehaviour
         {
             if (characterStats != null)
                 TakeDamage(characterStats.TotalDamage);
-            else
-                Debug.LogWarning("characterStats is null when hit by PlayerHitBox.");
         }
 
         if (other.CompareTag("PlayerSkill"))
@@ -192,8 +208,6 @@ public class BossStats : MonoBehaviour
             SkillInfo skillDamage = other.GetComponent<SkillInfo>();
             if (skillDamage != null)
                 TakeDamage(skillDamage.damgeSkill);
-            else
-                Debug.LogWarning("Missing SkillInfo on PlayerSkill object.");
         }
     }
 }

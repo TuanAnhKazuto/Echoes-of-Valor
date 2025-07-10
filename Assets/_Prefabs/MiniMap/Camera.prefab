@@ -114,6 +114,8 @@ GameObject:
   - component: {fileID: 1332370032423841406}
   - component: {fileID: 9219181000286720317}
   - component: {fileID: 4370453603147333073}
+  - component: {fileID: 7372497261844088494}
+  - component: {fileID: 2469998893564857309}
   m_Layer: 0
   m_Name: Camera
   m_TagString: Untagged
@@ -129,7 +131,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 5813407165979683021}
   serializedVersion: 2
-  m_LocalRotation: {x: 0.7007746, y: 0.010286897, z: -0.010074798, w: 0.71323746}
+  m_LocalRotation: {x: 0.7007746, y: 0.010286899, z: -0.0100748, w: 0.71323746}
   m_LocalPosition: {x: 266.8, y: 59.190002, z: -94.654}
   m_LocalScale: {x: 0.96441895, y: 0.96441907, z: 0.96441907}
   m_ConstrainProportionsScale: 0
@@ -245,6 +247,40 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   Player: {fileID: 0}
+  saveGameManager: {fileID: 0}
+--- !u!114 &7372497261844088494
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 5813407165979683021}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 3725b899c19b834458345c17d79f3ceb, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  player: {fileID: 0}
+  followOffset: {x: 0, y: 20, z: 0}
+  isBigMapMode: 0
+  panSpeed: 50
+  zoomSpeed: 500
+  minZoom: 10
+  maxZoom: 200
+  mousePanSpeed: 10
+--- !u!114 &2469998893564857309
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 5813407165979683021}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 38ec4d49df6eddf4a9144eb06ec2b55c, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  offset: {x: 0, y: 20, z: 0}
 --- !u!1 &6155041904890688560
 GameObject:
   m_ObjectHideFlags: 0
