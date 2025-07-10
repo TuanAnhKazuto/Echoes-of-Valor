@@ -10,7 +10,7 @@ public class ComponentInUI3DCam : MonoBehaviour
     [Header("Rogue Weapon Setup")]
     public GameObject RogueWeapon;
     public GameObject BowUIObj;
-    public GameObject KnifeUIObj;
+    public GameObject QuiverUIObj;
 
     [Header("Mage Weapon Setup")]
     public GameObject MageWeapon;

@@ -35,7 +35,6 @@ public class GameResult : MonoBehaviour
 
     private void Update()
     {
-
         if (saveGameManager.isCharacterSpawned)
         {
             if (characterStats == null)

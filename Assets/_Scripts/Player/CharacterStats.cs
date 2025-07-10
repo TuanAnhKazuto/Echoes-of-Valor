@@ -124,6 +124,11 @@ public class CharacterStats : MonoBehaviour
         if(other.gameObject.CompareTag("BossHitBox"))
         {
             BossGolem bossGolem = other.GetComponentInParent<BossGolem>();
+            BossStats bossStats = other.GetComponentInParent<BossStats>();
+            if (bossStats != null)
+            { 
+                TakeDamage(bossStats.baseDamage);
+            }
             TakeDamage(bossGolem.baseDamage);
         }
     }

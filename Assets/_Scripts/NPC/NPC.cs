@@ -5,6 +5,7 @@ using TMPro;
 using Unity.VisualScripting;
 using UnityEngine;
 using UnityEngine.UI;
+using static NPC;
 
 public class NPC : MonoBehaviour
 {
@@ -18,7 +19,6 @@ public class NPC : MonoBehaviour
     public NpcChatSetup panelSetup;
     private bool questGiven = false;
 
-
     // khóa di chuyển 
     public PlayerController playerController;
 
@@ -28,10 +28,16 @@ public class NPC : MonoBehaviour
         MainQuest,
         SideQuest,
         Merchant,
-        Boss
     }
     public NpcType npcType;
-
+    // dựa chọn phản hồi
+    [System.Serializable]
+    public class DialogueChoice
+    {
+        public string choiceText;
+        [TextArea(2, 5)]
+        public List<string> followUpLines;
+    }
     // đoạn chat
     [System.Serializable]
     public class QuestDialogue
@@ -39,10 +45,12 @@ public class NPC : MonoBehaviour
         [TextArea(2, 5)]
         public List<string> lines;
     }
+    // đoạn thoại lựa chọn
+    [Header("Lựa chọn phản hồi")]
+    public List<DialogueChoice> dialogueChoices = new();
     // đoạn thoại cốt truyện
     [Header("Đoạn thoại theo từng nhiệm vụ")]
     public List<QuestDialogue> questChats = new List<QuestDialogue>();
-
     // nhiệm vụ
     public List<QuestItem> questList;  
     private int currentQuestIndex = 0;
@@ -125,36 +133,44 @@ public class NPC : MonoBehaviour
             yield return new WaitForSeconds(0.5f);
 
         }
-        yesButton.gameObject.SetActive(true);
-        yesButton = GameObject.FindWithTag("YesBtn").GetComponent<Button>();
-        yesButton.onClick.RemoveAllListeners();
+        // ⬇️ THÊM ĐOẠN NÀY SAU KHI KẾT THÚC CHAT MỞ ĐẦU
+        yield return new WaitForSeconds(0.3f);
 
-
-        yesButton.onClick.AddListener(() =>
+        if (dialogueChoices.Count > 0)
         {
-            if (playerQuests.HasCompletedQuest(CurrentQuest))
-            {
-                QuestItem finishedQuest = CurrentQuest;
-                yesButton.gameObject.SetActive(false);
+            ShowDialogueChoices();
+            yield break; 
+        }
+        else
+        {
+            yesButton.gameObject.SetActive(true);
+            yesButton = GameObject.FindWithTag("YesBtn").GetComponent<Button>();
+            yesButton.onClick.RemoveAllListeners();
 
-                StartCoroutine(ShowAfterCompleteDialogue(finishedQuest));
-            }
-            else if (!playerQuests.questItems.Contains(CurrentQuest))
+            yesButton.onClick.AddListener(() =>
             {
-                playerQuests.TakeQuest(CurrentQuest);
-                chatText.text = $"Bạn đã nhận nhiệm vụ: {CurrentQuest.QuetsItemName}";
-                questGiven = true;
-
-                yesButton.gameObject.SetActive(false);
-                Invoke(nameof(HidePanel), 2f);
-            }
-            else
-            {
-                chatText.text = $"Bạn vẫn chưa hoàn thành nhiệm vụ: {CurrentQuest.QuetsItemName}";
-                yesButton.gameObject.SetActive(false);
-                Invoke(nameof(HidePanel), 2f);
-            }
-        });
+                if (playerQuests.HasCompletedQuest(CurrentQuest))
+                {
+                    QuestItem finishedQuest = CurrentQuest;
+                    yesButton.gameObject.SetActive(false);
+                    StartCoroutine(ShowAfterCompleteDialogue(finishedQuest));
+                }
+                else if (!playerQuests.questItems.Contains(CurrentQuest))
+                {
+                    playerQuests.TakeQuest(CurrentQuest);
+                    chatText.text = $"Bạn đã nhận nhiệm vụ: {CurrentQuest.QuetsItemName}";
+                    questGiven = true;
+                    yesButton.gameObject.SetActive(false);
+                    Invoke(nameof(HidePanel), 2f);
+                }
+                else
+                {
+                    chatText.text = $"Bạn vẫn chưa hoàn thành nhiệm vụ: {CurrentQuest.QuetsItemName}";
+                    yesButton.gameObject.SetActive(false);
+                    Invoke(nameof(HidePanel), 2f);
+                }
+            });
+        }
 
         isChating = false;
 
@@ -236,6 +252,78 @@ public class NPC : MonoBehaviour
         }
     }
 
+    void ShowDialogueChoices()
+    {
+        for (int i = 0; i < panelSetup.choiceButtons.Count; i++)
+        {
+            if (i < dialogueChoices.Count)
+            {
+                panelSetup.choiceButtons[i].gameObject.SetActive(true);
+                panelSetup.choiceTexts[i].text = dialogueChoices[i].choiceText;
+
+                int index = i; // tránh lỗi delegate closure
+                panelSetup.choiceButtons[i].onClick.RemoveAllListeners();
+                panelSetup.choiceButtons[i].onClick.AddListener(() =>
+                {
+                    HideAllChoiceButtons();
+                    StartCoroutine(PlayFollowUpDialogue(dialogueChoices[index].followUpLines));
+                });
+            }
+            else
+            {
+                panelSetup.choiceButtons[i].gameObject.SetActive(false);
+            }
+        }
+    }
+    void HideAllChoiceButtons()
+    {
+        foreach (var btn in panelSetup.choiceButtons)
+        {
+            btn.gameObject.SetActive(false);
+        }
+    }
+    IEnumerator PlayFollowUpDialogue(List<string> lines)
+    {
+        foreach (var line in lines)
+        {
+            chatText.text = "";
+            for (int i = 0; i < line.Length; i++)
+            {
+                chatText.text += line[i];
+                yield return new WaitForSeconds(0.03f);
+            }
+
+            yield return new WaitUntil(() => Input.GetMouseButtonDown(0) || Input.GetKeyDown(KeyCode.Return));
+        }
+
+       
+        yesButton.gameObject.SetActive(true);
+        yesButton.onClick.RemoveAllListeners();
+
+        yesButton.onClick.AddListener(() =>
+        {
+            if (playerQuests.HasCompletedQuest(CurrentQuest))
+            {
+                QuestItem finishedQuest = CurrentQuest;
+                yesButton.gameObject.SetActive(false);
+                StartCoroutine(ShowAfterCompleteDialogue(finishedQuest));
+            }
+            else if (!playerQuests.questItems.Contains(CurrentQuest))
+            {
+                playerQuests.TakeQuest(CurrentQuest);
+                chatText.text = $"Bạn đã nhận nhiệm vụ: {CurrentQuest.QuetsItemName}";
+                questGiven = true;
+                yesButton.gameObject.SetActive(false);
+                Invoke(nameof(HidePanel), 2f);
+            }
+            else
+            {
+                chatText.text = $"Bạn vẫn chưa hoàn thành nhiệm vụ: {CurrentQuest.QuetsItemName}";
+                yesButton.gameObject.SetActive(false);
+                Invoke(nameof(HidePanel), 2f);
+            }
+        });
+    }
 
     // Nhận nhiệm vụ và đóng bảng chat
     public void HidePanel()
