@@ -13,7 +13,7 @@ public class WeaponUI3DSetup : MonoBehaviour
     public Sprite imageSword;
     public Sprite imageShield;
     public Sprite imageBow;
-    public Sprite imageKnife;
+    public Sprite imageQuiver;
     public Sprite imageStaff;
     public Sprite imageMageBook;
 
@@ -66,30 +66,46 @@ public class WeaponUI3DSetup : MonoBehaviour
         else if (saveGameManager.playerStats.characterClass == "Rogue")
         {
             wpBtn01.sprite = imageBow;
-            wpBtn02.gameObject.SetActive(false);
-
-            for (int i = 0; i >= 2; i++)
-            {
-                updateWpUI[i].weaponStats = saveGameManager.equippedWeapons[i].GetComponent<WeaponStats>();
-            }
+            wpBtn02.sprite = imageQuiver;
 
             UI3DCam.RogueWeapon.SetActive(true);
-            tabsController.weaponObj[0] = UI3DCam.BowUIObj;
-            tabsController.weaponObj[1] = UI3DCam.KnifeUIObj;
+
+            for (int i = 0; i <= 1; i++)
+            {
+                updateWpUI[i].weaponStats = saveGameManager.equippedWeapons[i].GetComponent<WeaponStats>();
+                if (i == 0)
+                {
+                    updateWpUI[i].linkIndexWp2UI = UI3DCam.BowUIObj.GetComponent<LinkIndexWp2UI>();
+                    tabsController.weaponObj[i] = UI3DCam.BowUIObj;
+                }
+                if (i == 1)
+                {
+                    updateWpUI[i].linkIndexWp2UI = UI3DCam.QuiverUIObj.GetComponent<LinkIndexWp2UI>();
+                    tabsController.weaponObj[i] = UI3DCam.QuiverUIObj;
+                }
+            }
         }
         else if (saveGameManager.playerStats.characterClass == "Mage")
         {
             wpBtn01.sprite = imageStaff;
             wpBtn02.sprite = imageMageBook;
 
-            for (int i = 0; i >= 2; i++)
+            UI3DCam.MageWeapon.SetActive(true);
+
+            for (int i = 0; i <= 1; i++)
             {
                 updateWpUI[i].weaponStats = saveGameManager.equippedWeapons[i].GetComponent<WeaponStats>();
+                if (i == 0)
+                {
+                    updateWpUI[i].linkIndexWp2UI = UI3DCam.StaffUIObj.GetComponent<LinkIndexWp2UI>();
+                    tabsController.weaponObj[i] = UI3DCam.StaffUIObj;
+                }
+                if (i == 1)
+                {
+                    updateWpUI[i].linkIndexWp2UI = UI3DCam.MageBookUIObj.GetComponent<LinkIndexWp2UI>();
+                    tabsController.weaponObj[i] = UI3DCam.MageBookUIObj;
+                }
             }
-
-            UI3DCam.MageWeapon.SetActive(true);
-            tabsController.weaponObj[0] = UI3DCam.StaffUIObj;
-            tabsController.weaponObj[1] = UI3DCam.MageBookUIObj;
         }
     }
 }

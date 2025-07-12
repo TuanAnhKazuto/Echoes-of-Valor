@@ -54,9 +54,6 @@ public class PaneQuest : MonoBehaviour
         foreach (var item in questItems)
         {
             var questItem = Instantiate(questItemPrefab, questItemPrefab.transform.parent);
-            //questItem.text = $"{item.QuetsItemName} : {item.currentAmount}/{item.questTargetAmount}";
-            //questItem.text = $"{item.QuetsItemName} : {item.currentAmount}/{item.questTargetAmount}" +
-            //     (item.IsComplete() ? " (Hoàn thành)" : "");
             questItem.text =
     $"<b><size=110%><color=#FFD700>{item.QuetsItemName}</color></size></b>\n" +
     $"<size=90%><i><color=#C0C0C0>{item.description}</color></i></size>\n" +
