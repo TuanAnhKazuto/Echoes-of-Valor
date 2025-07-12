@@ -168037,7 +168037,7 @@ MonoBehaviour:
   currentAmount: 0
   TargetItemtag: Enemy_Main
   rewardAmount: 1000
-  questLocation: {fileID: 1114620850}
+  questLocation: {fileID: 268417931}
   completeDialogue: 
   description: "Ti\xEAu di\u1EC7t nh\u1EEFng t\xEAn cung th\u1EE7 c\xF3 \u0111\u1ED9i
     m\u0169."
@@ -208158,6 +208158,11 @@ MeshCollider:
   m_Convex: 0
   m_CookingOptions: 30
   m_Mesh: {fileID: 2623902706638882935, guid: e6828c665bb086147b1613bc75687f74, type: 3}
+--- !u!4 &1818211130 stripped
+Transform:
+  m_CorrespondingSourceObject: {fileID: 6523245326600972667, guid: 5e980f304a07c544da8720f6c853d2c1, type: 3}
+  m_PrefabInstance: {fileID: 7742781}
+  m_PrefabAsset: {fileID: 0}
 --- !u!1001 &1819089165
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -235771,6 +235776,10 @@ PrefabInstance:
       propertyPath: TargetItemtag
       value: Boss
       objectReference: {fileID: 0}
+    - target: {fileID: 3270662266710342390, guid: 3dbf211848fa9f3439e5a977c14727c1, type: 3}
+      propertyPath: questLocation
+      value: 
+      objectReference: {fileID: 1818211130}
     - target: {fileID: 3270662266710342390, guid: 3dbf211848fa9f3439e5a977c14727c1, type: 3}
       propertyPath: questTargetAmount
       value: 1

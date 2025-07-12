@@ -651,6 +651,8 @@ MonoBehaviour:
   attackSound: {fileID: 8300000, guid: f0f280c5e73a16b458467a1fd763f1c4, type: 3}
   spinAttackSound: {fileID: 8300000, guid: f0f280c5e73a16b458467a1fd763f1c4, type: 3}
   hitSound: {fileID: 8300000, guid: f0f280c5e73a16b458467a1fd763f1c4, type: 3}
+  footstepSound: {fileID: 8300000, guid: 217c82e6dc162c04d89af36d15dcc278, type: 3}
+  deathSound: {fileID: 8300000, guid: 1bd586d1c5923cc4da7180c3568b447b, type: 3}
 --- !u!114 &6115472370546269997
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -2474,7 +2476,7 @@ PrefabInstance:
     m_Modifications:
     - target: {fileID: 4091844351836130732, guid: 21480abdbaf0ea144a2e9e0a2fcfdcd7, type: 3}
       propertyPath: m_VersionIndex
-      value: 996
+      value: 1002
       objectReference: {fileID: 0}
     - target: {fileID: 4637267906321539526, guid: 21480abdbaf0ea144a2e9e0a2fcfdcd7, type: 3}
       propertyPath: m_LocalPosition.x

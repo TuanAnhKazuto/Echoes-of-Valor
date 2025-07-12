@@ -31,10 +31,13 @@ public class SkeletonNecromancer : MonoBehaviour
     public CharacterState currentState;
 
     [Header("Audio Settings")]
-    public AudioClip attackSound;        // Nếu muốn phát khi vung đòn
-    public AudioClip spinAttackSound;    // Khi tấn công quay
-    public AudioClip hitSound;           // ✅ Khi trúng đòn
+    public AudioClip attackSound;
+    public AudioClip spinAttackSound;
+    public AudioClip hitSound;
+    public AudioClip footstepSound; // ✅ Âm thanh bước chân
+    public AudioClip deathSound;    // ✅ Âm thanh chết
     private AudioSource audioSource;
+    private bool isPlayingFootstep = false; // ✅ Kiểm soát âm thanh bước chân
 
     void Start()
     {
@@ -79,7 +82,9 @@ public class SkeletonNecromancer : MonoBehaviour
         {
             navMeshAgent.isStopped = false;
             navMeshAgent.SetDestination(target.position);
-            animator.SetFloat("Speed", navMeshAgent.velocity.magnitude);
+
+            float moveSpeed = navMeshAgent.velocity.magnitude;
+            animator.SetFloat("Speed", moveSpeed);
             StopSpinIfNeeded();
             ChangeState(CharacterState.Normal);
         }
@@ -105,6 +110,12 @@ public class SkeletonNecromancer : MonoBehaviour
 
                 lastAttackTime = Time.time;
             }
+        }
+
+        // ✅ Tắt âm thanh bước chân khi dừng di chuyển
+        if (navMeshAgent.velocity.magnitude < 0.1f && isPlayingFootstep)
+        {
+            StopFootstepSound();
         }
     }
 
@@ -184,6 +195,9 @@ public class SkeletonNecromancer : MonoBehaviour
         animator.SetTrigger("Die");
 
         StopSpinIfNeeded();
+
+        PlayDeathSound(); // ✅ Phát âm chết (hoặc dùng animation event)
+
         this.enabled = false;
 
         Collider col = GetComponent<Collider>();
@@ -192,7 +206,6 @@ public class SkeletonNecromancer : MonoBehaviour
         Destroy(gameObject, 3f);
     }
 
-    // ✅ Gọi từ Animation Event đúng lúc ra đòn
     public void DealDamageToPlayer()
     {
         if (target != null && bossStats != null)
@@ -204,7 +217,7 @@ public class SkeletonNecromancer : MonoBehaviour
 
                 if (hitSound != null && audioSource != null)
                 {
-                    audioSource.pitch = Random.Range(0.95f, 1.05f); // chống lặp đều
+                    audioSource.pitch = Random.Range(0.95f, 1.05f);
                     audioSource.PlayOneShot(hitSound);
                     audioSource.pitch = 1f;
                 }
@@ -212,10 +225,33 @@ public class SkeletonNecromancer : MonoBehaviour
         }
     }
 
-    // (Tuỳ chọn) Gọi từ Animation Event nếu muốn phát âm xoay
     public void PlaySpinAttackSound()
     {
         if (spinAttackSound != null && audioSource != null)
             audioSource.PlayOneShot(spinAttackSound);
+    }
+
+    // ✅ Gọi từ Animation Event tại frame bước chân
+    public void PlayFootstepSound()
+    {
+        if (footstepSound != null && audioSource != null && !isPlayingFootstep)
+        {
+            audioSource.PlayOneShot(footstepSound);
+            isPlayingFootstep = true;
+        }
+    }
+
+    // ✅ Gọi từ cuối animation step hoặc tự động tắt nếu dừng
+    public void StopFootstepSound()
+    {
+        isPlayingFootstep = false;
+    }
+
+    public void PlayDeathSound()
+    {
+        if (deathSound != null && audioSource != null)
+        {
+            audioSource.PlayOneShot(deathSound);
+        }
     }
 }
