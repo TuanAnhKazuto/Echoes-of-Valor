@@ -18,6 +18,7 @@ public class Knight : MonoBehaviour
     float maxComboDelay = 1f;
 
     public string[] animAtkName = new string[] { "Attack1", "Attack2", "Attack3", "Attack4", "Attack5" };
+    public HitBoxController hitBox;
 
     public SwordTrailController trailEffect;
 
@@ -83,6 +84,7 @@ public class Knight : MonoBehaviour
                 if (anim.GetCurrentAnimatorStateInfo(0).IsName(animAtkName[i]) && anim.GetCurrentAnimatorStateInfo(0).normalizedTime >= 1f)
                 {
                     anim.SetBool("IsAttack", false);
+                    hitBox.EndAttack();
                     player.canMove = true;
                 }
             }
