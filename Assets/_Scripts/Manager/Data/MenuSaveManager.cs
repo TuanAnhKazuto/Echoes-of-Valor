@@ -1,7 +1,7 @@
 ﻿using System.Collections.Generic;
 using UnityEngine;
 
-public class SaveMenuManager : MonoBehaviour
+public class MenuSaveManager : MonoBehaviour
 {
     public Transform saveSlotParent; // đối tượng chứa VerticalLayoutGroup
     public GameObject saveSlotPrefab;

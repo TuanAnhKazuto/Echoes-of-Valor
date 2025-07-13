@@ -12,6 +12,9 @@ public class LoadSceneManager : MonoBehaviour
             saveGameManager.curData.positionY = 2;
             saveGameManager.curData.positionZ = 123;
             saveGameManager.curData.sceneName = "Scene2";
+
+            saveGameManager.SaveWeapons();
+
             SaveSystem.SaveGame(saveGameManager.curData);
 
             loadingScreen.LoadScene("CutScene 2");

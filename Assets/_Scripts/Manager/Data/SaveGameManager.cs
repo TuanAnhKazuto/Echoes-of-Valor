@@ -137,7 +137,13 @@ public class SaveGameManager : MonoBehaviour
         curData.positionZ = playerStats.transform.position.z;
         curData.rotationY = playerStats.transform.rotation.eulerAngles.y;
 
+        SaveWeapons();
 
+        SaveSystem.SaveGame(curData);
+    }
+
+    public void SaveWeapons()
+    {
         curData.weapons = new WeaponData[equippedWeapons.Length];
 
         for (int i = 0; i < equippedWeapons.Length; i++)
@@ -157,7 +163,5 @@ public class SaveGameManager : MonoBehaviour
                 defensePerBreakthrough = equippedWeapons[i].defensePerBreakthrough
             };
         }
-
-        SaveSystem.SaveGame(curData);
     }
 }

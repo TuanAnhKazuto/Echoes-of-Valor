@@ -63,6 +63,21 @@ public class BossGolem : MonoBehaviour
         healthBar.UpdateHealth((int)currentHealth, (int)maxHealth);
         anim.SetFloat("HP", currentHealth);
         levelText.text = "Lv: " + level.ToString();
+
+        SaveGameManager saveGameManager = FindAnyObjectByType<SaveGameManager>();
+        if(saveGameManager != null)
+        {
+            if (saveGameManager.isCharacterSpawned)
+            {
+                Invoke(nameof(GetPlayerTranform), 0.5f);
+            }
+        }
+    }
+
+    private void GetPlayerTranform(SaveGameManager save)
+    {
+        player = save.playerStats.transform;
+        save.isCharacterSpawned = false;
     }
 
     void Update()
