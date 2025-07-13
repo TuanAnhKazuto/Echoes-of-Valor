@@ -14,7 +14,7 @@ public class PlayerStaminaBar : MonoBehaviour
         if(staminaFill.fillAmount >= 1)
         {
             if (!isStaminaBarActive) return;
-            Invoke(nameof(HideStaminaBar), 1f);
+            Invoke(nameof(HideStaminaBar), .2f);
         }
         else
         {
