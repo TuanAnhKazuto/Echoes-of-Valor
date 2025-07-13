@@ -10,6 +10,9 @@ public class Chest : MonoBehaviour
     public Transform spawnPoint;
     Animator animator;
 
+    [Header("Quest")]
+    public string questTag = "Enemy_Main";
+
     private bool isOpened = false;
 
     private void Start()
