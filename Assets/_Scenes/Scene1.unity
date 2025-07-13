@@ -311290,6 +311290,101 @@ MeshFilter:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1467310972}
   m_Mesh: {fileID: 4686397587872379678, guid: a1aa7fd9efd838f4a867684d5ffcc611, type: 3}
+--- !u!1 &1467797715
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 1467797718}
+  - component: {fileID: 1467797717}
+  - component: {fileID: 1467797716}
+  - component: {fileID: 1467797719}
+  m_Layer: 0
+  m_Name: SpwanBoss
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!114 &1467797716
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1467797715}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 1ce28b6e901cc164195eb1ce06b90956, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  bossPrefab: {fileID: 1715030824}
+--- !u!65 &1467797717
+BoxCollider:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1467797715}
+  m_Material: {fileID: 0}
+  m_IncludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_ExcludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_LayerOverridePriority: 0
+  m_IsTrigger: 1
+  m_ProvidesContacts: 0
+  m_Enabled: 1
+  serializedVersion: 3
+  m_Size: {x: 1, y: 1, z: 1}
+  m_Center: {x: 0, y: 0, z: 0}
+--- !u!4 &1467797718
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1467797715}
+  serializedVersion: 2
+  m_LocalRotation: {x: -0, y: -0.9999976, z: -0, w: -0.0022145885}
+  m_LocalPosition: {x: 215.5, y: 8.2, z: 13.4}
+  m_LocalScale: {x: 36.41046, y: 6.6842766, z: 29.512276}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 0}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!54 &1467797719
+Rigidbody:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1467797715}
+  serializedVersion: 4
+  m_Mass: 1
+  m_Drag: 0
+  m_AngularDrag: 0.05
+  m_CenterOfMass: {x: 0, y: 0, z: 0}
+  m_InertiaTensor: {x: 1, y: 1, z: 1}
+  m_InertiaRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_IncludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_ExcludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_ImplicitCom: 1
+  m_ImplicitTensor: 1
+  m_UseGravity: 0
+  m_IsKinematic: 1
+  m_Interpolate: 0
+  m_Constraints: 0
+  m_CollisionDetection: 0
 --- !u!1 &1467883113
 GameObject:
   m_ObjectHideFlags: 0
@@ -363765,6 +363860,11 @@ Transform:
 Transform:
   m_CorrespondingSourceObject: {fileID: 6251920492078742113, guid: 6cdd667aa0034cd4dadc8d58a65fb098, type: 3}
   m_PrefabInstance: {fileID: 1661543684}
+  m_PrefabAsset: {fileID: 0}
+--- !u!1 &1715030824 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 1760130516600436351, guid: 7d5f573d616ca3143b0acaf60e12bd30, type: 3}
+  m_PrefabInstance: {fileID: 2035315593}
   m_PrefabAsset: {fileID: 0}
 --- !u!1001 &1715517038
 PrefabInstance:
@@ -441182,6 +441282,10 @@ PrefabInstance:
       propertyPath: m_Name
       value: Skeleton_Golem
       objectReference: {fileID: 0}
+    - target: {fileID: 1760130516600436351, guid: 7d5f573d616ca3143b0acaf60e12bd30, type: 3}
+      propertyPath: m_IsActive
+      value: 0
+      objectReference: {fileID: 0}
     - target: {fileID: 4340862341484542541, guid: 7d5f573d616ca3143b0acaf60e12bd30, type: 3}
       propertyPath: m_Mesh
       value: 
@@ -472022,6 +472126,7 @@ SceneRoots:
   - {fileID: 322150409}
   - {fileID: 1888683918}
   - {fileID: 2035315593}
+  - {fileID: 1467797718}
   - {fileID: 905888757}
   - {fileID: 2081079989}
   - {fileID: 1012627425}
