@@ -11,8 +11,11 @@ public class TabsController : MonoBehaviour
         tabs[0].SetActive(true);
         tabs[1].SetActive(false);
 
-        weaponObj[0].SetActive(true);
-        weaponObj[1].SetActive(false);
+        if (weaponObj[0] != null && weaponObj[1] != null)
+        {
+            weaponObj[0].SetActive(true);
+            weaponObj[1].SetActive(false);
+        }
     }
 
     public void SwitchToTab(int tabIndex)
