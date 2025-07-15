@@ -829,7 +829,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 3432828208371693777, guid: 7a55015a02a19ea4aa1648d77f9031cd, type: 3}
       propertyPath: m_IsActive
-      value: 1
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 3666282475762851283, guid: 7a55015a02a19ea4aa1648d77f9031cd, type: 3}
       propertyPath: m_LocalPosition.x
@@ -2163,7 +2163,7 @@ PrefabInstance:
       objectReference: {fileID: 559782580}
     - target: {fileID: 2987594514679051766, guid: 4d2ee5f6a7438074ca0779ca792324ba, type: 3}
       propertyPath: m_Enabled
-      value: 1
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 4057747167375468888, guid: 4d2ee5f6a7438074ca0779ca792324ba, type: 3}
       propertyPath: m_IsActive
@@ -2219,7 +2219,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 5428599474284752997, guid: 4d2ee5f6a7438074ca0779ca792324ba, type: 3}
       propertyPath: m_IsActive
-      value: 0
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 8219310280919571435, guid: 4d2ee5f6a7438074ca0779ca792324ba, type: 3}
       propertyPath: m_Mesh
@@ -2711,43 +2711,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 39bcf95f5324efd40b3262fd9466f41a, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
---- !u!84 &826967484
-RenderTexture:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_Name: 
-  m_ImageContentsHash:
-    serializedVersion: 2
-    Hash: 00000000000000000000000000000000
-  m_IsAlphaChannelOptional: 0
-  serializedVersion: 6
-  m_Width: 128
-  m_Height: 128
-  m_AntiAliasing: 1
-  m_MipCount: -1
-  m_DepthStencilFormat: 94
-  m_ColorFormat: 48
-  m_MipMap: 1
-  m_GenerateMips: 1
-  m_SRGB: 0
-  m_UseDynamicScale: 0
-  m_UseDynamicScaleExplicit: 0
-  m_BindMS: 0
-  m_EnableCompatibleFormat: 1
-  m_EnableRandomWrite: 0
-  m_TextureSettings:
-    serializedVersion: 2
-    m_FilterMode: 1
-    m_Aniso: 1
-    m_MipBias: 0
-    m_WrapU: 1
-    m_WrapV: 1
-    m_WrapW: 1
-  m_Dimension: 2
-  m_VolumeDepth: 1
-  m_ShadowSamplingMode: 2
 --- !u!1 &875331355
 GameObject:
   m_ObjectHideFlags: 0
@@ -2779,43 +2742,6 @@ Transform:
   m_Children: []
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!84 &925293497
-RenderTexture:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_Name: 
-  m_ImageContentsHash:
-    serializedVersion: 2
-    Hash: 00000000000000000000000000000000
-  m_IsAlphaChannelOptional: 0
-  serializedVersion: 6
-  m_Width: 128
-  m_Height: 128
-  m_AntiAliasing: 1
-  m_MipCount: -1
-  m_DepthStencilFormat: 94
-  m_ColorFormat: 48
-  m_MipMap: 1
-  m_GenerateMips: 1
-  m_SRGB: 0
-  m_UseDynamicScale: 0
-  m_UseDynamicScaleExplicit: 0
-  m_BindMS: 0
-  m_EnableCompatibleFormat: 1
-  m_EnableRandomWrite: 0
-  m_TextureSettings:
-    serializedVersion: 2
-    m_FilterMode: 1
-    m_Aniso: 1
-    m_MipBias: 0
-    m_WrapU: 1
-    m_WrapV: 1
-    m_WrapW: 1
-  m_Dimension: 2
-  m_VolumeDepth: 1
-  m_ShadowSamplingMode: 2
 --- !u!43 &1005415130
 Mesh:
   m_ObjectHideFlags: 0
@@ -6519,7 +6445,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 8826998416193597136, guid: 8fa82dc493164d0489de2e19de7a2fd6, type: 3}
       propertyPath: m_IsActive
-      value: 0
+      value: 1
       objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
@@ -6670,15 +6596,15 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 8903590393308336603, guid: ba712fb7d041c664a9861a533ca61137, type: 3}
       propertyPath: m_IsActive
-      value: 1
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 9159688621873209396, guid: ba712fb7d041c664a9861a533ca61137, type: 3}
       propertyPath: randSeed
-      value: 719637906
+      value: 138016093
       objectReference: {fileID: 0}
     - target: {fileID: 9159688621873209396, guid: ba712fb7d041c664a9861a533ca61137, type: 3}
       propertyPath: m_Enabled
-      value: 0
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 9159688621873209396, guid: ba712fb7d041c664a9861a533ca61137, type: 3}
       propertyPath: useCamera
@@ -6753,6 +6679,18 @@ PrefabInstance:
       value: 0.60549027
       objectReference: {fileID: 0}
     - target: {fileID: 9159688621873209396, guid: ba712fb7d041c664a9861a533ca61137, type: 3}
+      propertyPath: colorHorizonLow.b
+      value: 0.36705884
+      objectReference: {fileID: 0}
+    - target: {fileID: 9159688621873209396, guid: ba712fb7d041c664a9861a533ca61137, type: 3}
+      propertyPath: colorHorizonLow.g
+      value: 0.2964706
+      objectReference: {fileID: 0}
+    - target: {fileID: 9159688621873209396, guid: ba712fb7d041c664a9861a533ca61137, type: 3}
+      propertyPath: colorHorizonLow.r
+      value: 0.12235296
+      objectReference: {fileID: 0}
+    - target: {fileID: 9159688621873209396, guid: ba712fb7d041c664a9861a533ca61137, type: 3}
       propertyPath: colorSkyAmbient.b
       value: 1
       objectReference: {fileID: 0}
@@ -6778,15 +6716,15 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 9159688621873209396, guid: ba712fb7d041c664a9861a533ca61137, type: 3}
       propertyPath: colorHighlightClouds.b
-      value: 1
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 9159688621873209396, guid: ba712fb7d041c664a9861a533ca61137, type: 3}
       propertyPath: colorHighlightClouds.g
-      value: 1
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 9159688621873209396, guid: ba712fb7d041c664a9861a533ca61137, type: 3}
       propertyPath: colorHighlightClouds.r
-      value: 1
+      value: 0
       objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
@@ -7154,7 +7092,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 6329946028441545229, guid: a241dca576e4aa4498e622aac9d9f321, type: 3}
       propertyPath: m_IsActive
-      value: 1
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 7713735878304070000, guid: a241dca576e4aa4498e622aac9d9f321, type: 3}
       propertyPath: m_LocalPosition.x

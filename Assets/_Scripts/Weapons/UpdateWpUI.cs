@@ -25,7 +25,11 @@ public class UpdateWpUI : MonoBehaviour
     private void Start()
     {
         Invoke(nameof(RefreshDisplay), 0.2f);
-        upgradeValuerSlider.maxValue = weaponStats.maxWeaponLevel;
+        
+        if(weaponStats != null)
+        {
+            upgradeValuerSlider.maxValue = weaponStats.maxWeaponLevel;
+        }
     }
 
     private void Update()
