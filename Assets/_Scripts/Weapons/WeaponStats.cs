@@ -1,4 +1,6 @@
-﻿using UnityEngine;
+﻿using NUnit.Framework;
+using System.Collections.Generic;
+using UnityEngine;
 
 public class WeaponStats : MonoBehaviour
 {
@@ -17,13 +19,10 @@ public class WeaponStats : MonoBehaviour
     public int damagePerLevel = 3;
     public int damagePerBreakthrough = 6;
 
-
     [Header("Defense")]
     public int baseDefense;
     public int defensePerLevel = 3;
     public int defensePerBreakthrough = 6;
-
-
 
     [Header("Weapon Models")]
     public GameObject baseWeapon;
@@ -100,4 +99,6 @@ public class WeaponStats : MonoBehaviour
                 break;
         }
     }
+
+    
 }
