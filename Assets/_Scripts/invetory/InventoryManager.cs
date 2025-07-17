@@ -25,7 +25,7 @@ public class InventoryManager : MonoBehaviour
 
     public List<InventoryItem> items = new List<InventoryItem>();
 
-    public Transform itemContentPane;
+    public Transform itemContentPanel;
     public GameObject itemPrefab;
 
     // Upgrade Ingredients
@@ -57,9 +57,9 @@ public class InventoryManager : MonoBehaviour
         DontDestroyOnLoad(gameObject);
 
         // dong lay
-        if (itemContentPane == null)
+        if (itemContentPanel == null)
         {
-            itemContentPane = GameObject.Find("Content").transform;
+            itemContentPanel = GameObject.Find("Content").transform;
 
         }
     }
@@ -93,26 +93,26 @@ public class InventoryManager : MonoBehaviour
         }
     }
 
-    public void AddIngredients(Ingredient ingredient, int quantity)
+    public void AddIngredients(Ingredient ingredient)
     {
         UpgradeIngredient upgradeIngredient = upgradeIngredients.Find(i => i.ingredient.ingredientsID == ingredient.ingredientsID);
 
         if (upgradeIngredient != null)
         {
-            upgradeIngredient.quantity += quantity;
+            upgradeIngredient.quantity += 1;
         }
         else
         {
-            upgradeIngredients.Add(new UpgradeIngredient(ingredient, quantity, ingredient.description));
+            upgradeIngredients.Add(new UpgradeIngredient(ingredient, 1, ingredient.description));
         }
     }
 
-    public void RemoveIngredients(Ingredient ingredient, int quantity)
+    public void RemoveIngredients(Ingredient ingredient)
     {
         UpgradeIngredient upgradeIngredient = upgradeIngredients.Find(i => i.ingredient.ingredientsID == ingredient.ingredientsID);
         if (upgradeIngredient != null)
         {
-            upgradeIngredient.quantity -= quantity;
+            upgradeIngredient.quantity -= 1;
             if (upgradeIngredient.quantity <= 0)
             {
                 upgradeIngredients.Remove(upgradeIngredient);
@@ -122,14 +122,14 @@ public class InventoryManager : MonoBehaviour
 
     public void DisplayInventory()
     {
-        foreach (Transform item in itemContentPane)
+        foreach (Transform item in itemContentPanel)
         {
             Destroy(item.gameObject);
         }
 
         foreach (InventoryItem inventoryItem in items)
         {
-            GameObject obj = Instantiate(itemPrefab, itemContentPane);
+            GameObject obj = Instantiate(itemPrefab, itemContentPanel);
 
             var itemName = obj.transform.Find("Title/ItemName").GetComponent<TextMeshProUGUI>();
             var itemImage = obj.transform.Find("Title/ItemImage").GetComponent<Image>();
@@ -142,6 +142,16 @@ public class InventoryManager : MonoBehaviour
             itemQuantityText.text = $"x{inventoryItem.quantity}";
 
             obj.GetComponent<ItemUIController>().SetItem(inventoryItem.item);
+        }
+
+        foreach(UpgradeIngredient inventoryIngrient in upgradeIngredients)
+        {
+            GameObject obj = Instantiate(itemPrefab, itemContentPanel);
+            var itemName = obj.transform.Find("Title/ItemName").GetComponent<TextMeshProUGUI>();
+            var itemImage = obj.transform.Find("Title/ItemImage").GetComponent<Image>();
+            var itemQuantityText = obj.transform.Find("Count/QuantityText").GetComponent<TextMeshProUGUI>();
+            var itemDescription = obj.transform.Find("Info/Button/Panel/Description").GetComponent<TextMeshProUGUI>();
+
         }
     }
 
