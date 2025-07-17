@@ -7,15 +7,17 @@ public class Ingredient : ScriptableObject
     public Sprite icon;
     [TextArea] public string description;
 
-    public IngredientType ingredientType; // enum: Material, Weapon, KeyItem, etc.
+    public IngredientType ingredientTypeFor; // enum: Material, Weapon, KeyItem, etc.
     public int ingredientsID;        // hoặc dùng GUID nếu muốn
 
 }
 
 public enum IngredientType
 {
-    Material,
-    Weapon,
-    Consumable,
-    KeyItem
+    Sword,
+    Shield,
+    Bow,
+    Quiver,
+    Stick,
+    Book
 }
