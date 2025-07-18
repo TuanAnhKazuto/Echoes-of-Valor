@@ -4,7 +4,7 @@ public class IngredientPickup : MonoBehaviour
 {
     public Ingredient ingredient;
 
-    void PickUp()
+    public void PickUp()
     {
         InventoryManager.Instance.AddIngredients(ingredient);
     }
