@@ -93,6 +93,7 @@ public class InventoryManager : MonoBehaviour
         }
     }
 
+    // Thêm nguyên liệu nâng cấp vào túi đồ
     public void AddIngredients(Ingredient ingredient)
     {
         UpgradeIngredient upgradeIngredient = upgradeIngredients.Find(i => i.ingredient.ingredientsID == ingredient.ingredientsID);
