@@ -92,7 +92,7 @@ public class PlayerQuest : MonoBehaviour
             }
             Debug.Log($"Đã trả nhiệm vụ: {questItem.QuetsItemName}, nhận {questItem.rewardAmount} vàng");
 
-            FindAnyObjectByType<Co>().IncreaseCor(questItem.rewardAmount);
+            FindAnyObjectByType<Cor>().IncreaseCor(questItem.rewardAmount);
 
             playerQuestPanel.ShowAllQuestItem(questItems);
         }

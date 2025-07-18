@@ -30,7 +30,7 @@ public class MageFireBullet : MonoBehaviour
             CharacterStats ps = other.GetComponent<CharacterStats>();
             if (ps != null)
             {
-                ps.TakeDamage(damage);
+                ps.TakeDamage(35);
             }
             Destroy(gameObject);
         }

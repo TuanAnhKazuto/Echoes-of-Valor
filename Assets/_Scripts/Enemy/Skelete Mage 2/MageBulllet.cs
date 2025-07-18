@@ -25,7 +25,7 @@ public class MageBulllet : MonoBehaviour
             CharacterStats ps = other.GetComponent<CharacterStats>();
             if (ps != null)
             {
-                ps.TakeDamage(damage);
+                ps.TakeDamage(25);
             }
 
             Destroy(gameObject);

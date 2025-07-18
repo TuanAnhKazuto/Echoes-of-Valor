@@ -42,7 +42,7 @@ public class ItemUIController : MonoBehaviour
                 break;
            
             case ItemType.Cor:
-                FindAnyObjectByType<Co>().IncreaseCor(item.value);
+                FindAnyObjectByType<Cor>().IncreaseCor(item.value);
                 break;
 
             case ItemType.Mp:
