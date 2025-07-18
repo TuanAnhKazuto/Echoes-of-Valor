@@ -143,16 +143,6 @@ public class InventoryManager : MonoBehaviour
 
             obj.GetComponent<ItemUIController>().SetItem(inventoryItem.item);
         }
-
-        foreach(UpgradeIngredient inventoryIngrient in upgradeIngredients)
-        {
-            GameObject obj = Instantiate(itemPrefab, itemContentPanel);
-            var itemName = obj.transform.Find("Title/ItemName").GetComponent<TextMeshProUGUI>();
-            var itemImage = obj.transform.Find("Title/ItemImage").GetComponent<Image>();
-            var itemQuantityText = obj.transform.Find("Count/QuantityText").GetComponent<TextMeshProUGUI>();
-            var itemDescription = obj.transform.Find("Info/Button/Panel/Description").GetComponent<TextMeshProUGUI>();
-
-        }
     }
 
 }
