@@ -63,12 +63,7 @@ public class EnemyStats : MonoBehaviour
         skeletonMovement.animator.SetLayerWeight(1, 0.7f);
         skeletonMovement.animator.SetBool("Hit", true);
 
-        if (damagePopupPrefab != null)
-        {
-            GameObject popup = Instantiate(damagePopupPrefab, transform.position + Vector3.up * 2f, Quaternion.identity);
-            popup.SetActive(true); 
-            popup.GetComponent<DamagePopup>().Setup((int)damage, Color.red);
-        }
+        DamagePopupSpawner.Instance.ShowDamage(transform.position + Vector3.up * 2f, (int)damage, Color.red);// effect - HP
 
         if (currentHealth <= 0)
         {
