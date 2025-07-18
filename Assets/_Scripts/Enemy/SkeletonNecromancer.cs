@@ -21,7 +21,6 @@ public class SkeletonNecromancer : MonoBehaviour
     private Coroutine spinAttackRoutine;
     private bool isDead = false;
     private bool isTrackingPlayer = false;
-
     public enum CharacterState
     {
         Normal,
@@ -29,6 +28,10 @@ public class SkeletonNecromancer : MonoBehaviour
         SpinAttack
     }
     public CharacterState currentState;
+
+    [Header("DropItem")]
+    public GameObject dropItem;
+
 
     [Header("Audio Settings")]
     public AudioClip attackSound;
@@ -203,7 +206,18 @@ public class SkeletonNecromancer : MonoBehaviour
         Collider col = GetComponent<Collider>();
         if (col != null) col.enabled = false;
 
+        DropItem();
+
         Destroy(gameObject, 3f);
+    }
+
+    public void DropItem()
+    {
+        Vector3 dropPos = new();
+
+        dropPos = new Vector3(transform.position.x, transform.position.y + 1.5f, transform.position.z);
+
+        GameObject item = Instantiate(dropItem, dropPos, Quaternion.identity);
     }
 
     public void DealDamageToPlayer()
