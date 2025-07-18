@@ -1,18 +1,30 @@
-using System.Collections.Generic;
+﻿using System.Collections.Generic;
 using UnityEngine;
 
 public class QuestMarkerManager : MonoBehaviour
 {
-    public GameObject markerPrefab;
+    public GameObject markerPrefab; 
     private Dictionary<QuestItem, GameObject> activeMarkers = new();
 
     public void ShowMarker(QuestItem quest)
     {
         if (quest.questLocation == null || activeMarkers.ContainsKey(quest)) return;
 
-        GameObject marker = Instantiate(markerPrefab);
-        marker.transform.position = quest.questLocation.position + Vector3.up * 2f;
-        marker.GetComponent<QuestFollowTarget>().target = quest.questLocation;
+        Vector3 spawnPos = quest.questLocation.position;
+
+        Collider col = quest.questLocation.GetComponentInChildren<Collider>();
+        if (col != null)
+        {
+            spawnPos.y = col.bounds.max.y + 0f;
+        }
+        else
+        {
+            spawnPos += Vector3.up * 1.5f;
+        }
+
+        GameObject marker = Instantiate(markerPrefab, spawnPos, Quaternion.identity);
+        marker.transform.SetParent(quest.questLocation); 
+
         activeMarkers[quest] = marker;
     }
 
