@@ -11,7 +11,7 @@ public class ItemPickUp : MonoBehaviour
         if (item.itemType == ItemType.Cor)
         {
             
-            Co coSystem = FindAnyObjectByType<Co>();
+            Cor coSystem = FindAnyObjectByType<Cor>();
             if (coSystem != null)
             {
                 coSystem.IncreaseCor(item.value);
