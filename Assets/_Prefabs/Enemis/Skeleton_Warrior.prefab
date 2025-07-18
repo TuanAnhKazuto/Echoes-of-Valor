@@ -1544,6 +1544,7 @@ GameObject:
   - component: {fileID: 5589917178994281447}
   - component: {fileID: 7907730695837744889}
   - component: {fileID: 1592556814304515371}
+  - component: {fileID: 446912738728759391}
   m_Layer: 0
   m_Name: Skeleton_Warrior
   m_TagString: Enemy
@@ -1850,6 +1851,21 @@ MonoBehaviour:
   lightningVFX: {fileID: 5605885492382336635, guid: 0fe42574331424247b07f526e1e76b77, type: 3}
   pointPos: {fileID: 7661638074514678145}
   lightningDuration: 8
+--- !u!114 &446912738728759391
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 4689379179007703839}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 43d8a52b4ec6b084392c91574963c2de, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  audioSource: {fileID: 7907730695837744889}
+  attackSound: {fileID: 0}
+  injuredSound: {fileID: 8300000, guid: 1eb711cde3274aa409aa5daeb9ff6c02, type: 3}
 --- !u!1 &5108381503181762112
 GameObject:
   m_ObjectHideFlags: 0
