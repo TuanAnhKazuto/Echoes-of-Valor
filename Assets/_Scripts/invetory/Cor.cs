@@ -2,7 +2,7 @@
 using TMPro;
 using UnityEngine;
 
-public class Co : MonoBehaviour
+public class Cor : MonoBehaviour
 {
     public int cor;
     public int CorLarge;
