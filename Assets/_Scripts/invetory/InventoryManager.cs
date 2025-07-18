@@ -93,6 +93,7 @@ public class InventoryManager : MonoBehaviour
         }
     }
 
+    // Thêm nguyên liệu nâng cấp vào túi đồ
     public void AddIngredients(Ingredient ingredient)
     {
         UpgradeIngredient upgradeIngredient = upgradeIngredients.Find(i => i.ingredient.ingredientsID == ingredient.ingredientsID);
@@ -142,16 +143,6 @@ public class InventoryManager : MonoBehaviour
             itemQuantityText.text = $"x{inventoryItem.quantity}";
 
             obj.GetComponent<ItemUIController>().SetItem(inventoryItem.item);
-        }
-
-        foreach(UpgradeIngredient inventoryIngrient in upgradeIngredients)
-        {
-            GameObject obj = Instantiate(itemPrefab, itemContentPanel);
-            var itemName = obj.transform.Find("Title/ItemName").GetComponent<TextMeshProUGUI>();
-            var itemImage = obj.transform.Find("Title/ItemImage").GetComponent<Image>();
-            var itemQuantityText = obj.transform.Find("Count/QuantityText").GetComponent<TextMeshProUGUI>();
-            var itemDescription = obj.transform.Find("Info/Button/Panel/Description").GetComponent<TextMeshProUGUI>();
-
         }
     }
 
