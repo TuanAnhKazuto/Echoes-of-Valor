@@ -17,7 +17,6 @@ public class DamagePopupSpawner : MonoBehaviour
     {
         if (damagePopupPrefab == null)
         {
-            Debug.LogWarning("Damage Popup Prefab chưa được gán!");
             return;
         }
 

@@ -87,7 +87,7 @@ public class MageSkelete : MonoBehaviour
         if (direction.magnitude > 0)
         {
             Quaternion lookRotation = Quaternion.LookRotation(direction);
-            transform.rotation = Quaternion.Slerp(transform.rotation, lookRotation, Time.deltaTime * 10f);
+            transform.rotation = Quaternion.Slerp(transform.rotation, lookRotation, Time.deltaTime * 15f);
         }
     }
 
@@ -96,7 +96,7 @@ public class MageSkelete : MonoBehaviour
         if (player == null) return;
 
         GameObject bullet = Instantiate(normalBulletPrefab, firePoint.position, firePoint.rotation);
-        bullet.GetComponent<MageBulllet>().Initialize(20f, player.position);
+        bullet.GetComponent<MageBulllet>().Initialize(30f, player.position);
     }
 
     public void UseSkill2()
@@ -104,7 +104,7 @@ public class MageSkelete : MonoBehaviour
         if (player == null) return;
 
         GameObject bullet = Instantiate(fireBulletPrefab, firePoint.position, firePoint.rotation);
-        bullet.GetComponent<MageFireBullet>().Initialize(20f, 5f, 3f, player.position);
+        bullet.GetComponent<MageFireBullet>().Initialize(30f, 5f, 3f, player.position);
     }
 
     public void EndCasting()
