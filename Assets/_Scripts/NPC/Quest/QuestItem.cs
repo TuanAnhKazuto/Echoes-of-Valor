@@ -4,7 +4,6 @@ using UnityEngine;
 
 public class QuestItem : MonoBehaviour
 {
-    
     public string QuetsItemName; // Tên Quest
     public int questTargetAmount; // số lượng cần tìm
     public int currentAmount ; //số lượng hiện tại 
