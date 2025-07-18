@@ -30,6 +30,9 @@ public class EnemyStats : MonoBehaviour
     [Header("VFX")]
     public GameObject damagePopupPrefab;
 
+    [Header("DropItem")]
+    public GameObject dropItem;
+
     private void Start()
     {
         skeletonMovement = GetComponent<SkeletonMovement>();
@@ -91,7 +94,17 @@ public class EnemyStats : MonoBehaviour
 
     public void Death()
     {
-        Destroy(gameObject);
+        DropItem();
+        Destroy(gameObject);  
+    }
+
+    public void DropItem()
+    {
+        Vector3 dropPos = new();
+
+        dropPos = new Vector3(transform.position.x, transform.position.y + 1.5f, transform.position.z);
+
+        GameObject item = Instantiate(dropItem, dropPos, Quaternion.identity);
     }
 
     public void OffTakeDamageAnim()
