@@ -4,7 +4,6 @@ using UnityEngine;
 
 public class QuestItem : MonoBehaviour
 {
-    
     public string QuetsItemName; // Tên Quest
     public int questTargetAmount; // số lượng cần tìm
     public int currentAmount ; //số lượng hiện tại 
@@ -15,10 +14,13 @@ public class QuestItem : MonoBehaviour
     // thoại khi hoàn thành
     [TextArea(2, 5)]
     public string completeDialogue;
+    [Header("Phần thưởng")]
+    public List<Item> rewardItems;
 
     [Header("Mô tả nhiệm vụ")]
     [TextArea(2, 5)]
     public string description;
+
     [Header("Gợi ý")]
     [TextArea(1, 3)]
     public string hint;

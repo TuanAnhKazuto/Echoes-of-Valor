@@ -1200,7 +1200,7 @@ Transform:
   m_GameObject: {fileID: 5428599474284752997}
   serializedVersion: 2
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 29.42, y: 1.079, z: -11.86}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children:
@@ -1297,7 +1297,7 @@ MonoBehaviour:
   playerName: 
   characterClass: Knight
   level: 1
-  maxHealth: 100
+  maxHealth: 1000
   currentHealth: 0
   currentMana: 0
   maxMana: 100
@@ -1866,6 +1866,8 @@ GameObject:
   - component: {fileID: 8371651248864083819}
   - component: {fileID: 5792600079328538093}
   - component: {fileID: 3171204189755769470}
+  - component: {fileID: 1777885339282303482}
+  - component: {fileID: 123315054906289132}
   m_Layer: 3
   m_Name: knight
   m_TagString: Untagged
@@ -1972,6 +1974,126 @@ MonoBehaviour:
   animator: {fileID: 3134795728209042399}
   excaliburLevel: 1
   excarliburCooldown: 6
+--- !u!82 &1777885339282303482
+AudioSource:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 8961851360139670995}
+  m_Enabled: 1
+  serializedVersion: 4
+  OutputAudioMixerGroup: {fileID: 0}
+  m_audioClip: {fileID: 0}
+  m_Resource: {fileID: 0}
+  m_PlayOnAwake: 1
+  m_Volume: 1
+  m_Pitch: 1
+  Loop: 0
+  Mute: 0
+  Spatialize: 0
+  SpatializePostEffects: 0
+  Priority: 128
+  DopplerLevel: 1
+  MinDistance: 1
+  MaxDistance: 500
+  Pan2D: 0
+  rolloffMode: 0
+  BypassEffects: 0
+  BypassListenerEffects: 0
+  BypassReverbZones: 0
+  rolloffCustomCurve:
+    serializedVersion: 2
+    m_Curve:
+    - serializedVersion: 3
+      time: 0
+      value: 1
+      inSlope: 0
+      outSlope: 0
+      tangentMode: 0
+      weightedMode: 0
+      inWeight: 0.33333334
+      outWeight: 0.33333334
+    - serializedVersion: 3
+      time: 1
+      value: 0
+      inSlope: 0
+      outSlope: 0
+      tangentMode: 0
+      weightedMode: 0
+      inWeight: 0.33333334
+      outWeight: 0.33333334
+    m_PreInfinity: 2
+    m_PostInfinity: 2
+    m_RotationOrder: 4
+  panLevelCustomCurve:
+    serializedVersion: 2
+    m_Curve:
+    - serializedVersion: 3
+      time: 0
+      value: 0
+      inSlope: 0
+      outSlope: 0
+      tangentMode: 0
+      weightedMode: 0
+      inWeight: 0.33333334
+      outWeight: 0.33333334
+    m_PreInfinity: 2
+    m_PostInfinity: 2
+    m_RotationOrder: 4
+  spreadCustomCurve:
+    serializedVersion: 2
+    m_Curve:
+    - serializedVersion: 3
+      time: 0
+      value: 0
+      inSlope: 0
+      outSlope: 0
+      tangentMode: 0
+      weightedMode: 0
+      inWeight: 0.33333334
+      outWeight: 0.33333334
+    m_PreInfinity: 2
+    m_PostInfinity: 2
+    m_RotationOrder: 4
+  reverbZoneMixCustomCurve:
+    serializedVersion: 2
+    m_Curve:
+    - serializedVersion: 3
+      time: 0
+      value: 1
+      inSlope: 0
+      outSlope: 0
+      tangentMode: 0
+      weightedMode: 0
+      inWeight: 0.33333334
+      outWeight: 0.33333334
+    m_PreInfinity: 2
+    m_PostInfinity: 2
+    m_RotationOrder: 4
+--- !u!114 &123315054906289132
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 8961851360139670995}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: ca5bd3f1b80758b498737ba86b342e7a, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  audioSource: {fileID: 1777885339282303482}
+  runSound: {fileID: 8300000, guid: 05b1040e1499e924c8d8220eb05500c7, type: 3}
+  walkSound: {fileID: 8300000, guid: f65712717e8371b429d7114e8bbad5ea, type: 3}
+  injuredSound: {fileID: 8300000, guid: a4255259f39bde54cbc3e294f5a50cf6, type: 3}
+  dieSound: {fileID: 8300000, guid: a4255259f39bde54cbc3e294f5a50cf6, type: 3}
+  jumpSound: {fileID: 8300000, guid: 9b6d4a040d8d3474f87ea7ee302d9acd, type: 3}
+  normalKnight: {fileID: 8300000, guid: 77498fd733be3404da725ade784eb2ef, type: 3}
+  skill1Knight: {fileID: 8300000, guid: 6373ee1a2691e8f47b68f4204ff78481, type: 3}
+  normalMage: {fileID: 0}
+  skill2Mage: {fileID: 0}
+  normalRouge: {fileID: 0}
 --- !u!1 &8998727911122777749
 GameObject:
   m_ObjectHideFlags: 0
@@ -2231,6 +2353,22 @@ PrefabInstance:
       propertyPath: highWeapon
       value: 
       objectReference: {fileID: 501177983585707331}
+    - target: {fileID: 5388304877305832849, guid: 675c0e8d847c7d84abd2bcdb8de9a1fe, type: 3}
+      propertyPath: upgradeIngredient1
+      value: 
+      objectReference: {fileID: 11400000, guid: 9fcb476757f408c4388516f32b6bcc27, type: 2}
+    - target: {fileID: 5388304877305832849, guid: 675c0e8d847c7d84abd2bcdb8de9a1fe, type: 3}
+      propertyPath: upgradeIngredient2
+      value: 
+      objectReference: {fileID: 11400000, guid: 09fe346d5cde65648922da6d015f066e, type: 2}
+    - target: {fileID: 5388304877305832849, guid: 675c0e8d847c7d84abd2bcdb8de9a1fe, type: 3}
+      propertyPath: upgradeIngredient3
+      value: 
+      objectReference: {fileID: 11400000, guid: e2ee2ede4cae9d64b9f430fc5d17a1bc, type: 2}
+    - target: {fileID: 5388304877305832849, guid: 675c0e8d847c7d84abd2bcdb8de9a1fe, type: 3}
+      propertyPath: currentIngredientUsed
+      value: 
+      objectReference: {fileID: 11400000, guid: 9fcb476757f408c4388516f32b6bcc27, type: 2}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
@@ -2350,7 +2488,7 @@ PrefabInstance:
     m_Modifications:
     - target: {fileID: 4005100084169640724, guid: 7c839b7eae1a9514f86368c1fef0bd47, type: 3}
       propertyPath: m_VersionIndex
-      value: 1059
+      value: 1089
       objectReference: {fileID: 0}
     - target: {fileID: 5774715856320653376, guid: 7c839b7eae1a9514f86368c1fef0bd47, type: 3}
       propertyPath: m_Name
@@ -2447,6 +2585,22 @@ PrefabInstance:
       propertyPath: highWeapon
       value: 
       objectReference: {fileID: 93694627202238321}
+    - target: {fileID: -2519071088119852975, guid: af783a964d19c8d468eb016424ba5afd, type: 3}
+      propertyPath: upgradeIngredient1
+      value: 
+      objectReference: {fileID: 11400000, guid: 73ee4be9bec6a0c42a31ff406c0dec2e, type: 2}
+    - target: {fileID: -2519071088119852975, guid: af783a964d19c8d468eb016424ba5afd, type: 3}
+      propertyPath: upgradeIngredient2
+      value: 
+      objectReference: {fileID: 11400000, guid: 98371eceae5710149bdc32fde0bd8d68, type: 2}
+    - target: {fileID: -2519071088119852975, guid: af783a964d19c8d468eb016424ba5afd, type: 3}
+      propertyPath: upgradeIngredient3
+      value: 
+      objectReference: {fileID: 11400000, guid: 72b97b2e7723f934e8c66fc8e7e27775, type: 2}
+    - target: {fileID: -2519071088119852975, guid: af783a964d19c8d468eb016424ba5afd, type: 3}
+      propertyPath: currentIngredientUsed
+      value: 
+      objectReference: {fileID: 11400000, guid: 73ee4be9bec6a0c42a31ff406c0dec2e, type: 2}
     - target: {fileID: 441961288626625830, guid: af783a964d19c8d468eb016424ba5afd, type: 3}
       propertyPath: m_Name
       value: KnightShield

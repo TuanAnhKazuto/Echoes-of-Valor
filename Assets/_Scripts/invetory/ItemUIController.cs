@@ -7,8 +7,7 @@ using UnityEngine;
 public class ItemUIController : MonoBehaviour
 {
     public Item item;
-
-   
+    public Ingredient ingredient;
 
     private void Start()
     {
@@ -19,7 +18,11 @@ public class ItemUIController : MonoBehaviour
     public void SetItem(Item item)
     {
         this.item = item;
-      
+    }
+
+    public void SetIngredient(Ingredient _ingredient)
+    {
+        this.ingredient = _ingredient;
     }
     
     public void Remove()
@@ -28,9 +31,10 @@ public class ItemUIController : MonoBehaviour
         Destroy(this.gameObject);
     }
 
-
     public void UseItem()
     {
+        if(item == null && ingredient != null) return;
+
         switch(item.itemType)
         {
             case ItemType.Hp:
@@ -48,15 +52,8 @@ public class ItemUIController : MonoBehaviour
             case ItemType.Mp:
                 FindAnyObjectByType<CharacterStats>().ConsumeMana( -item.value);
                 break;
-
-
-
         }
         Remove();
         InventoryManager.Instance.DisplayInventory(); 
     }
-   
-
-
-
 }

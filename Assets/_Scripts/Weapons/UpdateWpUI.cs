@@ -16,6 +16,8 @@ public class UpdateWpUI : MonoBehaviour
 
     public Slider upgradeValuerSlider;
     public TextMeshProUGUI levelUpdateText;
+    public Image ingerdientImg;
+    public TextMeshProUGUI ingerdientCountText;
 
     public GameObject updateSystemObj;
     public GameObject messengerObj;
@@ -40,6 +42,7 @@ public class UpdateWpUI : MonoBehaviour
     public void UpdaterValuerUpgrade()
     {
         levelUpdateText.text = upgradeValuerSlider.value.ToString();
+        ingerdientCountText.text = weaponStats.IngredientCount().ToString() + " / " + weaponStats.GetUpdateIngredientAmount((int)upgradeValuerSlider.value).ToString();
     }
 
     public void UpdateBtn()
@@ -65,6 +68,8 @@ public class UpdateWpUI : MonoBehaviour
         weaponBreakthroughText.text = "Breakthrough: " + weaponStats.weaponBreakthrough.ToString();
         weaponDamageText.text = "Damage: " + weaponStats.baseDamage.ToString();
         weaponDefenseText.text = "Defense: " + weaponStats.baseDefense.ToString();
+
+        ingerdientImg.sprite = weaponStats.currentIngredientUsed.icon;
 
         upgradeValuerSlider.value = 1;
     }
