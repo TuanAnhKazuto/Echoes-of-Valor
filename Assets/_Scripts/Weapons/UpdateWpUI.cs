@@ -21,6 +21,7 @@ public class UpdateWpUI : MonoBehaviour
 
     public GameObject updateSystemObj;
     public GameObject messengerObj;
+    public TextMeshProUGUI messengerText;
 
     int levelsToAdd = 1;
 
@@ -30,8 +31,10 @@ public class UpdateWpUI : MonoBehaviour
         
         if(weaponStats != null)
         {
-            upgradeValuerSlider.maxValue = weaponStats.maxWeaponLevel;
+            upgradeValuerSlider.maxValue = 20;
         }
+
+        ingerdientCountText.text = "0 / 4";
     }
 
     private void Update()
@@ -42,7 +45,9 @@ public class UpdateWpUI : MonoBehaviour
     public void UpdaterValuerUpgrade()
     {
         levelUpdateText.text = upgradeValuerSlider.value.ToString();
-        ingerdientCountText.text = weaponStats.IngredientCount().ToString() + " / " + weaponStats.GetUpdateIngredientAmount((int)upgradeValuerSlider.value).ToString();
+        levelsToAdd = (int)upgradeValuerSlider.value;
+        ingerdientCountText.text = weaponStats.ingredientCount.ToString() + " / " + weaponStats.ingredientNeedToUpgrade.ToString();
+
     }
 
     public void UpdateBtn()
@@ -51,8 +56,8 @@ public class UpdateWpUI : MonoBehaviour
 
         weaponStats.LevelUpdate(levelsToAdd);
 
-        upgradeValuerSlider.maxValue = weaponStats.maxWeaponLevel - weaponStats.weaponLevel;
-
+        upgradeValuerSlider.maxValue = 20 - weaponStats.weaponLevel;
+        
         if (weaponStats.isMaxLevel)
         {
             messengerObj.SetActive(true);
@@ -70,6 +75,7 @@ public class UpdateWpUI : MonoBehaviour
         weaponDefenseText.text = "Defense: " + weaponStats.baseDefense.ToString();
 
         ingerdientImg.sprite = weaponStats.currentIngredientUsed.icon;
+        ingerdientCountText.text = weaponStats.ingredientCount.ToString() + " / " + weaponStats.ingredientNeedToUpgrade.ToString();
 
         upgradeValuerSlider.value = 1;
     }
