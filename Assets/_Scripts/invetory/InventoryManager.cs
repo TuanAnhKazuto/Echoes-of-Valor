@@ -94,17 +94,17 @@ public class InventoryManager : MonoBehaviour
     }
 
     // Thêm nguyên liệu nâng cấp vào túi đồ
-    public void AddIngredients(Ingredient ingredient)
+    public void AddIngredients(Ingredient ingredient, int count)
     {
         UpgradeIngredient upgradeIngredient = upgradeIngredients.Find(i => i.ingredient.ingredientsID == ingredient.ingredientsID);
 
         if (upgradeIngredient != null)
         {
-            upgradeIngredient.quantity += 1;
+            upgradeIngredient.quantity += count;
         }
         else
         {
-            upgradeIngredients.Add(new UpgradeIngredient(ingredient, 1, ingredient.description));
+            upgradeIngredients.Add(new UpgradeIngredient(ingredient, count, ingredient.description));
         }
     }
 
