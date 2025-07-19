@@ -1,6 +1,4 @@
-﻿using NUnit.Framework;
-using System.Collections.Generic;
-using UnityEngine;
+﻿using UnityEngine;
 
 public class WeaponStats : MonoBehaviour
 {
@@ -43,35 +41,38 @@ public class WeaponStats : MonoBehaviour
 
     [Header("Weapon Upgrade System")]
     public InventoryManager inventoryManager;
+    public int ingredientNeedToUpgrade = 0;
+    public int ingredientCount = 0;
 
     public Ingredient currentIngredientUsed;
     public Ingredient upgradeIngredient1;
     public Ingredient upgradeIngredient2;
     public Ingredient upgradeIngredient3;
+
+    public string messageNotEnoughIngredients = "Not enough ingredients to upgrade the weapon.";
     public int GetUpdateIngredientAmount(int currentlevel)
     {
-        return (currentlevel + 1) * 2; 
-    }
-    public int IngredientCount()
-    {
-        if(inventoryManager.upgradeIngredients.Find(i => i.ingredient == currentIngredientUsed) == null)
-            return 0;
-        else
-            return inventoryManager.upgradeIngredients.Find(i => i.ingredient == currentIngredientUsed).quantity;
+        int levelUp = (currentlevel + 1) * 2;
+
+        return levelUp;
     }
 
     private void Start()
     {
         inventoryManager = FindAnyObjectByType<InventoryManager>();
         currentIngredientUsed = upgradeIngredient1;
-        IngredientCount();
     }
 
     public void LevelUpdate(int levelsToAdd)
     {
-        int ingredientNeedToUpgrade = GetUpdateIngredientAmount(levelsToAdd);
+        ingredientNeedToUpgrade = GetUpdateIngredientAmount(weaponLevel);
 
-        if(IngredientCount() >= ingredientNeedToUpgrade)
+        if (inventoryManager.upgradeIngredients.Find(i => i.ingredient == currentIngredientUsed) != null)
+            ingredientCount = inventoryManager.upgradeIngredients.Find(i => i.ingredient == currentIngredientUsed).quantity;
+        else
+            ingredientCount = 0;
+
+        if (ingredientCount >= ingredientNeedToUpgrade)
         {
             inventoryManager.upgradeIngredients.Find(i => i.ingredient == currentIngredientUsed).quantity -= ingredientNeedToUpgrade;
             LevelUp(levelsToAdd);
@@ -145,5 +146,5 @@ public class WeaponStats : MonoBehaviour
         }
     }
 
-    
+
 }
