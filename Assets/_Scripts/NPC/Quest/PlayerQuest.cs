@@ -90,9 +90,16 @@ public class PlayerQuest : MonoBehaviour
             {
                 markerManager.HideMarker(questItem);
             }
+
             Debug.Log($"Đã trả nhiệm vụ: {questItem.QuetsItemName}, nhận {questItem.rewardAmount} vàng");
 
             FindAnyObjectByType<Cor>().IncreaseCor(questItem.rewardAmount);
+
+            foreach (var item in questItem.rewardItems)
+            {
+                InventoryManager.Instance.Add(item);
+                Debug.Log($"Nhận thêm vật phẩm: {item.itemName}");
+            }
 
             playerQuestPanel.ShowAllQuestItem(questItems);
         }
