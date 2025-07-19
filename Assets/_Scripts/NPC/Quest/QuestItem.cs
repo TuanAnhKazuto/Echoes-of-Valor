@@ -14,10 +14,13 @@ public class QuestItem : MonoBehaviour
     // thoại khi hoàn thành
     [TextArea(2, 5)]
     public string completeDialogue;
+    [Header("Phần thưởng")]
+    public List<Item> rewardItems;
 
     [Header("Mô tả nhiệm vụ")]
     [TextArea(2, 5)]
     public string description;
+
     [Header("Gợi ý")]
     [TextArea(1, 3)]
     public string hint;

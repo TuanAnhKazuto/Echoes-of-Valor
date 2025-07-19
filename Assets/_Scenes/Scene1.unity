@@ -50151,7 +50151,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 8835601500180365127, guid: 3f457b0604d84b140a2f3df12ea405bc, type: 3}
       propertyPath: dialogueChoices.Array.data[2].choiceText
-      value: "\u0110\u01B0\u1EE3c r\u1ED3i t\xF4i s\u1EBD l\xE0m"
+      value: "Hmmm..\u0110\u01B0\u1EE3c r\u1ED3i!!"
       objectReference: {fileID: 0}
     - target: {fileID: 8835601500180365127, guid: 3f457b0604d84b140a2f3df12ea405bc, type: 3}
       propertyPath: questChats.Array.data[0].lines.Array.size
@@ -50334,6 +50334,10 @@ PrefabInstance:
       value: 2
       objectReference: {fileID: 0}
     - target: {fileID: 8835601500180365127, guid: 3f457b0604d84b140a2f3df12ea405bc, type: 3}
+      propertyPath: dialogueChoices.Array.data[2].followUpLines.Array.size
+      value: 2
+      objectReference: {fileID: 0}
+    - target: {fileID: 8835601500180365127, guid: 3f457b0604d84b140a2f3df12ea405bc, type: 3}
       propertyPath: 'dialogueChoices.Array.data[0].followUpLines.Array.data[0]'
       value: "H\xE3y tin t\xF4i ch\xE0ng trai, m\u1ED9t chi\u1EBFn binh kh\xF4ng
         bao gi\u1EDD n\xF3i d\u1ED1i"
@@ -50357,6 +50361,16 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 8835601500180365127, guid: 3f457b0604d84b140a2f3df12ea405bc, type: 3}
       propertyPath: 'dialogueChoices.Array.data[1].followUpLines.Array.data[1]'
+      value: "C\u1EADu ch\xEDnh l\xE0 chi\u1EBFn binh \u0111\u01B0\u1EE3c ch\u1ECDn,
+        \u0111\u1EBFn \u0111\xE2y \u0111\u1EC3 gi\xFAp ch\xFAng t\xF4i"
+      objectReference: {fileID: 0}
+    - target: {fileID: 8835601500180365127, guid: 3f457b0604d84b140a2f3df12ea405bc, type: 3}
+      propertyPath: 'dialogueChoices.Array.data[2].followUpLines.Array.data[0]'
+      value: "H\xE3y theo ch\u1EC9 d\u1EABn c\u1EE7a t\xF4i, M\u1ECDi ng\u01B0\u1EDDi
+        c\u1EA7n c\u1EADu "
+      objectReference: {fileID: 0}
+    - target: {fileID: 8835601500180365127, guid: 3f457b0604d84b140a2f3df12ea405bc, type: 3}
+      propertyPath: 'dialogueChoices.Array.data[2].followUpLines.Array.data[1]'
       value: "C\u1EADu ch\xEDnh l\xE0 chi\u1EBFn binh \u0111\u01B0\u1EE3c ch\u1ECDn,
         \u0111\u1EBFn \u0111\xE2y \u0111\u1EC3 gi\xFAp ch\xFAng t\xF4i"
       objectReference: {fileID: 0}
@@ -270098,9 +270112,21 @@ PrefabInstance:
       propertyPath: saveGameManager
       value: 
       objectReference: {fileID: 1028513665}
+    - target: {fileID: 6433236864702480091, guid: ca1998f865fc71e4db1590094f47b43b, type: 3}
+      propertyPath: m_AnchorMax.y
+      value: 1
+      objectReference: {fileID: 0}
     - target: {fileID: 6778092126549791300, guid: ca1998f865fc71e4db1590094f47b43b, type: 3}
       propertyPath: m_Name
       value: UpgrateWeaponCanvas
+      objectReference: {fileID: 0}
+    - target: {fileID: 6778092126549791300, guid: ca1998f865fc71e4db1590094f47b43b, type: 3}
+      propertyPath: m_IsActive
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 7068078081029041105, guid: ca1998f865fc71e4db1590094f47b43b, type: 3}
+      propertyPath: m_AnchorMax.y
+      value: 1
       objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
@@ -388942,9 +388968,49 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 4040817025529607772, guid: a332b3f1af9dfd44ab1952783f49ef4a, type: 3}
+      propertyPath: m_IsActive
+      value: 0
+      objectReference: {fileID: 0}
     - target: {fileID: 5157200671929800224, guid: a332b3f1af9dfd44ab1952783f49ef4a, type: 3}
       propertyPath: m_Name
       value: Canvas Inventory
+      objectReference: {fileID: 0}
+    - target: {fileID: 7755890983922414507, guid: a332b3f1af9dfd44ab1952783f49ef4a, type: 3}
+      propertyPath: m_AnchorMax.y
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 7755890983922414507, guid: a332b3f1af9dfd44ab1952783f49ef4a, type: 3}
+      propertyPath: m_AnchorMin.y
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 7755890983922414507, guid: a332b3f1af9dfd44ab1952783f49ef4a, type: 3}
+      propertyPath: m_SizeDelta.x
+      value: 180
+      objectReference: {fileID: 0}
+    - target: {fileID: 7755890983922414507, guid: a332b3f1af9dfd44ab1952783f49ef4a, type: 3}
+      propertyPath: m_SizeDelta.y
+      value: 230
+      objectReference: {fileID: 0}
+    - target: {fileID: 7755890983922414507, guid: a332b3f1af9dfd44ab1952783f49ef4a, type: 3}
+      propertyPath: m_AnchoredPosition.x
+      value: 308.78146
+      objectReference: {fileID: 0}
+    - target: {fileID: 7755890983922414507, guid: a332b3f1af9dfd44ab1952783f49ef4a, type: 3}
+      propertyPath: m_AnchoredPosition.y
+      value: -120
+      objectReference: {fileID: 0}
+    - target: {fileID: 8722712839027987314, guid: a332b3f1af9dfd44ab1952783f49ef4a, type: 3}
+      propertyPath: m_AnchorMax.x
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 8722712839027987314, guid: a332b3f1af9dfd44ab1952783f49ef4a, type: 3}
+      propertyPath: m_AnchorMax.y
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 8722712839027987314, guid: a332b3f1af9dfd44ab1952783f49ef4a, type: 3}
+      propertyPath: m_AnchorMin.y
+      value: 0.000007748604
       objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []

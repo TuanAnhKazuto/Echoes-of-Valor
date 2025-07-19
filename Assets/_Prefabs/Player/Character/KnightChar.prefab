@@ -1297,7 +1297,7 @@ MonoBehaviour:
   playerName: 
   characterClass: Knight
   level: 1
-  maxHealth: 100
+  maxHealth: 1000
   currentHealth: 0
   currentMana: 0
   maxMana: 100
@@ -2091,11 +2091,9 @@ MonoBehaviour:
   jumpSound: {fileID: 8300000, guid: 9b6d4a040d8d3474f87ea7ee302d9acd, type: 3}
   normalKnight: {fileID: 8300000, guid: 77498fd733be3404da725ade784eb2ef, type: 3}
   skill1Knight: {fileID: 8300000, guid: 6373ee1a2691e8f47b68f4204ff78481, type: 3}
-  skill1Mage: {fileID: 0}
+  normalMage: {fileID: 0}
   skill2Mage: {fileID: 0}
-  skill3Mage: {fileID: 0}
   normalRouge: {fileID: 0}
-  skillRouge: {fileID: 0}
 --- !u!1 &8998727911122777749
 GameObject:
   m_ObjectHideFlags: 0
@@ -2355,6 +2353,22 @@ PrefabInstance:
       propertyPath: highWeapon
       value: 
       objectReference: {fileID: 501177983585707331}
+    - target: {fileID: 5388304877305832849, guid: 675c0e8d847c7d84abd2bcdb8de9a1fe, type: 3}
+      propertyPath: upgradeIngredient1
+      value: 
+      objectReference: {fileID: 11400000, guid: 9fcb476757f408c4388516f32b6bcc27, type: 2}
+    - target: {fileID: 5388304877305832849, guid: 675c0e8d847c7d84abd2bcdb8de9a1fe, type: 3}
+      propertyPath: upgradeIngredient2
+      value: 
+      objectReference: {fileID: 11400000, guid: 09fe346d5cde65648922da6d015f066e, type: 2}
+    - target: {fileID: 5388304877305832849, guid: 675c0e8d847c7d84abd2bcdb8de9a1fe, type: 3}
+      propertyPath: upgradeIngredient3
+      value: 
+      objectReference: {fileID: 11400000, guid: e2ee2ede4cae9d64b9f430fc5d17a1bc, type: 2}
+    - target: {fileID: 5388304877305832849, guid: 675c0e8d847c7d84abd2bcdb8de9a1fe, type: 3}
+      propertyPath: currentIngredientUsed
+      value: 
+      objectReference: {fileID: 11400000, guid: 9fcb476757f408c4388516f32b6bcc27, type: 2}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
@@ -2474,7 +2488,7 @@ PrefabInstance:
     m_Modifications:
     - target: {fileID: 4005100084169640724, guid: 7c839b7eae1a9514f86368c1fef0bd47, type: 3}
       propertyPath: m_VersionIndex
-      value: 1026
+      value: 1089
       objectReference: {fileID: 0}
     - target: {fileID: 5774715856320653376, guid: 7c839b7eae1a9514f86368c1fef0bd47, type: 3}
       propertyPath: m_Name
@@ -2571,6 +2585,22 @@ PrefabInstance:
       propertyPath: highWeapon
       value: 
       objectReference: {fileID: 93694627202238321}
+    - target: {fileID: -2519071088119852975, guid: af783a964d19c8d468eb016424ba5afd, type: 3}
+      propertyPath: upgradeIngredient1
+      value: 
+      objectReference: {fileID: 11400000, guid: 73ee4be9bec6a0c42a31ff406c0dec2e, type: 2}
+    - target: {fileID: -2519071088119852975, guid: af783a964d19c8d468eb016424ba5afd, type: 3}
+      propertyPath: upgradeIngredient2
+      value: 
+      objectReference: {fileID: 11400000, guid: 98371eceae5710149bdc32fde0bd8d68, type: 2}
+    - target: {fileID: -2519071088119852975, guid: af783a964d19c8d468eb016424ba5afd, type: 3}
+      propertyPath: upgradeIngredient3
+      value: 
+      objectReference: {fileID: 11400000, guid: 72b97b2e7723f934e8c66fc8e7e27775, type: 2}
+    - target: {fileID: -2519071088119852975, guid: af783a964d19c8d468eb016424ba5afd, type: 3}
+      propertyPath: currentIngredientUsed
+      value: 
+      objectReference: {fileID: 11400000, guid: 73ee4be9bec6a0c42a31ff406c0dec2e, type: 2}
     - target: {fileID: 441961288626625830, guid: af783a964d19c8d468eb016424ba5afd, type: 3}
       propertyPath: m_Name
       value: KnightShield
