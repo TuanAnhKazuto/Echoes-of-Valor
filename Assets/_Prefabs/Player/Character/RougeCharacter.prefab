@@ -1177,11 +1177,9 @@ MonoBehaviour:
   jumpSound: {fileID: 8300000, guid: 9b6d4a040d8d3474f87ea7ee302d9acd, type: 3}
   normalKnight: {fileID: 0}
   skill1Knight: {fileID: 0}
-  skill1Mage: {fileID: 0}
+  normalMage: {fileID: 0}
   skill2Mage: {fileID: 0}
-  skill3Mage: {fileID: 0}
   normalRouge: {fileID: 8300000, guid: e94317421fb745b4ba6ad1d7bb5dbbbe, type: 3}
-  skillRouge: {fileID: 8300000, guid: 9ef367168cdeddb4f89dd53508f5483c, type: 3}
 --- !u!1 &3426056815106482456
 GameObject:
   m_ObjectHideFlags: 0
@@ -1974,7 +1972,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 0
+  m_IsActive: 1
 --- !u!4 &1169232364258169769
 Transform:
   m_ObjectHideFlags: 0
@@ -2285,6 +2283,22 @@ PrefabInstance:
       propertyPath: highWeapon
       value: 
       objectReference: {fileID: 7959365033892035776}
+    - target: {fileID: 8712332172606700256, guid: 2d170066e2356214c9136295ad2bba8d, type: 3}
+      propertyPath: upgradeIngredient1
+      value: 
+      objectReference: {fileID: 11400000, guid: 25396c9e8e343a8458424b2e4622c65a, type: 2}
+    - target: {fileID: 8712332172606700256, guid: 2d170066e2356214c9136295ad2bba8d, type: 3}
+      propertyPath: upgradeIngredient2
+      value: 
+      objectReference: {fileID: 11400000, guid: d6ae851dd889edb46979ffff6bb15c36, type: 2}
+    - target: {fileID: 8712332172606700256, guid: 2d170066e2356214c9136295ad2bba8d, type: 3}
+      propertyPath: upgradeIngredient3
+      value: 
+      objectReference: {fileID: 11400000, guid: ca5de3416dcd1e741bd906a823a26e78, type: 2}
+    - target: {fileID: 8712332172606700256, guid: 2d170066e2356214c9136295ad2bba8d, type: 3}
+      propertyPath: currentIngredientUsed
+      value: 
+      objectReference: {fileID: 11400000, guid: 25396c9e8e343a8458424b2e4622c65a, type: 2}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
@@ -2327,6 +2341,22 @@ PrefabInstance:
       propertyPath: highWeapon
       value: 
       objectReference: {fileID: 4577363704968702414}
+    - target: {fileID: 8261434522468696964, guid: 3023c5f20d8cadb48bf537f821da7312, type: 3}
+      propertyPath: upgradeIngredient1
+      value: 
+      objectReference: {fileID: 11400000, guid: f5bbd90678017e24d88e10cf5c22b941, type: 2}
+    - target: {fileID: 8261434522468696964, guid: 3023c5f20d8cadb48bf537f821da7312, type: 3}
+      propertyPath: upgradeIngredient2
+      value: 
+      objectReference: {fileID: 11400000, guid: 1c2403b0970324e44a419517f86dc4de, type: 2}
+    - target: {fileID: 8261434522468696964, guid: 3023c5f20d8cadb48bf537f821da7312, type: 3}
+      propertyPath: upgradeIngredient3
+      value: 
+      objectReference: {fileID: 11400000, guid: 782e26386c28d8f4a9fabb2d2338613b, type: 2}
+    - target: {fileID: 8261434522468696964, guid: 3023c5f20d8cadb48bf537f821da7312, type: 3}
+      propertyPath: currentIngredientUsed
+      value: 
+      objectReference: {fileID: 11400000, guid: f5bbd90678017e24d88e10cf5c22b941, type: 2}
     - target: {fileID: 8667447897643840629, guid: 3023c5f20d8cadb48bf537f821da7312, type: 3}
       propertyPath: m_LocalPosition.x
       value: -0.107
@@ -2403,7 +2433,7 @@ PrefabInstance:
     m_Modifications:
     - target: {fileID: 4005100084169640724, guid: 7c839b7eae1a9514f86368c1fef0bd47, type: 3}
       propertyPath: m_VersionIndex
-      value: 1059
+      value: 1086
       objectReference: {fileID: 0}
     - target: {fileID: 5774715856320653376, guid: 7c839b7eae1a9514f86368c1fef0bd47, type: 3}
       propertyPath: m_Name
