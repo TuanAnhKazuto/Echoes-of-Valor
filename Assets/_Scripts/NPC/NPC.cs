@@ -197,12 +197,16 @@ public class NPC : MonoBehaviour
     IEnumerator ShowAfterCompleteDialogue(QuestItem finishedQuest)
     {
         yield return new WaitForSeconds(1f);
+        string rewardsSummary = $"+{finishedQuest.rewardAmount} vàng";
 
-        string dialogue = string.IsNullOrEmpty(finishedQuest.completeDialogue)
-            ? $"Bạn đã hoàn thành nhiệm vụ và nhận được {finishedQuest.rewardAmount} vàng."
-            : finishedQuest.completeDialogue;
+        if (finishedQuest.rewardItems != null && finishedQuest.rewardItems.Count > 0)
+        {
+            var itemNames = string.Join(", ", finishedQuest.rewardItems.ConvertAll(item => item.itemName));
+            rewardsSummary += $", nhận thêm: {itemNames}";
+        }
 
-        chatText.text = dialogue;
+        chatText.text = rewardsSummary;
+
 
         yield return new WaitForSeconds(2.5f);
         playerQuests.CompleteQuest(finishedQuest);
