@@ -7,8 +7,9 @@ public class Ingredient : ScriptableObject
     public Sprite icon;
     [TextArea] public string description;
 
-    public IngredientType ingredientTypeFor; // enum: Material, Weapon, KeyItem, etc.
-    public int ingredientsID;        // hoặc dùng GUID nếu muốn
+    public IngredientType ingredientTypeFor;
+    public IngredientRank ingredientRank;
+    public int ingredientsID;
 
 }
 
@@ -20,4 +21,11 @@ public enum IngredientType
     Quiver,
     Stick,
     Book
+}
+
+public enum IngredientRank
+{
+    Normal,
+    Rare,
+    Epic
 }
