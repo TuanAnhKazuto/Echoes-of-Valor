@@ -39,7 +39,7 @@ public class BossGolem : MonoBehaviour
     public float detectionRange = 20f;
     public float attackRange = 5f;
     public float skillCooldown = 10f;
-    private float skillTimer;
+    [SerializeField] private float skillTimer;
 
     [Header("Boss Stats")]
     public float maxHealth = 100f;  
