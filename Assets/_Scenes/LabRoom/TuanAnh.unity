@@ -3001,9 +3001,10 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 1339beec2a1d71c409ccae78526ce60d, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  icon: {fileID: 0}
-  itemName: {fileID: 0}
-  itemAmount: {fileID: 0}
+  icon: {fileID: 292771845}
+  itemName: {fileID: 1311642875}
+  itemAmount: {fileID: 1449735324}
+  countItem: 0
 --- !u!114 &629358845
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -3323,6 +3324,7 @@ GameObject:
   - component: {fileID: 978419000}
   - component: {fileID: 978418999}
   - component: {fileID: 978418998}
+  - component: {fileID: 978419001}
   m_Layer: 5
   m_Name: PickupMessenger
   m_TagString: Untagged
@@ -3414,6 +3416,19 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 978418996}
   m_CullTransparentMesh: 1
+--- !u!114 &978419001
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 978418996}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: da3933e56dc66d3478b238adc9db1f0b, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  messegerPickup: {fileID: 0}
 --- !u!43 &1005415130
 Mesh:
   m_ObjectHideFlags: 0
