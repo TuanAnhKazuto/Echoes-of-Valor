@@ -1162,6 +1162,7 @@ GameObject:
   - component: {fileID: 272188147293665045}
   - component: {fileID: 6154890251400457056}
   - component: {fileID: -5282026007749817749}
+  - component: {fileID: -6425882495566542180}
   m_Layer: 7
   m_Name: Skeleton_Minion
   m_TagString: Enemy
@@ -1320,6 +1321,7 @@ MonoBehaviour:
   questTag: Enemy
   damagePopupPrefab: {fileID: 0}
   dropItem: {fileID: 2139211537641842521, guid: 6fc2c2dfb7cfd4649aabe962d7f24774, type: 3}
+  ingredientPickup: {fileID: 0}
 --- !u!114 &2238642009246403090
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -1468,6 +1470,22 @@ MonoBehaviour:
   audioSource: {fileID: 6154890251400457056}
   attackSound: {fileID: 8300000, guid: 77498fd733be3404da725ade784eb2ef, type: 3}
   injuredSound: {fileID: 8300000, guid: 1eb711cde3274aa409aa5daeb9ff6c02, type: 3}
+--- !u!114 &-6425882495566542180
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 4165003339005387642}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: a004a05a0a232c04eb106dd60ba82e5b, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  ingredient:
+  - {fileID: 11400000, guid: 9fcb476757f408c4388516f32b6bcc27, type: 2}
+  - {fileID: 11400000, guid: 73ee4be9bec6a0c42a31ff406c0dec2e, type: 2}
+  count: 3
 --- !u!1 &4304956757510870230
 GameObject:
   m_ObjectHideFlags: 0

@@ -1541,6 +1541,7 @@ GameObject:
   - component: {fileID: 5099905241375679236}
   - component: {fileID: 4474587586182190169}
   - component: {fileID: 809660262182167699}
+  - component: {fileID: -3016717114366125342}
   m_Layer: 7
   m_Name: Skeleton_Rogue
   m_TagString: Enemy
@@ -1687,6 +1688,7 @@ MonoBehaviour:
   questTag: Enemy_Main
   damagePopupPrefab: {fileID: 0}
   dropItem: {fileID: 2139211537641842521, guid: 6fc2c2dfb7cfd4649aabe962d7f24774, type: 3}
+  ingredientPickup: {fileID: 0}
 --- !u!54 &2938735291668699248
 Rigidbody:
   m_ObjectHideFlags: 0
@@ -1849,6 +1851,22 @@ MonoBehaviour:
   audioSource: {fileID: 4474587586182190169}
   attackSound: {fileID: 8300000, guid: e94317421fb745b4ba6ad1d7bb5dbbbe, type: 3}
   injuredSound: {fileID: 8300000, guid: 1eb711cde3274aa409aa5daeb9ff6c02, type: 3}
+--- !u!114 &-3016717114366125342
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 6329946028441545229}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: a004a05a0a232c04eb106dd60ba82e5b, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  ingredient:
+  - {fileID: 11400000, guid: 25396c9e8e343a8458424b2e4622c65a, type: 2}
+  - {fileID: 11400000, guid: f5bbd90678017e24d88e10cf5c22b941, type: 2}
+  count: 3
 --- !u!1 &7086196649443389027
 GameObject:
   m_ObjectHideFlags: 0

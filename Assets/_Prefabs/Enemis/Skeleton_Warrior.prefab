@@ -1545,6 +1545,7 @@ GameObject:
   - component: {fileID: 7907730695837744889}
   - component: {fileID: 1592556814304515371}
   - component: {fileID: 446912738728759391}
+  - component: {fileID: -1317722157660799787}
   m_Layer: 7
   m_Name: Skeleton_Warrior
   m_TagString: Enemy
@@ -1704,6 +1705,7 @@ MonoBehaviour:
   questTag: Enemy_Main
   damagePopupPrefab: {fileID: 0}
   dropItem: {fileID: 0}
+  ingredientPickup: {fileID: 0}
 --- !u!114 &1443152024484819005
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -1867,6 +1869,22 @@ MonoBehaviour:
   audioSource: {fileID: 7907730695837744889}
   attackSound: {fileID: 0}
   injuredSound: {fileID: 8300000, guid: 1eb711cde3274aa409aa5daeb9ff6c02, type: 3}
+--- !u!114 &-1317722157660799787
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 4689379179007703839}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: a004a05a0a232c04eb106dd60ba82e5b, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  ingredient:
+  - {fileID: 11400000, guid: 09fe346d5cde65648922da6d015f066e, type: 2}
+  - {fileID: 11400000, guid: 98371eceae5710149bdc32fde0bd8d68, type: 2}
+  count: 3
 --- !u!1 &5108381503181762112
 GameObject:
   m_ObjectHideFlags: 0

@@ -451,6 +451,7 @@ GameObject:
   - component: {fileID: 8994924021710907559}
   - component: {fileID: 6191954081513410813}
   - component: {fileID: 1852485842899335246}
+  - component: {fileID: -3999294765818040989}
   m_Layer: 7
   m_Name: Skeleton_Mage
   m_TagString: Untagged
@@ -599,6 +600,22 @@ MonoBehaviour:
   animator: {fileID: 923563992533366101}
   bullet: {fileID: 3968682229281931250, guid: 331ca3886fecf4b31bfdd5ae856c0eaa, type: 3}
   speed: 30
+--- !u!114 &-3999294765818040989
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2750765958383500764}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: a004a05a0a232c04eb106dd60ba82e5b, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  ingredient:
+  - {fileID: 11400000, guid: af0f6714224faee45b1fb03e795c2b1f, type: 2}
+  - {fileID: 11400000, guid: 34be5991f207ce34481204284c598b6b, type: 2}
+  count: 3
 --- !u!1 &2789392051588706842
 GameObject:
   m_ObjectHideFlags: 0

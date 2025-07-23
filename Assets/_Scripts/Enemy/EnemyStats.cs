@@ -32,10 +32,12 @@ public class EnemyStats : MonoBehaviour
 
     [Header("DropItem")]
     public GameObject dropItem;
+    public IngredientPickup ingredientPickup;
 
     private void Start()
     {
         skeletonMovement = GetComponent<SkeletonMovement>();
+        ingredientPickup = GetComponent<IngredientPickup>();
 
         currentHealth = maxHealth;
         skeletonMovement.animator.SetFloat("HP", currentHealth);
@@ -90,6 +92,7 @@ public class EnemyStats : MonoBehaviour
     public void Death()
     {
         DropItem();
+        ingredientPickup.PickUp();
         Destroy(gameObject);  
     }
 
