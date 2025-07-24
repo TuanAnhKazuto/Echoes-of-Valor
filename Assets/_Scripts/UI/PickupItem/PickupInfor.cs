@@ -10,10 +10,10 @@ public class PickupInfor : MonoBehaviour
 
     public int countItem;
 
-    public void SetupItemInfor(IngredientPickup pickup)
+    public void SetupItemInfor(Ingredient ingredient, int count)
     {
-        icon.sprite = pickup.ingredient[countItem].icon;
-        itemName.text = pickup.ingredient[countItem].name;
-        itemAmount.text = pickup.count.ToString();
+        icon.sprite = ingredient.icon;
+        itemName.text = ingredient.ingredientName;
+        itemAmount.text = "x" + count.ToString();
     }
 }

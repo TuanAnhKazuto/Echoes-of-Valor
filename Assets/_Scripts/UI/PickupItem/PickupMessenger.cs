@@ -1,11 +1,24 @@
+﻿using JetBrains.Annotations;
+using System.Collections.Generic;
 using UnityEngine;
 
 public class PickupMessenger : MonoBehaviour
 {
-    public GameObject messegerPickup;
+    public static PickupMessenger Instance;
+    public GameObject messengerPrefab;
+    public Transform messageParent;
 
-    public void ShowPickupMessage()
+    private void Awake()
     {
-        GameObject messeger  = Instantiate(messegerPickup, transform);
+        Instance = this;
+    }
+
+    public void ShowPickupMessage(Ingredient ingredient, int count)
+    {
+        GameObject messengerObj = Instantiate(messengerPrefab, messageParent);
+        PickupInfor info = messengerObj.GetComponent<PickupInfor>();
+        info.SetupItemInfor(ingredient, count);
+
+        Destroy(messengerObj, 2f);
     }
 }
