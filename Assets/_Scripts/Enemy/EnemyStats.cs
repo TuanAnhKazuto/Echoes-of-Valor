@@ -92,7 +92,8 @@ public class EnemyStats : MonoBehaviour
     public void Death()
     {
         DropItem();
-        ingredientPickup.PickUp();
+        ingredientPickup.Pickup();
+        //StartCoroutine(ingredientPickup.Pickup());
         Destroy(gameObject);  
     }
 
