@@ -19,12 +19,27 @@ public class SourceCharacter : MonoBehaviour
 
     public void PlayRunSound()
     {
-        audioSource.PlayOneShot(runSound);
+        if (audioSource.clip != runSound)
+        {
+            audioSource.clip = runSound;
+        }
+
+        if (!audioSource.isPlaying)
+        {
+            audioSource.loop = true;
+            audioSource.Play();
+        }
     }
-    public void PlayWalkSound()
+    public void StopRunSound()
     {
-        audioSource.PlayOneShot(walkSound);
+        if (audioSource.isPlaying && audioSource.clip == runSound)
+        {
+            audioSource.Stop();
+            audioSource.loop = false;
+            audioSource.clip = null;
+        }
     }
+
     public void PlayDieSound()
     {
         audioSource.PlayOneShot(dieSound);
