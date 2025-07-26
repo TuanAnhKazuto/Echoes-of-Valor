@@ -375,13 +375,13 @@ GameObject:
   m_CorrespondingSourceObject: {fileID: 1616779781427298536, guid: 24250c848f26f8448b7a08cc4724448b, type: 3}
   m_PrefabInstance: {fileID: 3502151235089479124}
   m_PrefabAsset: {fileID: 0}
---- !u!43 &203705562
+--- !u!43 &236976088
 Mesh:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
-  m_Name: pb_Mesh-2180
+  m_Name: pb_Mesh-2180(Clone)
   serializedVersion: 11
   m_SubMeshes:
   - serializedVersion: 2
@@ -2433,6 +2433,108 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 4e29b1a8efbd4b44bb3f3716e73f07ff, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+--- !u!1 &2034226319 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 7930215287068475354, guid: 04d2b84b35acdab4baa5adc23ab28b24, type: 3}
+  m_PrefabInstance: {fileID: 8214419763902254683}
+  m_PrefabAsset: {fileID: 0}
+--- !u!82 &2034226331
+AudioSource:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2034226319}
+  m_Enabled: 1
+  serializedVersion: 4
+  OutputAudioMixerGroup: {fileID: 0}
+  m_audioClip: {fileID: 0}
+  m_Resource: {fileID: 0}
+  m_PlayOnAwake: 1
+  m_Volume: 1
+  m_Pitch: 1
+  Loop: 0
+  Mute: 0
+  Spatialize: 0
+  SpatializePostEffects: 0
+  Priority: 128
+  DopplerLevel: 1
+  MinDistance: 1
+  MaxDistance: 500
+  Pan2D: 0
+  rolloffMode: 0
+  BypassEffects: 0
+  BypassListenerEffects: 0
+  BypassReverbZones: 0
+  rolloffCustomCurve:
+    serializedVersion: 2
+    m_Curve:
+    - serializedVersion: 3
+      time: 0
+      value: 1
+      inSlope: 0
+      outSlope: 0
+      tangentMode: 0
+      weightedMode: 0
+      inWeight: 0.33333334
+      outWeight: 0.33333334
+    - serializedVersion: 3
+      time: 1
+      value: 0
+      inSlope: 0
+      outSlope: 0
+      tangentMode: 0
+      weightedMode: 0
+      inWeight: 0.33333334
+      outWeight: 0.33333334
+    m_PreInfinity: 2
+    m_PostInfinity: 2
+    m_RotationOrder: 4
+  panLevelCustomCurve:
+    serializedVersion: 2
+    m_Curve:
+    - serializedVersion: 3
+      time: 0
+      value: 0
+      inSlope: 0
+      outSlope: 0
+      tangentMode: 0
+      weightedMode: 0
+      inWeight: 0.33333334
+      outWeight: 0.33333334
+    m_PreInfinity: 2
+    m_PostInfinity: 2
+    m_RotationOrder: 4
+  spreadCustomCurve:
+    serializedVersion: 2
+    m_Curve:
+    - serializedVersion: 3
+      time: 0
+      value: 0
+      inSlope: 0
+      outSlope: 0
+      tangentMode: 0
+      weightedMode: 0
+      inWeight: 0.33333334
+      outWeight: 0.33333334
+    m_PreInfinity: 2
+    m_PostInfinity: 2
+    m_RotationOrder: 4
+  reverbZoneMixCustomCurve:
+    serializedVersion: 2
+    m_Curve:
+    - serializedVersion: 3
+      time: 0
+      value: 1
+      inSlope: 0
+      outSlope: 0
+      tangentMode: 0
+      weightedMode: 0
+      inWeight: 0.33333334
+      outWeight: 0.33333334
+    m_PreInfinity: 2
+    m_PostInfinity: 2
+    m_RotationOrder: 4
 --- !u!1001 &2044098008
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -2681,7 +2783,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 5428599474284752997, guid: 4d2ee5f6a7438074ca0779ca792324ba, type: 3}
       propertyPath: m_IsActive
-      value: 0
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 8219310280919571435, guid: 4d2ee5f6a7438074ca0779ca792324ba, type: 3}
       propertyPath: m_Mesh
@@ -2689,7 +2791,7 @@ PrefabInstance:
       objectReference: {fileID: 143341478}
     - target: {fileID: 8219310280919571435, guid: 4d2ee5f6a7438074ca0779ca792324ba, type: 3}
       propertyPath: m_VersionIndex
-      value: 1044
+      value: 1050
       objectReference: {fileID: 0}
     - target: {fileID: 8818820891007266406, guid: 4d2ee5f6a7438074ca0779ca792324ba, type: 3}
       propertyPath: m_Mesh
@@ -3719,7 +3821,7 @@ PrefabInstance:
       objectReference: {fileID: 1644980939}
     - target: {fileID: 246035153587633875, guid: 7a55015a02a19ea4aa1648d77f9031cd, type: 3}
       propertyPath: m_VersionIndex
-      value: 1104
+      value: 1110
       objectReference: {fileID: 0}
     - target: {fileID: 799514743675816798, guid: 7a55015a02a19ea4aa1648d77f9031cd, type: 3}
       propertyPath: m_Mesh
@@ -3728,6 +3830,10 @@ PrefabInstance:
     - target: {fileID: 3432828208371693777, guid: 7a55015a02a19ea4aa1648d77f9031cd, type: 3}
       propertyPath: m_Name
       value: MageCharacter
+      objectReference: {fileID: 0}
+    - target: {fileID: 3432828208371693777, guid: 7a55015a02a19ea4aa1648d77f9031cd, type: 3}
+      propertyPath: m_IsActive
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 3666282475762851283, guid: 7a55015a02a19ea4aa1648d77f9031cd, type: 3}
       propertyPath: m_LocalPosition.x
@@ -5977,6 +6083,10 @@ PrefabInstance:
     serializedVersion: 3
     m_TransformParent: {fileID: 0}
     m_Modifications:
+    - target: {fileID: 283180697865727293, guid: 04d2b84b35acdab4baa5adc23ab28b24, type: 3}
+      propertyPath: Loop
+      value: 1
+      objectReference: {fileID: 0}
     - target: {fileID: 1169232364258169769, guid: 04d2b84b35acdab4baa5adc23ab28b24, type: 3}
       propertyPath: m_LocalPosition.x
       value: 3.51
@@ -6020,23 +6130,30 @@ PrefabInstance:
     - target: {fileID: 4710159789740763571, guid: 04d2b84b35acdab4baa5adc23ab28b24, type: 3}
       propertyPath: m_Mesh
       value: 
-      objectReference: {fileID: 203705562}
+      objectReference: {fileID: 236976088}
     - target: {fileID: 4710159789740763571, guid: 04d2b84b35acdab4baa5adc23ab28b24, type: 3}
       propertyPath: m_VersionIndex
-      value: 1077
+      value: 1086
       objectReference: {fileID: 0}
     - target: {fileID: 5273641052991315006, guid: 04d2b84b35acdab4baa5adc23ab28b24, type: 3}
       propertyPath: m_Mesh
       value: 
-      objectReference: {fileID: 203705562}
+      objectReference: {fileID: 236976088}
     - target: {fileID: 7930215287068475354, guid: 04d2b84b35acdab4baa5adc23ab28b24, type: 3}
       propertyPath: m_Name
       value: RogueCharacter
       objectReference: {fileID: 0}
+    - target: {fileID: 7930215287068475354, guid: 04d2b84b35acdab4baa5adc23ab28b24, type: 3}
+      propertyPath: m_IsActive
+      value: 0
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
-    m_AddedComponents: []
+    m_AddedComponents:
+    - targetCorrespondingSourceObject: {fileID: 7930215287068475354, guid: 04d2b84b35acdab4baa5adc23ab28b24, type: 3}
+      insertIndex: -1
+      addedObject: {fileID: 2034226331}
   m_SourcePrefab: {fileID: 100100000, guid: 04d2b84b35acdab4baa5adc23ab28b24, type: 3}
 --- !u!95 &8231533209821251023
 Animator:

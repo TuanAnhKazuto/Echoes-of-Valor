@@ -54,8 +54,14 @@ public class PlayerController : MonoBehaviour
     [Header("Attack Settings")]
     public bool isAttacking = false;
 
+    [Header("Source")]
+    private SourceCharacter sourceCharacter;
+    private bool isRunSoundPlaying = false;
+
     private void Start()
     {
+        sourceCharacter = GetComponentInChildren<SourceCharacter>();
+
         currentStamina = maxStamina;
 
         Cursor.lockState = CursorLockMode.Locked;
@@ -131,6 +137,12 @@ public class PlayerController : MonoBehaviour
             moveSpeed = isSprinting && currentStamina > 0f ? sprintSpeed : speed;
             controller.Move(moveDir.normalized * moveSpeed * Time.deltaTime);
 
+            if (!isRunSoundPlaying && sourceCharacter != null)
+            {
+                sourceCharacter.PlayRunSound();
+                isRunSoundPlaying = true;
+            }
+
             if (isSprinting)
             {
                 currentStamina -= staminaDrainRate * Time.deltaTime;
@@ -146,6 +158,11 @@ public class PlayerController : MonoBehaviour
         {
             isSprinting = false;
             animator.SetBool("RunWhichWeapon", false);
+            if (isRunSoundPlaying)
+            {
+                isRunSoundPlaying = false;
+                sourceCharacter.StopRunSound();
+            }
         }
 
         staminaBar.UpdateBar((int)currentStamina, (int)maxStamina);
