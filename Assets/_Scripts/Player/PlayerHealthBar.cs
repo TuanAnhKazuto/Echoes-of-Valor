@@ -18,6 +18,11 @@ public class PlayerHealthBar : MonoBehaviour
 
     public TextMeshProUGUI nameText;
 
+    private void Start()
+    {
+        fillBarDamageSub.fillAmount = fillBar.fillAmount;
+    }
+
     public void UpdateHealth(int currentHealth, int maxHealth)
     {
         //greenFillImg.fillAmount = (float)currentHealth / maxHealth;
@@ -50,7 +55,13 @@ public class PlayerHealthBar : MonoBehaviour
 
     IEnumerator subHpDelay(int cur, int max)
     {
-        yield return new WaitForSeconds(0.3f);
-        fillBarDamageSub.fillAmount = (float)cur / max;
+        //yield return new WaitForSeconds(0.3f);
+        //fillBarDamageSub.fillAmount = (float)cur / max;
+
+        while (fillBarDamageSub.fillAmount > fillBar.fillAmount)
+        {
+            fillBarDamageSub.fillAmount -= 0.01f;
+            yield return new WaitForSeconds(0.025f);
+        }
     }
 }
