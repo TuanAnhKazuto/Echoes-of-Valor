@@ -87832,6 +87832,7 @@ MonoBehaviour:
   rewardAmount: 500
   questLocation: {fileID: 268417931}
   completeDialogue: 
+  rewardItems: []
   description: "Nh\u1EB7t r\u01B0\u01A1ng v\u1EADt ph\u1EA9m \u1EDF xung quanh map."
   hint: "Ch\xFAng n\u1EB1m \u1EDF l\xE0ng v\xE0o khu r\u1EEBng b\xEAn tr\xE1i khi
     ra kh\u1ECFi l\xE0ng NPC."
@@ -152261,6 +152262,10 @@ PrefabInstance:
       propertyPath: m_Name
       value: UpgrateWeaponCanvas
       objectReference: {fileID: 0}
+    - target: {fileID: 6778092126549791300, guid: ca1998f865fc71e4db1590094f47b43b, type: 3}
+      propertyPath: m_IsActive
+      value: 0
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
@@ -161210,6 +161215,10 @@ PrefabInstance:
       propertyPath: itemContentPane
       value: 
       objectReference: {fileID: 1690985969}
+    - target: {fileID: 704001667246329035, guid: 0febc4d38a5a2d74eb2578b335ecced5, type: 3}
+      propertyPath: itemContentPanel
+      value: 
+      objectReference: {fileID: 2087259258}
     - target: {fileID: 4946591686952265127, guid: 0febc4d38a5a2d74eb2578b335ecced5, type: 3}
       propertyPath: m_Name
       value: Inventory Manager
@@ -168194,6 +168203,7 @@ MonoBehaviour:
     c\u1EE7a b\u1ECDn Bone Wraith \u0111ang chi\u1EBFm gi\u1EEF v\xE0 \u0111ang giam
     gi\u1EEF ng\u01B0\u1EDDi em c\u1EE7a t\xF4i. T\xF4i mong b\u1EA1n h\xE3y c\u1EE9u
     em t\xF4i v\xE0 ti\xEAu di\u1EC7t ch\xFAng."
+  rewardItems: []
   description: "Ti\xEAu di\u1EC7t nh\u1EEFng t\xEAn cung th\u1EE7 c\xF3 \u0111\u1ED9i
     m\u0169."
   hint: "Ch\xFAng n\u1EB1m xa h\u01A1n v\xE0o khu r\u1EEBng b\xEAn tr\xE1ikhi ra
@@ -218972,6 +218982,10 @@ PrefabInstance:
       propertyPath: saneGameManager
       value: 
       objectReference: {fileID: 1133369665}
+    - target: {fileID: 426350705080597118, guid: b43c61955286f6b44a26073f7d8e0083, type: 3}
+      propertyPath: saveGameManager
+      value: 
+      objectReference: {fileID: 1133369665}
     - target: {fileID: 4786057184746772919, guid: b43c61955286f6b44a26073f7d8e0083, type: 3}
       propertyPath: m_Name
       value: PlayerCanvas
@@ -236820,6 +236834,11 @@ MeshCollider:
   m_Convex: 0
   m_CookingOptions: 30
   m_Mesh: {fileID: 5011332757181790750, guid: af792067b90d90d498a9f6a5c651d2a2, type: 3}
+--- !u!224 &2087259258 stripped
+RectTransform:
+  m_CorrespondingSourceObject: {fileID: 3524467107279092668, guid: a332b3f1af9dfd44ab1952783f49ef4a, type: 3}
+  m_PrefabInstance: {fileID: 8544289}
+  m_PrefabAsset: {fileID: 0}
 --- !u!1001 &2087320495
 PrefabInstance:
   m_ObjectHideFlags: 0
