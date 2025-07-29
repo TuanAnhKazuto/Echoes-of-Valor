@@ -2,6 +2,7 @@
 using System.Collections;
 using System.Collections.Generic;
 using TMPro;
+using Unity.Cinemachine;
 using Unity.VisualScripting;
 using UnityEngine;
 using UnityEngine.UI;
@@ -14,15 +15,18 @@ public class NPC : MonoBehaviour
     public TextMeshProUGUI chatText;
     [HideInInspector] public bool isChating;
     Coroutine coroutine;
-    public int maxline;
+    //public int maxline;
     public Button yesButton;
     public NpcChatSetup panelSetup;
     private bool questGiven = false;
-
+    // cammera
+    public CinemachineCamera freeLookCamera;
+    private bool isSkipping = false;
+    private bool isLineFullyDisplayed = false;
     // khóa di chuyển 
     public PlayerController playerController;
 
-    // phân loại nhiệm vụ theo từng NPC chính phụ và thêm.
+    // phân loại nhiệm vụ 
     public enum NpcType
     {
         MainQuest,
@@ -69,6 +73,11 @@ public class NPC : MonoBehaviour
         npcChatPanel  = panelSetup.ChatPanel;
         chatText = panelSetup.ChatText.GetComponent<TextMeshProUGUI>();
         yesButton = panelSetup.YesBtn.GetComponent<Button>();
+        if (freeLookCamera == null)
+        {
+            freeLookCamera = FindAnyObjectByType<CinemachineCamera>();
+        }
+
     }
 
 
@@ -114,32 +123,44 @@ public class NPC : MonoBehaviour
     IEnumerator ReadChat()
     {
         List<string> currentChat = (questChats != null && currentQuestIndex < questChats.Count && questChats[currentQuestIndex] != null)
-    ? questChats[currentQuestIndex].lines
-    : new List<string> { $"Bạn có nhiệm vụ: {CurrentQuest.QuetsItemName}" };
+            ? questChats[currentQuestIndex].lines
+            : new List<string> { $"Bạn có nhiệm vụ: {CurrentQuest.QuetsItemName}" };
 
         playerController.canMove = false;
 
         foreach (var line in currentChat)
         {
             chatText.text = "";
-                for (int i = 0; i < line.Length; i++)
+            isSkipping = false;
+
+            // Gõ từng ký tự
+            for (int i = 0; i < line.Length; i++)
+            {
+                if (Input.GetMouseButtonDown(0))
                 {
-
-                    chatText.text += line[i];
-                    yield return new WaitForSeconds(0.05f);
-
+                    isSkipping = true;
                 }
 
-            yield return new WaitForSeconds(0.5f);
+                if (isSkipping)
+                {
+                    chatText.text = line;
+                    break;
+                }
 
+                chatText.text += line[i];
+                yield return new WaitForSeconds(0.05f);
+            }
+
+            // Đợi click để tiếp tục sang dòng tiếp theo
+            yield return new WaitUntil(() => Input.GetMouseButtonDown(0));
         }
-        // ⬇️ THÊM ĐOẠN NÀY SAU KHI KẾT THÚC CHAT MỞ ĐẦU
+
         yield return new WaitForSeconds(0.3f);
 
         if (dialogueChoices.Count > 0)
         {
             ShowDialogueChoices();
-            yield break; 
+            yield break;
         }
         else
         {
@@ -173,9 +194,9 @@ public class NPC : MonoBehaviour
         }
 
         isChating = false;
+    
 
-
-    }
+}
 
     IEnumerator CompleteAfterDelay(float delay)
     {
@@ -225,9 +246,16 @@ public class NPC : MonoBehaviour
     {
         if (isChating) return;
 
+        Cursor.visible = true;
+        Cursor.lockState = CursorLockMode.None;
+
+        if (freeLookCamera != null)
+            freeLookCamera.gameObject.SetActive(false);
+
         if (currentQuestIndex >= questList.Count)
         {
             npcChatPanel.SetActive(true);
+            
             chatText.text = "Bạn đã hoàn thành tất cả nhiệm vụ rồi. Cảm ơn bạn";
             Invoke(nameof(HidePanel), 2f);
             return;
@@ -334,9 +362,13 @@ public class NPC : MonoBehaviour
     {
         npcChatPanel.SetActive(false);
 
+        Cursor.visible = false;
+        Cursor.lockState = CursorLockMode.Locked;
+
+        if (freeLookCamera != null)
+            freeLookCamera.gameObject.SetActive(true); 
+
         if (playerController != null)
-        {
             playerController.canMove = true;
-        }
     }
 }
