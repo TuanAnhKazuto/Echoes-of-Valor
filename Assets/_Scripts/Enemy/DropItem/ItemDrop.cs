@@ -1,33 +1,62 @@
 ﻿using UnityEngine;
 using UnityEngine.AI;
+using TMPro;
 
 public class ItemDrop : MonoBehaviour
 {
-    NavMeshAgent nav;
+    [Header("Di chuyển về phía người chơi")]
+    private NavMeshAgent nav;
+    private Transform player;
 
-    public float speed;
+    [Header("Giá trị Echo")]
+    public int echoValue = 1;
 
-    public Transform player;
+    [Header("Hiển thị số lượng Echo")]
+    public TextMeshProUGUI echoText;
+    private static int totalEcho = 0;
 
     private void Start()
     {
+        // Lấy NavMeshAgent
         nav = GetComponent<NavMeshAgent>();
-        player = GameObject.FindWithTag("Player").transform;
+
+        // Tìm người chơi theo tag
+        player = GameObject.FindWithTag("Player")?.transform;
+
+        // Tìm UI nếu chưa gán
+        if (echoText == null)
+        {
+            echoText = GameObject.Find("TextEcho")?.GetComponent<TextMeshProUGUI>();
+        }
+
+        UpdateEchoUI();
     }
 
     private void Update()
     {
-        nav.SetDestination(player.position);
+        if (player != null && nav != null)
+        {
+            nav.SetDestination(player.position);
+        }
     }
 
     private void OnTriggerEnter(Collider other)
     {
-        if (other.gameObject.CompareTag("Player"))
+        if (other.CompareTag("Player"))
         {
-            // Thêm hàm nhận vật phẩm vào đây;
+            totalEcho += echoValue;
+            UpdateEchoUI();
 
-            Debug.Log("Nhat.!!!!!!!!!!!!!!!");
+            Debug.Log("Đã nhặt Echo! Tổng: " + totalEcho);
             Destroy(gameObject);
+        }
+    }
+
+    private void UpdateEchoUI()
+    {
+        if (echoText != null)
+        {
+            echoText.text = "Echo: " + totalEcho;
         }
     }
 }
