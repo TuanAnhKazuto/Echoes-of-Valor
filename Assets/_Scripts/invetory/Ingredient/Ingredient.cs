@@ -11,6 +11,7 @@ public class Ingredient : ScriptableObject
     public IngredientRank ingredientRank;
     public int ingredientsID;
 
+
 }
 
 public enum IngredientType
@@ -29,3 +30,4 @@ public enum IngredientRank
     Rare,
     Epic
 }
+

@@ -17,6 +17,10 @@ public class QuestItem : MonoBehaviour
     [Header("Phần thưởng")]
     public List<Item> rewardItems;
 
+    [Header("Phần thưởng nguyên liệu")]
+    public List<Ingredient> rewardIngredients;
+    public int rewardIngredientCount = 1;
+
     [Header("Mô tả nhiệm vụ")]
     [TextArea(2, 5)]
     public string description;

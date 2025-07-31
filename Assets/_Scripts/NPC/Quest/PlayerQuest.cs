@@ -79,7 +79,7 @@ public class PlayerQuest : MonoBehaviour
         return questItems.Contains(questItem) && questItem.IsComplete();
     }
 
-    
+
     public void CompleteQuest(QuestItem questItem)
     {
         if (HasCompletedQuest(questItem))
@@ -93,12 +93,27 @@ public class PlayerQuest : MonoBehaviour
 
             Debug.Log($"Đã trả nhiệm vụ: {questItem.QuetsItemName}, nhận {questItem.rewardAmount} vàng");
 
-            FindAnyObjectByType<Cor>().IncreaseCor(questItem.rewardAmount);
+            FindAnyObjectByType<Cor>().IncreaseCor(questItem.rewardAmount);        
+            Item coinItem = Resources.Load<Item>("Items/GoldItem");
+            if (coinItem != null)
+            {
+                PickupMessenger.Instance.ShowPickupMessage(coinItem, questItem.rewardAmount);
+            }
 
+            // ✅ Nhận các vật phẩm thường
             foreach (var item in questItem.rewardItems)
             {
-                InventoryManager.Instance.Add(item);
+                InventoryManager.Instance.Add(item);               
+                PickupMessenger.Instance.ShowPickupMessage(item, questItem.rewardAmount);
                 Debug.Log($"Nhận thêm vật phẩm: {item.itemName}");
+            }
+
+            // ✅ Nhận nguyên liệu nâng cấp
+            foreach (var ingr in questItem.rewardIngredients)
+            {
+                InventoryManager.Instance.AddIngredients(ingr, questItem.rewardIngredientCount);
+                PickupMessenger.Instance.ShowPickupIngredientMessage(ingr, questItem.rewardIngredientCount);
+                Debug.Log($"Nhận nguyên liệu: {ingr.ingredientName} x{questItem.rewardIngredientCount}");
             }
 
             playerQuestPanel.ShowAllQuestItem(questItems);

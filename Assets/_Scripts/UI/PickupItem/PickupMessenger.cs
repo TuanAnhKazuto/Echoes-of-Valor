@@ -13,11 +13,20 @@ public class PickupMessenger : MonoBehaviour
         Instance = this;
     }
 
-    public void ShowPickupMessage(Ingredient ingredient, int count)
+    public void ShowPickupIngredientMessage(Ingredient ingredient, int count)
     {
         GameObject messengerObj = Instantiate(messengerPrefab, messageParent);
         PickupInfor info = messengerObj.GetComponent<PickupInfor>();
-        info.SetupItemInfor(ingredient, count);
+        info.SetupIngredientInfor(ingredient, count);
+
+        Destroy(messengerObj, 2f);
+    }
+   
+    public void ShowPickupMessage(Item item, int count)
+    {
+        GameObject messengerObj = Instantiate(messengerPrefab, messageParent);
+        PickupInfor info = messengerObj.GetComponent<PickupInfor>();
+        info.SetupItemInfor(item, count);
 
         Destroy(messengerObj, 2f);
     }
