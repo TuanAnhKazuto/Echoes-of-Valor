@@ -218,19 +218,26 @@ public class NPC : MonoBehaviour
     IEnumerator ShowAfterCompleteDialogue(QuestItem finishedQuest)
     {
         yield return new WaitForSeconds(1f);
-        string rewardsSummary = $"+{finishedQuest.rewardAmount} vàng";
+
+        string rewardsSummary = $"<color=yellow>+{finishedQuest.rewardAmount} vàng</color>";
 
         if (finishedQuest.rewardItems != null && finishedQuest.rewardItems.Count > 0)
         {
             var itemNames = string.Join(", ", finishedQuest.rewardItems.ConvertAll(item => item.itemName));
-            rewardsSummary += $", nhận thêm: {itemNames}";
+            rewardsSummary += $", <color=#00FF00>+{itemNames}</color>";
         }
 
+        if (finishedQuest.rewardIngredients != null && finishedQuest.rewardIngredients.Count > 0)
+        {
+            var ingrNames = string.Join(", ", finishedQuest.rewardIngredients.ConvertAll(i => i.ingredientName));
+            rewardsSummary += $", <color=#87CEFA>+{finishedQuest.rewardIngredientCount}x {ingrNames}</color>";
+        }
         chatText.text = rewardsSummary;
 
-
+        // Thêm vào túi đồ
         yield return new WaitForSeconds(2.5f);
         playerQuests.CompleteQuest(finishedQuest);
+        // NPC cập nhật trạng thái
         currentQuestIndex++;
         questGiven = false;
 

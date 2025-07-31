@@ -2,6 +2,7 @@
 using TMPro;
 using UnityEngine;
 using UnityEngine.UI;
+using static InventoryManager;
 
 
 public class InventoryManager : MonoBehaviour
@@ -67,6 +68,12 @@ public class InventoryManager : MonoBehaviour
     public void Add(Item item)
     {
         InventoryItem existingItem = items.Find(i => i.item.id == item.id);
+        //InventoryItem exstingItemtype = items.Find(i => i.item.itemType == item.itemType);
+
+        if (item.itemType == ItemType.Cor)
+        {
+            return;
+        }
 
         if (existingItem != null)
         {
@@ -76,7 +83,7 @@ public class InventoryManager : MonoBehaviour
         {
             items.Add(new InventoryItem(item, 1, item.description));
         }
-
+        
         DisplayInventory();
     }
 
@@ -125,7 +132,9 @@ public class InventoryManager : MonoBehaviour
     {
         foreach (Transform item in itemContentPanel)
         {
+           
             Destroy(item.gameObject);
+
         }
 
         foreach (InventoryItem inventoryItem in items)
@@ -141,6 +150,8 @@ public class InventoryManager : MonoBehaviour
             itemImage.sprite = inventoryItem.item.image;
             itemDescription.text = inventoryItem.description;
             itemQuantityText.text = $"x{inventoryItem.quantity}";
+
+           
 
             obj.GetComponent<ItemUIController>().SetItem(inventoryItem.item);
         }
