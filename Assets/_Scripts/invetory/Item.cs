@@ -21,6 +21,7 @@ public class Item : ScriptableObject
     public Sprite image;
     public ItemType itemType;
     public string description;
+    public bool isCurrency = false;
 
 }
 [System.Serializable]
