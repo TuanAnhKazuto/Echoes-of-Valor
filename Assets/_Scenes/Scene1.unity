@@ -115323,7 +115323,7 @@ PrefabInstance:
       objectReference: {fileID: 265275958}
     - target: {fileID: 3599144447257628110, guid: 8115681f75c9077489fb3abb2cd5b35c, type: 3}
       propertyPath: baseDamage
-      value: 15
+      value: 20
       objectReference: {fileID: 0}
     - target: {fileID: 4165003339005387642, guid: 8115681f75c9077489fb3abb2cd5b35c, type: 3}
       propertyPath: m_Name
@@ -125681,7 +125681,7 @@ PrefabInstance:
       objectReference: {fileID: 265275958}
     - target: {fileID: 3599144447257628110, guid: 8115681f75c9077489fb3abb2cd5b35c, type: 3}
       propertyPath: baseDamage
-      value: 15
+      value: 20
       objectReference: {fileID: 0}
     - target: {fileID: 4165003339005387642, guid: 8115681f75c9077489fb3abb2cd5b35c, type: 3}
       propertyPath: m_Name
@@ -209166,6 +209166,10 @@ PrefabInstance:
     serializedVersion: 3
     m_TransformParent: {fileID: 0}
     m_Modifications:
+    - target: {fileID: 1886638664393618414, guid: 43ab2d58c698a904a8810a4f4958ca57, type: 3}
+      propertyPath: m_IsActive
+      value: 0
+      objectReference: {fileID: 0}
     - target: {fileID: 4804135225193408530, guid: 43ab2d58c698a904a8810a4f4958ca57, type: 3}
       propertyPath: m_Name
       value: NPC Canva
@@ -278262,6 +278266,10 @@ PrefabInstance:
       propertyPath: dropItem
       value: 
       objectReference: {fileID: 265275958}
+    - target: {fileID: 6178342869959526041, guid: a241dca576e4aa4498e622aac9d9f321, type: 3}
+      propertyPath: baseDamage
+      value: 40
+      objectReference: {fileID: 0}
     - target: {fileID: 6329946028441545229, guid: a241dca576e4aa4498e622aac9d9f321, type: 3}
       propertyPath: m_Name
       value: Skeleton_Rogue
@@ -308027,6 +308035,10 @@ PrefabInstance:
       propertyPath: dropItem
       value: 
       objectReference: {fileID: 265275958}
+    - target: {fileID: 6178342869959526041, guid: a241dca576e4aa4498e622aac9d9f321, type: 3}
+      propertyPath: baseDamage
+      value: 30
+      objectReference: {fileID: 0}
     - target: {fileID: 6329946028441545229, guid: a241dca576e4aa4498e622aac9d9f321, type: 3}
       propertyPath: m_Name
       value: Skeleton_Rogue (1)
@@ -494745,6 +494757,7 @@ SceneRoots:
   m_Roots:
   - {fileID: 1635713215}
   - {fileID: 1271701035}
+  - {fileID: 1012627425}
   - {fileID: 922772260}
   - {fileID: 106011229}
   - {fileID: 688757449}
@@ -494793,7 +494806,6 @@ SceneRoots:
   - {fileID: 1859726338}
   - {fileID: 1060681005}
   - {fileID: 1467797718}
-  - {fileID: 1012627425}
   - {fileID: 580469685}
   - {fileID: 1488127147}
   - {fileID: 1475892182}
