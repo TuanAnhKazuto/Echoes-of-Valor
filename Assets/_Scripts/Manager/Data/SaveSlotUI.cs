@@ -41,7 +41,6 @@ public class SaveSlotUI : MonoBehaviour
     {
         PlayerPrefs.SetInt("SelectedPlayerId", _playerId);
         PlayerPrefs.Save();
-
         loadingController.LoadScene(_sceneName);
         //UnityEngine.SceneManagement.SceneManager.LoadScene(_sceneName);
     }

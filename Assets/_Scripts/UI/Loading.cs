@@ -18,7 +18,6 @@ public class Loading : MonoBehaviour
         loadingPanel.SetActive(true);
         StartCoroutine(LoadSceneAsync(sceneName));
     }
-
     IEnumerator LoadSceneAsync(string sceneName)
     {
         AsyncOperation operation = SceneManager.LoadSceneAsync(sceneName);
