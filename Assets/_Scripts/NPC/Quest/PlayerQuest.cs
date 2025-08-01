@@ -97,15 +97,22 @@ public class PlayerQuest : MonoBehaviour
             Item coinItem = Resources.Load<Item>("Items/GoldItem");
             if (coinItem != null)
             {
+                Debug.Log($"Đã load được GoldItem, hiển thị x{questItem.rewardAmount}");
                 PickupMessenger.Instance.ShowPickupMessage(coinItem, questItem.rewardAmount);
+            }
+            else
+            {
+                Debug.LogWarning("Không tìm thấy GoldItem trong Resources/Items!");
             }
 
             // ✅ Nhận các vật phẩm thường
             foreach (var item in questItem.rewardItems)
             {
-                InventoryManager.Instance.Add(item);               
-                PickupMessenger.Instance.ShowPickupMessage(item, questItem.rewardAmount);
-                Debug.Log($"Nhận thêm vật phẩm: {item.itemName}");
+                int amount = item.isCurrency ? questItem.rewardAmount : 1;
+
+                InventoryManager.Instance.Add(item);
+                PickupMessenger.Instance.ShowPickupMessage(item, amount);
+                Debug.Log($"Nhận thêm vật phẩm: {item.itemName} x{amount}");
             }
 
             // ✅ Nhận nguyên liệu nâng cấp
