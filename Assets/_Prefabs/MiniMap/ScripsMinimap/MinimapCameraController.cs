@@ -2,9 +2,11 @@
 
 public class MinimapCameraController : MonoBehaviour
 {
+    public static bool IsBigMapMode = false;
+
+    [Header("Player Follow")]
     public Transform player;
     public Vector3 followOffset = new Vector3(0, 20, 0);
-    public bool isBigMapMode = false;
 
     [Header("Big Map Settings")]
     public float panSpeed = 50f;
@@ -13,6 +15,7 @@ public class MinimapCameraController : MonoBehaviour
     public float maxZoom = 200f;
     public float mousePanSpeed = 1.5f;
 
+    private bool isBigMapMode = false;
     private Camera cam;
     private Vector3 lastMousePosition;
 
@@ -20,17 +23,13 @@ public class MinimapCameraController : MonoBehaviour
     {
         cam = GetComponent<Camera>();
 
-        // Tự động tìm Player nếu chưa gán
+        // Tìm player nếu chưa gán
         if (player == null)
         {
             GameObject playerObj = GameObject.FindGameObjectWithTag("Player");
             if (playerObj != null)
             {
                 player = playerObj.transform;
-            }
-            else
-            {
-                Debug.LogWarning("Không tìm thấy GameObject có tag 'Player'");
             }
         }
 
@@ -42,9 +41,10 @@ public class MinimapCameraController : MonoBehaviour
     {
         if (!isBigMapMode)
         {
-            // Camera theo player
             if (player != null)
+            {
                 transform.position = player.position + followOffset;
+            }
         }
         else
         {
@@ -63,12 +63,11 @@ public class MinimapCameraController : MonoBehaviour
         if (Input.GetKey(KeyCode.A)) move += Vector3.left;
         if (Input.GetKey(KeyCode.D)) move += Vector3.right;
 
-        transform.Translate(move * panSpeed * Time.deltaTime, Space.World);
+        transform.Translate(move * panSpeed * Time.unscaledDeltaTime, Space.World);
     }
 
     void HandleMousePan()
     {
-        // Kéo bằng chuột trái hoặc giữa
         if (Input.GetMouseButtonDown(0) || Input.GetMouseButtonDown(2))
         {
             lastMousePosition = Input.mousePosition;
@@ -77,9 +76,7 @@ public class MinimapCameraController : MonoBehaviour
         if (Input.GetMouseButton(0) || Input.GetMouseButton(2))
         {
             Vector3 delta = Input.mousePosition - lastMousePosition;
-
-            Vector3 move = new Vector3(-delta.x, 0, -delta.y) * mousePanSpeed * Time.deltaTime;
-
+            Vector3 move = new Vector3(-delta.x, 0, -delta.y) * mousePanSpeed * Time.unscaledDeltaTime;
             transform.Translate(move, Space.World);
             lastMousePosition = Input.mousePosition;
         }
@@ -90,13 +87,25 @@ public class MinimapCameraController : MonoBehaviour
         float scroll = Input.GetAxis("Mouse ScrollWheel");
         if (scroll != 0)
         {
-            cam.orthographicSize -= scroll * zoomSpeed * Time.deltaTime;
+            cam.orthographicSize -= scroll * zoomSpeed * Time.unscaledDeltaTime;
             cam.orthographicSize = Mathf.Clamp(cam.orthographicSize, minZoom, maxZoom);
         }
     }
 
+    /// <summary>
+    /// Bật/tắt bản đồ lớn
+    /// </summary>
+    /// <param name="isBig">true nếu bật</param>
     public void SetBigMapMode(bool isBig)
     {
         isBigMapMode = isBig;
+        IsBigMapMode = isBig;
+
+        // Tạm dừng hoặc tiếp tục game
+        Time.timeScale = isBig ? 0f : 1f;
+
+        // Chuột
+        Cursor.visible = isBig;
+        Cursor.lockState = isBig ? CursorLockMode.None : CursorLockMode.Locked;
     }
 }
