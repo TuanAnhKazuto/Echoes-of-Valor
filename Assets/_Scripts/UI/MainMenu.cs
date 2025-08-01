@@ -6,6 +6,10 @@ public class MainMenu : MonoBehaviour
     public GameObject canvasSetting;
     public GameObject mainMenu;
 
+    private void Start()
+    {
+        Time.timeScale = 1f; 
+    }
     public void OnPlayGame()
     {
         PlayerPrefs.DeleteAll(); 
