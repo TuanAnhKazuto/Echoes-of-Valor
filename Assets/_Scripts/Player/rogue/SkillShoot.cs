@@ -24,6 +24,14 @@ public class SkillShoot : MonoBehaviour
 
     private CharacterStats characterStats;
 
+    private bool canUseSkill1 = true;
+    private bool canUseSkill2 = true;
+    private bool canUseSkill3 = true;
+
+    private float skill1Cooldown = 1f;
+    private float skill2Cooldown = 1.5f;
+    private float skill3Cooldown = 5f;
+
     void Start()
     {
         if (animator == null)
@@ -34,42 +42,81 @@ public class SkillShoot : MonoBehaviour
 
     void Update()
     {
-        if (Input.GetKeyDown(KeyCode.Alpha1))
+        if (Input.GetKeyDown(KeyCode.Alpha1) && canUseSkill1)
         {
             Transform target = FindNearestEnemy(25);
-            if (target != null)
-            {
-                LookAtTarget(target);
-            }
-            if (characterStats != null && characterStats.ConsumeMana(fireArrowManaCost))
+            if (target != null) LookAtTarget(target);
+
+            if (characterStats != null && characterStats.currentMana >= fireArrowManaCost)
             {
                 if (animator) animator.SetTrigger("Attack3");
+                StartCoroutine(CastSkill1());
             }
         }
-        else if (Input.GetKeyDown(KeyCode.Alpha2))
+
+        else if (Input.GetKeyDown(KeyCode.Alpha2) && canUseSkill2)
         {
             Transform target = FindNearestEnemy(25);
-            if (target != null)
-            {
-                LookAtTarget(target);
-            }
-            if (characterStats != null && characterStats.ConsumeMana(doubleArrowManaCost))
+            if (target != null) LookAtTarget(target);
+
+            if (characterStats != null && characterStats.currentMana >= doubleArrowManaCost)
             {
                 if (animator) animator.SetTrigger("Attack2");
+                StartCoroutine(CastSkill2());
             }
         }
-        else if (Input.GetKeyDown(KeyCode.Alpha3))
+
+        else if (Input.GetKeyDown(KeyCode.Alpha3) && canUseSkill3)
         {
             Transform target = FindNearestEnemy(25);
-            if (target != null)
+            if (target != null) LookAtTarget(target);
+
+            if (characterStats != null && characterStats.currentMana >= arrowRainManaCost)
             {
-                LookAtTarget(target);
-            }
-            if (characterStats != null && characterStats.ConsumeMana(arrowRainManaCost))
-            {
-                StartCoroutine(ArrowRain());
+                StartCoroutine(CastSkill3());
             }
         }
+    }
+
+    IEnumerator CastSkill1()
+    {
+        canUseSkill1 = false;
+        yield return new WaitForSeconds(0.2f);
+
+        if (characterStats.ConsumeMana(fireArrowManaCost))
+        {
+            FireArrow();
+        }
+
+        yield return new WaitForSeconds(skill1Cooldown);
+        canUseSkill1 = true;
+    }
+
+    IEnumerator CastSkill2()
+    {
+        canUseSkill2 = false;
+        yield return new WaitForSeconds(0.2f);
+
+        if (characterStats.ConsumeMana(doubleArrowManaCost))
+        {
+            DoubleArrow();
+        }
+
+        yield return new WaitForSeconds(skill2Cooldown);
+        canUseSkill2 = true;
+    }
+
+    IEnumerator CastSkill3()
+    {
+        canUseSkill3 = false;
+
+        if (characterStats.ConsumeMana(arrowRainManaCost))
+        {
+            yield return ArrowRain();
+        }
+
+        yield return new WaitForSeconds(skill3Cooldown);
+        canUseSkill3 = true;
     }
 
     void FireArrow()
@@ -129,7 +176,7 @@ public class SkillShoot : MonoBehaviour
         if (arrowScriptR != null)
         {
             arrowScriptR.speed = arrowSpeed;
-            arrowScriptR.SetTarget(target); 
+            arrowScriptR.SetTarget(target);
         }
 
         ArrowDamage dmgR = rightArrow.GetComponent<ArrowDamage>();
@@ -138,7 +185,6 @@ public class SkillShoot : MonoBehaviour
             dmgR.damage = normalArrowDamage * 3f;
         }
     }
-
 
     IEnumerator ArrowRain()
     {
@@ -221,18 +267,18 @@ public class SkillShoot : MonoBehaviour
         }
         return nearest;
     }
+
     void LookAtTarget(Transform target)
     {
-        Transform playerTransform = transform.root; 
+        Transform playerTransform = transform.root;
 
         Vector3 direction = (target.position - playerTransform.position).normalized;
-        direction.y = 0f; 
+        direction.y = 0f;
 
         if (direction != Vector3.zero)
         {
             Quaternion lookRotation = Quaternion.LookRotation(direction);
-            playerTransform.rotation = lookRotation; 
+            playerTransform.rotation = lookRotation;
         }
     }
-
 }

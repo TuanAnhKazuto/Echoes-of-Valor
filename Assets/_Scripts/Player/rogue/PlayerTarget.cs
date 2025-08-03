@@ -7,17 +7,25 @@ public class PlayerTarget : MonoBehaviour
     public Transform shootPoint;
     public float shootCooldown = 1f;
     public float shootDelay = 0.25f;
-    public Transform characterTransform; // Gán Player chính ở đây (giống SkillShoot)
+    public Transform characterTransform; 
 
     private float lastShootTime = -Mathf.Infinity;
     private Transform targetEnemy;
     private bool isWaitingToShoot = false;
+    public Animator animator;
+
+    void Start()
+    {
+        if (animator == null)
+        {
+            animator = GetComponentInChildren<Animator>();
+        }
+    }
 
     void Update()
     {
         if (Input.GetMouseButtonDown(0))
         {
-            // Tìm mục tiêu trong phạm vi 25f
             targetEnemy = FindNearestEnemy(25f);
 
             if (targetEnemy != null)
@@ -35,6 +43,10 @@ public class PlayerTarget : MonoBehaviour
     IEnumerator DelayedShoot()
     {
         isWaitingToShoot = true;
+        if (animator != null)
+        {
+            animator.SetTrigger("Attack");
+        }
         yield return new WaitForSeconds(shootDelay);
 
         if (Time.time - lastShootTime >= shootCooldown)
