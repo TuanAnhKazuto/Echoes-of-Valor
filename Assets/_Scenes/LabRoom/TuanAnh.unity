@@ -4679,6 +4679,11 @@ PrefabInstance:
     m_AddedGameObjects: []
     m_AddedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 04d2b84b35acdab4baa5adc23ab28b24, type: 3}
+--- !u!1 &3477172601693041973 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 6778092126549791300, guid: ca1998f865fc71e4db1590094f47b43b, type: 3}
+  m_PrefabInstance: {fileID: 8315436972665733038}
+  m_PrefabAsset: {fileID: 0}
 --- !u!1001 &4352546271049877417
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -4690,7 +4695,7 @@ PrefabInstance:
     - target: {fileID: 770817889304813842, guid: 8fa82dc493164d0489de2e19de7a2fd6, type: 3}
       propertyPath: upgradeWeaponPanel
       value: 
-      objectReference: {fileID: 4430074571363751181}
+      objectReference: {fileID: 3477172601693041973}
     - target: {fileID: 1972459896868957859, guid: 8fa82dc493164d0489de2e19de7a2fd6, type: 3}
       propertyPath: m_Mesh
       value: 
@@ -5009,11 +5014,6 @@ PrefabInstance:
     m_AddedGameObjects: []
     m_AddedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: ba712fb7d041c664a9861a533ca61137, type: 3}
---- !u!1 &4430074571363751181 stripped
-GameObject:
-  m_CorrespondingSourceObject: {fileID: 6778092126549791300, guid: ca1998f865fc71e4db1590094f47b43b, type: 3}
-  m_PrefabInstance: {fileID: 7949408520040687473}
-  m_PrefabAsset: {fileID: 0}
 --- !u!1001 &4935435052871645965
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -5528,7 +5528,7 @@ PrefabInstance:
     m_AddedGameObjects: []
     m_AddedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 4a880dc76e3a1424698365bbd1f420aa, type: 3}
---- !u!1001 &7949408520040687473
+--- !u!1001 &8315436972665733038
 PrefabInstance:
   m_ObjectHideFlags: 0
   serializedVersion: 2
@@ -5616,26 +5616,6 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
-    - target: {fileID: 4116109841260126390, guid: ca1998f865fc71e4db1590094f47b43b, type: 3}
-      propertyPath: m_AnchorMax.x
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 4116109841260126390, guid: ca1998f865fc71e4db1590094f47b43b, type: 3}
-      propertyPath: m_AnchorMax.y
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 4116109841260126390, guid: ca1998f865fc71e4db1590094f47b43b, type: 3}
-      propertyPath: m_AnchorMin.x
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 5428010883097951435, guid: ca1998f865fc71e4db1590094f47b43b, type: 3}
-      propertyPath: m_AnchorMax.x
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 5428010883097951435, guid: ca1998f865fc71e4db1590094f47b43b, type: 3}
-      propertyPath: m_AnchorMax.y
-      value: 0
-      objectReference: {fileID: 0}
     - target: {fileID: 6628685178319861454, guid: ca1998f865fc71e4db1590094f47b43b, type: 3}
       propertyPath: UI3DCam
       value: 
@@ -5647,22 +5627,6 @@ PrefabInstance:
     - target: {fileID: 6778092126549791300, guid: ca1998f865fc71e4db1590094f47b43b, type: 3}
       propertyPath: m_Name
       value: UpgrateWeaponCanvas
-      objectReference: {fileID: 0}
-    - target: {fileID: 7635553011685968272, guid: ca1998f865fc71e4db1590094f47b43b, type: 3}
-      propertyPath: m_HorizontalScrollbar
-      value: 
-      objectReference: {fileID: 0}
-    - target: {fileID: 8008578110264718533, guid: ca1998f865fc71e4db1590094f47b43b, type: 3}
-      propertyPath: m_SizeDelta.y
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 8880923310311819832, guid: ca1998f865fc71e4db1590094f47b43b, type: 3}
-      propertyPath: m_AnchorMax.x
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 8880923310311819832, guid: ca1998f865fc71e4db1590094f47b43b, type: 3}
-      propertyPath: m_AnchorMax.y
-      value: 0
       objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
@@ -5688,7 +5652,7 @@ SceneRoots:
   - {fileID: 1479002780449819802}
   - {fileID: 238521009}
   - {fileID: 6165568184511334742}
-  - {fileID: 7949408520040687473}
+  - {fileID: 8315436972665733038}
   - {fileID: 1710944432}
   - {fileID: 617720695}
   - {fileID: 627995142}
