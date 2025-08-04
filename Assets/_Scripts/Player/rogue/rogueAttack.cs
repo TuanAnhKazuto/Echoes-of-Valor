@@ -27,7 +27,6 @@ public class rogueAttack : MonoBehaviour
         {
             playerController.isAttacking = true;
         }
-        animator.SetTrigger("Attack");
     }
     public void EndAttack()
     {

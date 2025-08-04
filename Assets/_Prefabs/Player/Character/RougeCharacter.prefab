@@ -2073,9 +2073,10 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   arrowPrefab: {fileID: 3978407562330990411, guid: c5b66375f340a6e449c8c9c2797a9e28, type: 3}
   shootPoint: {fileID: 1716526554844869900}
-  shootCooldown: 1
-  shootDelay: 0.25
+  shootCooldown: 2
+  shootDelay: 1
   characterTransform: {fileID: 1169232364258169769}
+  animator: {fileID: 0}
 --- !u!114 &2999388582640537426
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -2433,7 +2434,7 @@ PrefabInstance:
     m_Modifications:
     - target: {fileID: 4005100084169640724, guid: 7c839b7eae1a9514f86368c1fef0bd47, type: 3}
       propertyPath: m_VersionIndex
-      value: 1086
+      value: 1095
       objectReference: {fileID: 0}
     - target: {fileID: 5774715856320653376, guid: 7c839b7eae1a9514f86368c1fef0bd47, type: 3}
       propertyPath: m_Name
