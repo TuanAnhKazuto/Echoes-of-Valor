@@ -3,19 +3,21 @@
 public class KnightSkill : MonoBehaviour
 {
     public Animator animator;
-    Knight knight;
-
+    private Knight knight;
+    private CharacterStats characterStats;
 
     [Header("Excalibur Skill")]
     public int excaliburLevel = 1;
-
     public float excarliburCooldown = 6f;
-    float nextReadyTime = 0f;
+    private float nextReadyTime = 0f;
+    public float excaliburManaCost = 35f;
 
     private void Awake()
     {
         animator = GetComponent<Animator>();
         knight = GetComponent<Knight>();
+        characterStats = GetComponentInParent<CharacterStats>();
+
     }
 
     private void Update()
@@ -29,11 +31,14 @@ public class KnightSkill : MonoBehaviour
         {
             if (Time.time >= nextReadyTime)
             {
-                animator.SetTrigger("ExcaliburSkill");
-                knight.player.canMove = false;
-                nextReadyTime = Time.time + excarliburCooldown;
-                knight.curTargetRange = knight.skillAttackRange;
-                knight.FindClosestEnemy();
+                if (characterStats != null && characterStats.ConsumeMana(excaliburManaCost))
+                {
+                    animator.SetTrigger("ExcaliburSkill");
+                    knight.player.canMove = false;
+                    nextReadyTime = Time.time + excarliburCooldown;
+                    knight.curTargetRange = knight.skillAttackRange;
+                    knight.FindClosestEnemy();
+                }
             }
             else
             {
@@ -43,10 +48,10 @@ public class KnightSkill : MonoBehaviour
             }
         }
     }
+
     public void ExcaliburSkillEnd()
     {
         knight.curTargetRange = knight.normalAttackRange;
         knight.player.canMove = true;
     }
-
 }

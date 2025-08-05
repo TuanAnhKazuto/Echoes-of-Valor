@@ -43,16 +43,6 @@ public class GameResult : MonoBehaviour
                 return;
         }
 
-        if (Input.GetKeyDown(KeyCode.Alpha9))
-        {
-            ShowFailPanel();
-        }
-
-        if (Input.GetKeyDown(KeyCode.Alpha0))
-        {
-            ShowVictoryPanel();
-        }
-
         if (Input.GetKeyDown(KeyCode.P))
         {
             OnPause();

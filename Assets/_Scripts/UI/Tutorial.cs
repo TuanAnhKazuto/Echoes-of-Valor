@@ -234,7 +234,7 @@ public class Tutorial : MonoBehaviour
     {
         switch (index)
         {
-            case 0: return "Bấm các phím W, A, S, D để di chuyển nhân vật tới điểm đánh dấu.";
+            case 0: return "Bấm các phím W, A, S, D để di chuyển nhân vật tới gốc cây cạnh bậc thang.";
             case 1: return "Bấm Shift trái để lướt.";
             case 2: return "Bấm phím E để đóng/mở kho đồ.";
             case 3: return "Bấm chuột trái để tấn công thường.";
