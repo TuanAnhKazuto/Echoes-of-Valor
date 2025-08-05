@@ -12,7 +12,7 @@ public class ListIngredient : MonoBehaviour
         foreach(Ingredient ingredient in ingredientsList)
         {
             GameObject go = Instantiate(ItemInListPrefab, listSlotParent);
-            ItemInList itemInList = go.GetComponent<ItemInList>();
+            SetupIngredientInList itemInList = go.GetComponent<SetupIngredientInList>();
             itemInList.Setup(ingredient);
         }
 
