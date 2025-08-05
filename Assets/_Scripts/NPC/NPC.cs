@@ -398,6 +398,11 @@ public class NPC : MonoBehaviour
                 playerController.freeLookCam.Follow = originalCamFollow;
                 playerController.freeLookCam.LookAt = originalCamLookAt;
             }
+
+            if (playerController.freeLookCam != null)
+            {
+                playerController.freeLookCam.Priority = 20; 
+            }
         }
     }
 }
