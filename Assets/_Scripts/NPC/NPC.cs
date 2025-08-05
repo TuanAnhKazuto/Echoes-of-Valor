@@ -19,6 +19,11 @@ public class NPC : MonoBehaviour
     public NpcChatSetup panelSetup;
     public PlayerController playerController;  // khóa di chuyển 
 
+    public Transform npcLookTarget; // điểm mà camera sẽ nhìn khi nói chuyện
+    private Transform originalCamFollow;
+    private Transform originalCamLookAt;
+    public CinemachineCamera dialogueCam;
+
     private bool questGiven = false;
     private bool isSkipping = false;
     private bool isLineFullyDisplayed = false;
@@ -71,10 +76,9 @@ public class NPC : MonoBehaviour
         npcChatPanel  = panelSetup.ChatPanel;
         chatText = panelSetup.ChatText.GetComponent<TextMeshProUGUI>();
         yesButton = panelSetup.YesBtn.GetComponent<Button>();
-        //if (freeLookCamera == null)
-        //{
-        //    freeLookCamera = FindAnyObjectByType<CinemachineCamera>();
-        //}
+
+        if (dialogueCam != null)
+            dialogueCam.Priority = 0;
 
     }
 
@@ -258,9 +262,22 @@ public class NPC : MonoBehaviour
         {
             playerController.canMove = false;
             playerController.isTalkingWithNPC = true;
+
+            if (playerController.freeLookCam != null && npcLookTarget != null)
+            {
+                originalCamFollow = playerController.freeLookCam.Follow;
+                originalCamLookAt = playerController.freeLookCam.LookAt;
+
+                playerController.freeLookCam.Follow = npcLookTarget;
+                playerController.freeLookCam.LookAt = npcLookTarget;
+            }
         }
 
         npcChatPanel.SetActive(true);
+        if (dialogueCam != null)
+        {
+            dialogueCam.Priority = 20; 
+        }
 
         if (currentQuestIndex >= questList.Count)
         {
@@ -372,6 +389,15 @@ public class NPC : MonoBehaviour
         {
             playerController.canMove = true;
             playerController.isTalkingWithNPC = false;
+            if (dialogueCam != null)
+            {
+                dialogueCam.Priority = 0; 
+            }          
+            if (playerController.freeLookCam != null && originalCamFollow != null && originalCamLookAt != null)
+            {
+                playerController.freeLookCam.Follow = originalCamFollow;
+                playerController.freeLookCam.LookAt = originalCamLookAt;
+            }
         }
     }
 }
