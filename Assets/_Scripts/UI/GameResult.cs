@@ -31,7 +31,7 @@ public class GameResult : MonoBehaviour
         }
 
         if (continueButton != null)
-            continueButton.onClick.AddListener(OnPause);
+            continueButton.onClick.AddListener(OnContinue); 
     }
 
     private void Update()
@@ -46,9 +46,10 @@ public class GameResult : MonoBehaviour
 
         if (Input.GetKeyDown(KeyCode.P))
         {
-            OnPause();
+            OnPause(); 
         }
     }
+
     private void UpdateTimeScale()
     {
         bool anyPanelActive =
@@ -59,11 +60,11 @@ public class GameResult : MonoBehaviour
         Time.timeScale = anyPanelActive ? 0f : 1f;
     }
 
-
     public void ShowFailPanel()
     {
         if (panelLost != null)
             panelLost.SetActive(true);
+
         Cursor.lockState = CursorLockMode.None;
         Cursor.visible = true;
 
@@ -74,6 +75,7 @@ public class GameResult : MonoBehaviour
     {
         if (panelVictory != null)
             panelVictory.SetActive(true);
+
         Cursor.lockState = CursorLockMode.None;
         Cursor.visible = true;
 
@@ -92,24 +94,18 @@ public class GameResult : MonoBehaviour
 
         if (characterStats != null)
         {
-            // Tắt NavMeshAgent (nếu có) để tránh override vị trí
             var agent = characterStats.GetComponent<UnityEngine.AI.NavMeshAgent>();
             if (agent != null) agent.enabled = false;
 
-            // Tắt GameObject trước khi thay đổi vị trí
             characterStats.gameObject.SetActive(false);
 
-            // Đặt lại vị trí
             if (respawnPoint != null)
                 characterStats.transform.position = respawnPoint.position;
 
-            // Bật lại GameObject
             characterStats.gameObject.SetActive(true);
 
-            // Bật lại NavMeshAgent
             if (agent != null) agent.enabled = true;
 
-            // Reset máu và mana
             characterStats.currentHealth = characterStats.maxHealth;
             characterStats.currentMana = characterStats.maxMana;
 
@@ -124,7 +120,6 @@ public class GameResult : MonoBehaviour
         UpdateTimeScale();
     }
 
-
     public void OnPause()
     {
         isPaused = !isPaused;
@@ -133,6 +128,16 @@ public class GameResult : MonoBehaviour
             panelPause.SetActive(isPaused);
 
         UpdateTimeScale();
+    }
+
+    public void OnContinue()
+    {
+        if (panelPause != null && panelPause.activeSelf)
+        {
+            isPaused = false;
+            panelPause.SetActive(false);
+            UpdateTimeScale();
+        }
     }
 
     public void OnNextLevel()
