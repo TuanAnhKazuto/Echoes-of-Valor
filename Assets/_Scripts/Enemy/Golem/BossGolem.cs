@@ -151,7 +151,8 @@ public class BossGolem : MonoBehaviour
         switch (selectedSkill)
         {
             case BossSkillType.Skill1_JumpAttack:
-                StartCoroutine(Skill1_JumpAttack());
+                Skill1_JumpAttack();
+                //StartCoroutine(Skill1_JumpAttack());
                 break;
                 // case BossSkillType.Skill2:
                 //     StartCoroutine(Skill2());
@@ -160,7 +161,7 @@ public class BossGolem : MonoBehaviour
 
     }
 
-    IEnumerator Skill1_JumpAttack()
+    public void Skill1_JumpAttack()
     {
         baseDamage = 120f;
         anim.SetTrigger("UseSkill01");
@@ -168,27 +169,43 @@ public class BossGolem : MonoBehaviour
         // Ngưng di chuyển
         agent.enabled = false;
 
-        Rigidbody rb = GetComponent<Rigidbody>();
-        rb.linearVelocity = Vector3.zero;
-
-        // Nhảy lên bằng lực
-        float jumpForce = 7f; // chỉnh cho phù hợp
-        rb.AddForce(Vector3.up * jumpForce, ForceMode.VelocityChange);
-
-        // Chờ cho đến khi boss rơi xuống đất
-        yield return new WaitUntil(() => Mathf.Abs(rb.linearVelocity.y) < 0.01f && IsGrounded());
-
-        //anim.SetTrigger("Land"); // nếu có animation tiếp đất
-
-        yield return new WaitForSeconds(0.5f);
-
-        // Kích hoạt lại NavMeshAgent
         agent.enabled = true;
 
         isUsingSkill = false;
         skillTimer = 0f;
         ChangeState(BossState.Chase);
+
     }
+
+    //IEnumerator Skill1_JumpAttack()
+    //{
+    //    baseDamage = 120f;
+    //    anim.SetTrigger("UseSkill01");
+
+    //    // Ngưng di chuyển
+    //    agent.enabled = false;
+
+    //    Rigidbody rb = GetComponent<Rigidbody>();
+    //    rb.linearVelocity = Vector3.zero;
+
+    //    // Nhảy lên bằng lực
+    //    float jumpForce = 7f; // chỉnh cho phù hợp
+    //    rb.AddForce(Vector3.up * jumpForce, ForceMode.VelocityChange);
+
+    //    // Chờ cho đến khi boss rơi xuống đất
+    //    yield return new WaitUntil(() => Mathf.Abs(rb.linearVelocity.y) < 0.01f && IsGrounded());
+
+    //    //anim.SetTrigger("Land"); // nếu có animation tiếp đất
+
+    //    yield return new WaitForSeconds(0.5f);
+
+    //    // Kích hoạt lại NavMeshAgent
+    //    agent.enabled = true;
+
+    //    isUsingSkill = false;
+    //    skillTimer = 0f;
+    //    ChangeState(BossState.Chase);
+    //}
 
     private bool IsGrounded()
     {
