@@ -64,20 +64,16 @@ public class SkillController : MonoBehaviour
             {
                 if (enemy != null)
                 {
-                    LookAtTarget(enemy); 
+                    LookAtTarget(enemy);
                 }
-
                 animator.SetTrigger("Attack");
             }));
         }
 
-
-        if (Input.GetKey(KeyCode.Alpha1) && !fireBreathOnCooldown)
+        // Fire Breath
+        if (Input.GetKey(KeyCode.Alpha1) && !fireBreathOnCooldown && !isUsingFireBreath)
         {
-            if (!isUsingFireBreath && characterStats.ConsumeMana(fireBreathManaCost))
-            {
-                animator.SetBool("Skill1", true);
-            }
+            animator.SetBool("Skill1", true);
         }
 
         if (Input.GetKeyUp(KeyCode.Alpha1) && isUsingFireBreath)
@@ -85,23 +81,19 @@ public class SkillController : MonoBehaviour
             StopFireBreath();
         }
 
+        // Big Ball
         if (Input.GetKeyDown(KeyCode.Alpha2) && skill2Timer >= skill2Cooldown)
         {
-            if (characterStats.ConsumeMana(bigBallManaCost))
-            {
-                animator.SetTrigger("Attack2");
-            }
+            animator.SetTrigger("Attack2");
         }
 
+        // Lightning Cloud
         if (Input.GetKeyDown(KeyCode.Alpha3) && skill3Timer >= skill3Cooldown && !isCloudAttacking)
         {
-            if (characterStats.ConsumeMana(lightningCloudManaCost))
+            StartCoroutine(SkillTarget(cloudDetectionRadius, (enemy) =>
             {
-                StartCoroutine(SkillTarget(cloudDetectionRadius, (enemy) =>
-                {
-                    StartCoroutine(ExecuteLightningSkill(enemy));
-                }));
-            }
+                StartCoroutine(ExecuteLightningSkill(enemy));
+            }));
         }
     }
 
@@ -111,8 +103,11 @@ public class SkillController : MonoBehaviour
         bullet.GetComponent<Projectile>().Initialize(20f);
     }
 
+    // Gọi từ Animation Event
     void StartFireBreath()
     {
+        if (!characterStats.ConsumeMana(fireBreathManaCost)) return;
+
         fireBreathEffect.SetActive(true);
         isUsingFireBreath = true;
     }
@@ -126,14 +121,20 @@ public class SkillController : MonoBehaviour
         fireBreathTimer = 0f;
     }
 
+    // Gọi từ Animation Event
     void UseAOEBall()
     {
+        if (!characterStats.ConsumeMana(bigBallManaCost)) return;
+
         Instantiate(BigBallPrefab, firePoint.position, firePoint.rotation);
         skill2Timer = 0f;
     }
 
     IEnumerator ExecuteLightningSkill(Transform enemy)
     {
+        if (!characterStats.ConsumeMana(lightningCloudManaCost))
+            yield break;
+
         isCloudAttacking = true;
         skill3Timer = 0f;
 
@@ -143,7 +144,6 @@ public class SkillController : MonoBehaviour
         if (enemy == null)
         {
             cloudObject.transform.position = cloudPoint.position + Vector3.up * 5f;
-
             yield return new WaitForSeconds(3f);
             cloudObject.SetActive(false);
             isCloudAttacking = false;
@@ -203,6 +203,7 @@ public class SkillController : MonoBehaviour
         yield return null;
         onTargetFound?.Invoke(nearestEnemy);
     }
+
     void LookAtTarget(Transform target)
     {
         if (characterTransform == null || target == null) return;
@@ -215,5 +216,4 @@ public class SkillController : MonoBehaviour
             characterTransform.rotation = Quaternion.LookRotation(direction);
         }
     }
-
 }
