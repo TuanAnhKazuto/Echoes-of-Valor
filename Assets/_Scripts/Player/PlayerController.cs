@@ -74,10 +74,10 @@ public class PlayerController : MonoBehaviour
         GameObject freeLookObj = GameObject.Find("PlayerFreeLookCam");
         if (freeLookObj != null)
         {
-            freeLookCam = freeLookObj.GetComponent<CinemachineCamera>();
-            freeLookCam.Priority = 10;
+            freeLookCam = freeLookObj.GetComponent<CinemachineCamera>();           
             freeLookCam.Follow = targetForCam;
             freeLookCam.LookAt = targetForCam;
+            freeLookCam.Priority = 10;
         }
         else
         {

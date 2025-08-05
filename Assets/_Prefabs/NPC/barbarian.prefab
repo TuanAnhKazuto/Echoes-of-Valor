@@ -435,6 +435,7 @@ GameObject:
   - component: {fileID: 9093751962229122491}
   - component: {fileID: 821427696681870948}
   - component: {fileID: 1930930095559562530}
+  - component: {fileID: 1873089816853708950}
   m_Layer: 0
   m_Name: barbarian
   m_TagString: NPC
@@ -501,28 +502,26 @@ MonoBehaviour:
   npcChatPanel: {fileID: 0}
   chatText: {fileID: 0}
   isChating: 0
-  maxline: 0
   yesButton: {fileID: 0}
   panelSetup: {fileID: 0}
   playerController: {fileID: 0}
+  npcLookTarget: {fileID: 0}
+  dialogueCam: {fileID: 0}
   npcType: 0
+  dialogueChoices:
+  - choiceText: 45
+    followUpLines:
+    - 77777
+  - choiceText: 85
+    followUpLines:
+    - 77777
   questChats:
   - lines:
     - "m\xE0y \u0111\xE3 nh\u1EADn nhi\u1EC7m v\u1EE5 1 "
     - "c\u1ED1 l\xEAn con trai c\u1EE7a ta"
     - hohohoho
-  - lines:
-    - "m\xE0y \u0111\xE3 nh\u1EADn nhi\u1EC7m v\u1EE5 2"
-    - "c\u1ED1 con th\u1EB1ng o\xE1t con"
-    - hahahaha
-  - lines:
-    - "m\xE0y \u0111\xE3 nh\u1EADn n\xF3 nhi\u1EC7m v\u1EE5 3"
-    - "run s\u1EE3 v\u1EDBi nhi\u1EC7m v\u1EE5 3 \u0111i "
-    - hehehe
   questList:
   - {fileID: 7104119817309547941}
-  - {fileID: 3570489826529476478, guid: 057466769ba0df8408875d0538cae2e7, type: 3}
-  - {fileID: 94500553823069728, guid: 00837975987da844ab961d0773f8e92f, type: 3}
   playerQuests: {fileID: 0}
 --- !u!114 &7104119817309547941
 MonoBehaviour:
@@ -539,11 +538,18 @@ MonoBehaviour:
   QuetsItemName: "nhi\u1EC7m v\u1EE5 s\u1ED1 1 \u0111\xE1nh enemy"
   questTargetAmount: 1
   currentAmount: 0
-  TargetItemtag: 
+  TargetItemtag: Enemy
   rewardAmount: 100
   questLocation: {fileID: 0}
-  description: 
-  hint: 
+  completeDialogue: aaaa
+  rewardItems:
+  - {fileID: 11400000, guid: 03d83d6c49d5d904db4f6dde4eabe569, type: 2}
+  - {fileID: 11400000, guid: 946848035aa62cf4faa666ea17eca4fd, type: 2}
+  - {fileID: 11400000, guid: f91972d039785f34aa4efd1c90d6e5e2, type: 2}
+  rewardIngredients: []
+  rewardIngredientCount: 1
+  description: aa
+  hint: aa
 --- !u!136 &9093751962229122491
 CapsuleCollider:
   m_ObjectHideFlags: 0
@@ -586,8 +592,8 @@ BoxCollider:
   m_ProvidesContacts: 0
   m_Enabled: 1
   serializedVersion: 3
-  m_Size: {x: 4.078637, y: 0.98562086, z: 2.4818354}
-  m_Center: {x: 0.030898098, y: 0.6843427, z: 0.78991264}
+  m_Size: {x: 4.257285, y: 0.98562086, z: 4.347041}
+  m_Center: {x: 0.08938361, y: 0.6843427, z: 1.7225134}
 --- !u!54 &1930930095559562530
 Rigidbody:
   m_ObjectHideFlags: 0
@@ -615,6 +621,27 @@ Rigidbody:
   m_Interpolate: 0
   m_Constraints: 0
   m_CollisionDetection: 1
+--- !u!65 &1873089816853708950
+BoxCollider:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1343332333537823140}
+  m_Material: {fileID: 0}
+  m_IncludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_ExcludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_LayerOverridePriority: 0
+  m_IsTrigger: 0
+  m_ProvidesContacts: 0
+  m_Enabled: 1
+  serializedVersion: 3
+  m_Size: {x: 2.9262125, y: 2.1651301, z: 3.204807}
+  m_Center: {x: 0.153736, y: 1.0373464, z: 1.102401}
 --- !u!1 &1721452658914073605
 GameObject:
   m_ObjectHideFlags: 0
