@@ -9,6 +9,7 @@ public class PaneQuest : MonoBehaviour
     private Vector2 initialPosition;
     private Coroutine coroutine;
     [HideInInspector] public bool isPane;
+    public Transform contentParent;
 
     public TextMeshProUGUI questItemPrefab;
     public GameObject buttonMuiTen;
@@ -43,17 +44,17 @@ public class PaneQuest : MonoBehaviour
 
     public void ShowAllQuestItem(List<QuestItem> questItems)
     {
-        for (int i = 0; i < questItemPrefab.transform.parent.childCount; i++)
+        for (int i = 0; i < contentParent.childCount; i++)
         {
-            if (questItemPrefab.transform.parent.GetChild(i).gameObject != questItemPrefab.gameObject)
+            if (contentParent.GetChild(i).gameObject != questItemPrefab.gameObject)
             {
-                Destroy(questItemPrefab.transform.parent.GetChild(i).gameObject);
+                Destroy(contentParent.GetChild(i).gameObject);
             }
         }
 
         foreach (var item in questItems)
         {
-            var questItem = Instantiate(questItemPrefab, questItemPrefab.transform.parent);
+            var questItem = Instantiate(questItemPrefab, contentParent);
             questItem.text =
     $"<b><size=110%><color=#FFD700>{item.QuetsItemName}</color></size></b>\n" +
     $"<size=90%><i><color=#C0C0C0>{item.description}</color></i></size>\n" +
