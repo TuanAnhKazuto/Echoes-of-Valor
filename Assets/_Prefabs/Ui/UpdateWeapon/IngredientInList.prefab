@@ -11,8 +11,8 @@ GameObject:
   - component: {fileID: 84937536912599779}
   - component: {fileID: 6977755210460466776}
   - component: {fileID: 500890679387334116}
-  m_Layer: 8
-  m_Name: ItemName
+  m_Layer: 5
+  m_Name: IngredientName
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -148,9 +148,10 @@ GameObject:
   - component: {fileID: 4868970610038542924}
   - component: {fileID: 7441829371912754902}
   - component: {fileID: 1244612722638411194}
+  - component: {fileID: 1389009578730552954}
   - component: {fileID: 8010439039465703784}
-  m_Layer: 8
-  m_Name: ItemInList
+  m_Layer: 5
+  m_Name: IngredientInList
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -259,7 +260,33 @@ MonoBehaviour:
   m_TargetGraphic: {fileID: 7441829371912754902}
   m_OnClick:
     m_PersistentCalls:
-      m_Calls: []
+      m_Calls:
+      - m_Target: {fileID: 1389009578730552954}
+        m_TargetAssemblyTypeName: IngdInList, Assembly-CSharp
+        m_MethodName: SelectIngd
+        m_Mode: 1
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
+--- !u!114 &1389009578730552954
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1466972590824961593}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 3106107ff80e39444952533aa0904202, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  ingdWillExchanged: {fileID: 0}
+  setupIngredientInList: {fileID: 0}
 --- !u!114 &8010439039465703784
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -269,11 +296,11 @@ MonoBehaviour:
   m_GameObject: {fileID: 1466972590824961593}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 67f90d89eff1bd843a5e153665158eeb, type: 3}
+  m_Script: {fileID: 11500000, guid: 98687ba8ab7b6e54ba5e80ba64dd18a6, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  itemImg: {fileID: 6105452485845858953}
-  itemName: {fileID: 500890679387334116}
+  ingredientImg: {fileID: 6105452485845858953}
+  ingredientName: {fileID: 500890679387334116}
 --- !u!1 &1697184796048689710
 GameObject:
   m_ObjectHideFlags: 0
@@ -285,7 +312,7 @@ GameObject:
   - component: {fileID: 5283545892218017515}
   - component: {fileID: 2860727800993798757}
   - component: {fileID: 7438526761433309423}
-  m_Layer: 8
+  m_Layer: 5
   m_Name: Bg
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -361,8 +388,8 @@ GameObject:
   - component: {fileID: 6860391631046928321}
   - component: {fileID: 4460691463725284000}
   - component: {fileID: 6105452485845858953}
-  m_Layer: 8
-  m_Name: ItemImg
+  m_Layer: 5
+  m_Name: IngredientImg
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -436,7 +463,7 @@ GameObject:
   - component: {fileID: 7637021532677143669}
   - component: {fileID: 4805490777614775544}
   - component: {fileID: 6585662185365012112}
-  m_Layer: 8
+  m_Layer: 5
   m_Name: Frame
   m_TagString: Untagged
   m_Icon: {fileID: 0}
