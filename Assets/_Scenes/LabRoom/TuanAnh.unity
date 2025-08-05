@@ -4667,6 +4667,18 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 1162506828958874441, guid: ca1998f865fc71e4db1590094f47b43b, type: 3}
+      propertyPath: m_AnchorMax.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 5272587552407272185, guid: ca1998f865fc71e4db1590094f47b43b, type: 3}
+      propertyPath: m_AnchorMax.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 5272587552407272185, guid: ca1998f865fc71e4db1590094f47b43b, type: 3}
+      propertyPath: m_AnchorMax.y
+      value: 0
+      objectReference: {fileID: 0}
     - target: {fileID: 6628685178319861454, guid: ca1998f865fc71e4db1590094f47b43b, type: 3}
       propertyPath: UI3DCam
       value: 
@@ -4678,6 +4690,26 @@ PrefabInstance:
     - target: {fileID: 6778092126549791300, guid: ca1998f865fc71e4db1590094f47b43b, type: 3}
       propertyPath: m_Name
       value: UpgrateWeaponCanvas
+      objectReference: {fileID: 0}
+    - target: {fileID: 6778092126549791300, guid: ca1998f865fc71e4db1590094f47b43b, type: 3}
+      propertyPath: m_IsActive
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 7497751654781685215, guid: ca1998f865fc71e4db1590094f47b43b, type: 3}
+      propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_Target
+      value: 
+      objectReference: {fileID: 6884495581773041730}
+    - target: {fileID: 7497751654781685215, guid: ca1998f865fc71e4db1590094f47b43b, type: 3}
+      propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_MethodName
+      value: OpenChangeIngUsed
+      objectReference: {fileID: 0}
+    - target: {fileID: 7991408619990608595, guid: ca1998f865fc71e4db1590094f47b43b, type: 3}
+      propertyPath: m_AnchorMax.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 8008578110264718533, guid: ca1998f865fc71e4db1590094f47b43b, type: 3}
+      propertyPath: m_SizeDelta.y
+      value: 0
       objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
@@ -5495,6 +5527,17 @@ PrefabInstance:
     m_AddedGameObjects: []
     m_AddedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: b43c61955286f6b44a26073f7d8e0083, type: 3}
+--- !u!114 &6884495581773041730 stripped
+MonoBehaviour:
+  m_CorrespondingSourceObject: {fileID: 9057637130592863596, guid: ca1998f865fc71e4db1590094f47b43b, type: 3}
+  m_PrefabInstance: {fileID: 794209536057258365}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 94af3bc8767daf54f8a84a46f1b40d0c, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1001 &7390807913648765444
 PrefabInstance:
   m_ObjectHideFlags: 0
