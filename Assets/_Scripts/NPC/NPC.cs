@@ -15,17 +15,18 @@ public class NPC : MonoBehaviour
     public TextMeshProUGUI chatText;
     [HideInInspector] public bool isChating;
     Coroutine coroutine;
-    //public int maxline;
     public Button yesButton;
     public NpcChatSetup panelSetup;
+    public PlayerController playerController;  // khóa di chuyển 
+
+    public Transform npcLookTarget; // điểm mà camera sẽ nhìn khi nói chuyện
+    private Transform originalCamFollow;
+    private Transform originalCamLookAt;
+    public CinemachineCamera dialogueCam;
+
     private bool questGiven = false;
-    // cammera
-    public CinemachineCamera freeLookCamera;
     private bool isSkipping = false;
     private bool isLineFullyDisplayed = false;
-    // khóa di chuyển 
-    public PlayerController playerController;
-
     // phân loại nhiệm vụ 
     public enum NpcType
     {
@@ -42,6 +43,8 @@ public class NPC : MonoBehaviour
         [TextArea(2, 5)]
         public List<string> followUpLines;
     }
+
+
     // đoạn chat
     [System.Serializable]
     public class QuestDialogue
@@ -73,10 +76,9 @@ public class NPC : MonoBehaviour
         npcChatPanel  = panelSetup.ChatPanel;
         chatText = panelSetup.ChatText.GetComponent<TextMeshProUGUI>();
         yesButton = panelSetup.YesBtn.GetComponent<Button>();
-        if (freeLookCamera == null)
-        {
-            freeLookCamera = FindAnyObjectByType<CinemachineCamera>();
-        }
+
+        if (dialogueCam != null)
+            dialogueCam.Priority = 0;
 
     }
 
@@ -136,7 +138,7 @@ public class NPC : MonoBehaviour
             // Gõ từng ký tự
             for (int i = 0; i < line.Length; i++)
             {
-                if (Input.GetMouseButtonDown(0))
+                if (Input.GetKeyDown(KeyCode.Space))
                 {
                     isSkipping = true;
                 }
@@ -152,7 +154,7 @@ public class NPC : MonoBehaviour
             }
 
             // Đợi click để tiếp tục sang dòng tiếp theo
-            yield return new WaitUntil(() => Input.GetMouseButtonDown(0));
+            yield return new WaitUntil(() => Input.GetKeyDown(KeyCode.Space));
         }
 
         yield return new WaitForSeconds(0.3f);
@@ -256,13 +258,29 @@ public class NPC : MonoBehaviour
         Cursor.visible = true;
         Cursor.lockState = CursorLockMode.None;
 
-        if (freeLookCamera != null)
-            freeLookCamera.gameObject.SetActive(false);
+        if (playerController != null)
+        {
+            playerController.canMove = false;
+            playerController.isTalkingWithNPC = true;
+
+            if (playerController.freeLookCam != null && npcLookTarget != null)
+            {
+                originalCamFollow = playerController.freeLookCam.Follow;
+                originalCamLookAt = playerController.freeLookCam.LookAt;
+
+                playerController.freeLookCam.Follow = npcLookTarget;
+                playerController.freeLookCam.LookAt = npcLookTarget;
+            }
+        }
+
+        npcChatPanel.SetActive(true);
+        if (dialogueCam != null)
+        {
+            dialogueCam.Priority = 20; 
+        }
 
         if (currentQuestIndex >= questList.Count)
         {
-            npcChatPanel.SetActive(true);
-            
             chatText.text = "Bạn đã hoàn thành tất cả nhiệm vụ rồi. Cảm ơn bạn";
             Invoke(nameof(HidePanel), 2f);
             return;
@@ -270,22 +288,17 @@ public class NPC : MonoBehaviour
 
         if (playerQuests.HasCompletedQuest(CurrentQuest))
         {
-            npcChatPanel.SetActive(true);
             yesButton.gameObject.SetActive(false);
-
             QuestItem finishedQuest = CurrentQuest;
             StartCoroutine(ShowAfterCompleteDialogue(finishedQuest));
         }
         else if (!questGiven)
         {
             isChating = true;
-            npcChatPanel.SetActive(true);
-            playerController.canMove = false;
             coroutine = StartCoroutine(ReadChat());
         }
         else
         {
-            npcChatPanel.SetActive(true);
             chatText.text = $"Nhiệm vụ chưa hoàn thành: {CurrentQuest.QuetsItemName}";
             Invoke(nameof(HidePanel), 2f);
         }
@@ -332,7 +345,7 @@ public class NPC : MonoBehaviour
                 yield return new WaitForSeconds(0.03f);
             }
 
-            yield return new WaitUntil(() => Input.GetMouseButtonDown(0) || Input.GetKeyDown(KeyCode.Return));
+            yield return new WaitUntil(() => Input.GetKeyDown(KeyCode.Space));
         }
 
        
@@ -372,10 +385,24 @@ public class NPC : MonoBehaviour
         Cursor.visible = false;
         Cursor.lockState = CursorLockMode.Locked;
 
-        if (freeLookCamera != null)
-            freeLookCamera.gameObject.SetActive(true); 
-
         if (playerController != null)
+        {
             playerController.canMove = true;
+            playerController.isTalkingWithNPC = false;
+            if (dialogueCam != null)
+            {
+                dialogueCam.Priority = 0; 
+            }          
+            if (playerController.freeLookCam != null && originalCamFollow != null && originalCamLookAt != null)
+            {
+                playerController.freeLookCam.Follow = originalCamFollow;
+                playerController.freeLookCam.LookAt = originalCamLookAt;
+            }
+
+            if (playerController.freeLookCam != null)
+            {
+                playerController.freeLookCam.Priority = 20; 
+            }
+        }
     }
 }

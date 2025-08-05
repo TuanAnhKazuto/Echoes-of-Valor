@@ -12,6 +12,9 @@ public class PlayerController : MonoBehaviour
     public CinemachineCamera freeLookCam;
     public Transform targetForCam;
 
+    [HideInInspector]
+    public bool isTalkingWithNPC = false;
+
     public float moveSpeed;
     public float speed = 6f;
     public float sprintSpeed = 12f;
@@ -68,7 +71,18 @@ public class PlayerController : MonoBehaviour
 
         cam  = Camera.main.transform;
 
-        freeLookCam = FindAnyObjectByType<CinemachineCamera>();
+        GameObject freeLookObj = GameObject.Find("PlayerFreeLookCam");
+        if (freeLookObj != null)
+        {
+            freeLookCam = freeLookObj.GetComponent<CinemachineCamera>();           
+            freeLookCam.Follow = targetForCam;
+            freeLookCam.LookAt = targetForCam;
+            freeLookCam.Priority = 10;
+        }
+        else
+        {
+            Debug.LogError("Không tìm thấy PlayerFreeLookCam trong Scene.");
+        }
         staminaBar = FindAnyObjectByType<PlayerStaminaBar>();
 
         if (freeLookCam != null)
@@ -87,6 +101,7 @@ public class PlayerController : MonoBehaviour
         MouseController();
         if (!isDashing)
         {
+            if (isTalkingWithNPC) return;
             Jump();
             if (isAttacking) return;
             Movement();
@@ -185,7 +200,7 @@ public class PlayerController : MonoBehaviour
 
         if (Input.GetButtonDown("Jump") && isGrounded)
         {
-            if (!canMove) return;
+            if (!canMove || isTalkingWithNPC) return;
             velocity.y = Mathf.Sqrt(jumpHeight * -2f * gravity);
             animator.SetBool("IsJumping", true);
             animator.SetBool("IsGrounded", false);

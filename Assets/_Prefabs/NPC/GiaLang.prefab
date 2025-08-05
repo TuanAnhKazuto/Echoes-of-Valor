@@ -1258,6 +1258,7 @@ GameObject:
   - component: {fileID: 8246533032923648686}
   - component: {fileID: 1940443819401079136}
   - component: {fileID: -1906394197294519438}
+  - component: {fileID: 2208697774827729111}
   m_Layer: 0
   m_Name: GiaLang
   m_TagString: NPC
@@ -1324,28 +1325,31 @@ MonoBehaviour:
   npcChatPanel: {fileID: 0}
   chatText: {fileID: 0}
   isChating: 0
-  maxline: 0
   yesButton: {fileID: 0}
   panelSetup: {fileID: 0}
   playerController: {fileID: 0}
+  npcLookTarget: {fileID: 0}
+  dialogueCam: {fileID: 0}
   npcType: 1
+  dialogueChoices:
+  - choiceText: honkai
+    followUpLines:
+    - "m\xE0y h\u1EA3 thu\u1EADn "
+  - choiceText: wuthering
+    followUpLines:
+    - "m\xE0y h\u1EA3 tu\u1EA5n anh\n"
   questChats:
   - lines:
-    - "m\xE0y \u0111\xE3 nh\u1EADn nhi\u1EC7m v\u1EE5 1 "
-    - "c\u1ED1 l\xEAn con trai c\u1EE7a ta"
+    - "m\xE0y \u0111\xE3 nh\u1EADn nhi\u1EC7m v\u1EE5 1111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111\n\n"
+    - 44444444444444444444444444444444444444444444444444444444444
     - hohohoho
   - lines:
-    - "m\xE0y \u0111\xE3 nh\u1EADn nhi\u1EC7m v\u1EE5 2"
-    - "c\u1ED1 con th\u1EB1ng o\xE1t con"
-    - hahahaha
-  - lines:
-    - "m\xE0y \u0111\xE3 nh\u1EADn n\xF3 nhi\u1EC7m v\u1EE5 3"
-    - "run s\u1EE3 v\u1EDBi nhi\u1EC7m v\u1EE5 3 \u0111i "
-    - hehehe
+    - "m\xE0y \u0111\xE3 nh\u1EADn nhi\u1EC7m v\u1EE5 2\n"
+    - "c\u1ED1 l\xEAn con trai c\u1EE7a ta"
+    - hohohoho
   questList:
   - {fileID: 0}
-  - {fileID: 3570489826529476478, guid: 057466769ba0df8408875d0538cae2e7, type: 3}
-  - {fileID: 94500553823069728, guid: 00837975987da844ab961d0773f8e92f, type: 3}
+  - {fileID: 0}
   playerQuests: {fileID: 0}
 --- !u!136 &8246533032923648686
 CapsuleCollider:
@@ -1389,8 +1393,8 @@ BoxCollider:
   m_ProvidesContacts: 0
   m_Enabled: 1
   serializedVersion: 3
-  m_Size: {x: 4.078637, y: 0.7229525, z: 2.4818354}
-  m_Center: {x: 0.030898096, y: 0.55300844, z: 0.7899127}
+  m_Size: {x: 4.717667, y: 0.7229525, z: 4.280217}
+  m_Center: {x: 0.07651353, y: 0.55300844, z: 1.6891005}
 --- !u!54 &-1906394197294519438
 Rigidbody:
   m_ObjectHideFlags: 0
@@ -1418,6 +1422,27 @@ Rigidbody:
   m_Interpolate: 0
   m_Constraints: 0
   m_CollisionDetection: 1
+--- !u!65 &2208697774827729111
+BoxCollider:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 6629266651557617969}
+  m_Material: {fileID: 0}
+  m_IncludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_ExcludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_LayerOverridePriority: 0
+  m_IsTrigger: 0
+  m_ProvidesContacts: 0
+  m_Enabled: 1
+  serializedVersion: 3
+  m_Size: {x: 2.9262125, y: 2.2551587, z: 3.2933362}
+  m_Center: {x: 0.15373601, y: 1.0823606, z: 1.1466655}
 --- !u!1 &7019479162482307331
 GameObject:
   m_ObjectHideFlags: 0
