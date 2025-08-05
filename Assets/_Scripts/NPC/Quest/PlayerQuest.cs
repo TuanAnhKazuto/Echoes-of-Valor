@@ -10,9 +10,7 @@ public class PlayerQuest : MonoBehaviour
 {
     // sử dụng cho nhiều nhiệm vụ
     public List<QuestItem> questItems = new List<QuestItem>();
-
-    public PaneQuest playerQuestPanel;
-
+    public PaneQuest playerQuestPanel;    
     // Nhận nhiệm vụ 
 
     // chỉ dẫn nhiệm vụ

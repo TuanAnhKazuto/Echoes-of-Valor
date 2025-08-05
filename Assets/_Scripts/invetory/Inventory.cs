@@ -13,8 +13,7 @@ public class Inventory : MonoBehaviour
     public CinemachineCamera freeLookCamera;
 
     [Header("Camera Settings")]
-    public CinemachineCamera playerCam;
-    public CinemachineCamera npcCam;
+    public CinemachineCamera playerCam;  
 
 
     public bool isInventoryOpen = false; // Trạng thái Inventory
@@ -36,9 +35,7 @@ public class Inventory : MonoBehaviour
         {
             freeLookCamera = GameObject.Find("PlayerFreeLookCam").GetComponent<CinemachineCamera>();
         }
-        playerCam = GameObject.Find("PlayerFreeLookCam").GetComponent<CinemachineCamera>();
-
-        //npcCam = GameObject.Find("NpcDialogueCam").GetComponent<CinemachineCamera>(); 
+        playerCam = GameObject.Find("PlayerFreeLookCam").GetComponent<CinemachineCamera>();       
     }
 
     void Update()
