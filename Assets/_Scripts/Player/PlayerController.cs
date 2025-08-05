@@ -12,6 +12,9 @@ public class PlayerController : MonoBehaviour
     public CinemachineCamera freeLookCam;
     public Transform targetForCam;
 
+    [HideInInspector]
+    public bool isTalkingWithNPC = false;
+
     public float moveSpeed;
     public float speed = 6f;
     public float sprintSpeed = 12f;
@@ -87,6 +90,7 @@ public class PlayerController : MonoBehaviour
         MouseController();
         if (!isDashing)
         {
+            if (isTalkingWithNPC) return;
             Jump();
             if (isAttacking) return;
             Movement();
@@ -185,7 +189,7 @@ public class PlayerController : MonoBehaviour
 
         if (Input.GetButtonDown("Jump") && isGrounded)
         {
-            if (!canMove) return;
+            if (!canMove || isTalkingWithNPC) return;
             velocity.y = Mathf.Sqrt(jumpHeight * -2f * gravity);
             animator.SetBool("IsJumping", true);
             animator.SetBool("IsGrounded", false);
