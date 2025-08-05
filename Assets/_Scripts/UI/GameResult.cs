@@ -16,6 +16,7 @@ public class GameResult : MonoBehaviour
     public SaveGameManager saveGameManager;
     private Vector3 startPosition;
     public CharacterStats characterStats;
+    public Transform respawnPoint;
 
     private void Start()
     {
@@ -84,22 +85,45 @@ public class GameResult : MonoBehaviour
         if (panelLost != null) panelLost.SetActive(false);
         if (panelVictory != null) panelVictory.SetActive(false);
 
+        if (characterStats == null && saveGameManager != null)
+        {
+            characterStats = saveGameManager.playerStats;
+        }
+
         if (characterStats != null)
         {
-            characterStats.gameObject.transform.position = startPosition;
+            // Tắt NavMeshAgent (nếu có) để tránh override vị trí
+            var agent = characterStats.GetComponent<UnityEngine.AI.NavMeshAgent>();
+            if (agent != null) agent.enabled = false;
 
-            if (characterStats != null)
-            {
-                characterStats.currentHealth = characterStats.maxHealth;
-                characterStats.currentMana = characterStats.maxMana;
+            // Tắt GameObject trước khi thay đổi vị trí
+            characterStats.gameObject.SetActive(false);
 
-                characterStats.healthBar.UpdateHealth((int)characterStats.currentHealth, (int)characterStats.maxHealth);
-                characterStats.animator.SetFloat("HP", characterStats.currentHealth);
-                characterStats.isDied = false;
-            }
+            // Đặt lại vị trí
+            if (respawnPoint != null)
+                characterStats.transform.position = respawnPoint.position;
+
+            // Bật lại GameObject
+            characterStats.gameObject.SetActive(true);
+
+            // Bật lại NavMeshAgent
+            if (agent != null) agent.enabled = true;
+
+            // Reset máu và mana
+            characterStats.currentHealth = characterStats.maxHealth;
+            characterStats.currentMana = characterStats.maxMana;
+
+            characterStats.healthBar.UpdateHealth((int)characterStats.currentHealth, (int)characterStats.maxHealth);
+            characterStats.manaBar.UpdateMana(characterStats.currentMana, characterStats.maxMana);
+
+            characterStats.animator.SetFloat("HP", characterStats.currentHealth);
+            characterStats.isDied = false;
+            characterStats.CursorTarget.SetActive(true);
         }
+
         UpdateTimeScale();
     }
+
 
     public void OnPause()
     {
