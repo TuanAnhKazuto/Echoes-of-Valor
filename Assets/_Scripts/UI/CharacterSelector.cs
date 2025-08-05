@@ -19,6 +19,8 @@ public class CharacterSelector : MonoBehaviour
 
     private void Start()
     {
+        Time.timeScale = 1f;
+
         nameInput.characterLimit = 16;
 
         for (int i = 0; i < characterButtons.Length; i++)
