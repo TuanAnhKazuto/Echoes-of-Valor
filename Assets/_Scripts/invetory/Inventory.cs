@@ -29,7 +29,7 @@ public class Inventory : MonoBehaviour
 
         if (freeLookCamera == null)
         {
-            freeLookCamera = FindAnyObjectByType<CinemachineCamera>();
+            freeLookCamera = GameObject.Find("PlayerFreeLookCam").GetComponent<CinemachineCamera>();
         }
 
     }
