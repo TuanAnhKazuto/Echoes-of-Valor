@@ -1,4 +1,3 @@
-using System.Diagnostics.Tracing;
 using UnityEngine;
 using UnityEngine.UI;
 using static InventoryManager;
@@ -6,6 +5,7 @@ using static InventoryManager;
 public class IngdUse2Change : MonoBehaviour
 {
     public Image ingdImg;
+    public string nameOfIngdWillUse2Change;
 
     public ListIngredient listIngredient;
     public SwitchIngdViewPanelCtrl switchIngdViewPanelCtrl;
@@ -24,16 +24,21 @@ public class IngdUse2Change : MonoBehaviour
 
         foreach (UpgradeIngredient infor in inventoryManager.upgradeIngredients)
         {
-            if(infor.ingredient.ingredientName == ingdName)
+            if (infor.ingredient.ingredientName == ingdName)
             {
-                if(infor.ingredient.ingredientName == null)
-                    switchIngdViewPanelCtrl.UpdateQuantityText(0);
-                else
-                    switchIngdViewPanelCtrl.UpdateQuantityText(infor.quantity);
+                switchIngdViewPanelCtrl.UpdateQuantityText(infor.quantity);
+                changeIngdUsed.CloseChosePanel();
+
+                if (infor.ingredient.ingredientName == ingdName)
+                {
+                    return;
+                }
             }
             else
             {
-                
+                switchIngdViewPanelCtrl.UpdateQuantityText(0);
+                if (infor.ingredient.ingredientName == null)
+                    switchIngdViewPanelCtrl.UpdateQuantityText(0);
             }
         }
         changeIngdUsed.CloseChosePanel();
@@ -45,9 +50,10 @@ public class IngdUse2Change : MonoBehaviour
         {
             if (ingredient.ingredientRank == ingdRank)
             {
-                if(ingredient.ingredientName != ingdName)
+                if (ingredient.ingredientName != ingdName)
                 {
                     ingdImg.sprite = ingredient.icon;
+                    nameOfIngdWillUse2Change = ingredient.ingredientName;
                     return;
                 }
             }
