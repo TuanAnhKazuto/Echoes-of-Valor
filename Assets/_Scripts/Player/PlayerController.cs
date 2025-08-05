@@ -71,7 +71,18 @@ public class PlayerController : MonoBehaviour
 
         cam  = Camera.main.transform;
 
-        freeLookCam = FindAnyObjectByType<CinemachineCamera>();
+        GameObject freeLookObj = GameObject.Find("PlayerFreeLookCam");
+        if (freeLookObj != null)
+        {
+            freeLookCam = freeLookObj.GetComponent<CinemachineCamera>();
+            freeLookCam.Priority = 10;
+            freeLookCam.Follow = targetForCam;
+            freeLookCam.LookAt = targetForCam;
+        }
+        else
+        {
+            Debug.LogError("Không tìm thấy PlayerFreeLookCam trong Scene.");
+        }
         staminaBar = FindAnyObjectByType<PlayerStaminaBar>();
 
         if (freeLookCam != null)
