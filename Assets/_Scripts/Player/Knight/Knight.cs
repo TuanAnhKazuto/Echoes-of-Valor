@@ -70,6 +70,8 @@ public class Knight : MonoBehaviour
 
     void Attack()
     {
+        if (player.isTalkingWithNPC) return;
+
         if (Input.GetMouseButton(0))
         {
             anim.SetBool("IsAttack", true);
@@ -94,6 +96,7 @@ public class Knight : MonoBehaviour
     void AttackOld()
     {
         // Old version of the code
+        if (player.isTalkingWithNPC) return;
         if (player.isDashing)
         {
             player.isAttacking = false;

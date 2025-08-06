@@ -27,6 +27,8 @@ public class KnightSkill : MonoBehaviour
 
     private void ExcaliburSkill()
     {
+        if (knight.player.isTalkingWithNPC) return;
+
         if (Input.GetKeyDown(KeyCode.Alpha2))
         {
             if (Time.time >= nextReadyTime)
