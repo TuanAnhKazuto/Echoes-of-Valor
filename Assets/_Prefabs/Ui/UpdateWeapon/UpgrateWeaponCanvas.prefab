@@ -120,7 +120,19 @@ MonoBehaviour:
   m_TargetGraphic: {fileID: 3843063386489296552}
   m_OnClick:
     m_PersistentCalls:
-      m_Calls: []
+      m_Calls:
+      - m_Target: {fileID: 6832165514998985923}
+        m_TargetAssemblyTypeName: SwitchIngdCtrlUI, Assembly-CSharp
+        m_MethodName: DecreaseBtn
+        m_Mode: 1
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
 --- !u!1 &110337832746222837
 GameObject:
   m_ObjectHideFlags: 0
@@ -2121,7 +2133,19 @@ MonoBehaviour:
   m_TargetGraphic: {fileID: 4462744977859959978}
   m_OnClick:
     m_PersistentCalls:
-      m_Calls: []
+      m_Calls:
+      - m_Target: {fileID: 6832165514998985923}
+        m_TargetAssemblyTypeName: SwitchIngdCtrlUI, Assembly-CSharp
+        m_MethodName: IncreaseBtn
+        m_Mode: 1
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
 --- !u!1 &2144068977820958979
 GameObject:
   m_ObjectHideFlags: 0
@@ -2191,7 +2215,7 @@ RectTransform:
   m_Father: {fileID: 3231972416623746701}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 0}
-  m_AnchorMax: {x: 1, y: 1}
+  m_AnchorMax: {x: 0, y: 0}
   m_AnchoredPosition: {x: 0, y: 0}
   m_SizeDelta: {x: 20, y: 20}
   m_Pivot: {x: 0.5, y: 0.5}
@@ -2316,13 +2340,25 @@ MonoBehaviour:
   m_FillRect: {fileID: 1162506828958874441}
   m_HandleRect: {fileID: 7991408619990608595}
   m_Direction: 0
-  m_MinValue: 0
+  m_MinValue: 1
   m_MaxValue: 100
   m_WholeNumbers: 1
-  m_Value: 0
+  m_Value: 25
   m_OnValueChanged:
     m_PersistentCalls:
-      m_Calls: []
+      m_Calls:
+      - m_Target: {fileID: 6832165514998985923}
+        m_TargetAssemblyTypeName: SwitchIngdCtrlUI, Assembly-CSharp
+        m_MethodName: ChangeSlideValue
+        m_Mode: 1
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
 --- !u!1 &2527000094566161446
 GameObject:
   m_ObjectHideFlags: 0
@@ -2716,7 +2752,7 @@ RectTransform:
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
   m_AnchoredPosition: {x: -237.59995, y: 182.9}
-  m_SizeDelta: {x: 475.2, y: 8}
+  m_SizeDelta: {x: 475.2, y: 0}
   m_Pivot: {x: 0, y: 1}
 --- !u!114 &23558743182692361
 MonoBehaviour:
@@ -2995,7 +3031,7 @@ GameObject:
   - component: {fileID: 7603113787350189778}
   - component: {fileID: 3921985472267657804}
   m_Layer: 5
-  m_Name: CountSwicthTxt
+  m_Name: CountChangeTxt
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -3398,7 +3434,7 @@ RectTransform:
   m_Father: {fileID: 4772712857691325476}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 0}
-  m_AnchorMax: {x: 0, y: 1}
+  m_AnchorMax: {x: 0, y: 0}
   m_AnchoredPosition: {x: 0, y: 0}
   m_SizeDelta: {x: 10, y: 0}
   m_Pivot: {x: 0.5, y: 0.5}
@@ -4249,9 +4285,10 @@ MonoBehaviour:
   ingdWillExchanged: {fileID: 680308713681801513}
   quantityAvailable: 0
   quantityAvailableText: {fileID: 5040903525091880280}
-  countCorNeed2Change: 0
-  countCorNeed2ChangeText: {fileID: 215950118805658463}
+  corNeed2ChangeText: {fileID: 215950118805658463}
   changeIngdUsed: {fileID: 7866719821084627046}
+  ingredientStart: {fileID: 11400000, guid: 9fcb476757f408c4388516f32b6bcc27, type: 2}
+  switchCtrl: {fileID: 6832165514998985923}
 --- !u!1 &5305293478518799304
 GameObject:
   m_ObjectHideFlags: 0
@@ -5430,7 +5467,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 0
+  m_IsActive: 1
 --- !u!224 &985758196758490403
 RectTransform:
   m_ObjectHideFlags: 0
@@ -6645,6 +6682,7 @@ GameObject:
   - component: {fileID: 443168123396878539}
   - component: {fileID: 4165653060559420376}
   - component: {fileID: 7035190351632662030}
+  - component: {fileID: 6832165514998985923}
   m_Layer: 5
   m_Name: SwitchCtrl
   m_TagString: Untagged
@@ -6711,6 +6749,26 @@ MonoBehaviour:
   m_FillOrigin: 0
   m_UseSpriteMesh: 0
   m_PixelsPerUnitMultiplier: 1
+--- !u!114 &6832165514998985923
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 8157230677382412522}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 56cbb6e631d4a2b4195eb41dfbdcfa03, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  switchView: {fileID: 9057637130592863596}
+  countChange: 0
+  countChangeValue: {fileID: 3921985472267657804}
+  corNeed2Change: 0
+  maxIngdCanChange: 0
+  countSlider: {fileID: 1674490921142078589}
+  messengerNullObj: {fileID: 4301258456762917152}
+  controlerObj: {fileID: 9157369982942418685}
 --- !u!1 &8197369407459602430
 GameObject:
   m_ObjectHideFlags: 0
@@ -7046,7 +7104,7 @@ RectTransform:
   m_Father: {fileID: 5790598001469796395}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 45}
   m_AnchorMin: {x: 0, y: 0}
-  m_AnchorMax: {x: 0, y: 1}
+  m_AnchorMax: {x: 0, y: 0}
   m_AnchoredPosition: {x: 0, y: 0}
   m_SizeDelta: {x: 20, y: 0}
   m_Pivot: {x: 0.5, y: 0.5}

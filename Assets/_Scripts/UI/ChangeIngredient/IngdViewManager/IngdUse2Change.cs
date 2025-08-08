@@ -26,7 +26,7 @@ public class IngdUse2Change : MonoBehaviour
         {
             if (infor.ingredient.ingredientName == ingdName)
             {
-                switchIngdViewPanelCtrl.UpdateQuantityText(infor.quantity);
+                switchIngdViewPanelCtrl.UpdateQuantityIngdText(infor.quantity);
                 changeIngdUsed.CloseChosePanel();
 
                 if (infor.ingredient.ingredientName == ingdName)
@@ -36,9 +36,9 @@ public class IngdUse2Change : MonoBehaviour
             }
             else
             {
-                switchIngdViewPanelCtrl.UpdateQuantityText(0);
+                switchIngdViewPanelCtrl.UpdateQuantityIngdText(0);
                 if (infor.ingredient.ingredientName == null)
-                    switchIngdViewPanelCtrl.UpdateQuantityText(0);
+                    switchIngdViewPanelCtrl.UpdateQuantityIngdText(0);
             }
         }
         changeIngdUsed.CloseChosePanel();
