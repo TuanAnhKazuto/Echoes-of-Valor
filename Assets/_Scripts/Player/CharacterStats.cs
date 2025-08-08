@@ -53,12 +53,6 @@ public class CharacterStats : MonoBehaviour
 
     public void TakeDamage(float damage)
     {
-        float damageTake = Mathf.Max(damage - TotalDefense, 1f);
-        currentHealth -= damageTake;
-        healthBar.UpdateHealth((int)currentHealth, (int)maxHealth);
-        animator.SetTrigger("TakeDamage");
-        animator.SetFloat("HP", currentHealth);
-
         if (currentHealth <= 0)
         {
             currentHealth = 0;
@@ -66,7 +60,15 @@ public class CharacterStats : MonoBehaviour
             animator.SetFloat("HP", currentHealth);
             isDied = true;
             Invoke(nameof(Die), 1);
+            return;
         }
+        float damageTake = Mathf.Max(damage - TotalDefense, 1f);
+        currentHealth -= damageTake;
+        healthBar.UpdateHealth((int)currentHealth, (int)maxHealth);
+        animator.SetTrigger("TakeDamage");
+        animator.SetFloat("HP", currentHealth);
+
+        
     }
 
     public void Heal(float amount)

@@ -3,46 +3,53 @@ using static InventoryManager;
 
 public class IngdInList : MonoBehaviour
 {
-    [SerializeField] private SwitchIngdViewPanelCtrl switchIngdViewPanelCtrl;
+    [SerializeField] private SwitchIngdViewPanelCtrl switchView;
     [SerializeField] private SetupIngredientInList setupIngredientInList;
     [SerializeField] private InventoryManager inventoryManager;
-    //public Image ingredientImg;
 
     private void Start()
     {
         setupIngredientInList = GetComponent<SetupIngredientInList>();
-        switchIngdViewPanelCtrl = FindAnyObjectByType<SwitchIngdViewPanelCtrl>();
+        switchView = FindAnyObjectByType<SwitchIngdViewPanelCtrl>();
         inventoryManager = FindAnyObjectByType<InventoryManager>();
     }
 
     public void SelectIngd()
     {
-        switchIngdViewPanelCtrl.UpdateIngdExchange(
+        switchView.UpdateIngdExchange(
             setupIngredientInList.ingredientImg,
             setupIngredientInList.ingredientNameString,
             setupIngredientInList.ingredientRank);
 
-        UpdateQuantityAvailable(switchIngdViewPanelCtrl.ingdUse2Change.nameOfIngdWillUse2Change);
+        UpdateQuantityAvailable(switchView.ingdUse2Change.nameOfIngdWillUse2Change);
     }
 
     public void UpdateQuantityAvailable(string ingdName)
     {
+        if(inventoryManager.upgradeIngredients == null || inventoryManager.upgradeIngredients.Count == 0)
+        {
+            switchView.switchCtrl.HideChangeUI();
+            return;
+        }
+
         foreach (UpgradeIngredient infor in inventoryManager.upgradeIngredients)
         {
             if (infor.ingredient.ingredientName == ingdName)
             {
-                switchIngdViewPanelCtrl.UpdateQuantityText(infor.quantity);
                 if (infor.ingredient.ingredientName == ingdName)
                 {
+                    switchView.UpdateQuantityIngdText(infor.quantity);
+
                     return;
                 }
             }
-            else 
+            else
             {
-                switchIngdViewPanelCtrl.UpdateQuantityText(0);
-                if(infor.ingredient.ingredientName == null)
+                switchView.UpdateQuantityIngdText(0);
+
+                if (infor.ingredient.ingredientName == null)
                 {
-                    switchIngdViewPanelCtrl.UpdateQuantityText(0);
+                    switchView.UpdateQuantityIngdText(0);
                 }
             }
         }

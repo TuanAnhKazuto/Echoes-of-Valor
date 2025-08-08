@@ -1,6 +1,9 @@
-﻿using TMPro;
+﻿using NSubstitute.ReceivedExtensions;
+using TMPro;
+using UnityEditor.Rendering;
 using UnityEngine;
 using UnityEngine.UI;
+using static InventoryManager;
 
 public class SwitchIngdViewPanelCtrl : MonoBehaviour
 {
@@ -10,19 +13,86 @@ public class SwitchIngdViewPanelCtrl : MonoBehaviour
     public int quantityAvailable;
     public TextMeshProUGUI quantityAvailableText;
 
-    public int countCorNeed2Change;
-    public TextMeshProUGUI countCorNeed2ChangeText;
+    public TextMeshProUGUI corNeed2ChangeText;
 
     public ChoseIngredientChange changeIngdUsed;
 
+    [Header("Setup for start")]
+    public Ingredient ingredientStart;
+    public SwitchIngdCtrlUI switchCtrl;
+    InventoryManager inventoryManager;
+
     private void OnEnable()
     {
+        inventoryManager = FindAnyObjectByType<InventoryManager>();
         changeIngdUsed.gameObject.SetActive(false);
+        
+        SetupWhenStart(ingredientStart.ingredientName);
     }
 
-    public void UpdateQuantityText(int quantity)
+    private void SetupWhenStart(string ingdName)
     {
-        quantityAvailableText.text = quantity.ToString() + " / 2";
+        GameObject imgObj = new("ImgStart", typeof(Image));
+        Image img = imgObj.GetComponent<Image>();
+        img.sprite = ingredientStart.icon;
+
+        UpdateIngdExchange(img, ingredientStart.ingredientName, ingredientStart.ingredientRank);
+
+        if(inventoryManager.upgradeIngredients == null || inventoryManager.upgradeIngredients.Count == 0)
+        {
+            switchCtrl.HideChangeUI();
+            quantityAvailableText.text = $"<color=#FF0000>{0}</color> / 2";
+            return;
+        }
+
+        foreach (UpgradeIngredient infor in inventoryManager.upgradeIngredients)
+        {
+            UpdateQuantityIngdText(infor.quantity);
+            if (infor.ingredient.ingredientName == ingdName)
+            {
+                UpdateQuantityIngdText(infor.quantity);
+                if (infor.ingredient.ingredientName == ingdName)
+                {
+                    return;
+                }
+            }
+            else
+            {
+                UpdateQuantityIngdText(0);
+                if (infor.ingredient.ingredientName == null)
+                {
+                    UpdateQuantityIngdText(0);
+                }
+            }
+        }
+    }
+
+    public void UpdateQuantityIngdText(int quantity)
+    {
+        quantityAvailable = quantity;
+        switchCtrl.CalculateMaxIngdCanChange(quantityAvailable);
+        Debug.Log($"Quantity available: {quantityAvailable}");
+        if(quantityAvailable > 0)
+        {
+            switchCtrl.ShowChangeUI();
+        }
+        else
+        {
+            switchCtrl.HideChangeUI();
+        }
+        if(quantity > 0)
+        {
+            quantityAvailableText.text = $"<color=#FFFFFF>{quantityAvailable}</color> / 2";
+        }
+        else
+        {
+            quantityAvailableText.text = $"<color=#FF0000>{quantityAvailable}</color> / 2";
+        }
+    }
+
+    public void UpdateCorText(int numCor)
+    {
+        corNeed2ChangeText.text = numCor.ToString();
     }
 
     public void UpdateIngdExchange(Image img,string ingdName, IngredientRank ingdRank)

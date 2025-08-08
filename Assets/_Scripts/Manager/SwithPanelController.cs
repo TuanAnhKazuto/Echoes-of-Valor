@@ -6,8 +6,11 @@ public class SwithPanelController : MonoBehaviour
 
     private void Start()
     {
+        foreach (GameObject panel in panels)
+        {
+            panel.SetActive(false);
+        }
         panels[0].SetActive(true); 
-        panels[1].SetActive(false);
     }
 
     public void SwitchToPanel(int panelIndex)
