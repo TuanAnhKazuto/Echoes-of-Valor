@@ -180,6 +180,7 @@ public class NPC : MonoBehaviour
                 }
                 else if (!playerQuests.questItems.Contains(CurrentQuest))
                 {
+                    CurrentQuest.questGiverLocation = this.transform;
                     playerQuests.TakeQuest(CurrentQuest);
                     chatText.text = $"Bạn đã nhận nhiệm vụ: {CurrentQuest.QuetsItemName}";
                     questGiven = true;
@@ -216,7 +217,7 @@ public class NPC : MonoBehaviour
         yesButton.gameObject.SetActive(false);
         Invoke(nameof(HidePanel), 2f);
     }
-    // đọc thoại khi xong
+    
     IEnumerator ShowAfterCompleteDialogue(QuestItem finishedQuest)
     {
         yield return new WaitForSeconds(1f);
@@ -235,11 +236,10 @@ public class NPC : MonoBehaviour
             rewardsSummary += $", <color=#87CEFA>+{finishedQuest.rewardIngredientCount}x {ingrNames}</color>";
         }
         chatText.text = rewardsSummary;
-
-        // Thêm vào túi đồ
+        
         yield return new WaitForSeconds(2.5f);
         playerQuests.CompleteQuest(finishedQuest);
-        // NPC cập nhật trạng thái
+        
         currentQuestIndex++;
         questGiven = false;
 
@@ -362,6 +362,7 @@ public class NPC : MonoBehaviour
             }
             else if (!playerQuests.questItems.Contains(CurrentQuest))
             {
+                CurrentQuest.questGiverLocation = this.transform;
                 playerQuests.TakeQuest(CurrentQuest);
                 chatText.text = $"Bạn đã nhận nhiệm vụ: {CurrentQuest.QuetsItemName}";
                 questGiven = true;

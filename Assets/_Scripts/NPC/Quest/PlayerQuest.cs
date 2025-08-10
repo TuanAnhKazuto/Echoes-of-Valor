@@ -66,6 +66,16 @@ public class PlayerQuest : MonoBehaviour
                 if (quest.IsComplete())
                 {
                     Debug.Log($"Hoàn thành nhiệm vụ: {quest.QuetsItemName}!");
+                    // Ẩn marker nhiệm vụ cũ
+                    if (quest.questLocation != null)
+                        markerManager.HideMarker(quest);
+
+                    // Nếu có NPC giao nhiệm vụ -> hiển thị marker trỏ về NPC
+                    if (quest.questGiverLocation != null)
+                    {
+                        quest.questLocation = quest.questGiverLocation; // tạm dùng lại questLocation
+                        markerManager.ShowMarker(quest);
+                    }
                 }
             }
         }
