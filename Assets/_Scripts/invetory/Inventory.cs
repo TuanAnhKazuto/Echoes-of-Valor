@@ -13,7 +13,7 @@ public class Inventory : MonoBehaviour
     public CinemachineCamera freeLookCamera;
 
     [Header("Camera Settings")]
-    public CinemachineCamera playerCam;  
+    public CinemachineCamera playerCam;    
 
 
     public bool isInventoryOpen = false; // Trạng thái Inventory
@@ -35,7 +35,8 @@ public class Inventory : MonoBehaviour
         {
             freeLookCamera = GameObject.Find("PlayerFreeLookCam").GetComponent<CinemachineCamera>();
         }
-        playerCam = GameObject.Find("PlayerFreeLookCam").GetComponent<CinemachineCamera>();       
+        playerCam = GameObject.Find("PlayerFreeLookCam").GetComponent<CinemachineCamera>();
+        
     }
 
     void Update()
@@ -50,18 +51,18 @@ public class Inventory : MonoBehaviour
 
     void ToggleInventory()
     {
-        isInventoryOpen = !isInventoryOpen; // Đảo trạng thái Inventory
-        inventoryUI.SetActive(isInventoryOpen); // Bật/tắt giao diện Inventory       
+        isInventoryOpen = !isInventoryOpen;
+        inventoryUI.SetActive(isInventoryOpen);            
+
         if (isInventoryOpen)
         {
-            playerCam.Priority = 0; 
+            playerCam.Priority = 0;
         }
         else
         {
-            playerCam.Priority = 10; 
+            playerCam.Priority = 10;
         }
 
-        // Khóa hoặc mở khóa con trỏ chuột
         Cursor.lockState = isInventoryOpen ? CursorLockMode.None : CursorLockMode.Locked;
         Cursor.visible = isInventoryOpen;
     }
