@@ -27,8 +27,14 @@ public class ShopItemUI : MonoBehaviour
 
     public void OnSelect()
     {
-        // Gửi sản phẩm sang panel mua chi tiết
+        
         shopUIController.itemImage.sprite = itemIcon.sprite;
+        
+        ShopViewPanelCtrl viewPanel = FindAnyObjectByType<ShopViewPanelCtrl>();
+        if (viewPanel != null)
+        {
+            viewPanel.SetupProduct(product, product.maxQuantity);
+        }
         Debug.Log("Chọn sản phẩm: " + product.itemData.itemName);
     }
 }
