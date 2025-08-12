@@ -1,4 +1,5 @@
 ﻿using UnityEngine;
+using UnityEngine.UI;
 using static ShopManager;
 
 public class ShopUIController : MonoBehaviour
@@ -6,6 +7,7 @@ public class ShopUIController : MonoBehaviour
     public Transform shopContentParent;
     public GameObject shopItemPrefab;
     public GameObject shopPanel; 
+    public Image itemImage;
 
     private bool isShopOpen = false;
 
