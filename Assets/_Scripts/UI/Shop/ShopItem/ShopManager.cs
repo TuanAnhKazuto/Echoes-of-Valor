@@ -42,6 +42,11 @@ public class ShopManager : MonoBehaviour
             if (playerCor.coin != null)
                 playerCor.coin.text = playerCor.cor.ToString();
 
+            // 🔹 Cập nhật UI vàng trong Shop
+            ShopUIController shopUI = FindAnyObjectByType<ShopUIController>();
+            if (shopUI != null)
+                shopUI.UpdateGoldUI();
+
             // Thêm vào inventory
             for (int i = 0; i < quantity; i++)
             {
