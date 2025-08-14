@@ -4,13 +4,14 @@ using UnityEngine.UI;
 
 public class ShopCtrlUI : MonoBehaviour
 {
-    public ShopViewPanelCtrl shopView; // Sửa lại: liên kết với script ShopViewPanelCtrl
+    public ShopViewPanelCtrl shopView;
 
     public int buyQuantity;
     public TextMeshProUGUI quantityValueText;
 
     public int totalPrice;
     public Slider ShopSlider;
+    public GameObject notEnoughGoldObj;
 
     public GameObject noItemSelectedObj;
     public GameObject controlPanelObj;
@@ -44,8 +45,10 @@ public class ShopCtrlUI : MonoBehaviour
 
     public void IncreaseQuantity()
     {
+
         buyQuantity++;
         ShopSlider.value = buyQuantity;
+        quantityValueText.text = buyQuantity.ToString();
         UpdateTotalPrice();
     }
 
@@ -55,6 +58,7 @@ public class ShopCtrlUI : MonoBehaviour
         {
             buyQuantity--;
             ShopSlider.value = buyQuantity;
+            quantityValueText.text = buyQuantity.ToString();
             UpdateTotalPrice();
         }
     }
@@ -63,8 +67,28 @@ public class ShopCtrlUI : MonoBehaviour
     {
         if (shopView.selectedProduct != null)
         {
-            ShopManager.Instance.BuyItem(shopView.selectedProduct, buyQuantity);
+            bool success = ShopManager.Instance.BuyItem(shopView.selectedProduct, buyQuantity);
+
+            if (!success)
+            {
+                
+                notEnoughGoldObj.SetActive(true);
+
+              
+                CancelInvoke(nameof(HideNotEnoughGold));
+                Invoke(nameof(HideNotEnoughGold), 2f);
+            }
+            else
+            {
+                
+                notEnoughGoldObj.SetActive(false);
+            }
         }
+    }
+
+    private void HideNotEnoughGold()
+    {
+        notEnoughGoldObj.SetActive(false);
     }
 
     public void HideUI()
@@ -77,5 +101,12 @@ public class ShopCtrlUI : MonoBehaviour
     {
         controlPanelObj.SetActive(true);
         noItemSelectedObj.SetActive(false);
+    }
+    public void ResetQuantity()
+    {
+        buyQuantity = 1;
+        ShopSlider.value = 1;
+        quantityValueText.text = "1";
+        UpdateTotalPrice();
     }
 }

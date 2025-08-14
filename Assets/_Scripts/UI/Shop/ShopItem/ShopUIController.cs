@@ -1,4 +1,6 @@
-﻿using UnityEngine;
+﻿using TMPro;
+using UnityEngine;
+using UnityEngine.UI;
 using static ShopManager;
 
 public class ShopUIController : MonoBehaviour
@@ -6,13 +8,18 @@ public class ShopUIController : MonoBehaviour
     public Transform shopContentParent;
     public GameObject shopItemPrefab;
     public GameObject shopPanel; 
+    public Image itemImage;
+    public TextMeshProUGUI goldText;
+    private Cor playerCor;
 
     private bool isShopOpen = false;
 
     void Start()
     {
+        playerCor = FindAnyObjectByType<Cor>();
         LoadShopItems();
         if (shopPanel != null) shopPanel.SetActive(false); // Ẩn shop khi bắt đầu
+
     }
 
     void Update()
@@ -42,7 +49,20 @@ public class ShopUIController : MonoBehaviour
             shopPanel.SetActive(isActive);
 
         if (isActive)
+        {
             LoadShopItems();
+            UpdateGoldUI();
+        }
+
+    }
+    public void UpdateGoldUI()
+    {
+        if (goldText != null)
+        {
+            Cor playerCor = FindAnyObjectByType<Cor>();
+            if (playerCor != null)
+                goldText.text = playerCor.cor.ToString();
+        }
     }
     void LoadShopItems()
     {
