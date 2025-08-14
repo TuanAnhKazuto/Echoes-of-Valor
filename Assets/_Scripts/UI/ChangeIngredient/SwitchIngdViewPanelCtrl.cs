@@ -20,14 +20,14 @@ public class SwitchIngdViewPanelCtrl : MonoBehaviour
     [Header("Setup for start")]
     public Ingredient ingredientStart;
     public SwitchIngdCtrlUI switchCtrl;
-    InventoryManager inventoryManager;
+    public InventoryManager inventoryManager;
 
     private void OnEnable()
     {
         inventoryManager = FindAnyObjectByType<InventoryManager>();
         changeIngdUsed.gameObject.SetActive(false);
         
-        SetupWhenStart(ingredientStart.ingredientName);
+        SetupWhenStart(ingdUse2Change._name);
     }
 
     private void SetupWhenStart(string ingdName)
@@ -47,7 +47,7 @@ public class SwitchIngdViewPanelCtrl : MonoBehaviour
 
         foreach (UpgradeIngredient infor in inventoryManager.upgradeIngredients)
         {
-            UpdateQuantityIngdText(infor.quantity);
+            //UpdateQuantityIngdText(infor.quantity);
             if (infor.ingredient.ingredientName == ingdName)
             {
                 UpdateQuantityIngdText(infor.quantity);
@@ -71,21 +71,14 @@ public class SwitchIngdViewPanelCtrl : MonoBehaviour
     {
         quantityAvailable = quantity;
         switchCtrl.CalculateMaxIngdCanChange(quantityAvailable);
-        Debug.Log($"Quantity available: {quantityAvailable}");
         if(quantityAvailable > 0)
         {
             switchCtrl.ShowChangeUI();
-        }
-        else
-        {
-            switchCtrl.HideChangeUI();
-        }
-        if(quantity > 0)
-        {
             quantityAvailableText.text = $"<color=#FFFFFF>{quantityAvailable}</color> / 2";
         }
         else
         {
+            switchCtrl.HideChangeUI();
             quantityAvailableText.text = $"<color=#FF0000>{quantityAvailable}</color> / 2";
         }
     }
@@ -97,7 +90,8 @@ public class SwitchIngdViewPanelCtrl : MonoBehaviour
 
     public void UpdateIngdExchange(Image img,string ingdName, IngredientRank ingdRank)
     {
-        ingdWillExchanged.ingdWillExchangeImg.sprite = img.sprite;
+        ingdWillExchanged.img.sprite = img.sprite;
+        ingdWillExchanged._name = ingdName;
         ingdUse2Change.UpdateImgInList(ingdRank, ingdName);
         changeIngdUsed.ingdNameString = ingdName;
 

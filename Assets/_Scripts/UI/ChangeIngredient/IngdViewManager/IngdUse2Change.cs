@@ -5,7 +5,7 @@ using static InventoryManager;
 public class IngdUse2Change : MonoBehaviour
 {
     public Image ingdImg;
-    public string nameOfIngdWillUse2Change;
+    public string _name;
 
     public ListIngredient listIngredient;
     public SwitchIngdViewPanelCtrl switchIngdViewPanelCtrl;
@@ -21,6 +21,7 @@ public class IngdUse2Change : MonoBehaviour
     public void UpdateIngdUse2Change(Image img, string ingdName)
     {
         ingdImg.sprite = img.sprite;
+        _name = ingdName;
 
         foreach (UpgradeIngredient infor in inventoryManager.upgradeIngredients)
         {
@@ -28,11 +29,7 @@ public class IngdUse2Change : MonoBehaviour
             {
                 switchIngdViewPanelCtrl.UpdateQuantityIngdText(infor.quantity);
                 changeIngdUsed.CloseChosePanel();
-
-                if (infor.ingredient.ingredientName == ingdName)
-                {
-                    return;
-                }
+                return;
             }
             else
             {
@@ -53,7 +50,7 @@ public class IngdUse2Change : MonoBehaviour
                 if (ingredient.ingredientName != ingdName)
                 {
                     ingdImg.sprite = ingredient.icon;
-                    nameOfIngdWillUse2Change = ingredient.ingredientName;
+                    _name = ingredient.ingredientName;
                     return;
                 }
             }
