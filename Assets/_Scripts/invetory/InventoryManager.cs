@@ -115,12 +115,12 @@ public class InventoryManager : MonoBehaviour
         }
     }
 
-    public void RemoveIngredients(Ingredient ingredient)
+    public void RemoveIngredients(Ingredient ingredient, int count)
     {
         UpgradeIngredient upgradeIngredient = upgradeIngredients.Find(i => i.ingredient.ingredientsID == ingredient.ingredientsID);
         if (upgradeIngredient != null)
         {
-            upgradeIngredient.quantity -= 1;
+            upgradeIngredient.quantity -= count;
             if (upgradeIngredient.quantity <= 0)
             {
                 upgradeIngredients.Remove(upgradeIngredient);

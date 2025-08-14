@@ -10451,7 +10451,7 @@ GameObject:
   m_Component:
   - component: {fileID: 59181940}
   - component: {fileID: 59181939}
-  m_Layer: 0
+  m_Layer: 6
   m_Name: Box
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -10477,8 +10477,8 @@ BoxCollider:
   m_ProvidesContacts: 0
   m_Enabled: 1
   serializedVersion: 3
-  m_Size: {x: 568.99365, y: 1, z: 767.73303}
-  m_Center: {x: -210.90065, y: 0, z: 180.08392}
+  m_Size: {x: 1047.3253, y: 1, z: 937.4866}
+  m_Center: {x: -147.00836, y: 0, z: 95.20715}
 --- !u!4 &59181940
 Transform:
   m_ObjectHideFlags: 0
@@ -111644,6 +111644,7 @@ MonoBehaviour:
   - {fileID: 11400000, guid: 03d83d6c49d5d904db4f6dde4eabe569, type: 2}
   - {fileID: 11400000, guid: 946848035aa62cf4faa666ea17eca4fd, type: 2}
   - {fileID: 11400000, guid: f91972d039785f34aa4efd1c90d6e5e2, type: 2}
+  questGiverLocation: {fileID: 0}
   rewardIngredients: []
   rewardIngredientCount: 1
   description: "\u0110\u1EBFn l\xE0ng g\u1EB7p Grok c\u1EF1u chi\u1EBFn binh"
@@ -367913,6 +367914,7 @@ MonoBehaviour:
   - {fileID: 11400000, guid: 03d83d6c49d5d904db4f6dde4eabe569, type: 2}
   - {fileID: 11400000, guid: 946848035aa62cf4faa666ea17eca4fd, type: 2}
   - {fileID: 11400000, guid: f91972d039785f34aa4efd1c90d6e5e2, type: 2}
+  questGiverLocation: {fileID: 0}
   rewardIngredients: []
   rewardIngredientCount: 1
   description: "Ti\xEAu di\u1EC7t t\xEAn Bone Wraith ch\u1EB7n \u0111\u01B0\u1EDDng"
@@ -429787,6 +429789,14 @@ PrefabInstance:
       value: 
       objectReference: {fileID: 578498783}
     - target: {fileID: 6847407132193323700, guid: 7f8a0d0558e82a34ebfc272fb304533f, type: 3}
+      propertyPath: dialogueChoices.Array.data[0].choiceText
+      value: "\u0110\xE3 x\u1EA3y ra chuy\u1EC7n g\xEC"
+      objectReference: {fileID: 0}
+    - target: {fileID: 6847407132193323700, guid: 7f8a0d0558e82a34ebfc272fb304533f, type: 3}
+      propertyPath: dialogueChoices.Array.data[1].choiceText
+      value: "\u0110\u01B0\u1EE3c r\u1ED3i ch\u1EDD t\xF4i ch\xFAt"
+      objectReference: {fileID: 0}
+    - target: {fileID: 6847407132193323700, guid: 7f8a0d0558e82a34ebfc272fb304533f, type: 3}
       propertyPath: 'questChats.Array.data[0].lines.Array.data[0]'
       value: "T\xF4i.....T\xF4i \u0111\xE3 chi\u1EBFn \u0111\u1EA5u h\u1EBFt s\u1EE9c
         m\xECnh r\u1ED3i....."
@@ -429815,6 +429825,37 @@ PrefabInstance:
       propertyPath: 'questChats.Array.data[1].lines.Array.data[2]'
       value: "H\xE3y \u0111i mau tr\u01B0\u1EDBc khi ch\xFAng \u0111\u1EBFn. T\u1EA1m
         bi\u1EC7t chi\u1EBFn binh tr\u1EBB\n"
+      objectReference: {fileID: 0}
+    - target: {fileID: 6847407132193323700, guid: 7f8a0d0558e82a34ebfc272fb304533f, type: 3}
+      propertyPath: dialogueChoices.Array.data[0].followUpLines.Array.size
+      value: 4
+      objectReference: {fileID: 0}
+    - target: {fileID: 6847407132193323700, guid: 7f8a0d0558e82a34ebfc272fb304533f, type: 3}
+      propertyPath: 'dialogueChoices.Array.data[0].followUpLines.Array.data[0]'
+      value: "T\xF4i b\u1ECB b\u1ECDn ch\xFAng ph\u1EE5c k\xEDch khi \u0111ang tr\xEAn
+        \u0111\u01B0\u1EDDng l\xE0m nhi\u1EC7m v\u1EE5"
+      objectReference: {fileID: 0}
+    - target: {fileID: 6847407132193323700, guid: 7f8a0d0558e82a34ebfc272fb304533f, type: 3}
+      propertyPath: 'dialogueChoices.Array.data[0].followUpLines.Array.data[1]'
+      value: "Gi\u1EDD t\xF4i kh\xF4ng th\u1EC3 di chuy\u1EC3n n\u1EEFa, nh\u1EDD
+        c\u1EADu m\u1ED9t chuy\u1EC7n n\xE0y, xin h\xE3y gi\xFAp t\xF4i"
+      objectReference: {fileID: 0}
+    - target: {fileID: 6847407132193323700, guid: 7f8a0d0558e82a34ebfc272fb304533f, type: 3}
+      propertyPath: 'dialogueChoices.Array.data[0].followUpLines.Array.data[2]'
+      value: "T\xEAn BoneWraith \u0111\xF3 l\xE0 k\u1EBB s\u1ED1ng s\xF3t cu\u1ED1i
+        c\xF9ng \u0111\u1EEDng \u0111\u1EC3 n\xF3 s\u1ED1ng s\xF3t"
+      objectReference: {fileID: 0}
+    - target: {fileID: 6847407132193323700, guid: 7f8a0d0558e82a34ebfc272fb304533f, type: 3}
+      propertyPath: 'dialogueChoices.Array.data[0].followUpLines.Array.data[3]'
+      value: "C\u1EADu h\xE3y c\u1EA9n th\u1EADn nh\xE9!!!\r\n"
+      objectReference: {fileID: 0}
+    - target: {fileID: 6847407132193323700, guid: 7f8a0d0558e82a34ebfc272fb304533f, type: 3}
+      propertyPath: 'dialogueChoices.Array.data[0].followUpLines.Array.data[4]'
+      value: "C\u1EADu h\xE3y c\u1EA9n th\u1EADn nh\xE9!!!1"
+      objectReference: {fileID: 0}
+    - target: {fileID: 6847407132193323700, guid: 7f8a0d0558e82a34ebfc272fb304533f, type: 3}
+      propertyPath: 'dialogueChoices.Array.data[1].followUpLines.Array.data[0]'
+      value: "C\u1EA3m \u01A1n c\u1EADu h\xE3y c\u1EA9n th\u1EADn nh\xE9!!"
       objectReference: {fileID: 0}
     - target: {fileID: 7019479162482307331, guid: 7f8a0d0558e82a34ebfc272fb304533f, type: 3}
       propertyPath: m_StaticEditorFlags
@@ -493900,6 +493941,7 @@ MonoBehaviour:
   - {fileID: 11400000, guid: 03d83d6c49d5d904db4f6dde4eabe569, type: 2}
   - {fileID: 11400000, guid: 946848035aa62cf4faa666ea17eca4fd, type: 2}
   - {fileID: 11400000, guid: f91972d039785f34aa4efd1c90d6e5e2, type: 2}
+  questGiverLocation: {fileID: 0}
   rewardIngredients: []
   rewardIngredientCount: 1
   description: "Ti\xEAu di\xEAt \u0111\xE1m Bone Wraith v\xE0 t\xEAn c\u1EA7m ch\xF9y
@@ -493934,6 +493976,7 @@ MonoBehaviour:
   - {fileID: 11400000, guid: 03d83d6c49d5d904db4f6dde4eabe569, type: 2}
   - {fileID: 11400000, guid: 946848035aa62cf4faa666ea17eca4fd, type: 2}
   - {fileID: 11400000, guid: f91972d039785f34aa4efd1c90d6e5e2, type: 2}
+  questGiverLocation: {fileID: 0}
   rewardIngredients: []
   rewardIngredientCount: 1
   description: "Tr\u1EADn chi\u1EBFn cu\u1ED1i c\xF9ng v\u1EDBi Askalor"

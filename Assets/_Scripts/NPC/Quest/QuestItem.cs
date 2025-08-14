@@ -17,6 +17,9 @@ public class QuestItem : MonoBehaviour
     [Header("Phần thưởng")]
     public List<Item> rewardItems;
 
+    [Header("Vị trí trả nhiệm vụ (NPC)")]
+    public Transform questGiverLocation;
+
     [Header("Phần thưởng nguyên liệu")]
     public List<Ingredient> rewardIngredients;
     public int rewardIngredientCount = 1;
