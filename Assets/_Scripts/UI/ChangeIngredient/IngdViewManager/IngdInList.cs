@@ -21,7 +21,7 @@ public class IngdInList : MonoBehaviour
             setupIngredientInList.ingredientNameString,
             setupIngredientInList.ingredientRank);
 
-        UpdateQuantityAvailable(switchView.ingdUse2Change.nameOfIngdWillUse2Change);
+        UpdateQuantityAvailable(switchView.ingdUse2Change._name);
     }
 
     public void UpdateQuantityAvailable(string ingdName)

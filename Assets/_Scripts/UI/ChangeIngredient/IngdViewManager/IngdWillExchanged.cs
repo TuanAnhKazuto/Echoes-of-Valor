@@ -3,5 +3,6 @@ using UnityEngine.UI;
 
 public class IngdWillExchanged : MonoBehaviour
 {
-    public Image ingdWillExchangeImg;
+    public Image img;
+    public string _name;
 }
