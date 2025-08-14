@@ -13,6 +13,7 @@ public class SwitchIngdViewPanelCtrl : MonoBehaviour
     public int quantityAvailable;
     public TextMeshProUGUI quantityAvailableText;
 
+    public Cor corAvailable;
     public TextMeshProUGUI corNeed2ChangeText;
 
     public ChoseIngredientChange changeIngdUsed;
@@ -22,9 +23,14 @@ public class SwitchIngdViewPanelCtrl : MonoBehaviour
     public SwitchIngdCtrlUI switchCtrl;
     public InventoryManager inventoryManager;
 
+    private void Awake()
+    {
+        corAvailable = FindAnyObjectByType<Cor>();
+        inventoryManager = FindAnyObjectByType<InventoryManager>();
+    }
+
     private void OnEnable()
     {
-        inventoryManager = FindAnyObjectByType<InventoryManager>();
         changeIngdUsed.gameObject.SetActive(false);
         
         SetupWhenStart(ingdUse2Change._name);
@@ -85,6 +91,14 @@ public class SwitchIngdViewPanelCtrl : MonoBehaviour
 
     public void UpdateCorText(int numCor)
     {
+        if(corAvailable.cor < numCor)
+        {
+            corNeed2ChangeText.color = Color.red;
+        }
+        else
+        {
+            corNeed2ChangeText.color = Color.white;
+        }
         corNeed2ChangeText.text = numCor.ToString();
     }
 
