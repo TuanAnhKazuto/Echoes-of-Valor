@@ -24,6 +24,24 @@ public class Cor : MonoBehaviour
         if (coin != null)
             coin.text = cor.ToString();
     }
+
+    public void DecreaseCor(int value)
+    {
+        if (cor >= value)
+        {
+            cor -= value;
+            CorLarge -= value;
+            CorMedium -= value;
+            CorSmall -= value;
+            // Cập nhật hiển thị tổng Cor
+            if (coin != null)
+                coin.text = cor.ToString();
+        }
+        else
+        {
+            Debug.LogWarning("Not enough Cor to decrease.");
+        }
+    }
     private void Start()
     {
         inventorySetupCor = FindAnyObjectByType<InventorySetup>();

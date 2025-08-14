@@ -39,6 +39,13 @@ public class SwitchIngdCtrlUI : MonoBehaviour
 
     public void ChangeBtn()
     {
+        if(switchView.corAvailable.cor < corNeed2Change)
+        {
+            Debug.Log("Not enough Cor to change ingredients.");
+            return;
+        }
+
+
         Ingredient ingdExchange = listIngredient.ingredientsList.Find
             (i => i.ingredientName == switchView.ingdWillExchanged._name);
         InventoryManager.Instance.AddIngredients(ingdExchange, countChange);
@@ -46,6 +53,8 @@ public class SwitchIngdCtrlUI : MonoBehaviour
         Ingredient ingdUse2Change = listIngredient.ingredientsList.Find
             (i => i.ingredientName == switchView.ingdUse2Change._name);
         InventoryManager.Instance.RemoveIngredients(ingdUse2Change, countChange * 2);
+
+        switchView.corAvailable.DecreaseCor(corNeed2Change);
         {
             //foreach (InventoryManager.UpgradeIngredient ingd in switchView.inventoryManager.upgradeIngredients)
             //{
