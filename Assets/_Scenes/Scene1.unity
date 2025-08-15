@@ -51976,6 +51976,10 @@ PrefabInstance:
       propertyPath: questTargetAmount
       value: 4
       objectReference: {fileID: 0}
+    - target: {fileID: 7104119817309547941, guid: 3f457b0604d84b140a2f3df12ea405bc, type: 3}
+      propertyPath: questGiverLocation
+      value: 
+      objectReference: {fileID: 282534426}
     - target: {fileID: 7632973295587363519, guid: 3f457b0604d84b140a2f3df12ea405bc, type: 3}
       propertyPath: m_LocalPosition.x
       value: -0
@@ -52319,6 +52323,11 @@ PrefabInstance:
     m_AddedGameObjects: []
     m_AddedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 3f457b0604d84b140a2f3df12ea405bc, type: 3}
+--- !u!4 &282534426 stripped
+Transform:
+  m_CorrespondingSourceObject: {fileID: 3614428877932804171, guid: 3f457b0604d84b140a2f3df12ea405bc, type: 3}
+  m_PrefabInstance: {fileID: 282534425}
+  m_PrefabAsset: {fileID: 0}
 --- !u!1 &283536890
 GameObject:
   m_ObjectHideFlags: 0
@@ -286316,6 +286325,10 @@ PrefabInstance:
       value: 3
       objectReference: {fileID: 0}
     - target: {fileID: 3570489826529476478, guid: 057466769ba0df8408875d0538cae2e7, type: 3}
+      propertyPath: questGiverLocation
+      value: 
+      objectReference: {fileID: 282534426}
+    - target: {fileID: 3570489826529476478, guid: 057466769ba0df8408875d0538cae2e7, type: 3}
       propertyPath: rewardItems.Array.size
       value: 3
       objectReference: {fileID: 0}
@@ -373262,7 +373275,7 @@ MonoBehaviour:
   currentAmount: 0
   TargetItemtag: Enemy_Side
   rewardAmount: 100
-  questLocation: {fileID: 0}
+  questLocation: {fileID: 1151871068}
   completeDialogue: "Gi\u1ECFi l\u1EAFm ch\xE0ng trai, b\xE2y gi\u1EDD h\xE3y \u0111i
     v\xE0o l\xE0ng g\u1EB7p th\u1EE7 l\u0129nh c\u1EE7a ch\xFAng t\xF4i,C\u1EF1u
     chi\u1EBFn binh Garok, \xF4ng \u1EA5y l\xE0 m\u1ED9t chi\u1EBFn binh huy\u1EC1n
@@ -373272,7 +373285,7 @@ MonoBehaviour:
   - {fileID: 11400000, guid: 03d83d6c49d5d904db4f6dde4eabe569, type: 2}
   - {fileID: 11400000, guid: 946848035aa62cf4faa666ea17eca4fd, type: 2}
   - {fileID: 11400000, guid: f91972d039785f34aa4efd1c90d6e5e2, type: 2}
-  questGiverLocation: {fileID: 0}
+  questGiverLocation: {fileID: 1957130002}
   rewardIngredients: []
   rewardIngredientCount: 1
   description: "Ti\xEAu di\u1EC7t t\xEAn Bone Wraith ch\u1EB7n \u0111\u01B0\u1EDDng"
@@ -501850,7 +501863,7 @@ MonoBehaviour:
   - {fileID: 11400000, guid: 03d83d6c49d5d904db4f6dde4eabe569, type: 2}
   - {fileID: 11400000, guid: 946848035aa62cf4faa666ea17eca4fd, type: 2}
   - {fileID: 11400000, guid: f91972d039785f34aa4efd1c90d6e5e2, type: 2}
-  questGiverLocation: {fileID: 0}
+  questGiverLocation: {fileID: 282534426}
   rewardIngredients: []
   rewardIngredientCount: 1
   description: "Ti\xEAu di\xEAt \u0111\xE1m Bone Wraith v\xE0 t\xEAn c\u1EA7m ch\xF9y
@@ -501885,7 +501898,7 @@ MonoBehaviour:
   - {fileID: 11400000, guid: 03d83d6c49d5d904db4f6dde4eabe569, type: 2}
   - {fileID: 11400000, guid: 946848035aa62cf4faa666ea17eca4fd, type: 2}
   - {fileID: 11400000, guid: f91972d039785f34aa4efd1c90d6e5e2, type: 2}
-  questGiverLocation: {fileID: 0}
+  questGiverLocation: {fileID: 282534426}
   rewardIngredients: []
   rewardIngredientCount: 1
   description: "Tr\u1EADn chi\u1EBFn cu\u1ED1i c\xF9ng v\u1EDBi Askalor"
