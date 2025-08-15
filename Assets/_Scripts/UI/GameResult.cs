@@ -31,7 +31,7 @@ public class GameResult : MonoBehaviour
         }
 
         if (continueButton != null)
-            continueButton.onClick.AddListener(OnContinue); 
+            continueButton.onClick.AddListener(OnContinue);
     }
 
     private void Update()
@@ -46,7 +46,7 @@ public class GameResult : MonoBehaviour
 
         if (Input.GetKeyDown(KeyCode.P))
         {
-            OnPause(); 
+            OnPause();
         }
     }
 
@@ -84,39 +84,42 @@ public class GameResult : MonoBehaviour
 
     public void OnReplay()
     {
-        if (panelLost != null) panelLost.SetActive(false);
-        if (panelVictory != null) panelVictory.SetActive(false);
-
-        if (characterStats == null && saveGameManager != null)
         {
-            characterStats = saveGameManager.playerStats;
+            //if (panelLost != null) panelLost.SetActive(false);
+            //if (panelVictory != null) panelVictory.SetActive(false);
+
+            //if (characterStats == null && saveGameManager != null)
+            //{
+            //    characterStats = saveGameManager.playerStats;
+            //}
+
+            //if (characterStats != null)
+            //{
+            //    var agent = characterStats.GetComponent<UnityEngine.AI.NavMeshAgent>();
+            //    if (agent != null) agent.enabled = false;
+
+            //    characterStats.gameObject.SetActive(false);
+
+            //    if (respawnPoint != null)
+            //        characterStats.transform.position = respawnPoint.position;
+
+            //    characterStats.gameObject.SetActive(true);
+
+            //    if (agent != null) agent.enabled = true;
+
+            //    characterStats.currentHealth = characterStats.maxHealth;
+            //    characterStats.currentMana = characterStats.maxMana;
+
+            //    characterStats.healthBar.UpdateHealth((int)characterStats.currentHealth, (int)characterStats.maxHealth);
+            //    characterStats.manaBar.UpdateMana(characterStats.currentMana, characterStats.maxMana);
+
+            //    characterStats.animator.SetFloat("HP", characterStats.currentHealth);
+            //    characterStats.isDied = false;
+            //    characterStats.CursorTarget.SetActive(true);
+            //}
         }
 
-        if (characterStats != null)
-        {
-            var agent = characterStats.GetComponent<UnityEngine.AI.NavMeshAgent>();
-            if (agent != null) agent.enabled = false;
-
-            characterStats.gameObject.SetActive(false);
-
-            if (respawnPoint != null)
-                characterStats.transform.position = respawnPoint.position;
-
-            characterStats.gameObject.SetActive(true);
-
-            if (agent != null) agent.enabled = true;
-
-            characterStats.currentHealth = characterStats.maxHealth;
-            characterStats.currentMana = characterStats.maxMana;
-
-            characterStats.healthBar.UpdateHealth((int)characterStats.currentHealth, (int)characterStats.maxHealth);
-            characterStats.manaBar.UpdateMana(characterStats.currentMana, characterStats.maxMana);
-
-            characterStats.animator.SetFloat("HP", characterStats.currentHealth);
-            characterStats.isDied = false;
-            characterStats.CursorTarget.SetActive(true);
-        }
-
+        SceneManager.LoadScene(SceneManager.GetActiveScene().buildIndex);
         UpdateTimeScale();
     }
 
