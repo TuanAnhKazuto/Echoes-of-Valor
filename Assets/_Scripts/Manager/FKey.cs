@@ -5,49 +5,48 @@ using UnityEngine.UI;
 
 public class FKey : MonoBehaviour
 {
-    public GameObject fKey;
-    bool isShowFKey;
+    public GameObject fKey;     
+    public GameObject choicePanel;
+    public Button questButton;
+    public Button shopButton;
+
+    private ShopUIController shopUI;
+    private bool isShowFKey;
     private NPC currentNPC;
 
 
 
-    private void Start()
+    private void Start() // chat
     {
-        // Nếu chưa được gán sẵn trong Inspector, thì tự động tìm trong scene
-        if (fKey == null)
-        {
-            fKey = GameObject.Find("F key"); // Tên phải đúng chính xác trong Hierarchy
-        }
-
         if (fKey != null)
-        {
-            fKey.SetActive(false); // Ẩn ngay từ đầu
-        }
+            fKey.SetActive(false); 
+        else
+            Debug.LogWarning("⚠ Không tìm thấy F key trong scene!");
     }
 
     private void Update()
     {
         if (isShowFKey && Input.GetKeyDown(KeyCode.F))
         {
-            HideFKey(); // ẩn nút F khi nhấn
+            HideFKey(); 
 
             if (currentNPC != null)
-            {
-                // Giả lập việc "kích hoạt" đối thoại
-                currentNPC.ManualTrigger();
+            {                
+                OpenChoicePanel();
             }
+
         }
     }
 
     private void OnTriggerEnter(Collider other)
     {
-        if (other.CompareTag("NPC")) // Duy nhất 1 tag chung cho tất cả NPC
+        if (other.CompareTag("NPC")) 
         {
             currentNPC = other.GetComponent<NPC>();
 
             if (currentNPC != null)
             {
-                ShowFKey(); // Hiện nút F
+                ShowFKey(); 
             }
         }
     }
@@ -73,4 +72,74 @@ public class FKey : MonoBehaviour
         isShowFKey = false;
     }
 
+    private void Awake() // chat
+    {
+        
+        shopUI = FindAnyObjectByType<ShopUIController>();
+        if (shopUI == null)
+            Debug.LogWarning("⚠ Không tìm thấy ShopUIController trong scene!");
+
+        
+        if (fKey == null)
+            fKey = GameObject.Find("F key");
+
+      
+        if (choicePanel == null)
+            choicePanel = GameObject.Find("ChoicePanel");
+
+        if (choicePanel != null)
+        {
+            choicePanel.SetActive(false);
+        }
+        else
+        {
+            Debug.LogWarning("⚠ Không tìm thấy ChoicePanel trong scene!");
+        }
+
+        
+        if (questButton == null)
+        {
+            GameObject qBtnObj = GameObject.Find("QuestButton");
+            if (qBtnObj != null)
+                questButton = qBtnObj.GetComponent<Button>();
+            else
+                Debug.LogWarning("⚠ Không tìm thấy QuestButton trong scene!");
+        }
+
+        
+        if (shopButton == null)
+        {
+            GameObject sBtnObj = GameObject.Find("ShopButton");
+            if (sBtnObj != null)
+                shopButton = sBtnObj.GetComponent<Button>();
+            else
+                Debug.LogWarning("⚠ Không tìm thấy ShopButton trong scene!");
+        }
+    }
+
+    
+
+    void OpenChoicePanel()
+    {
+        if (choicePanel == null) return;
+
+        choicePanel.SetActive(true);
+        Cursor.lockState = CursorLockMode.None;
+        Cursor.visible = true;
+
+        questButton.onClick.RemoveAllListeners();
+        questButton.onClick.AddListener(() =>
+        {
+            choicePanel.SetActive(false);
+            currentNPC.ManualTrigger();
+        });
+
+        shopButton.onClick.RemoveAllListeners();
+        shopButton.onClick.AddListener(() =>
+        {
+            choicePanel.SetActive(false);
+            if (shopUI != null)
+                shopUI.SetShopActive(true);
+        });
+    }
 }
