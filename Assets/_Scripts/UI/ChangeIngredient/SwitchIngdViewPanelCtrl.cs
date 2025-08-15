@@ -1,6 +1,4 @@
-﻿using NSubstitute.ReceivedExtensions;
-using TMPro;
-using UnityEditor.Rendering;
+﻿using TMPro;
 using UnityEngine;
 using UnityEngine.UI;
 using static InventoryManager;
