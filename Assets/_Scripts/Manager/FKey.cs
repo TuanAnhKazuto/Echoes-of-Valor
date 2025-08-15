@@ -7,6 +7,7 @@ public class FKey : MonoBehaviour
 {
     public GameObject fKey;     
     public GameObject choicePanel;
+    public ChoicePanelSetup choicePanelSetup; 
     public Button questButton;
     public Button shopButton;
 
@@ -86,6 +87,7 @@ public class FKey : MonoBehaviour
       
         if (choicePanel == null)
             choicePanel = GameObject.Find("ChoicePanel");
+        choicePanelSetup = choicePanel.GetComponent<ChoicePanelSetup>();
 
         if (choicePanel != null)
         {
@@ -99,21 +101,13 @@ public class FKey : MonoBehaviour
         
         if (questButton == null)
         {
-            GameObject qBtnObj = GameObject.Find("QuestButton");
-            if (qBtnObj != null)
-                questButton = qBtnObj.GetComponent<Button>();
-            else
-                Debug.LogWarning("⚠ Không tìm thấy QuestButton trong scene!");
+            questButton = choicePanelSetup.questButton;
         }
 
         
         if (shopButton == null)
         {
-            GameObject sBtnObj = GameObject.Find("ShopButton");
-            if (sBtnObj != null)
-                shopButton = sBtnObj.GetComponent<Button>();
-            else
-                Debug.LogWarning("⚠ Không tìm thấy ShopButton trong scene!");
+            shopButton = choicePanelSetup.shopButton;
         }
     }
 
