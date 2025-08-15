@@ -94,6 +94,8 @@ public class ShopUIController : MonoBehaviour
             else
                 Debug.LogError("❌ Prefab shopItemPrefab không có ShopItemUI!");
         }
+
+
     }
 
 

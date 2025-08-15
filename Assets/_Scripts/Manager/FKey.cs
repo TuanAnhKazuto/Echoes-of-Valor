@@ -11,7 +11,7 @@ public class FKey : MonoBehaviour
     public Button questButton;
     public Button shopButton;
 
-    private ShopUIController shopUI;
+    [SerializeField] private ShopUIController shopUI;
     private bool isShowFKey;
     private NPC currentNPC;
 
@@ -76,9 +76,7 @@ public class FKey : MonoBehaviour
     private void Awake() // chat
     {
         
-        shopUI = FindAnyObjectByType<ShopUIController>();
-        if (shopUI == null)
-            Debug.LogWarning("⚠ Không tìm thấy ShopUIController trong scene!");
+        
 
         
         if (fKey == null)
@@ -98,7 +96,11 @@ public class FKey : MonoBehaviour
             Debug.LogWarning("⚠ Không tìm thấy ChoicePanel trong scene!");
         }
 
-        
+        shopUI = choicePanelSetup.shopUIController.GetComponent<ShopUIController>();
+        if (shopUI == null)
+            Debug.LogWarning("⚠ Không tìm thấy ShopUIController trong scene!");
+
+
         if (questButton == null)
         {
             questButton = choicePanelSetup.questButton;
