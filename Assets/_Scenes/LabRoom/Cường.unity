@@ -1736,6 +1736,17 @@ Mesh:
     offset: 0
     size: 0
     path: 
+--- !u!114 &891418481 stripped
+MonoBehaviour:
+  m_CorrespondingSourceObject: {fileID: 9063873295449223352, guid: 43ab2d58c698a904a8810a4f4958ca57, type: 3}
+  m_PrefabInstance: {fileID: 2128806916}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: cb250ff60895096428495fc9ca49ed51, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!4 &900856994 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: 3070871143641123909, guid: 123606a96912162458999fbd88d8e946, type: 3}
@@ -3767,15 +3778,15 @@ PrefabInstance:
     m_Modifications:
     - target: {fileID: 3070871143641123909, guid: 123606a96912162458999fbd88d8e946, type: 3}
       propertyPath: m_LocalPosition.x
-      value: 7.5699463
+      value: 15.549988
       objectReference: {fileID: 0}
     - target: {fileID: 3070871143641123909, guid: 123606a96912162458999fbd88d8e946, type: 3}
       propertyPath: m_LocalPosition.y
-      value: 1.5899658
+      value: 1.7650146
       objectReference: {fileID: 0}
     - target: {fileID: 3070871143641123909, guid: 123606a96912162458999fbd88d8e946, type: 3}
       propertyPath: m_LocalPosition.z
-      value: 20.66
+      value: 4.19
       objectReference: {fileID: 0}
     - target: {fileID: 3070871143641123909, guid: 123606a96912162458999fbd88d8e946, type: 3}
       propertyPath: m_LocalRotation.w
@@ -3908,6 +3919,10 @@ PrefabInstance:
       propertyPath: m_AnchorMin.x
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 1160284266375487087, guid: 43ab2d58c698a904a8810a4f4958ca57, type: 3}
+      propertyPath: shopUIController
+      value: 
+      objectReference: {fileID: 891418481}
     - target: {fileID: 1573851017405326990, guid: 43ab2d58c698a904a8810a4f4958ca57, type: 3}
       propertyPath: m_IsActive
       value: 0
