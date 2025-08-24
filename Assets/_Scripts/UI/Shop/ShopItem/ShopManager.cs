@@ -47,8 +47,8 @@ public class ShopManager : MonoBehaviour
         {           
             playerCor.cor -= totalCost;
             
-            if (playerCor.coin != null)
-                playerCor.coin.text = playerCor.cor.ToString();
+            if (playerCor.corText != null)
+                playerCor.corText.text = playerCor.cor.ToString();
 
             
             ShopUIController shopUI = FindAnyObjectByType<ShopUIController>();
@@ -78,8 +78,8 @@ public class ShopManager : MonoBehaviour
         {
             playerCor.cor -= totalCost;
 
-            if (playerCor.coin != null)
-                playerCor.coin.text = playerCor.cor.ToString();
+            if (playerCor.corText != null)
+                playerCor.corText.text = playerCor.cor.ToString();
 
             ShopUIController shopUI = FindAnyObjectByType<ShopUIController>();
             if (shopUI != null)

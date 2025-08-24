@@ -11,7 +11,7 @@ public class Cor : MonoBehaviour
 
 
     InventorySetup inventorySetupCor;
-    public TextMeshProUGUI coin;
+    public TextMeshProUGUI corText;
 
     public void IncreaseCor(int value)
     {
@@ -21,8 +21,8 @@ public class Cor : MonoBehaviour
         CorSmall += value;
 
         // Hiển thị tổng Cor
-        if (coin != null)
-            coin.text = cor.ToString();
+        if (corText != null)
+            corText.text = cor.ToString();
     }
 
     public void DecreaseCor(int value)
@@ -34,8 +34,8 @@ public class Cor : MonoBehaviour
             CorMedium -= value;
             CorSmall -= value;
             // Cập nhật hiển thị tổng Cor
-            if (coin != null)
-                coin.text = cor.ToString();
+            if (corText != null)
+                corText.text = cor.ToString();
         }
         else
         {
@@ -47,7 +47,7 @@ public class Cor : MonoBehaviour
         inventorySetupCor = FindAnyObjectByType<InventorySetup>();
         if (inventorySetupCor != null)
         {
-            coin = inventorySetupCor.Cor.GetComponentInChildren<TextMeshProUGUI>();
+            corText = inventorySetupCor.Cor.GetComponentInChildren<TextMeshProUGUI>();
         }
     }
 }
