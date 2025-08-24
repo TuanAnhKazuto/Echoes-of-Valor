@@ -4,8 +4,9 @@ public class SaveGameManager : MonoBehaviour
 {
     public CharacterStats playerStats;
     public PlayerData curData;
+    public Cor cor;
+    public InventoryManager inventoryManager;
 
-    //public WeaponData[] weaponsData;
     public WeaponStats[] equippedWeapons;
 
     public int selectedId;
@@ -25,19 +26,24 @@ public class SaveGameManager : MonoBehaviour
         if (isCharacterSpawned)
         {
             if (!isCharacterSpawned) return;
-            Invoke(nameof(LoadFullGame), 0.5f);
+            Invoke(nameof(LoadWhenStart), 0.5f);
             return;
         }
     }
 
-    private void LoadFullGame()
+    // Load Game
+    private void LoadWhenStart()
     {
         playerStats = FindAnyObjectByType<CharacterStats>();
+        inventoryManager = FindAnyObjectByType<InventoryManager>();
+        cor = FindAnyObjectByType<Cor>();
+
         equippedWeapons = playerStats.equippedWeapons;
 
         LoadPosition();
         LoadStats();
         LoadWeapons();
+        LoadInventory();
 
         playerStats.equippedWeapons[0].RankUpdateControl();
         playerStats.equippedWeapons[1].RankUpdateControl();
@@ -96,7 +102,7 @@ public class SaveGameManager : MonoBehaviour
     }
 
 
-    public void LoadStats()
+    private void LoadStats()
     {
         if (curData == null) return;
         playerStats.playerId = curData.playerId;
@@ -119,9 +125,30 @@ public class SaveGameManager : MonoBehaviour
             ), Quaternion.Euler(0, curData.rotationY, 0));
     }
 
+    private void LoadInventory()
+    {
+        if (curData == null) return;
+        cor.cor = curData.inventoryData.cors;
+        cor.corText.text = cor.cor.ToString();
+
+        inventoryManager.items = curData.inventoryData.items;
+        inventoryManager.upgradeIngredients = curData.inventoryData.ingredients;
+        inventoryManager.DisplayInventory();
+    }
+
 
     //Save Game
     public void SaveFullGame()
+    {
+        SavePlayerStats();
+        SavePosition();
+        SaveWeapons();
+        SaveInventory();
+
+        SaveSystem.SaveGame(curData);
+    }
+
+    private void SavePlayerStats()
     {
         curData.playerId = playerStats.playerId;
         curData.playerName = playerStats.playerName;
@@ -131,17 +158,15 @@ public class SaveGameManager : MonoBehaviour
         curData.health = playerStats.currentHealth;
         curData.defense = playerStats.TotalDefense;
         curData.damage = playerStats.TotalDamage;
+    }
 
-
+    private void SavePosition()
+    {
         curData.sceneName = UnityEngine.SceneManagement.SceneManager.GetActiveScene().name;
         curData.positionX = playerStats.transform.position.x;
         curData.positionY = playerStats.transform.position.y;
         curData.positionZ = playerStats.transform.position.z;
         curData.rotationY = playerStats.transform.rotation.eulerAngles.y;
-
-        SaveWeapons();
-
-        SaveSystem.SaveGame(curData);
     }
 
     public void SaveWeapons()
@@ -165,5 +190,14 @@ public class SaveGameManager : MonoBehaviour
                 defensePerBreakthrough = equippedWeapons[i].defensePerBreakthrough
             };
         }
+    }
+
+    private void SaveInventory()
+    {
+        curData.inventoryData.cors = cor.cor;
+
+        curData.inventoryData.items = inventoryManager.items;
+
+        curData.inventoryData.ingredients = inventoryManager.upgradeIngredients;
     }
 }

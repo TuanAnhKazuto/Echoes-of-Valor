@@ -20,8 +20,7 @@ public class PlayerData
 
     public WeaponData[] weapons;
 
-    //public int weaponId;
-    //public int weaponLevel;
+    public InventoryData inventoryData;
 
     public int worldLevel;
 }
