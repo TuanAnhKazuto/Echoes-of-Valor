@@ -1,3 +1,4 @@
+﻿using System.Collections;
 using TMPro;
 using UnityEngine;
 using UnityEngine.UI;
@@ -27,15 +28,19 @@ public class UpdateWpUI : MonoBehaviour
 
     private void Start()
     {
-        Invoke(nameof(RefreshDisplay), 0.2f);
-        
-        if(weaponStats != null)
-        {
+        StartCoroutine(DelayRefreshDisplay());
+        if (weaponStats != null)
             upgradeValuerSlider.maxValue = 20;
-        }
 
         ingerdientCountText.text = "0 / 4";
     }
+
+    private IEnumerator DelayRefreshDisplay()
+    {
+        yield return new WaitForSecondsRealtime(0.2f); // không bị ảnh hưởng bởi timeScale
+        RefreshDisplay();
+    }
+
 
     private void Update()
     {

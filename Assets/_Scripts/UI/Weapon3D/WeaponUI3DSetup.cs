@@ -8,6 +8,7 @@ public class WeaponUI3DSetup : MonoBehaviour
     [Header("Panel Setup")]
     public Image wpBtn01;
     public Image wpBtn02;
+    public bool isPanelOpen = false;
 
     [Header("Weapon sprite in resources")]
     public Sprite imageSword;
@@ -35,6 +36,8 @@ public class WeaponUI3DSetup : MonoBehaviour
     public void ClosePanel()
     {
         gameObject.SetActive(false);
+        isPanelOpen = false;
+        //Time.timeScale = 1f;
         Cursor.lockState = CursorLockMode.Locked;
         Cursor.visible = false;
     }
