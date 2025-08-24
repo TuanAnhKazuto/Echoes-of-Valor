@@ -10,6 +10,9 @@ public class GameResult : MonoBehaviour
     public GameObject panelPause;
     public Button continueButton;
 
+    public GameObject adminPanel;
+    bool isAdminPanelOpen = false;
+
     private bool isPaused = false;
 
     [Header("Player Settings")]
@@ -48,6 +51,8 @@ public class GameResult : MonoBehaviour
         {
             OnPause();
         }
+
+        OpenAdminPanel();
     }
 
     private void UpdateTimeScale()
@@ -160,5 +165,26 @@ public class GameResult : MonoBehaviour
     public void OnNewGame()
     {
         SceneManager.LoadScene("CharacterCreation");
+    }
+
+    public void OpenAdminPanel()
+    {
+        if (Input.GetKeyDown(KeyCode.Slash))
+        {
+            if (!isAdminPanelOpen)
+            {
+                adminPanel.SetActive(true);
+                isAdminPanelOpen = true;
+                Cursor.lockState = CursorLockMode.None;
+                Cursor.visible = true;
+            }
+            else
+            {
+                adminPanel.SetActive(false);
+                isAdminPanelOpen = false;
+                Cursor.lockState = CursorLockMode.Locked;
+                Cursor.visible = false;
+            }
+        }
     }
 }
