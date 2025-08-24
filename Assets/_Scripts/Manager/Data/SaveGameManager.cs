@@ -25,12 +25,12 @@ public class SaveGameManager : MonoBehaviour
         if (isCharacterSpawned)
         {
             if (!isCharacterSpawned) return;
-            Invoke(nameof(Load), 0.5f);
+            Invoke(nameof(LoadFullGame), 0.5f);
             return;
         }
     }
 
-    private void Load()
+    private void LoadFullGame()
     {
         playerStats = FindAnyObjectByType<CharacterStats>();
         equippedWeapons = playerStats.equippedWeapons;
@@ -72,7 +72,7 @@ public class SaveGameManager : MonoBehaviour
                 };
             }
 
-            SaveGame(); 
+            SaveFullGame(); 
         }
 
         for (int i = 0; i < equippedWeapons.Length; i++)
@@ -119,7 +119,9 @@ public class SaveGameManager : MonoBehaviour
             ), Quaternion.Euler(0, curData.rotationY, 0));
     }
 
-    public void SaveGame()
+
+    //Save Game
+    public void SaveFullGame()
     {
         curData.playerId = playerStats.playerId;
         curData.playerName = playerStats.playerName;

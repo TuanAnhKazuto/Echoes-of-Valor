@@ -5,18 +5,34 @@ public class RotaionObject : MonoBehaviour
     public bool horizontalRotation = false;
     public bool verticalRotation = false;
 
+    public bool rotationWhenPause = false;
+
     public float rotationSpeed = 10f;
 
     private void Update()
     {
-        if (horizontalRotation)
+        if(!rotationWhenPause)
         {
-            transform.Rotate(Vector3.up, rotationSpeed * Time.deltaTime, Space.Self);
-        }
+            if (horizontalRotation)
+            {
+                transform.Rotate(Vector3.up, rotationSpeed * Time.deltaTime, Space.Self);
+            }
 
-        if (verticalRotation)
+            if (verticalRotation)
+            {
+                transform.Rotate(Vector3.right, rotationSpeed * Time.deltaTime, Space.Self);
+            }
+        }
+        else
         {
-            transform.Rotate(Vector3.right, rotationSpeed * Time.deltaTime, Space.Self);
+            if (horizontalRotation)
+            {
+                transform.Rotate(Vector3.up, rotationSpeed * Time.unscaledDeltaTime, Space.Self);
+            }
+            if (verticalRotation)
+            {
+                transform.Rotate(Vector3.right, rotationSpeed * Time.unscaledDeltaTime, Space.Self);
+            }
         }
     }
 }
