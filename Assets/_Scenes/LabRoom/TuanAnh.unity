@@ -1213,7 +1213,7 @@ PrefabInstance:
       objectReference: {fileID: 1526028604}
     - target: {fileID: 246035153587633875, guid: 7a55015a02a19ea4aa1648d77f9031cd, type: 3}
       propertyPath: m_VersionIndex
-      value: 1149
+      value: 1155
       objectReference: {fileID: 0}
     - target: {fileID: 799514743675816798, guid: 7a55015a02a19ea4aa1648d77f9031cd, type: 3}
       propertyPath: m_Mesh
@@ -2675,7 +2675,7 @@ PrefabInstance:
       objectReference: {fileID: 1209210964}
     - target: {fileID: 8219310280919571435, guid: 4d2ee5f6a7438074ca0779ca792324ba, type: 3}
       propertyPath: m_VersionIndex
-      value: 1110
+      value: 1116
       objectReference: {fileID: 0}
     - target: {fileID: 8818820891007266406, guid: 4d2ee5f6a7438074ca0779ca792324ba, type: 3}
       propertyPath: m_Mesh
@@ -5863,7 +5863,7 @@ PrefabInstance:
       objectReference: {fileID: 1896477839}
     - target: {fileID: 4710159789740763571, guid: 04d2b84b35acdab4baa5adc23ab28b24, type: 3}
       propertyPath: m_VersionIndex
-      value: 1107
+      value: 1113
       objectReference: {fileID: 0}
     - target: {fileID: 5154968870070532989, guid: 04d2b84b35acdab4baa5adc23ab28b24, type: 3}
       propertyPath: upgradeIngredient1
@@ -6414,38 +6414,6 @@ PrefabInstance:
       propertyPath: saveGameManager
       value: 
       objectReference: {fileID: 1874453789}
-    - target: {fileID: 1203374640259489971, guid: b43c61955286f6b44a26073f7d8e0083, type: 3}
-      propertyPath: m_AnchoredPosition.y
-      value: -4
-      objectReference: {fileID: 0}
-    - target: {fileID: 2471773903743451709, guid: b43c61955286f6b44a26073f7d8e0083, type: 3}
-      propertyPath: m_AnchorMax.x
-      value: 0.5
-      objectReference: {fileID: 0}
-    - target: {fileID: 2471773903743451709, guid: b43c61955286f6b44a26073f7d8e0083, type: 3}
-      propertyPath: m_AnchorMax.y
-      value: 1
-      objectReference: {fileID: 0}
-    - target: {fileID: 2471773903743451709, guid: b43c61955286f6b44a26073f7d8e0083, type: 3}
-      propertyPath: m_AnchorMin.x
-      value: 0.5
-      objectReference: {fileID: 0}
-    - target: {fileID: 2471773903743451709, guid: b43c61955286f6b44a26073f7d8e0083, type: 3}
-      propertyPath: m_AnchorMin.y
-      value: 1
-      objectReference: {fileID: 0}
-    - target: {fileID: 2471773903743451709, guid: b43c61955286f6b44a26073f7d8e0083, type: 3}
-      propertyPath: m_SizeDelta.x
-      value: 79.899994
-      objectReference: {fileID: 0}
-    - target: {fileID: 2471773903743451709, guid: b43c61955286f6b44a26073f7d8e0083, type: 3}
-      propertyPath: m_AnchoredPosition.x
-      value: 344
-      objectReference: {fileID: 0}
-    - target: {fileID: 2471773903743451709, guid: b43c61955286f6b44a26073f7d8e0083, type: 3}
-      propertyPath: m_AnchoredPosition.y
-      value: -437.33002
-      objectReference: {fileID: 0}
     - target: {fileID: 4786057184746772919, guid: b43c61955286f6b44a26073f7d8e0083, type: 3}
       propertyPath: m_Name
       value: PlayerCanvas
@@ -6530,10 +6498,18 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 6292398862334935988, guid: b43c61955286f6b44a26073f7d8e0083, type: 3}
+      propertyPath: m_IsActive
+      value: 0
+      objectReference: {fileID: 0}
     - target: {fileID: 7847525043175611170, guid: b43c61955286f6b44a26073f7d8e0083, type: 3}
       propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_Target
       value: 
       objectReference: {fileID: 1874453789}
+    - target: {fileID: 7847525043175611170, guid: b43c61955286f6b44a26073f7d8e0083, type: 3}
+      propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_MethodName
+      value: SaveFullGame
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
