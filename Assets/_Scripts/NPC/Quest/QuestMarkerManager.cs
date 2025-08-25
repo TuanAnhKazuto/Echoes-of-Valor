@@ -3,8 +3,19 @@ using UnityEngine;
 
 public class QuestMarkerManager : MonoBehaviour
 {
-    public GameObject markerPrefab; 
+    public GameObject markerPrefab;
     private Dictionary<QuestItem, GameObject> activeMarkers = new();
+
+    [Header("Fireball dẫn đường")]
+    public GameObject fireballPrefab;   // Prefab VFX Fireball
+    private GameObject activeFireball;
+
+    private Transform player;
+
+    void Start()
+    {
+        player = GameObject.FindGameObjectWithTag("Player")?.transform;
+    }
 
     public void ShowMarker(QuestItem quest)
     {
@@ -15,7 +26,7 @@ public class QuestMarkerManager : MonoBehaviour
         Collider col = quest.questLocation.GetComponentInChildren<Collider>();
         if (col != null)
         {
-            spawnPos.y = col.bounds.max.y + 0f;
+            spawnPos.y = col.bounds.max.y;
         }
         else
         {
@@ -23,9 +34,19 @@ public class QuestMarkerManager : MonoBehaviour
         }
 
         GameObject marker = Instantiate(markerPrefab, spawnPos, Quaternion.identity);
-        marker.transform.SetParent(quest.questLocation); 
-
+        marker.transform.SetParent(quest.questLocation);
         activeMarkers[quest] = marker;
+
+        // 🔥 Spawn Fireball dẫn đường
+        if (fireballPrefab != null && player != null)
+        {
+            if (activeFireball != null) Destroy(activeFireball);
+
+            activeFireball = Instantiate(fireballPrefab, player.position, Quaternion.identity);
+
+            FireballMover mover = activeFireball.AddComponent<FireballMover>();
+            mover.InitPath(player, quest.questLocation);
+        }
     }
 
     public void HideMarker(QuestItem quest)
@@ -34,6 +55,12 @@ public class QuestMarkerManager : MonoBehaviour
         {
             Destroy(activeMarkers[quest]);
             activeMarkers.Remove(quest);
+        }
+
+        if (activeFireball != null)
+        {
+            Destroy(activeFireball);
+            activeFireball = null;
         }
     }
 
@@ -44,5 +71,12 @@ public class QuestMarkerManager : MonoBehaviour
             Destroy(marker);
         }
         activeMarkers.Clear();
+
+        if (activeFireball != null)
+        {
+            Destroy(activeFireball);
+            activeFireball = null;
+        }
     }
+  
 }
