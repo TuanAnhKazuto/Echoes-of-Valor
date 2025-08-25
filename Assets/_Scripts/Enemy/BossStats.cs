@@ -210,4 +210,6 @@ public class BossStats : MonoBehaviour
                 TakeDamage(skillDamage.damgeSkill);
         }
     }
+
+
 }

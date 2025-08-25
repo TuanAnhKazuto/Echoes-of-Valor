@@ -21,6 +21,7 @@ public class SkeletonNecromancer : MonoBehaviour
     private Coroutine spinAttackRoutine;
     private bool isDead = false;
     private bool isTrackingPlayer = false;
+
     public enum CharacterState
     {
         Normal,
@@ -29,18 +30,23 @@ public class SkeletonNecromancer : MonoBehaviour
     }
     public CharacterState currentState;
 
-    [Header("DropItem")]
+    [Header("Drop Item")]
     public GameObject dropItem;
 
+    [Header("Drop EXP Settings")]
+    public GameObject expPrefab;   // Prefab hạt EXP
+    public int expDropAmount = 5;  // Số lượng hạt EXP rớt ra
+    public int expValue = 1;       // Giá trị EXP mỗi hạt
+    public float expDropRadius = 1.5f; // Vị trí rớt ngẫu nhiên quanh boss
 
     [Header("Audio Settings")]
     public AudioClip attackSound;
     public AudioClip spinAttackSound;
     public AudioClip hitSound;
-    public AudioClip footstepSound; // ✅ Âm thanh bước chân
-    public AudioClip deathSound;    // ✅ Âm thanh chết
+    public AudioClip footstepSound;
+    public AudioClip deathSound;
     private AudioSource audioSource;
-    private bool isPlayingFootstep = false; // ✅ Kiểm soát âm thanh bước chân
+    private bool isPlayingFootstep = false;
 
     void Start()
     {
@@ -115,7 +121,6 @@ public class SkeletonNecromancer : MonoBehaviour
             }
         }
 
-        // ✅ Tắt âm thanh bước chân khi dừng di chuyển
         if (navMeshAgent.velocity.magnitude < 0.1f && isPlayingFootstep)
         {
             StopFootstepSound();
@@ -198,26 +203,43 @@ public class SkeletonNecromancer : MonoBehaviour
         animator.SetTrigger("Die");
 
         StopSpinIfNeeded();
-
-        PlayDeathSound(); // ✅ Phát âm chết (hoặc dùng animation event)
-
-        this.enabled = false;
+        PlayDeathSound();
 
         Collider col = GetComponent<Collider>();
         if (col != null) col.enabled = false;
 
-        DropItem();
+        DropItem();  // ✅ Gọi trước khi disable script
+        DropEXP();   // ✅ Gọi trước khi disable script
+
+        this.enabled = false;   // ✅ Tắt script sau khi drop xong
 
         Destroy(gameObject, 3f);
     }
 
     public void DropItem()
     {
-        Vector3 dropPos = new();
+        if (dropItem == null) return;
 
-        dropPos = new Vector3(transform.position.x, transform.position.y + 1.5f, transform.position.z);
+        Vector3 dropPos = new Vector3(transform.position.x, transform.position.y + 1.5f, transform.position.z);
+        Instantiate(dropItem, dropPos, Quaternion.identity);
+    }
 
-        GameObject item = Instantiate(dropItem, dropPos, Quaternion.identity);
+    // ✅ Hàm rớt EXP
+    public void DropEXP()
+    {
+        if (expPrefab == null) return;
+
+        for (int i = 0; i < expDropAmount; i++)
+        {
+            Vector3 randomPos = transform.position + (Vector3)Random.insideUnitCircle * expDropRadius;
+            GameObject orb = Instantiate(expPrefab, randomPos, Quaternion.identity);
+
+            EXPDrop orbScript = orb.GetComponent<EXPDrop>();
+            if (orbScript != null)
+            {
+                orbScript.expValue = expValue;
+            }
+        }
     }
 
     public void DealDamageToPlayer()
@@ -245,7 +267,6 @@ public class SkeletonNecromancer : MonoBehaviour
             audioSource.PlayOneShot(spinAttackSound);
     }
 
-    // ✅ Gọi từ Animation Event tại frame bước chân
     public void PlayFootstepSound()
     {
         if (footstepSound != null && audioSource != null && !isPlayingFootstep)
@@ -255,7 +276,6 @@ public class SkeletonNecromancer : MonoBehaviour
         }
     }
 
-    // ✅ Gọi từ cuối animation step hoặc tự động tắt nếu dừng
     public void StopFootstepSound()
     {
         isPlayingFootstep = false;
