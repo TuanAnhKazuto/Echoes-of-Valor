@@ -34,6 +34,11 @@ public class EnemyStats : MonoBehaviour
     public GameObject dropItem;
     public IngredientPickup ingredientPickup;
 
+    [Header("Drop Prefabs")]     
+    public GameObject expPrefab;
+    public int expDropCount = 3;    
+    public int expValuePerOrb = 1;
+
     private void Start()
     {
         skeletonMovement = GetComponent<SkeletonMovement>();
@@ -86,12 +91,14 @@ public class EnemyStats : MonoBehaviour
                     Debug.Log($"Cập nhật nhiệm vụ với questTag: {questTag}");
                 }
             }
+           
         }
     }
 
     public void Death()
     {
         DropItem();
+        DropEXP();
         ingredientPickup.Pickup();
         //StartCoroutine(ingredientPickup.Pickup());
         Destroy(gameObject);  
@@ -104,6 +111,15 @@ public class EnemyStats : MonoBehaviour
         dropPos = new Vector3(transform.position.x, transform.position.y + 1.5f, transform.position.z);
 
         GameObject item = Instantiate(dropItem, dropPos, Quaternion.identity);
+    }
+
+    public void DropEXP()
+    {
+        Vector3 dropEXP = new();
+
+        dropEXP = new Vector3(transform.position.x, transform.position.y + 1.5f, transform.position.z);
+
+        GameObject item = Instantiate(expPrefab, dropEXP, Quaternion.identity);
     }
 
     public void OffTakeDamageAnim()
