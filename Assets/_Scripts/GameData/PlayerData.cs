@@ -7,6 +7,7 @@ public class PlayerData
     public string characterClass;
     public int level;
     public int exp;
+    public int maxHealth;
     public float health;
     public float defense;
     public float damage;
