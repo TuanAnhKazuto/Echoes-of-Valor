@@ -1254,6 +1254,7 @@ MonoBehaviour:
   cam: {fileID: 0}
   freeLookCam: {fileID: 0}
   targetForCam: {fileID: 3101052238522731769}
+  isTalkingWithNPC: 0
   moveSpeed: 20
   speed: 10
   sprintSpeed: 20
@@ -1321,6 +1322,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   inventoryUI: {fileID: 0}
   freeLookCamera: {fileID: 0}
+  playerCam: {fileID: 0}
   isInventoryOpen: 0
   inventoryManager: {fileID: 0}
 --- !u!114 &2548190139823987596
@@ -1365,6 +1367,11 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   fKey: {fileID: 0}
+  choicePanel: {fileID: 0}
+  choicePanelSetup: {fileID: 0}
+  questButton: {fileID: 0}
+  shopButton: {fileID: 0}
+  shopUI: {fileID: 0}
 --- !u!114 &-8986082903656044471
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -1381,7 +1388,7 @@ MonoBehaviour:
   CorLarge: 0
   CorMedium: 0
   CorSmall: 0
-  coin: {fileID: 0}
+  corText: {fileID: 0}
 --- !u!1 &6020767039364578528
 GameObject:
   m_ObjectHideFlags: 0
@@ -1974,6 +1981,7 @@ MonoBehaviour:
   animator: {fileID: 3134795728209042399}
   excaliburLevel: 1
   excarliburCooldown: 6
+  excaliburManaCost: 35
 --- !u!82 &1777885339282303482
 AudioSource:
   m_ObjectHideFlags: 0
