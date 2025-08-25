@@ -3,6 +3,7 @@ using UnityEngine;
 public class AdminPanelCtrl : MonoBehaviour
 {
     public Cor cors;
+    public PlayerExpManager expManager;
 
     private void Start()
     {
@@ -12,11 +13,21 @@ public class AdminPanelCtrl : MonoBehaviour
     private void GetComponnetWhenStart()
     {
         cors = FindAnyObjectByType<Cor>();
-
+        expManager = FindAnyObjectByType<PlayerExpManager>();
     }
 
-    public void GetCor()
+    public void GetCor(int count)
     {
-        cors.IncreaseCor(100000);
+        cors.IncreaseCor(count);
+    }
+
+    public void GetExp(int amount)
+    {
+        expManager.AddExp(amount);
+    }
+
+    public void GetLevel(int amount)
+    {
+        expManager.AddLevel(amount);
     }
 }
