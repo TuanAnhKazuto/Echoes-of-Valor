@@ -5,6 +5,7 @@ public class CharacterStats : MonoBehaviour
 {
     public PlayerHealthBar healthBar;
     public PlayerManaBar manaBar;
+    private PlayerExpManager playerExpManager;
     public Animator animator;
     public GameObject CursorTarget;
 
@@ -36,6 +37,11 @@ public class CharacterStats : MonoBehaviour
         if (manaBar == null)
         {
             manaBar = FindAnyObjectByType<PlayerManaBar>();
+        }
+        if (playerExpManager == null)
+        {
+            playerExpManager = FindAnyObjectByType<PlayerExpManager>();
+            playerExpManager.characterStats = this;
         }
     }
 

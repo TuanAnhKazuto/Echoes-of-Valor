@@ -1,0 +1,146 @@
+using TMPro;
+using UnityEngine;
+using UnityEngine.UI;
+
+public class PlayerExpManager : MonoBehaviour
+{
+    [SerializeField] AnimationCurve expCurve;
+    public CharacterStats characterStats;
+
+    int currentLevel, totalExp;
+    int prevLevelExp, nextLevelExp;
+
+    [Header("Interface")]
+    [SerializeField] TextMeshProUGUI levelText;
+    [SerializeField] TextMeshProUGUI expText;
+    [SerializeField] Image expFill;
+
+    private void Start()
+    {
+        currentLevel = 1;
+        totalExp = 32;
+        UpdateLevel();
+        UpdateInterface();
+    }
+
+    //private void Update()
+    //{
+    //    if (Input.GetKeyDown(KeyCode.L))
+    //    {
+    //        AddExp(100);
+    //    }
+
+    //    if (Input.GetKeyDown(KeyCode.K))
+    //    {
+    //        AddLevel(4);
+    //    }
+    //}
+
+    public void AddExp(int amount)
+    {
+        if (currentLevel >= 30) return;
+        totalExp += amount;
+        CheckForLevelUp();
+        UpdateInterface();
+    }
+
+    public void AddLevel(int amount)
+    {
+        currentLevel += amount;
+
+        if (currentLevel >= 30)
+        {
+            currentLevel = 30;
+            totalExp = 10000;
+            expFill.fillAmount = 1f;
+            UpdateLevel();
+            UpdateInterface();
+            return;
+        }
+
+
+        UpdateLevel();
+        totalExp = prevLevelExp;
+        UpdateInterface();
+
+        UpdateCharacterStats(amount);
+    }
+
+    public void CheckForLevelUp()
+    {
+        if (totalExp >= nextLevelExp)
+        {
+            currentLevel++;
+            UpdateLevel();
+            UpdateInterface();
+
+            // Logic for level up
+            UpdateCharacterStats(1);
+        }
+    }
+
+    void UpdateCharacterStats(int count)
+    {
+        for (int i = 0; i < count; i++)
+        {
+            if (characterStats != null)
+            {
+                if (currentLevel <= 10)
+                {
+
+                    characterStats.maxHealth += 10f;
+                    characterStats.currentHealth += 10f;
+                    characterStats.maxMana += 20f;
+                    characterStats.currentMana += 20f;
+                    characterStats.baseDamage += 2;
+                }
+                else if (currentLevel <= 20)
+                {
+                    characterStats.maxHealth += 20f;
+                    characterStats.currentHealth += 20f;
+                    characterStats.maxMana += 30f;
+                    characterStats.currentMana += 30f;
+                    characterStats.baseDamage += 3;
+                }
+                else
+                {
+                    characterStats.maxHealth += 30f;
+                    characterStats.currentHealth += 30f;
+                    characterStats.maxMana += 40f;
+                    characterStats.currentMana += 40f;
+                    characterStats.baseDamage += 4;
+                }
+
+                characterStats.healthBar.UpdateHealth((int)characterStats.currentHealth, (int)characterStats.maxHealth);
+                characterStats.manaBar.UpdateMana((int)characterStats.currentMana, (int)characterStats.maxMana);
+            }
+        }
+
+    }
+
+    void UpdateLevel()
+    {
+        prevLevelExp = (int)expCurve.Evaluate(currentLevel);
+        nextLevelExp = (int)expCurve.Evaluate(currentLevel + 1);
+        //UpdateInterface();
+    }
+
+    void UpdateInterface()
+    {
+        int start = totalExp - prevLevelExp;
+        int end = nextLevelExp - prevLevelExp;
+
+        levelText.text = "Lv. " + currentLevel;
+
+        if (currentLevel >= 30)
+        {
+            expText.text = "MAX LEVEL";
+            expFill.fillAmount = 1f;
+        }
+        else
+        {
+            expText.text = start + " / " + end + " EXP";
+        }
+        expFill.fillAmount = (float)start / (float)end;
+    }
+}
