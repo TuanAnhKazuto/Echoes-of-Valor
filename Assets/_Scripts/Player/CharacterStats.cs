@@ -1,11 +1,13 @@
 ﻿using System.Collections;
 using UnityEngine;
+using UnityEngine.Rendering;
 
 public class CharacterStats : MonoBehaviour
 {
     public PlayerHealthBar healthBar;
     public PlayerManaBar manaBar;
     public PlayerExpManager expManager;
+    public GameObject levelUpEffect;
     public Animator animator;
     public GameObject CursorTarget;
 
@@ -139,6 +141,14 @@ public class CharacterStats : MonoBehaviour
             }
             TakeDamage(bossGolem.baseDamage);
         }
+    }
+
+    public IEnumerator PlayLevelUpEffect()
+    {
+        levelUpEffect.SetActive(false);
+        levelUpEffect.SetActive(true);
+        yield return new WaitForSeconds(2.5f);
+        levelUpEffect.SetActive(false);
     }
 
     private void Update()

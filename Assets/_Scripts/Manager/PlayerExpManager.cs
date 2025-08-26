@@ -23,19 +23,6 @@ public class PlayerExpManager : MonoBehaviour
         UpdateInterface();
     }
 
-    //private void Update()
-    //{
-    //    if (Input.GetKeyDown(KeyCode.L))
-    //    {
-    //        AddExp(100);
-    //    }
-
-    //    if (Input.GetKeyDown(KeyCode.K))
-    //    {
-    //        AddLevel(4);
-    //    }
-    //}
-
     public void AddExp(int amount)
     {
         if (currentLevel >= 30) return;
@@ -55,6 +42,7 @@ public class PlayerExpManager : MonoBehaviour
             expFill.fillAmount = 1f;
             UpdateLevel();
             UpdateInterface();
+            StartCoroutine(characterStats.PlayLevelUpEffect());
             return;
         }
 
@@ -64,6 +52,7 @@ public class PlayerExpManager : MonoBehaviour
         UpdateInterface();
 
         UpdateCharacterStats(amount);
+        StartCoroutine(characterStats.PlayLevelUpEffect());
     }
 
     public void CheckForLevelUp()
@@ -76,6 +65,7 @@ public class PlayerExpManager : MonoBehaviour
 
             // Logic for level up
             UpdateCharacterStats(1);
+            StartCoroutine(characterStats.PlayLevelUpEffect());
         }
     }
 
