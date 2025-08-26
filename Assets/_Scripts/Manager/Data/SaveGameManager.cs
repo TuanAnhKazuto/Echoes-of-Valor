@@ -1,7 +1,10 @@
-﻿using UnityEngine;
+﻿using System.Collections;
+using UnityEngine;
 
 public class SaveGameManager : MonoBehaviour
 {
+    [Tooltip("Auto save interval in seconds")]
+    public int autoSaveInterval = 60;
     public CharacterStats playerStats;
     public PlayerData curData;
     public Cor cor;
@@ -18,7 +21,9 @@ public class SaveGameManager : MonoBehaviour
     {
         selectedId = PlayerPrefs.GetInt("SelectedPlayerId");
 
-        curData = SaveSystem.LoadGame(selectedId);        
+        curData = SaveSystem.LoadGame(selectedId);
+
+        StartCoroutine(SaveGameOnTime());
     }
 
     private void Update()
@@ -28,6 +33,16 @@ public class SaveGameManager : MonoBehaviour
             if (!isCharacterSpawned) return;
             Invoke(nameof(LoadWhenStart), 0.5f);
             return;
+        }
+    }
+
+    private IEnumerator SaveGameOnTime()
+    {
+        while (true)
+        {
+            yield return new WaitForSeconds(autoSaveInterval);
+            SaveFullGame();
+            Debug.LogWarning("Game auto-saved.");
         }
     }
 
