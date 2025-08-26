@@ -6,6 +6,7 @@ public class EnemyStats : MonoBehaviour
 {
     [Header("Component")]
     public CharacterStats characterStats;
+    [SerializeField] PlayerExpManager playerExpManager;
     public SkeletonMovement skeletonMovement;
 
     public EnemyHealthBar healthBar;
@@ -13,6 +14,7 @@ public class EnemyStats : MonoBehaviour
 
     [Header("Base Stats")]
     public int level = 1;
+
     public int maxHealth = 10;
     public int currentHealth;
 
@@ -35,9 +37,9 @@ public class EnemyStats : MonoBehaviour
     public IngredientPickup ingredientPickup;
 
     [Header("Drop Prefabs")]     
-    public GameObject expPrefab;
-    public int expDropCount = 3;    
-    public int expValuePerOrb = 1;
+    //public GameObject expPrefab;
+    public int expDropCount = 20;    
+    //public int expValuePerOrb = 1;
 
     private void Start()
     {
@@ -98,7 +100,10 @@ public class EnemyStats : MonoBehaviour
     public void Death()
     {
         DropItem();
-        DropEXP();
+
+        playerExpManager.AddExp(expDropCount);
+
+        //DropEXP();
         ingredientPickup.Pickup();
         //StartCoroutine(ingredientPickup.Pickup());
         Destroy(gameObject);  
@@ -113,14 +118,19 @@ public class EnemyStats : MonoBehaviour
         GameObject item = Instantiate(dropItem, dropPos, Quaternion.identity);
     }
 
-    public void DropEXP()
-    {
-        Vector3 dropEXP = new();
+    //public void DropEXP()
+    //{
+    //    Vector3 dropEXP = new();
 
-        dropEXP = new Vector3(transform.position.x, transform.position.y + 1.5f, transform.position.z);
+    //    dropEXP = new Vector3(transform.position.x, transform.position.y + 1.5f, transform.position.z);
 
-        GameObject item = Instantiate(expPrefab, dropEXP, Quaternion.identity);
-    }
+    //    for(int i = 0; i < expDropCount; i++)
+    //    {
+    //        GameObject item = Instantiate(expPrefab, dropEXP, Quaternion.identity);
+    //    }
+        
+    //    Debug.Log("exp");
+    //}
 
     public void OffTakeDamageAnim()
     {
@@ -135,6 +145,7 @@ public class EnemyStats : MonoBehaviour
             if (characterStats == null)
             {
                 characterStats = other.GetComponentInParent<CharacterStats>();
+                playerExpManager = characterStats.expManager;
             }
 
             TakeDamage(characterStats.TotalDamage);
