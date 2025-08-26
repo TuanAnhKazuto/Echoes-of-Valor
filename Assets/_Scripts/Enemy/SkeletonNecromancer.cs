@@ -1,6 +1,7 @@
 ﻿using UnityEngine;
 using UnityEngine.AI;
 using System.Collections;
+using UnityEngine.Rendering;
 
 public class SkeletonNecromancer : MonoBehaviour
 {
@@ -18,6 +19,7 @@ public class SkeletonNecromancer : MonoBehaviour
     private Vector3 originalePosition;
 
     private BossStats bossStats;
+    private PlayerExpManager playerExpManager;
     private Coroutine spinAttackRoutine;
     private bool isDead = false;
     private bool isTrackingPlayer = false;
@@ -34,10 +36,10 @@ public class SkeletonNecromancer : MonoBehaviour
     public GameObject dropItem;
 
     [Header("Drop EXP Settings")]
-    public GameObject expPrefab;   // Prefab hạt EXP
-    public int expDropAmount = 5;  // Số lượng hạt EXP rớt ra
+    //public GameObject expPrefab;   // Prefab hạt EXP
+    //public int expDropAmount = 5;  // Số lượng hạt EXP rớt ra
     public int expValue = 1;       // Giá trị EXP mỗi hạt
-    public float expDropRadius = 1.5f; // Vị trí rớt ngẫu nhiên quanh boss
+    //public float expDropRadius = 1.5f; // Vị trí rớt ngẫu nhiên quanh boss
 
     [Header("Audio Settings")]
     public AudioClip attackSound;
@@ -227,19 +229,10 @@ public class SkeletonNecromancer : MonoBehaviour
     // ✅ Hàm rớt EXP
     public void DropEXP()
     {
-        if (expPrefab == null) return;
+        if (playerExpManager == null)
+            playerExpManager = bossStats.characterStats.expManager;
 
-        for (int i = 0; i < expDropAmount; i++)
-        {
-            Vector3 randomPos = transform.position + (Vector3)Random.insideUnitCircle * expDropRadius;
-            GameObject orb = Instantiate(expPrefab, randomPos, Quaternion.identity);
-
-            EXPDrop orbScript = orb.GetComponent<EXPDrop>();
-            if (orbScript != null)
-            {
-                orbScript.expValue = expValue;
-            }
-        }
+        playerExpManager.AddExp(expValue);
     }
 
     public void DealDamageToPlayer()

@@ -6,7 +6,9 @@ public class EnemyStats : MonoBehaviour
 {
     [Header("Component")]
     public CharacterStats characterStats;
+    public PlayerExpManager playerExpManager;
     public SkeletonMovement skeletonMovement;
+
 
     public EnemyHealthBar healthBar;
     public TextMeshProUGUI levelText;
@@ -34,10 +36,10 @@ public class EnemyStats : MonoBehaviour
     public GameObject dropItem;
     public IngredientPickup ingredientPickup;
 
-    [Header("Drop Prefabs")]     
-    public GameObject expPrefab;
-    public int expDropCount = 3;    
-    public int expValuePerOrb = 1;
+    [Header("Drop Exp")]     
+    //public GameObject expPrefab;
+    public int expDropCount = 15;    
+    //public int expValuePerOrb = 1;
 
     private void Start()
     {
@@ -49,6 +51,24 @@ public class EnemyStats : MonoBehaviour
         levelText.text = "Lv. " + level.ToString();
         healthBar.UpdateHealth(currentHealth, maxHealth);
 
+    }
+
+    private void Update()
+    {
+        Invoke(nameof(GetComponentDelay), 4f);
+    }
+
+    void GetComponentDelay()
+    {
+        if(characterStats == null)
+        {
+            characterStats = FindAnyObjectByType<CharacterStats>();
+        }
+        if(playerExpManager == null)
+        {
+            playerExpManager = characterStats.expManager;
+        }
+        return;
     }
 
     public void LevelUp()
@@ -98,7 +118,10 @@ public class EnemyStats : MonoBehaviour
     public void Death()
     {
         DropItem();
-        DropEXP();
+
+        playerExpManager.AddExp(expDropCount);
+
+        //DropEXP();
         ingredientPickup.Pickup();
         //StartCoroutine(ingredientPickup.Pickup());
         Destroy(gameObject);  
@@ -113,14 +136,14 @@ public class EnemyStats : MonoBehaviour
         GameObject item = Instantiate(dropItem, dropPos, Quaternion.identity);
     }
 
-    public void DropEXP()
-    {
-        Vector3 dropEXP = new();
+    //public void DropEXP()
+    //{
+    //    Vector3 dropEXP = new();
 
-        dropEXP = new Vector3(transform.position.x, transform.position.y + 1.5f, transform.position.z);
+    //    dropEXP = new Vector3(transform.position.x, transform.position.y + 1.5f, transform.position.z);
 
-        GameObject item = Instantiate(expPrefab, dropEXP, Quaternion.identity);
-    }
+    //    GameObject item = Instantiate(expPrefab, dropEXP, Quaternion.identity);
+    //}
 
     public void OffTakeDamageAnim()
     {
