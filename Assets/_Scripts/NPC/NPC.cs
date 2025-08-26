@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Collections;
 using System.Collections.Generic;
+using System.Linq;
 using TMPro;
 using Unity.Cinemachine;
 using Unity.VisualScripting;
@@ -180,6 +181,19 @@ public class NPC : MonoBehaviour
                 }
                 else if (!playerQuests.questItems.Contains(CurrentQuest))
                 {
+                    // Nếu là nhiệm vụ cuối -> chỉ cho nhận khi tất cả nhiệm vụ khác đã hoàn thành
+                    if (CurrentQuest.isFinalQuest)
+                    {
+                        bool hasOtherQuest = playerQuests.questItems.Any(q => !q.isFinalQuest);
+                        if (hasOtherQuest)
+                        {
+                            chatText.text = "Bạn cần hoàn thành hết các nhiệm vụ khác trước khi nhận nhiệm vụ đặc biệt!";
+                            yesButton.gameObject.SetActive(false);
+                            Invoke(nameof(HidePanel), 2f);
+                            return;
+                        }
+                    }
+
                     CurrentQuest.questGiverLocation = this.transform;
                     playerQuests.TakeQuest(CurrentQuest);
                     chatText.text = $"Bạn đã nhận nhiệm vụ: {CurrentQuest.QuetsItemName}";
@@ -238,8 +252,15 @@ public class NPC : MonoBehaviour
         chatText.text = rewardsSummary;
         
         yield return new WaitForSeconds(2.5f);
+
         playerQuests.CompleteQuest(finishedQuest);
-        
+
+        if (finishedQuest.isFinalQuest)
+        {
+            // gọi hiển thị WinGame SAU khi panel NPC đóng
+            StartCoroutine(ShowWinGameAfterDialogue());
+        }
+
         currentQuestIndex++;
         questGiven = false;
 
@@ -376,6 +397,15 @@ public class NPC : MonoBehaviour
                 Invoke(nameof(HidePanel), 2f);
             }
         });
+    }
+
+    private IEnumerator ShowWinGameAfterDialogue()
+    {        
+        yield return new WaitForSeconds(1f);
+        HidePanel(); 
+        yield return new WaitForSeconds(0.5f); 
+
+        playerQuests.ShowWinGame();
     }
 
     // Nhận nhiệm vụ và đóng bảng chat

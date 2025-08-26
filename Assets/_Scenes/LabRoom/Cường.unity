@@ -180,6 +180,7 @@ MonoBehaviour:
   rewardItems:
   - {fileID: 11400000, guid: f91972d039785f34aa4efd1c90d6e5e2, type: 2}
   questGiverLocation: {fileID: 342202009}
+  isFinalQuest: 0
   rewardIngredients: []
   rewardIngredientCount: 1
   description: "\u201CNg\u01B0\u1EDDi d\xE2n \u0111ang b\u1ECB Skeleton ph\xE1 r\u1ED1i,
@@ -199,7 +200,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 2823577116262180202, guid: 5e980f304a07c544da8720f6c853d2c1, type: 3}
       propertyPath: m_IsActive
-      value: 0
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 6523245326600972667, guid: 5e980f304a07c544da8720f6c853d2c1, type: 3}
       propertyPath: m_LocalPosition.x
@@ -1224,7 +1225,11 @@ PrefabInstance:
       objectReference: {fileID: 1958812437}
     - target: {fileID: 8219310280919571435, guid: 4d2ee5f6a7438074ca0779ca792324ba, type: 3}
       propertyPath: m_VersionIndex
-      value: 1014
+      value: 1020
+      objectReference: {fileID: 0}
+    - target: {fileID: 8281338608645403561, guid: 4d2ee5f6a7438074ca0779ca792324ba, type: 3}
+      propertyPath: winGamePanel
+      value: 
       objectReference: {fileID: 0}
     - target: {fileID: 8281338608645403561, guid: 4d2ee5f6a7438074ca0779ca792324ba, type: 3}
       propertyPath: markerManager
@@ -1793,6 +1798,11 @@ PrefabInstance:
     m_AddedGameObjects: []
     m_AddedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: ca1998f865fc71e4db1590094f47b43b, type: 3}
+--- !u!4 &742371016 stripped
+Transform:
+  m_CorrespondingSourceObject: {fileID: 3614428877932804171, guid: 3f457b0604d84b140a2f3df12ea405bc, type: 3}
+  m_PrefabInstance: {fileID: 1037260718}
+  m_PrefabAsset: {fileID: 0}
 --- !u!4 &756007465 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: 7713735878304070000, guid: a241dca576e4aa4498e622aac9d9f321, type: 3}
@@ -2126,6 +2136,7 @@ MonoBehaviour:
   - {fileID: 11400000, guid: 946848035aa62cf4faa666ea17eca4fd, type: 2}
   - {fileID: 11400000, guid: f91972d039785f34aa4efd1c90d6e5e2, type: 2}
   questGiverLocation: {fileID: 342202009}
+  isFinalQuest: 0
   rewardIngredients:
   - {fileID: 11400000, guid: 09fe346d5cde65648922da6d015f066e, type: 2}
   - {fileID: 11400000, guid: 9fcb476757f408c4388516f32b6bcc27, type: 2}
@@ -2228,6 +2239,14 @@ PrefabInstance:
       propertyPath: npcLookTarget
       value: 
       objectReference: {fileID: 2064615}
+    - target: {fileID: 8835601500180365127, guid: 3f457b0604d84b140a2f3df12ea405bc, type: 3}
+      propertyPath: questList.Array.size
+      value: 2
+      objectReference: {fileID: 0}
+    - target: {fileID: 8835601500180365127, guid: 3f457b0604d84b140a2f3df12ea405bc, type: 3}
+      propertyPath: 'questList.Array.data[1]'
+      value: 
+      objectReference: {fileID: 1950808621}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
@@ -2310,32 +2329,12 @@ PrefabInstance:
     m_TransformParent: {fileID: 0}
     m_Modifications:
     - target: {fileID: 426350705080597118, guid: b43c61955286f6b44a26073f7d8e0083, type: 3}
-      propertyPath: characterStats
-      value: 
-      objectReference: {fileID: 0}
-    - target: {fileID: 426350705080597118, guid: b43c61955286f6b44a26073f7d8e0083, type: 3}
       propertyPath: saveGameManager
       value: 
       objectReference: {fileID: 594819445}
-    - target: {fileID: 2131194645816594740, guid: b43c61955286f6b44a26073f7d8e0083, type: 3}
-      propertyPath: m_IsActive
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 4570434617686652973, guid: b43c61955286f6b44a26073f7d8e0083, type: 3}
-      propertyPath: m_IsActive
-      value: 0
-      objectReference: {fileID: 0}
     - target: {fileID: 4786057184746772919, guid: b43c61955286f6b44a26073f7d8e0083, type: 3}
       propertyPath: m_Name
       value: PlayerCanvas
-      objectReference: {fileID: 0}
-    - target: {fileID: 4786057184746772919, guid: b43c61955286f6b44a26073f7d8e0083, type: 3}
-      propertyPath: m_IsActive
-      value: 1
-      objectReference: {fileID: 0}
-    - target: {fileID: 5122578772919861534, guid: b43c61955286f6b44a26073f7d8e0083, type: 3}
-      propertyPath: m_IsActive
-      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 5662681988378495663, guid: b43c61955286f6b44a26073f7d8e0083, type: 3}
       propertyPath: m_Pivot.x
@@ -2416,6 +2415,18 @@ PrefabInstance:
     - target: {fileID: 5662681988378495663, guid: b43c61955286f6b44a26073f7d8e0083, type: 3}
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 8225911548327224702, guid: b43c61955286f6b44a26073f7d8e0083, type: 3}
+      propertyPath: m_Name
+      value: Panel Victory
+      objectReference: {fileID: 0}
+    - target: {fileID: 8225911548327224702, guid: b43c61955286f6b44a26073f7d8e0083, type: 3}
+      propertyPath: m_IsActive
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 8225911548327224702, guid: b43c61955286f6b44a26073f7d8e0083, type: 3}
+      propertyPath: m_TagString
+      value: VictoryPanel
       objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
@@ -3643,7 +3654,8 @@ MonoBehaviour:
     r\u1EEBng ph\xEDa \u0110\xF4ng \u0111\u1EC3 g\u1EB7p ng\u01B0\u1EDDi \u0111\u01B0a
     th\u01B0.\n"
   rewardItems: []
-  questGiverLocation: {fileID: 0}
+  questGiverLocation: {fileID: 742371016}
+  isFinalQuest: 1
   rewardIngredients: []
   rewardIngredientCount: 1
   description: "\u201CNg\u01B0\u1EDDi d\xE2n \u0111ang b\u1ECB Skeleton ph\xE1 r\u1ED1i,

@@ -10,25 +10,37 @@ public class PlayerQuest : MonoBehaviour
 {
     // sử dụng cho nhiều nhiệm vụ
     public List<QuestItem> questItems = new List<QuestItem>();
-    public PaneQuest playerQuestPanel;    
+    public PaneQuest playerQuestPanel;
     // Nhận nhiệm vụ 
+    public GameObject winGamePanel;
 
     // chỉ dẫn nhiệm vụ
     public QuestMarkerManager markerManager;
 
     private void Start()
     {
-        
+
         if (playerQuestPanel == null)
         {
             playerQuestPanel = FindAnyObjectByType<PaneQuest>();
         }
-        
+
         if (markerManager == null)
         {
             markerManager = FindAnyObjectByType<QuestMarkerManager>();
         }
 
+        if (winGamePanel == null)
+        {
+            winGamePanel = GameObject.Find("Panel Victory"); 
+            if (winGamePanel == null)
+                Debug.LogWarning("⚠️ Không tìm thấy Panel Victory trong scene!");
+        }
+      
+        if (winGamePanel != null)
+        {
+            winGamePanel.SetActive(false);
+        }
     }
     public void TakeQuest(QuestItem questItem)
     {
@@ -58,22 +70,20 @@ public class PlayerQuest : MonoBehaviour
             {
                 quest.UpdateQuestProgress();
                 Debug.Log($"Tiến trình nhiệm vụ {quest.QuetsItemName}: {quest.currentAmount}/{quest.questTargetAmount}");
-
-                // Cập nhật hiển thị
+               
                 playerQuestPanel.ShowAllQuestItem(questItems);
-
-                // Kiểm tra hoàn thành
+               
                 if (quest.IsComplete())
                 {
                     Debug.Log($"Hoàn thành nhiệm vụ: {quest.QuetsItemName}!");
-                    // Ẩn marker nhiệm vụ cũ
+                   
                     if (quest.questLocation != null)
                         markerManager.HideMarker(quest);
 
-                    // Nếu có NPC giao nhiệm vụ -> hiển thị marker trỏ về NPC
+                    
                     if (quest.questGiverLocation != null)
                     {
-                        quest.questLocation = quest.questGiverLocation; // tạm dùng lại questLocation
+                        quest.questLocation = quest.questGiverLocation; 
                         markerManager.ShowMarker(quest);
                     }
                 }
@@ -113,7 +123,7 @@ public class PlayerQuest : MonoBehaviour
                 Debug.LogWarning("Không tìm thấy GoldItem trong Resources/Items!");
             }
 
-            // ✅ Nhận các vật phẩm thường
+            
             foreach (var item in questItem.rewardItems)
             {
                 int amount = item.isCurrency ? questItem.rewardAmount : 1;
@@ -123,7 +133,7 @@ public class PlayerQuest : MonoBehaviour
                 Debug.Log($"Nhận thêm vật phẩm: {item.itemName} x{amount}");
             }
 
-            // ✅ Nhận nguyên liệu nâng cấp
+            
             foreach (var ingr in questItem.rewardIngredients)
             {
                 InventoryManager.Instance.AddIngredients(ingr, questItem.rewardIngredientCount);
@@ -131,10 +141,34 @@ public class PlayerQuest : MonoBehaviour
                 Debug.Log($"Nhận nguyên liệu: {ingr.ingredientName} x{questItem.rewardIngredientCount}");
             }
 
-            playerQuestPanel.ShowAllQuestItem(questItems);
+            playerQuestPanel.ShowAllQuestItem(questItems);           
         }
     }
 
+    public void ShowWinGame()
+    {
+        if (winGamePanel == null) return;
 
+        StartCoroutine(ShowWinGameWithDelay(1.5f)); // chờ 1.5 giây sau khi NPC panel tắt
+    }
+
+    private IEnumerator ShowWinGameWithDelay(float delay)
+    {
+        yield return new WaitForSeconds(delay);
+
+        winGamePanel.SetActive(true);
+
+        // Khóa điều khiển
+        var playerController = FindAnyObjectByType<PlayerController>();
+        if (playerController != null)
+        {
+            playerController.canMove = false;
+            playerController.isTalkingWithNPC = true;
+        }
+
+        Cursor.visible = true;
+        Cursor.lockState = CursorLockMode.None;
+        Time.timeScale = 0f;
+    }
 
 }
