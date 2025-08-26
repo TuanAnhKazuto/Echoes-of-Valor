@@ -17,7 +17,6 @@ public class BossStats : MonoBehaviour
 
     [Header("Base Stats")]
     public int level = 1;
-    public int expReward = 100;
     public int maxHealth = 10;
     public int currentHealth;
     public float baseDamage = 10f;
@@ -150,7 +149,6 @@ public class BossStats : MonoBehaviour
         if (currentHealth <= 0)
         {
             HandleDeath();
-            characterStats.expManager.AddExp(expReward);
             return;
         }
 

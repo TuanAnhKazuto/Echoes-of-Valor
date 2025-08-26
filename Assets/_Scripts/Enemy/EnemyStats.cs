@@ -6,8 +6,6 @@ public class EnemyStats : MonoBehaviour
 {
     [Header("Component")]
     public CharacterStats characterStats;
-    [SerializeField] public SaveGameManager saveGameManager;
-    [SerializeField] PlayerExpManager playerExpManager;
     public SkeletonMovement skeletonMovement;
 
     public EnemyHealthBar healthBar;
@@ -15,7 +13,6 @@ public class EnemyStats : MonoBehaviour
 
     [Header("Base Stats")]
     public int level = 1;
-
     public int maxHealth = 10;
     public int currentHealth;
 
@@ -38,40 +35,20 @@ public class EnemyStats : MonoBehaviour
     public IngredientPickup ingredientPickup;
 
     [Header("Drop Prefabs")]     
-    //public GameObject expPrefab;
-    public int expDropCount = 20;    
-    //public int expValuePerOrb = 1;
+    public GameObject expPrefab;
+    public int expDropCount = 3;    
+    public int expValuePerOrb = 1;
 
     private void Start()
     {
         skeletonMovement = GetComponent<SkeletonMovement>();
         ingredientPickup = GetComponent<IngredientPickup>();
-        saveGameManager = FindAnyObjectByType<SaveGameManager>();
 
         currentHealth = maxHealth;
         skeletonMovement.animator.SetFloat("HP", currentHealth);
         levelText.text = "Lv. " + level.ToString();
         healthBar.UpdateHealth(currentHealth, maxHealth);
-    }
 
-    private void Update()
-    {
-        Invoke(nameof(GetComponnet), 2f);
-    }
-
-    void GetComponnet()
-    {
-        if (characterStats == null)
-        {
-            characterStats = saveGameManager.playerStats;
-            return;
-        }
-
-        if (playerExpManager == null)
-        {
-            playerExpManager = saveGameManager.playerStats.expManager;
-            return;
-        }
     }
 
     public void LevelUp()
@@ -121,10 +98,7 @@ public class EnemyStats : MonoBehaviour
     public void Death()
     {
         DropItem();
-
-        playerExpManager.AddExp(expDropCount);
-
-        //DropEXP();
+        DropEXP();
         ingredientPickup.Pickup();
         //StartCoroutine(ingredientPickup.Pickup());
         Destroy(gameObject);  
@@ -139,19 +113,14 @@ public class EnemyStats : MonoBehaviour
         GameObject item = Instantiate(dropItem, dropPos, Quaternion.identity);
     }
 
-    //public void DropEXP()
-    //{
-    //    Vector3 dropEXP = new();
+    public void DropEXP()
+    {
+        Vector3 dropEXP = new();
 
-    //    dropEXP = new Vector3(transform.position.x, transform.position.y + 1.5f, transform.position.z);
+        dropEXP = new Vector3(transform.position.x, transform.position.y + 1.5f, transform.position.z);
 
-    //    for(int i = 0; i < expDropCount; i++)
-    //    {
-    //        GameObject item = Instantiate(expPrefab, dropEXP, Quaternion.identity);
-    //    }
-        
-    //    Debug.Log("exp");
-    //}
+        GameObject item = Instantiate(expPrefab, dropEXP, Quaternion.identity);
+    }
 
     public void OffTakeDamageAnim()
     {
@@ -166,7 +135,6 @@ public class EnemyStats : MonoBehaviour
             if (characterStats == null)
             {
                 characterStats = other.GetComponentInParent<CharacterStats>();
-                //playerExpManager = characterStats.expManager;
             }
 
             TakeDamage(characterStats.TotalDamage);

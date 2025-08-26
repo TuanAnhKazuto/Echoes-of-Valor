@@ -7,7 +7,7 @@ public class PlayerExpManager : MonoBehaviour
     [SerializeField] AnimationCurve expCurve;
     public CharacterStats characterStats;
 
-    public int currentLevel, totalExp;
+    int currentLevel, totalExp;
     int prevLevelExp, nextLevelExp;
 
     [Header("Interface")]
@@ -17,8 +17,8 @@ public class PlayerExpManager : MonoBehaviour
 
     private void Start()
     {
-        //currentLevel = 1;
-        //totalExp = 32;
+        currentLevel = 1;
+        totalExp = 32;
         UpdateLevel();
         UpdateInterface();
     }
@@ -118,14 +118,14 @@ public class PlayerExpManager : MonoBehaviour
 
     }
 
-    public void UpdateLevel()
+    void UpdateLevel()
     {
         prevLevelExp = (int)expCurve.Evaluate(currentLevel);
         nextLevelExp = (int)expCurve.Evaluate(currentLevel + 1);
         //UpdateInterface();
     }
 
-    public void UpdateInterface()
+    void UpdateInterface()
     {
         int start = totalExp - prevLevelExp;
         int end = nextLevelExp - prevLevelExp;

@@ -209,7 +209,7 @@ public class SkeletonNecromancer : MonoBehaviour
         if (col != null) col.enabled = false;
 
         DropItem();  // ✅ Gọi trước khi disable script
-        // DropEXP();   // ✅ Gọi trước khi disable script
+        DropEXP();   // ✅ Gọi trước khi disable script
 
         this.enabled = false;   // ✅ Tắt script sau khi drop xong
 
@@ -225,22 +225,22 @@ public class SkeletonNecromancer : MonoBehaviour
     }
 
     // ✅ Hàm rớt EXP
-    //public void DropEXP()
-    //{
-    //    if (expPrefab == null) return;
+    public void DropEXP()
+    {
+        if (expPrefab == null) return;
 
-    //    for (int i = 0; i < expDropAmount; i++)
-    //    {
-    //        Vector3 randomPos = transform.position + (Vector3)Random.insideUnitCircle * expDropRadius;
-    //        GameObject orb = Instantiate(expPrefab, randomPos, Quaternion.identity);
+        for (int i = 0; i < expDropAmount; i++)
+        {
+            Vector3 randomPos = transform.position + (Vector3)Random.insideUnitCircle * expDropRadius;
+            GameObject orb = Instantiate(expPrefab, randomPos, Quaternion.identity);
 
-    //        EXPDrop orbScript = orb.GetComponent<EXPDrop>();
-    //        if (orbScript != null)
-    //        {
-    //            orbScript.expValue = expValue;
-    //        }
-    //    }
-    //}
+            EXPDrop orbScript = orb.GetComponent<EXPDrop>();
+            if (orbScript != null)
+            {
+                orbScript.expValue = expValue;
+            }
+        }
+    }
 
     public void DealDamageToPlayer()
     {

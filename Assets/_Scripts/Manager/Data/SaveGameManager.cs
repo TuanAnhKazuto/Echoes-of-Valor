@@ -101,21 +101,15 @@ public class SaveGameManager : MonoBehaviour
         }
     }
 
+
     private void LoadStats()
     {
         if (curData == null) return;
         playerStats.playerId = curData.playerId;
         playerStats.playerName = curData.playerName;
         playerStats.healthBar.nameText.text = curData.playerName;
-
         playerStats.characterClass = curData.characterClass;
-
-        playerStats.expManager.currentLevel = curData.level;
-        playerStats.expManager.UpdateLevel();
-        playerStats.expManager.totalExp = curData.exp;
-        playerStats.expManager.UpdateInterface();
-
-        playerStats.maxHealth = curData.maxHealth;
+        playerStats.level = curData.level;
         playerStats.currentHealth = curData.health; 
         playerStats.baseDefense = (int)curData.defense;
         playerStats.baseDamage = (int)curData.damage;
@@ -159,13 +153,11 @@ public class SaveGameManager : MonoBehaviour
         curData.playerId = playerStats.playerId;
         curData.playerName = playerStats.playerName;
         curData.characterClass = playerStats.characterClass;
-        curData.level = playerStats.expManager.currentLevel;
-        curData.exp = playerStats.expManager.totalExp;
+        curData.level = playerStats.level;
 
-        curData.maxHealth = (int)playerStats.maxHealth;
         curData.health = playerStats.currentHealth;
-        curData.defense = playerStats.baseDefense;
-        curData.damage = playerStats.baseDamage;
+        curData.defense = playerStats.TotalDefense;
+        curData.damage = playerStats.TotalDamage;
     }
 
     private void SavePosition()
