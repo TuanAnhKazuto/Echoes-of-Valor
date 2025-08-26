@@ -1,9 +1,11 @@
 ﻿using UnityEngine;
 using UnityEngine.UI;
 using TMPro;
+using System.Collections.Generic;
 
 public class MenuSetting : MonoBehaviour
 {
+    [Header("Canvas")]
     public GameObject canvasControl;
     public GameObject canvasHowToPlay;
     public GameObject canvasThank;
@@ -19,8 +21,9 @@ public class MenuSetting : MonoBehaviour
     public TextMeshProUGUI musicVolumeText;
     public TextMeshProUGUI sfxVolumeText;
 
+    [Header("Audio Sources")]
     public AudioSource musicSource;
-    public AudioSource sfxSource;
+    public List<AudioSource> sfxSources = new List<AudioSource>();
 
     private GameObject currentCanvas;
 
@@ -32,6 +35,8 @@ public class MenuSetting : MonoBehaviour
         masterSlider.onValueChanged.AddListener(SetMasterVolume);
         musicSlider.onValueChanged.AddListener(SetMusicVolume);
         sfxSlider.onValueChanged.AddListener(SetSFXVolume);
+
+        ApplyVolumes(); // áp dụng ngay khi start
     }
 
     public void ShowCanvas(GameObject canvas)
@@ -48,6 +53,7 @@ public class MenuSetting : MonoBehaviour
             currentCanvas.SetActive(false);
             currentCanvas = null;
         }
+        PlayerPrefs.Save();
     }
 
     void CloseAllCanvas()
@@ -59,44 +65,58 @@ public class MenuSetting : MonoBehaviour
 
     void SetMasterVolume(float value)
     {
-        AudioListener.volume = value;
         PlayerPrefs.SetFloat("MasterVolume", value);
         UpdateVolumeText(masterVolumeText, "Master", value);
+        ApplyVolumes();
     }
 
     void SetMusicVolume(float value)
     {
-        if (musicSource != null)
-            musicSource.volume = value;
         PlayerPrefs.SetFloat("MusicVolume", value);
         UpdateVolumeText(musicVolumeText, "Music", value);
+        ApplyVolumes();
     }
 
     void SetSFXVolume(float value)
     {
-        if (sfxSource != null)
-            sfxSource.volume = value;
         PlayerPrefs.SetFloat("SFXVolume", value);
         UpdateVolumeText(sfxVolumeText, "SFX", value);
+        ApplyVolumes();
     }
-    //Save Volume
+
     void LoadAudioSettings()
     {
-        float master = PlayerPrefs.GetFloat("MasterVolume", 1f);
-        float music = PlayerPrefs.GetFloat("MusicVolume", 1f);
-        float sfx = PlayerPrefs.GetFloat("SFXVolume", 1f);
+        masterSlider.value = PlayerPrefs.GetFloat("MasterVolume", 1f);
+        musicSlider.value = PlayerPrefs.GetFloat("MusicVolume", 1f);
+        sfxSlider.value = PlayerPrefs.GetFloat("SFXVolume", 1f);
 
-        masterSlider.value = master;
-        musicSlider.value = music;
-        sfxSlider.value = sfx;
+        UpdateVolumeText(masterVolumeText, "Master", masterSlider.value);
+        UpdateVolumeText(musicVolumeText, "Music", musicSlider.value);
+        UpdateVolumeText(sfxVolumeText, "SFX", sfxSlider.value);
+    }
 
-        AudioListener.volume = master;
-        if (musicSource != null) musicSource.volume = music;
-        if (sfxSource != null) sfxSource.volume = sfx;
+    void ApplyVolumes()
+    {
+        float master = masterSlider.value;
+        float music = musicSlider.value;
+        float sfx = sfxSlider.value;
 
-        UpdateVolumeText(masterVolumeText, "Master", master);
-        UpdateVolumeText(musicVolumeText, "Music", music);
-        UpdateVolumeText(sfxVolumeText, "SFX", sfx);
+        // Music
+        if (musicSource != null)
+        {
+            musicSource.volume = master * music;
+            musicSource.mute = (musicSource.volume <= 0.001f);
+        }
+
+        // SFX
+        foreach (AudioSource sfxSource in sfxSources)
+        {
+            if (sfxSource != null)
+            {
+                sfxSource.volume = master * sfx;
+                sfxSource.mute = (sfxSource.volume <= 0.001f);
+            }
+        }
     }
 
     void UpdateVolumeText(TextMeshProUGUI text, string label, float value)
