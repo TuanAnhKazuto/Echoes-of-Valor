@@ -169,7 +169,7 @@ public class SaveGameManager : MonoBehaviour
         SaveSystem.SaveGame(curData);
     }
 
-    private void SavePlayerStats()
+    public void SavePlayerStats()
     {
         curData.playerId = playerStats.playerId;
         curData.playerName = playerStats.playerName;
@@ -215,7 +215,7 @@ public class SaveGameManager : MonoBehaviour
         }
     }
 
-    private void SaveInventory()
+    public void SaveInventory()
     {
         curData.inventoryData.cors = cor.cor;
 
