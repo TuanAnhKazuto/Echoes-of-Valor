@@ -6,6 +6,7 @@ public class EnemyStats : MonoBehaviour
 {
     [Header("Component")]
     public CharacterStats characterStats;
+    [SerializeField] public SaveGameManager saveGameManager;
     [SerializeField] PlayerExpManager playerExpManager;
     public SkeletonMovement skeletonMovement;
 
@@ -45,12 +46,32 @@ public class EnemyStats : MonoBehaviour
     {
         skeletonMovement = GetComponent<SkeletonMovement>();
         ingredientPickup = GetComponent<IngredientPickup>();
+        saveGameManager = FindAnyObjectByType<SaveGameManager>();
 
         currentHealth = maxHealth;
         skeletonMovement.animator.SetFloat("HP", currentHealth);
         levelText.text = "Lv. " + level.ToString();
         healthBar.UpdateHealth(currentHealth, maxHealth);
+    }
 
+    private void Update()
+    {
+        Invoke(nameof(GetComponnet), 2f);
+    }
+
+    void GetComponnet()
+    {
+        if (characterStats == null)
+        {
+            characterStats = saveGameManager.playerStats;
+            return;
+        }
+
+        if (playerExpManager == null)
+        {
+            playerExpManager = saveGameManager.playerStats.expManager;
+            return;
+        }
     }
 
     public void LevelUp()
@@ -145,7 +166,7 @@ public class EnemyStats : MonoBehaviour
             if (characterStats == null)
             {
                 characterStats = other.GetComponentInParent<CharacterStats>();
-                playerExpManager = characterStats.expManager;
+                //playerExpManager = characterStats.expManager;
             }
 
             TakeDamage(characterStats.TotalDamage);
