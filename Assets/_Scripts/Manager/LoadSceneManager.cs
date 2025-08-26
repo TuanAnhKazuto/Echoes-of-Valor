@@ -14,6 +14,8 @@ public class LoadSceneManager : MonoBehaviour
             saveGameManager.curData.sceneName = "Scene2";
 
             saveGameManager.SaveWeapons();
+            saveGameManager.SaveInventory();
+            saveGameManager.SavePlayerStats();
 
             SaveSystem.SaveGame(saveGameManager.curData);
 
