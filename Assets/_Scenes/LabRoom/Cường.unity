@@ -1230,7 +1230,7 @@ PrefabInstance:
     - target: {fileID: 8281338608645403561, guid: 4d2ee5f6a7438074ca0779ca792324ba, type: 3}
       propertyPath: winGamePanel
       value: 
-      objectReference: {fileID: 571302632}
+      objectReference: {fileID: 0}
     - target: {fileID: 8281338608645403561, guid: 4d2ee5f6a7438074ca0779ca792324ba, type: 3}
       propertyPath: markerManager
       value: 
@@ -1248,11 +1248,6 @@ PrefabInstance:
     m_AddedGameObjects: []
     m_AddedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 4d2ee5f6a7438074ca0779ca792324ba, type: 3}
---- !u!1 &571302632 stripped
-GameObject:
-  m_CorrespondingSourceObject: {fileID: 8225911548327224702, guid: b43c61955286f6b44a26073f7d8e0083, type: 3}
-  m_PrefabInstance: {fileID: 1105887943}
-  m_PrefabAsset: {fileID: 0}
 --- !u!1001 &578225473
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -2334,32 +2329,12 @@ PrefabInstance:
     m_TransformParent: {fileID: 0}
     m_Modifications:
     - target: {fileID: 426350705080597118, guid: b43c61955286f6b44a26073f7d8e0083, type: 3}
-      propertyPath: characterStats
-      value: 
-      objectReference: {fileID: 0}
-    - target: {fileID: 426350705080597118, guid: b43c61955286f6b44a26073f7d8e0083, type: 3}
       propertyPath: saveGameManager
       value: 
       objectReference: {fileID: 594819445}
-    - target: {fileID: 2131194645816594740, guid: b43c61955286f6b44a26073f7d8e0083, type: 3}
-      propertyPath: m_IsActive
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 4570434617686652973, guid: b43c61955286f6b44a26073f7d8e0083, type: 3}
-      propertyPath: m_IsActive
-      value: 0
-      objectReference: {fileID: 0}
     - target: {fileID: 4786057184746772919, guid: b43c61955286f6b44a26073f7d8e0083, type: 3}
       propertyPath: m_Name
       value: PlayerCanvas
-      objectReference: {fileID: 0}
-    - target: {fileID: 4786057184746772919, guid: b43c61955286f6b44a26073f7d8e0083, type: 3}
-      propertyPath: m_IsActive
-      value: 1
-      objectReference: {fileID: 0}
-    - target: {fileID: 5122578772919861534, guid: b43c61955286f6b44a26073f7d8e0083, type: 3}
-      propertyPath: m_IsActive
-      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 5662681988378495663, guid: b43c61955286f6b44a26073f7d8e0083, type: 3}
       propertyPath: m_Pivot.x
@@ -2441,9 +2416,17 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
-    - target: {fileID: 6292398862334935988, guid: b43c61955286f6b44a26073f7d8e0083, type: 3}
+    - target: {fileID: 8225911548327224702, guid: b43c61955286f6b44a26073f7d8e0083, type: 3}
+      propertyPath: m_Name
+      value: Panel Victory
+      objectReference: {fileID: 0}
+    - target: {fileID: 8225911548327224702, guid: b43c61955286f6b44a26073f7d8e0083, type: 3}
       propertyPath: m_IsActive
-      value: 0
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 8225911548327224702, guid: b43c61955286f6b44a26073f7d8e0083, type: 3}
+      propertyPath: m_TagString
+      value: VictoryPanel
       objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []

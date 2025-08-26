@@ -19,17 +19,28 @@ public class PlayerQuest : MonoBehaviour
 
     private void Start()
     {
-        
+
         if (playerQuestPanel == null)
         {
             playerQuestPanel = FindAnyObjectByType<PaneQuest>();
         }
-        
+
         if (markerManager == null)
         {
             markerManager = FindAnyObjectByType<QuestMarkerManager>();
         }
 
+        if (winGamePanel == null)
+        {
+            winGamePanel = GameObject.Find("Panel Victory"); 
+            if (winGamePanel == null)
+                Debug.LogWarning("⚠️ Không tìm thấy Panel Victory trong scene!");
+        }
+      
+        if (winGamePanel != null)
+        {
+            winGamePanel.SetActive(false);
+        }
     }
     public void TakeQuest(QuestItem questItem)
     {
@@ -130,17 +141,34 @@ public class PlayerQuest : MonoBehaviour
                 Debug.Log($"Nhận nguyên liệu: {ingr.ingredientName} x{questItem.rewardIngredientCount}");
             }
 
-            playerQuestPanel.ShowAllQuestItem(questItems);
-
-            if (questItem.isFinalQuest)
-            {
-                Debug.Log("🎉 Hoàn thành nhiệm vụ cuối cùng - Win Game!");
-                if (winGamePanel != null)
-                    winGamePanel.SetActive(true);
-            }
+            playerQuestPanel.ShowAllQuestItem(questItems);           
         }
     }
 
+    public void ShowWinGame()
+    {
+        if (winGamePanel == null) return;
 
+        StartCoroutine(ShowWinGameWithDelay(1.5f)); // chờ 1.5 giây sau khi NPC panel tắt
+    }
+
+    private IEnumerator ShowWinGameWithDelay(float delay)
+    {
+        yield return new WaitForSeconds(delay);
+
+        winGamePanel.SetActive(true);
+
+        // Khóa điều khiển
+        var playerController = FindAnyObjectByType<PlayerController>();
+        if (playerController != null)
+        {
+            playerController.canMove = false;
+            playerController.isTalkingWithNPC = true;
+        }
+
+        Cursor.visible = true;
+        Cursor.lockState = CursorLockMode.None;
+        Time.timeScale = 0f;
+    }
 
 }

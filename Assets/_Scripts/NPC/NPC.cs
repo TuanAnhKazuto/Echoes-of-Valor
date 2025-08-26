@@ -252,8 +252,15 @@ public class NPC : MonoBehaviour
         chatText.text = rewardsSummary;
         
         yield return new WaitForSeconds(2.5f);
+
         playerQuests.CompleteQuest(finishedQuest);
-        
+
+        if (finishedQuest.isFinalQuest)
+        {
+            // gọi hiển thị WinGame SAU khi panel NPC đóng
+            StartCoroutine(ShowWinGameAfterDialogue());
+        }
+
         currentQuestIndex++;
         questGiven = false;
 
@@ -390,6 +397,15 @@ public class NPC : MonoBehaviour
                 Invoke(nameof(HidePanel), 2f);
             }
         });
+    }
+
+    private IEnumerator ShowWinGameAfterDialogue()
+    {        
+        yield return new WaitForSeconds(1f);
+        HidePanel(); 
+        yield return new WaitForSeconds(0.5f); 
+
+        playerQuests.ShowWinGame();
     }
 
     // Nhận nhiệm vụ và đóng bảng chat
