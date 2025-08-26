@@ -263,8 +263,17 @@ public class NPC : MonoBehaviour
 
         currentQuestIndex++;
         questGiven = false;
+        
+        if (currentQuestIndex < questList.Count)
+        {
+            QuestItem nextQuest = questList[currentQuestIndex];
+            nextQuest.questGiverLocation = this.transform;
 
-        if (currentQuestIndex >= questList.Count)
+            playerQuests.TakeQuest(nextQuest);
+            chatText.text = $"Bạn đã nhận nhiệm vụ mới: {nextQuest.QuetsItemName}";
+            yield return new WaitForSeconds(2f);
+        }
+        else
         {
             chatText.text = "Bạn đã hoàn thành tất cả nhiệm vụ rồi. Cảm ơn bạn.";
             yield return new WaitForSeconds(2f);
