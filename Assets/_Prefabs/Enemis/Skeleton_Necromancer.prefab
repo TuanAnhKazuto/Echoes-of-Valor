@@ -649,6 +649,10 @@ MonoBehaviour:
   attackCooldown: 3
   currentState: 0
   dropItem: {fileID: 2139211537641842521, guid: 6fc2c2dfb7cfd4649aabe962d7f24774, type: 3}
+  expPrefab: {fileID: 0}
+  expDropAmount: 5
+  expValue: 1
+  expDropRadius: 1.5
   attackSound: {fileID: 8300000, guid: f0f280c5e73a16b458467a1fd763f1c4, type: 3}
   spinAttackSound: {fileID: 8300000, guid: f0f280c5e73a16b458467a1fd763f1c4, type: 3}
   hitSound: {fileID: 8300000, guid: f0f280c5e73a16b458467a1fd763f1c4, type: 3}
@@ -672,6 +676,7 @@ MonoBehaviour:
     characterClass: 
     level: 0
     exp: 0
+    maxHealth: 0
     health: 0
     defense: 0
     damage: 0
@@ -682,6 +687,10 @@ MonoBehaviour:
     positionZ: 0
     rotationY: 0
     weapons: []
+    inventoryData:
+      cors: 0
+      items: []
+      ingredients: []
     worldLevel: 0
   characterStats: {fileID: 0}
   enemyAnimator: {fileID: 5176556245031628319}
@@ -690,6 +699,7 @@ MonoBehaviour:
   nameText: {fileID: 8303365808617268426}
   bossUIRoot: {fileID: 1146212424761197132}
   level: 20
+  expReward: 100
   maxHealth: 1000
   currentHealth: 0
   baseDamage: 10
