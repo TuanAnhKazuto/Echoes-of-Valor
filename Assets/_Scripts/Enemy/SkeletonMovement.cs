@@ -6,9 +6,17 @@ public class SkeletonMovement : MonoBehaviour
 {
     public float radiusLookAt = 10f;
     public float attackRange = 8f;
-    private float originalSpeed = 6f;
+    private float originalSpeed;
 
-    Vector3 startTransform;
+    [Header("Square Patrol Settings")]
+    public float patrolRange = 5f;      // độ rộng cạnh hình vuông
+    public float patrolWaitTime = 2f;   // dừng lại mỗi góc
+    private int currentPatrolIndex = 0;
+    private bool isWaiting = false;
+    private Vector3[] patrolPoints;
+
+    Vector3 startPosition;
+    Quaternion startRotation;
 
     public bool isSpawned = false;
     SaveGameManager saveGameManager;
@@ -34,8 +42,17 @@ public class SkeletonMovement : MonoBehaviour
         animator = GetComponent<Animator>();
         enemyStats = GetComponent<EnemyStats>();
 
-        startTransform = transform.position;
+        startPosition = transform.position;
+        startRotation = transform.rotation;
 
+        originalSpeed = navAgent.speed;
+
+        // Tạo sẵn 4 điểm đi tuần hình vuông quanh vị trí spawn
+        patrolPoints = new Vector3[4];
+        patrolPoints[0] = startPosition + new Vector3(patrolRange, 0, patrolRange);
+        patrolPoints[1] = startPosition + new Vector3(-patrolRange, 0, patrolRange);
+        patrolPoints[2] = startPosition + new Vector3(-patrolRange, 0, -patrolRange);
+        patrolPoints[3] = startPosition + new Vector3(patrolRange, 0, -patrolRange);
     }
 
     private void Start()
@@ -45,7 +62,7 @@ public class SkeletonMovement : MonoBehaviour
 
     private void Update()
     {
-        if (saveGameManager.isCharacterSpawned)
+        if (saveGameManager.isCharacterSpawned && player == null)
         {
             player = GameObject.FindGameObjectWithTag("Player").transform;
         }
@@ -55,7 +72,13 @@ public class SkeletonMovement : MonoBehaviour
             isSpawned = true;
         }
         if (!isSpawned) return;
-        if (enemyStats.isDie) return;
+        if (enemyStats.isDie)
+        {
+            navAgent.ResetPath();
+            animator.SetFloat("Speed", 0);
+            return;
+        }
+
         Movement();
     }
 
@@ -80,52 +103,36 @@ public class SkeletonMovement : MonoBehaviour
             Vector3 directionToTarget = (target.position - transform.position).normalized;
             float distanceToTarget = Vector3.Distance(transform.position, target.position);
 
-            if (distanceToTarget <= ditectionRadius)
+            if (distanceToTarget <= ditectionRadius &&
+                Vector3.Angle(transform.forward, directionToTarget) < agent / 2 &&
+                !Physics.Raycast(transform.position, directionToTarget, distanceToTarget, obstructionMask))
             {
                 canSeePlayer = true;
-                animator.SetBool("Ditection", true);
-                return;
-            }
-
-            if (Vector3.Angle(transform.forward, directionToTarget) < agent / 2)
-            {
-
-
-                if (!Physics.Raycast(transform.position, directionToTarget, distanceToTarget, obstructionMask))
-                {
-                    canSeePlayer = true;
-                    animator.SetBool("Ditection", true);
-                }
-                else
-                {
-                    canSeePlayer = false;
-                    animator.SetBool("Ditection", false);
-                }
             }
             else
             {
                 canSeePlayer = false;
-                animator.SetBool("Ditection", false);
             }
         }
-        else if (canSeePlayer)
+        else
         {
             canSeePlayer = false;
-            animator.SetBool("Ditection", false);
         }
+
+        animator.SetBool("Ditection", canSeePlayer);
     }
 
     public void Movement()
     {
-        float distance = Vector3.Distance(transform.position, player.position);
+        float distance = (player != null) ? Vector3.Distance(transform.position, player.position) : Mathf.Infinity;
 
         if (!canSeePlayer)
         {
-            navAgent.SetDestination(startTransform);
-            animator.SetFloat("Speed", navAgent.velocity.magnitude);
+            PatrolSquare();
             return;
         }
 
+        // Chase & attack player
         if (distance <= radiusLookAt)
         {
             navAgent.SetDestination(player.position);
@@ -146,5 +153,31 @@ public class SkeletonMovement : MonoBehaviour
                 navAgent.speed = originalSpeed;
             }
         }
+    }
+
+    private void PatrolSquare()
+    {
+        if (patrolPoints.Length == 0) return;
+        if (isWaiting) return;
+
+        Vector3 targetPoint = patrolPoints[currentPatrolIndex];
+        navAgent.speed = originalSpeed;
+        navAgent.SetDestination(targetPoint);
+        animator.SetFloat("Speed", navAgent.velocity.magnitude);
+
+        if (Vector3.Distance(transform.position, targetPoint) < 1f)
+        {
+            StartCoroutine(WaitAndGoNext());
+        }
+    }
+
+    IEnumerator WaitAndGoNext()
+    {
+        isWaiting = true;
+        animator.SetFloat("Speed", 0);
+        yield return new WaitForSeconds(patrolWaitTime);
+
+        currentPatrolIndex = (currentPatrolIndex + 1) % patrolPoints.Length;
+        isWaiting = false;
     }
 }
