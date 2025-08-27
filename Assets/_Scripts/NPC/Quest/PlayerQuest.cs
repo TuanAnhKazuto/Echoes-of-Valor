@@ -14,6 +14,7 @@ public class PlayerQuest : MonoBehaviour
     // Nhận nhiệm vụ 
     public GameObject winGamePanel;
 
+    private List<System.Action> pendingRewards = new List<System.Action>();
     // chỉ dẫn nhiệm vụ
     public QuestMarkerManager markerManager;
 
@@ -111,45 +112,51 @@ public class PlayerQuest : MonoBehaviour
 
             Debug.Log($"Đã trả nhiệm vụ: {questItem.QuetsItemName}, nhận {questItem.rewardAmount} vàng");
 
-            FindAnyObjectByType<Cor>().IncreaseCor(questItem.rewardAmount);        
-            Item coinItem = Resources.Load<Item>("Items/GoldItem");
-            if (coinItem != null)
-            {
-                Debug.Log($"Đã load được GoldItem, hiển thị x{questItem.rewardAmount}");
-                PickupMessenger.Instance.ShowPickupMessage(coinItem, questItem.rewardAmount);
-            }
-            else
-            {
-                Debug.LogWarning("Không tìm thấy GoldItem trong Resources/Items!");
-            }
-
-            
+            // 🟢 Thay vì hiện ngay, ta LƯU lại hành động hiển thị thưởng
+            pendingRewards.Add(() => {
+                FindAnyObjectByType<Cor>().IncreaseCor(questItem.rewardAmount);
+                Item coinItem = Resources.Load<Item>("Items/GoldItem");
+                if (coinItem != null)
+                    PickupMessenger.Instance.ShowPickupMessage(coinItem, questItem.rewardAmount);
+            });
+          
             foreach (var item in questItem.rewardItems)
             {
                 int amount = item.isCurrency ? questItem.rewardAmount : 1;
-
                 InventoryManager.Instance.Add(item);
-                PickupMessenger.Instance.ShowPickupMessage(item, amount);
-                Debug.Log($"Nhận thêm vật phẩm: {item.itemName} x{amount}");
+
+                pendingRewards.Add(() => {
+                    PickupMessenger.Instance.ShowPickupMessage(item, amount);
+                });
             }
 
-            
             foreach (var ingr in questItem.rewardIngredients)
             {
                 InventoryManager.Instance.AddIngredients(ingr, questItem.rewardIngredientCount);
-                PickupMessenger.Instance.ShowPickupIngredientMessage(ingr, questItem.rewardIngredientCount);
-                Debug.Log($"Nhận nguyên liệu: {ingr.ingredientName} x{questItem.rewardIngredientCount}");
+
+                pendingRewards.Add(() => {
+                    PickupMessenger.Instance.ShowPickupIngredientMessage(ingr, questItem.rewardIngredientCount);
+                });
             }
 
             playerQuestPanel.ShowAllQuestItem(questItems);           
         }
+    }
+  
+    public void ShowPendingRewards()
+    {
+        foreach (var rewardAction in pendingRewards)
+        {
+            rewardAction.Invoke();
+        }
+        pendingRewards.Clear();
     }
 
     public void ShowWinGame()
     {
         if (winGamePanel == null) return;
 
-        StartCoroutine(ShowWinGameWithDelay(1.5f)); // chờ 1.5 giây sau khi NPC panel tắt
+        StartCoroutine(ShowWinGameWithDelay(4f)); // chờ 1.5 giây sau khi NPC panel tắt
     }
 
     private IEnumerator ShowWinGameWithDelay(float delay)
