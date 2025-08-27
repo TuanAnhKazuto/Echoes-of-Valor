@@ -1,9 +1,11 @@
 ﻿using UnityEngine;
 using UnityEngine.UI;
 using TMPro;
+using UnityEngine.Audio;
 
 public class UIAudioSetting : MonoBehaviour
 {
+    public AudioMixer audioMixer;
     [Header("Sliders")]
     public Slider masterSlider;
     public Slider musicSlider;
@@ -19,24 +21,84 @@ public class UIAudioSetting : MonoBehaviour
 
     [Header("Buttons")]
     public Button exitButton;  
-    public Button openButton;   
+    public Button openButton;
+
+
+    private void Start()
+    {
+        if (PlayerPrefs.HasKey("MasterVol"))
+        {
+            LoadVol();
+        }
+        else
+        {
+            ChangeSFXVol();
+            ChangeMasterVol();
+            ChangeMusicVol();
+        }
+    }
+
+    public void LoadVol()
+    {
+        masterSlider.value = PlayerPrefs.GetFloat("MasterVol");
+        sfxSlider.value = PlayerPrefs.GetFloat("SFXVol");
+        musicSlider.value = PlayerPrefs.GetFloat("MusicVol");
+
+        ChangeMasterVol();
+        ChangeMusicVol();
+        ChangeSFXVol();
+    }
+
+    public void ChangeMasterVol()
+    {
+        float vol = masterSlider.value;
+        audioMixer.SetFloat("master", Mathf.Log10(vol) * 20);
+
+        float volText = vol * 100;
+        masterVolumeText.text = volText.ToString("0");
+
+        PlayerPrefs.SetFloat("MasterVol", vol);
+        //PlayerPrefs.Save();
+    }
+
+    public void ChangeSFXVol()
+    {
+        float vol = sfxSlider.value;
+        audioMixer.SetFloat("sfx", Mathf.Log10(vol) * 20);
+
+        float volText = vol * 100;
+        sfxVolumeText.text = volText.ToString("0");
+
+        PlayerPrefs.SetFloat("SFXVol", vol);
+    }
+
+    public void ChangeMusicVol()
+    {
+        float vol = musicSlider.value;
+        audioMixer.SetFloat("music", Mathf.Log10(vol)*20);
+
+        float volText = vol * 100;
+        musicVolumeText.text = volText.ToString("0");
+
+        PlayerPrefs.SetFloat("MusicVol", vol);
+    }
 
     void OnEnable()
     {
-        if (AudioManager.Instance != null)
-        {
-            masterSlider.value = AudioManager.Instance.GetMasterVolume();
-            musicSlider.value = AudioManager.Instance.GetMusicVolume();
-            sfxSlider.value = AudioManager.Instance.GetSFXVolume();
-        }
+        //    if (AudioManager.Instance != null)
+        //    {
+        //        masterSlider.value = AudioManager.Instance.GetMasterVolume();
+        //        musicSlider.value = AudioManager.Instance.GetMusicVolume();
+        //        sfxSlider.value = AudioManager.Instance.GetSFXVolume();
+        //    }
 
-        UpdateVolumeText(masterVolumeText, masterSlider.value);
-        UpdateVolumeText(musicVolumeText, musicSlider.value);
-        UpdateVolumeText(sfxVolumeText, sfxSlider.value);
+        //    UpdateVolumeText(masterVolumeText, masterSlider.value);
+        //    UpdateVolumeText(musicVolumeText, musicSlider.value);
+        //    UpdateVolumeText(sfxVolumeText, sfxSlider.value);
 
-        masterSlider.onValueChanged.AddListener(OnMasterChange);
-        musicSlider.onValueChanged.AddListener(OnMusicChange);
-        sfxSlider.onValueChanged.AddListener(OnSFXChange);
+        //    masterSlider.onValueChanged.AddListener(OnMasterChange);
+        //    musicSlider.onValueChanged.AddListener(OnMusicChange);
+        //    sfxSlider.onValueChanged.AddListener(OnSFXChange);
 
         if (exitButton != null)
             exitButton.onClick.AddListener(ClosePanel);
@@ -45,11 +107,11 @@ public class UIAudioSetting : MonoBehaviour
             openButton.onClick.AddListener(OpenPanel);
     }
 
-    void OnDisable()
+void OnDisable()
     {
-        masterSlider.onValueChanged.RemoveListener(OnMasterChange);
-        musicSlider.onValueChanged.RemoveListener(OnMusicChange);
-        sfxSlider.onValueChanged.RemoveListener(OnSFXChange);
+        //masterSlider.onValueChanged.RemoveListener(OnMasterChange);
+        //musicSlider.onValueChanged.RemoveListener(OnMusicChange);
+        //sfxSlider.onValueChanged.RemoveListener(OnSFXChange);
 
         if (exitButton != null)
             exitButton.onClick.RemoveListener(ClosePanel);
@@ -58,37 +120,39 @@ public class UIAudioSetting : MonoBehaviour
             openButton.onClick.RemoveListener(OpenPanel);
     }
 
-    void OnMasterChange(float v)
-    {
-        AudioManager.Instance.SetMasterVolume(v);
-        UpdateVolumeText(masterVolumeText, v);
-    }
+    //void OnMasterChange(float v)
+    //{
+    //    AudioManager.Instance.SetMasterVolume(v);
+    //    UpdateVolumeText(masterVolumeText, v);
+    //}
 
-    void OnMusicChange(float v)
-    {
-        AudioManager.Instance.SetMusicVolume(v);
-        UpdateVolumeText(musicVolumeText, v);
-    }
+    //void OnMusicChange(float v)
+    //{
+    //    AudioManager.Instance.SetMusicVolume(v);
+    //    UpdateVolumeText(musicVolumeText, v);
+    //}
 
-    void OnSFXChange(float v)
-    {
-        AudioManager.Instance.SetSFXVolume(v);
-        UpdateVolumeText(sfxVolumeText, v);
-    }
+    //void OnSFXChange(float v)
+    //{
+    //    AudioManager.Instance.SetSFXVolume(v);
+    //    UpdateVolumeText(sfxVolumeText, v);
+    //}
 
-    void UpdateVolumeText(TextMeshProUGUI text, float value)
-    {
-        if (text == null) return;
-        text.text = Mathf.RoundToInt(value * 100f).ToString();
-    }
+    //void UpdateVolumeText(TextMeshProUGUI text, float value)
+    //{
+    //    if (text == null) return;
+    //    text.text = Mathf.RoundToInt(value * 100f).ToString();
+    //}
 
-    void ClosePanel()
+
+
+    public void ClosePanel()
     {
         if (panelMusic != null)
             panelMusic.SetActive(false);
     }
 
-    void OpenPanel()
+    public void OpenPanel()
     {
         if (panelMusic != null)
             panelMusic.SetActive(true);

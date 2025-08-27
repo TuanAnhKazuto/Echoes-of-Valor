@@ -705,6 +705,7 @@ MonoBehaviour:
   levelUpEffect: {fileID: 7425303213891606552}
   animator: {fileID: 3933366847016646908}
   CursorTarget: {fileID: 7267973744197770631}
+  playerController: {fileID: 0}
   playerId: 0
   playerName: 
   characterClass: 
@@ -764,6 +765,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   questItems: []
   playerQuestPanel: {fileID: 0}
+  winGamePanel: {fileID: 0}
   markerManager: {fileID: 0}
 --- !u!114 &-6365432411634748350
 MonoBehaviour:
@@ -1734,7 +1736,7 @@ AudioSource:
   m_GameObject: {fileID: 7818328315512074712}
   m_Enabled: 1
   serializedVersion: 4
-  OutputAudioMixerGroup: {fileID: 0}
+  OutputAudioMixerGroup: {fileID: 1504266144363201525, guid: 4e86f872a3438f44d84169e18db1ec15, type: 2}
   m_audioClip: {fileID: 0}
   m_Resource: {fileID: 0}
   m_PlayOnAwake: 1

@@ -1069,7 +1069,7 @@ AudioSource:
   m_GameObject: {fileID: 3304236726975040079}
   m_Enabled: 1
   serializedVersion: 4
-  OutputAudioMixerGroup: {fileID: 0}
+  OutputAudioMixerGroup: {fileID: 1504266144363201525, guid: 4e86f872a3438f44d84169e18db1ec15, type: 2}
   m_audioClip: {fileID: 0}
   m_Resource: {fileID: 0}
   m_PlayOnAwake: 1
@@ -2139,6 +2139,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   questItems: []
   playerQuestPanel: {fileID: 0}
+  winGamePanel: {fileID: 0}
   markerManager: {fileID: 0}
 --- !u!114 &2516268073084848591
 MonoBehaviour:
@@ -2176,6 +2177,7 @@ MonoBehaviour:
   levelUpEffect: {fileID: 288272805584170194}
   animator: {fileID: 2954932895530067493}
   CursorTarget: {fileID: 2804275167827380967}
+  playerController: {fileID: 0}
   playerId: 101
   playerName: 
   characterClass: Knight

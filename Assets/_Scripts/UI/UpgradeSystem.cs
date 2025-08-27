@@ -4,7 +4,7 @@ using UnityEngine.UI;
 
 public class UpgradeSystem : MonoBehaviour
 {
-    public int e = 20; 
+    public int e = 60; 
 
     [Header("Link to Character")]
     public CharacterStats characterStats;
@@ -34,7 +34,7 @@ public class UpgradeSystem : MonoBehaviour
     public Button addAttackButton;
     public Button addSpeedButton;
 
-    private const int cost = 5;
+    private const int cost = 2;
 
     [Header("Upgrade Panel")]
     public GameObject upgradePanel;
@@ -126,7 +126,6 @@ public class UpgradeSystem : MonoBehaviour
         if (e >= cost)
         {
             e -= cost;
-            // nếu nhân vật có component di chuyển, ta tăng speed ở đó
             characterStats.baseDefense += 1; // tạm thời thay cho speed nếu chưa có biến speed
 
             speedUpgradeCount++;
@@ -142,7 +141,7 @@ public class UpgradeSystem : MonoBehaviour
         hpText.text = "Máu tối đa: " + characterStats.maxHealth;
         manaText.text = "Mana tối đa: " + characterStats.maxMana;
         attackText.text = "Tấn công: " + characterStats.baseDamage;
-        speedText.text = "Phòng thủ (tạm speed): " + characterStats.baseDefense;
+        speedText.text = "Phòng thủ: " + characterStats.baseDefense;
 
         hpCountText.text = "" + hpUpgradeCount;
         manaCountText.text = "" + manaUpgradeCount;
