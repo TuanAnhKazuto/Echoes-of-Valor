@@ -4,7 +4,7 @@ using UnityEngine;
 
 public class WeatherManager : MonoBehaviour
 {
-    [SerializeField] private TenkokuModule tenkokuModule;
+    public TenkokuModule tenkokuModule;
     public float weatherChangeInterval = 300f;
     public float transitionDuration = 5f;
 
