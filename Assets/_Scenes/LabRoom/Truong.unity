@@ -705,11 +705,6 @@ Mesh:
     offset: 0
     size: 0
     path: 
---- !u!1 &502232448 stripped
-GameObject:
-  m_CorrespondingSourceObject: {fileID: 3432828208371693777, guid: 7a55015a02a19ea4aa1648d77f9031cd, type: 3}
-  m_PrefabInstance: {fileID: 2498331431533214536}
-  m_PrefabAsset: {fileID: 0}
 --- !u!1 &534902751 stripped
 GameObject:
   m_CorrespondingSourceObject: {fileID: 3061928288702596219, guid: da01e34a271ef4e4092059dd7f067c84, type: 3}
@@ -2748,7 +2743,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 0
+  m_IsActive: 1
 --- !u!114 &1951130403
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -6200,6 +6195,10 @@ PrefabInstance:
       propertyPath: m_Name
       value: GameResultManager
       objectReference: {fileID: 0}
+    - target: {fileID: 3099337824632472367, guid: 24f1a58580258a145980babcd82a0a46, type: 3}
+      propertyPath: m_AnchoredPosition.x
+      value: -1348
+      objectReference: {fileID: 0}
     - target: {fileID: 4997327630171135005, guid: 24f1a58580258a145980babcd82a0a46, type: 3}
       propertyPath: m_Pivot.x
       value: 0.5
@@ -6280,10 +6279,26 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
-    - target: {fileID: 5752659805252658299, guid: 24f1a58580258a145980babcd82a0a46, type: 3}
-      propertyPath: player
-      value: 
-      objectReference: {fileID: 502232448}
+    - target: {fileID: 8982440217145426106, guid: 24f1a58580258a145980babcd82a0a46, type: 3}
+      propertyPath: m_LocalScale.x
+      value: 2.8174965
+      objectReference: {fileID: 0}
+    - target: {fileID: 8982440217145426106, guid: 24f1a58580258a145980babcd82a0a46, type: 3}
+      propertyPath: m_LocalScale.y
+      value: 2.8174965
+      objectReference: {fileID: 0}
+    - target: {fileID: 8982440217145426106, guid: 24f1a58580258a145980babcd82a0a46, type: 3}
+      propertyPath: m_LocalScale.z
+      value: 2.8174965
+      objectReference: {fileID: 0}
+    - target: {fileID: 8982440217145426106, guid: 24f1a58580258a145980babcd82a0a46, type: 3}
+      propertyPath: m_AnchoredPosition.x
+      value: 661
+      objectReference: {fileID: 0}
+    - target: {fileID: 8982440217145426106, guid: 24f1a58580258a145980babcd82a0a46, type: 3}
+      propertyPath: m_AnchoredPosition.y
+      value: 228
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
