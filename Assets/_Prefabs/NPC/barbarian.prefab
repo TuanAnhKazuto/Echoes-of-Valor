@@ -431,7 +431,6 @@ GameObject:
   - component: {fileID: 3614428877932804171}
   - component: {fileID: 2756539879680246703}
   - component: {fileID: 8835601500180365127}
-  - component: {fileID: 7104119817309547941}
   - component: {fileID: 9093751962229122491}
   - component: {fileID: 821427696681870948}
   - component: {fileID: 1930930095559562530}
@@ -505,6 +504,7 @@ MonoBehaviour:
   yesButton: {fileID: 0}
   panelSetup: {fileID: 0}
   playerController: {fileID: 0}
+  nextNPC: {fileID: 0}
   npcLookTarget: {fileID: 0}
   dialogueCam: {fileID: 0}
   npcType: 0
@@ -521,35 +521,8 @@ MonoBehaviour:
     - "c\u1ED1 l\xEAn con trai c\u1EE7a ta"
     - hohohoho
   questList:
-  - {fileID: 7104119817309547941}
+  - {fileID: 0}
   playerQuests: {fileID: 0}
---- !u!114 &7104119817309547941
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1343332333537823140}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: b977159dd6da00a46953de8959e0d201, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  QuetsItemName: "nhi\u1EC7m v\u1EE5 s\u1ED1 1 \u0111\xE1nh enemy"
-  questTargetAmount: 1
-  currentAmount: 0
-  TargetItemtag: Enemy
-  rewardAmount: 100
-  questLocation: {fileID: 0}
-  completeDialogue: aaaa
-  rewardItems:
-  - {fileID: 11400000, guid: 03d83d6c49d5d904db4f6dde4eabe569, type: 2}
-  - {fileID: 11400000, guid: 946848035aa62cf4faa666ea17eca4fd, type: 2}
-  - {fileID: 11400000, guid: f91972d039785f34aa4efd1c90d6e5e2, type: 2}
-  rewardIngredients: []
-  rewardIngredientCount: 1
-  description: aa
-  hint: aa
 --- !u!136 &9093751962229122491
 CapsuleCollider:
   m_ObjectHideFlags: 0
