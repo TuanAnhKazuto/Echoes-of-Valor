@@ -10,7 +10,7 @@ public class UIAudioManager : MonoBehaviour
         if (Instance == null)
         {
             Instance = this;
-            DontDestroyOnLoad(gameObject); // giữ lại giữa các scene nếu cần
+            DontDestroyOnLoad(gameObject); 
             audioSource = gameObject.AddComponent<AudioSource>();
             audioSource.playOnAwake = false;
         }
