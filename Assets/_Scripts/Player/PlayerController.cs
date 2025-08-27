@@ -68,6 +68,8 @@ public class PlayerController : MonoBehaviour
 
         currentStamina = maxStamina;
 
+        canMove = true;
+
         Cursor.lockState = CursorLockMode.Locked;
 
         cam  = Camera.main.transform;
