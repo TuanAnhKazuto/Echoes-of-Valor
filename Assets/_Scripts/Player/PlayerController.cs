@@ -11,6 +11,7 @@ public class PlayerController : MonoBehaviour
     public Transform cam;
     public CinemachineCamera freeLookCam;
     public Transform targetForCam;
+    private bool isMouseActive = false;
 
     [HideInInspector]
     public bool isTalkingWithNPC = false;
@@ -110,15 +111,27 @@ public class PlayerController : MonoBehaviour
 
     private void MouseController()
     {
-        if(Input.GetKey(KeyCode.LeftAlt))
+        if (Input.GetKeyDown(KeyCode.LeftAlt))
         {
-            Cursor.lockState = CursorLockMode.None;
-            Cursor.visible = true;
+            if (!isMouseActive)
+            {
+                Cursor.lockState = CursorLockMode.None;
+                Cursor.visible = true;
+                isMouseActive = true;
+            }
+            else
+            {
+                Cursor.lockState = CursorLockMode.Locked;
+                Cursor.visible = false;
+                isMouseActive = false;
+            }
         }
-        else if(Input.GetKeyDown(KeyCode.RightAlt))
+
+        if(Input.GetKeyDown(KeyCode.RightAlt))
         {
             Cursor.lockState = CursorLockMode.Locked;
             Cursor.visible = false;
+            isMouseActive = false;
         }
     }
 
