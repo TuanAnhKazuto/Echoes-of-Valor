@@ -11,6 +11,8 @@ public class CharacterStats : MonoBehaviour
     public Animator animator;
     public GameObject CursorTarget;
 
+    public PlayerController playerController;
+
     [Header("Base Stats")]
     public int playerId;
     public string playerName;
@@ -45,6 +47,8 @@ public class CharacterStats : MonoBehaviour
             expManager = FindAnyObjectByType<PlayerExpManager>();
             expManager.characterStats = this;
         }
+
+        playerController = GetComponent<PlayerController>();
     }
 
     private void Start()
@@ -59,17 +63,27 @@ public class CharacterStats : MonoBehaviour
 
     public int TotalDefense => baseDamage + (equippedWeapons[1]?.baseDefense ?? 0) + (equippedWeapons[1]?.baseDefense ?? 0);
 
-    public void TakeDamage(float damage)
+    private void Update()
     {
+        if (Input.GetKeyDown(KeyCode.I))
+        {
+            Heal(10f);
+        }
+
         if (currentHealth <= 0)
         {
+            isDied = true;
             currentHealth = 0;
             CursorTarget.SetActive(false);
+            playerController.canMove = false;
             animator.SetFloat("HP", currentHealth);
-            isDied = true;
-            Invoke(nameof(Die), 1);
-            return;
+            Invoke(nameof(Die), 1f);
         }
+    }
+
+    public void TakeDamage(float damage)
+    {
+        if(isDied) return;
         float damageTake = Mathf.Max(damage - TotalDefense, 1f);
         currentHealth -= damageTake;
         healthBar.UpdateHealth((int)currentHealth, (int)maxHealth);
@@ -149,13 +163,5 @@ public class CharacterStats : MonoBehaviour
         levelUpEffect.SetActive(true);
         yield return new WaitForSeconds(2.5f);
         levelUpEffect.SetActive(false);
-    }
-
-    private void Update()
-    {
-        if (Input.GetKeyDown(KeyCode.I)) 
-        {
-            Heal(10f); 
-        }
     }
 }

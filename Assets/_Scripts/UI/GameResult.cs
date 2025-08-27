@@ -132,6 +132,17 @@ public class GameResult : MonoBehaviour
     {
         isPaused = !isPaused;
 
+        if (isPaused)
+        {
+            Cursor.lockState = CursorLockMode.None;
+            Cursor.visible = true;
+        }
+        else
+        {
+            Cursor.lockState = CursorLockMode.Locked;
+            Cursor.visible = false;
+        }
+
         if (panelPause != null)
             panelPause.SetActive(isPaused);
 
@@ -144,6 +155,8 @@ public class GameResult : MonoBehaviour
         {
             isPaused = false;
             panelPause.SetActive(false);
+            Cursor.lockState = CursorLockMode.Locked;
+            Cursor.visible = false;
             UpdateTimeScale();
         }
     }
