@@ -64823,7 +64823,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!4 &6915149432299786880
 Transform:
   m_ObjectHideFlags: 0
@@ -64883,7 +64883,7 @@ MonoBehaviour:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 8903590393308336603}
-  m_Enabled: 0
+  m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 1c655283bae7f774188bb4c7bde76095, type: 3}
   m_Name: 
@@ -65290,17 +65290,17 @@ MonoBehaviour:
   colorSkyBase: {r: 0.60549027, g: 0.70901966, b: 0.7968628, a: 0.8}
   colorSkyBaseLow: {r: 0.7568628, g: 0.8862746, b: 0.9960785, a: 1}
   colorHorizon: {r: 0.7023461, g: 0.9705815, b: 1.1905884, a: 1.2}
-  colorHorizonLow: {r: 0.7023461, g: 0.9705815, b: 1.1905884, a: 1.2}
+  colorHorizonLow: {r: 0.12235296, g: 0.2964706, b: 0.36705884, a: 1.2}
   colorSkyAmbient: {r: 1, g: 1, b: 1, a: 1}
   colorClouds: {r: 1, g: 1, b: 1, a: 1}
-  colorHighlightClouds: {r: 1, g: 1, b: 1, a: 1}
+  colorHighlightClouds: {r: 0, g: 0, b: 0, a: 1}
   colorSkyboxGround: {r: 0.1102941, g: 0.08836951, b: 0.06487888, a: 1}
   colorSkyboxMie: {r: 1, g: 1, b: 1, a: 1}
   displayTime: '[ 10:30:00 AM] [ 3/6/2015 ad]'
   autoTimeSync: 0
   autoDateSync: 0
   autoTime: 1
-  timeCompression: 1
+  timeCompression: 120
   currentSecond: 0
   currentMinute: 30
   currentHour: 10
@@ -65634,7 +65634,7 @@ MonoBehaviour:
     m_PreInfinity: 2
     m_PostInfinity: 2
     m_RotationOrder: 4
-  randSeed: 275086406
+  randSeed: 138016093
   isDoingTransition: 0
   minimumHeight: 0
 --- !u!1 &9092161436429204902
