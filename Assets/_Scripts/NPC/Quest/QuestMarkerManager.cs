@@ -78,5 +78,31 @@ public class QuestMarkerManager : MonoBehaviour
             activeFireball = null;
         }
     }
-  
+    // 🟢 Ẩn marker bằng Transform (ví dụ: khi đã đến NPC)
+    public void HideMarkerByTarget(Transform target)
+    {
+        QuestItem keyToRemove = null;
+
+        foreach (var kvp in activeMarkers)
+        {
+            if (kvp.Value != null && kvp.Value.transform.parent == target)
+            {
+                Destroy(kvp.Value);
+                keyToRemove = kvp.Key;
+                break;
+            }
+        }
+
+        if (keyToRemove != null)
+        {
+            activeMarkers.Remove(keyToRemove);
+        }
+
+        // 🔥 Tắt luôn Fireball dẫn đường
+        if (activeFireball != null)
+        {
+            Destroy(activeFireball);
+            activeFireball = null;
+        }
+    }
 }

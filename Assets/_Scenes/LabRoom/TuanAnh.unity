@@ -2756,6 +2756,17 @@ PrefabInstance:
     m_AddedGameObjects: []
     m_AddedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 7d5f573d616ca3143b0acaf60e12bd30, type: 3}
+--- !u!114 &584699239 stripped
+MonoBehaviour:
+  m_CorrespondingSourceObject: {fileID: 9159688621873209396, guid: ba712fb7d041c664a9861a533ca61137, type: 3}
+  m_PrefabInstance: {fileID: 4422265020327398192}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 1c655283bae7f774188bb4c7bde76095, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1 &614570444
 GameObject:
   m_ObjectHideFlags: 0
@@ -3310,7 +3321,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 4165003339005387642, guid: 8115681f75c9077489fb3abb2cd5b35c, type: 3}
       propertyPath: m_IsActive
-      value: 1
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 5688371202382036294, guid: 8115681f75c9077489fb3abb2cd5b35c, type: 3}
       propertyPath: m_Speed
@@ -5891,54 +5902,10 @@ PrefabInstance:
     serializedVersion: 3
     m_TransformParent: {fileID: 0}
     m_Modifications:
-    - target: {fileID: 222909709926612527, guid: ba712fb7d041c664a9861a533ca61137, type: 3}
-      propertyPath: m_Color.a
-      value: 1
-      objectReference: {fileID: 0}
-    - target: {fileID: 222909709926612527, guid: ba712fb7d041c664a9861a533ca61137, type: 3}
-      propertyPath: m_Color.b
-      value: 0.9960785
-      objectReference: {fileID: 0}
-    - target: {fileID: 222909709926612527, guid: ba712fb7d041c664a9861a533ca61137, type: 3}
-      propertyPath: m_Color.g
-      value: 1
-      objectReference: {fileID: 0}
-    - target: {fileID: 222909709926612527, guid: ba712fb7d041c664a9861a533ca61137, type: 3}
-      propertyPath: m_Color.r
-      value: 1
-      objectReference: {fileID: 0}
-    - target: {fileID: 222909709926612527, guid: ba712fb7d041c664a9861a533ca61137, type: 3}
-      propertyPath: m_Enabled
-      value: 1
-      objectReference: {fileID: 0}
-    - target: {fileID: 222909709926612527, guid: ba712fb7d041c664a9861a533ca61137, type: 3}
-      propertyPath: m_Intensity
-      value: 1.36
-      objectReference: {fileID: 0}
     - target: {fileID: 1224079516259009744, guid: ba712fb7d041c664a9861a533ca61137, type: 3}
       propertyPath: renderTexDiff
       value: 
       objectReference: {fileID: 498188714}
-    - target: {fileID: 1306964334992432753, guid: ba712fb7d041c664a9861a533ca61137, type: 3}
-      propertyPath: m_Enabled
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 3820958509932691978, guid: ba712fb7d041c664a9861a533ca61137, type: 3}
-      propertyPath: material
-      value: 
-      objectReference: {fileID: 0}
-    - target: {fileID: 4004589915506867113, guid: ba712fb7d041c664a9861a533ca61137, type: 3}
-      propertyPath: m_BackGroundColor.b
-      value: 0.52294123
-      objectReference: {fileID: 0}
-    - target: {fileID: 4004589915506867113, guid: ba712fb7d041c664a9861a533ca61137, type: 3}
-      propertyPath: m_BackGroundColor.g
-      value: 0.46529418
-      objectReference: {fileID: 0}
-    - target: {fileID: 4004589915506867113, guid: ba712fb7d041c664a9861a533ca61137, type: 3}
-      propertyPath: m_BackGroundColor.r
-      value: 0.39735302
-      objectReference: {fileID: 0}
     - target: {fileID: 6915149432299786880, guid: ba712fb7d041c664a9861a533ca61137, type: 3}
       propertyPath: m_LocalPosition.x
       value: 0
@@ -5987,150 +5954,18 @@ PrefabInstance:
       propertyPath: m_Name
       value: Tenkoku DynamicSky
       objectReference: {fileID: 0}
-    - target: {fileID: 8903590393308336603, guid: ba712fb7d041c664a9861a533ca61137, type: 3}
-      propertyPath: m_IsActive
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 9159688621873209396, guid: ba712fb7d041c664a9861a533ca61137, type: 3}
-      propertyPath: randSeed
-      value: 138016093
-      objectReference: {fileID: 0}
-    - target: {fileID: 9159688621873209396, guid: ba712fb7d041c664a9861a533ca61137, type: 3}
-      propertyPath: m_Enabled
-      value: 1
-      objectReference: {fileID: 0}
     - target: {fileID: 9159688621873209396, guid: ba712fb7d041c664a9861a533ca61137, type: 3}
       propertyPath: useCamera
       value: 
       objectReference: {fileID: 1316711639}
     - target: {fileID: 9159688621873209396, guid: ba712fb7d041c664a9861a533ca61137, type: 3}
-      propertyPath: colorSun.b
-      value: 0.9960785
-      objectReference: {fileID: 0}
-    - target: {fileID: 9159688621873209396, guid: ba712fb7d041c664a9861a533ca61137, type: 3}
-      propertyPath: colorSun.g
-      value: 1
-      objectReference: {fileID: 0}
-    - target: {fileID: 9159688621873209396, guid: ba712fb7d041c664a9861a533ca61137, type: 3}
-      propertyPath: colorSun.r
-      value: 1
-      objectReference: {fileID: 0}
-    - target: {fileID: 9159688621873209396, guid: ba712fb7d041c664a9861a533ca61137, type: 3}
       propertyPath: mainCamera
       value: 
       objectReference: {fileID: 1316711639}
     - target: {fileID: 9159688621873209396, guid: ba712fb7d041c664a9861a533ca61137, type: 3}
-      propertyPath: ambientCol.b
-      value: 1
-      objectReference: {fileID: 0}
-    - target: {fileID: 9159688621873209396, guid: ba712fb7d041c664a9861a533ca61137, type: 3}
-      propertyPath: ambientCol.g
-      value: 1
-      objectReference: {fileID: 0}
-    - target: {fileID: 9159688621873209396, guid: ba712fb7d041c664a9861a533ca61137, type: 3}
-      propertyPath: ambientCol.r
-      value: 1
-      objectReference: {fileID: 0}
-    - target: {fileID: 9159688621873209396, guid: ba712fb7d041c664a9861a533ca61137, type: 3}
       propertyPath: useCameraCam
       value: 
       objectReference: {fileID: 1316711638}
-    - target: {fileID: 9159688621873209396, guid: ba712fb7d041c664a9861a533ca61137, type: 3}
-      propertyPath: colorClouds.b
-      value: 1
-      objectReference: {fileID: 0}
-    - target: {fileID: 9159688621873209396, guid: ba712fb7d041c664a9861a533ca61137, type: 3}
-      propertyPath: colorClouds.g
-      value: 1
-      objectReference: {fileID: 0}
-    - target: {fileID: 9159688621873209396, guid: ba712fb7d041c664a9861a533ca61137, type: 3}
-      propertyPath: colorClouds.r
-      value: 1
-      objectReference: {fileID: 0}
-    - target: {fileID: 9159688621873209396, guid: ba712fb7d041c664a9861a533ca61137, type: 3}
-      propertyPath: colorHorizon.b
-      value: 1.1905884
-      objectReference: {fileID: 0}
-    - target: {fileID: 9159688621873209396, guid: ba712fb7d041c664a9861a533ca61137, type: 3}
-      propertyPath: colorHorizon.g
-      value: 0.9705815
-      objectReference: {fileID: 0}
-    - target: {fileID: 9159688621873209396, guid: ba712fb7d041c664a9861a533ca61137, type: 3}
-      propertyPath: colorHorizon.r
-      value: 0.7023461
-      objectReference: {fileID: 0}
-    - target: {fileID: 9159688621873209396, guid: ba712fb7d041c664a9861a533ca61137, type: 3}
-      propertyPath: colorSkyBase.b
-      value: 0.7968628
-      objectReference: {fileID: 0}
-    - target: {fileID: 9159688621873209396, guid: ba712fb7d041c664a9861a533ca61137, type: 3}
-      propertyPath: colorSkyBase.g
-      value: 0.70901966
-      objectReference: {fileID: 0}
-    - target: {fileID: 9159688621873209396, guid: ba712fb7d041c664a9861a533ca61137, type: 3}
-      propertyPath: colorSkyBase.r
-      value: 0.60549027
-      objectReference: {fileID: 0}
-    - target: {fileID: 9159688621873209396, guid: ba712fb7d041c664a9861a533ca61137, type: 3}
-      propertyPath: weatherTypeIndex
-      value: 1
-      objectReference: {fileID: 0}
-    - target: {fileID: 9159688621873209396, guid: ba712fb7d041c664a9861a533ca61137, type: 3}
-      propertyPath: colorHorizonLow.b
-      value: 0.36705884
-      objectReference: {fileID: 0}
-    - target: {fileID: 9159688621873209396, guid: ba712fb7d041c664a9861a533ca61137, type: 3}
-      propertyPath: colorHorizonLow.g
-      value: 0.2964706
-      objectReference: {fileID: 0}
-    - target: {fileID: 9159688621873209396, guid: ba712fb7d041c664a9861a533ca61137, type: 3}
-      propertyPath: colorHorizonLow.r
-      value: 0.12235296
-      objectReference: {fileID: 0}
-    - target: {fileID: 9159688621873209396, guid: ba712fb7d041c664a9861a533ca61137, type: 3}
-      propertyPath: colorSkyAmbient.b
-      value: 1
-      objectReference: {fileID: 0}
-    - target: {fileID: 9159688621873209396, guid: ba712fb7d041c664a9861a533ca61137, type: 3}
-      propertyPath: colorSkyAmbient.g
-      value: 1
-      objectReference: {fileID: 0}
-    - target: {fileID: 9159688621873209396, guid: ba712fb7d041c664a9861a533ca61137, type: 3}
-      propertyPath: colorSkyAmbient.r
-      value: 1
-      objectReference: {fileID: 0}
-    - target: {fileID: 9159688621873209396, guid: ba712fb7d041c664a9861a533ca61137, type: 3}
-      propertyPath: colorSkyBaseLow.b
-      value: 0.9960785
-      objectReference: {fileID: 0}
-    - target: {fileID: 9159688621873209396, guid: ba712fb7d041c664a9861a533ca61137, type: 3}
-      propertyPath: colorSkyBaseLow.g
-      value: 0.8862746
-      objectReference: {fileID: 0}
-    - target: {fileID: 9159688621873209396, guid: ba712fb7d041c664a9861a533ca61137, type: 3}
-      propertyPath: colorSkyBaseLow.r
-      value: 0.7568628
-      objectReference: {fileID: 0}
-    - target: {fileID: 9159688621873209396, guid: ba712fb7d041c664a9861a533ca61137, type: 3}
-      propertyPath: showConfigWeather
-      value: 1
-      objectReference: {fileID: 0}
-    - target: {fileID: 9159688621873209396, guid: ba712fb7d041c664a9861a533ca61137, type: 3}
-      propertyPath: weather_forceUpdate
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 9159688621873209396, guid: ba712fb7d041c664a9861a533ca61137, type: 3}
-      propertyPath: colorHighlightClouds.b
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 9159688621873209396, guid: ba712fb7d041c664a9861a533ca61137, type: 3}
-      propertyPath: colorHighlightClouds.g
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 9159688621873209396, guid: ba712fb7d041c664a9861a533ca61137, type: 3}
-      propertyPath: colorHighlightClouds.r
-      value: 0
-      objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
@@ -6174,7 +6009,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 6329946028441545229, guid: a241dca576e4aa4498e622aac9d9f321, type: 3}
       propertyPath: m_IsActive
-      value: 1
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 7713735878304070000, guid: a241dca576e4aa4498e622aac9d9f321, type: 3}
       propertyPath: m_LocalPosition.x
@@ -6273,14 +6108,10 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: -4.474
       objectReference: {fileID: 0}
-    - target: {fileID: 5838389287127778932, guid: 3dc046ba6d774124aa5c755b9043524a, type: 3}
-      propertyPath: playerStats
+    - target: {fileID: 2612813466623131126, guid: 3dc046ba6d774124aa5c755b9043524a, type: 3}
+      propertyPath: tenkokuModule
       value: 
-      objectReference: {fileID: 0}
-    - target: {fileID: 5838389287127778932, guid: 3dc046ba6d774124aa5c755b9043524a, type: 3}
-      propertyPath: isCharacterSpawned
-      value: 1
-      objectReference: {fileID: 0}
+      objectReference: {fileID: 584699239}
     - target: {fileID: 5978177856143502861, guid: 3dc046ba6d774124aa5c755b9043524a, type: 3}
       propertyPath: m_Name
       value: GameManager

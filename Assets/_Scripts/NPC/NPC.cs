@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Collections;
 using System.Collections.Generic;
+using System.Linq;
 using TMPro;
 using Unity.Cinemachine;
 using Unity.VisualScripting;
@@ -17,7 +18,10 @@ public class NPC : MonoBehaviour
     Coroutine coroutine;
     public Button yesButton;
     public NpcChatSetup panelSetup;
-    public PlayerController playerController;  // khóa di chuyển 
+    public PlayerController playerController;
+
+    [Header("NPC tiếp theo")]
+    public NPC nextNPC;
 
     public Transform npcLookTarget; // điểm mà camera sẽ nhìn khi nói chuyện
     private Transform originalCamFollow;
@@ -180,7 +184,23 @@ public class NPC : MonoBehaviour
                 }
                 else if (!playerQuests.questItems.Contains(CurrentQuest))
                 {
+                    // Nếu là nhiệm vụ cuối -> chỉ cho nhận khi tất cả nhiệm vụ khác đã hoàn thành
+                    if (CurrentQuest.isFinalQuest)
+                    {
+                        bool hasOtherQuest = playerQuests.questItems.Any(q => !q.isFinalQuest);
+                        if (hasOtherQuest)
+                        {
+                            chatText.text = "Bạn cần hoàn thành hết các nhiệm vụ khác trước khi nhận nhiệm vụ đặc biệt!";
+                            yesButton.gameObject.SetActive(false);
+                            Invoke(nameof(HidePanel), 2f);
+                            return;
+                        }
+                    }
+
+                    playerQuests.markerManager.HideMarkerByTarget(this.transform);
+
                     CurrentQuest.questGiverLocation = this.transform;
+                    playerQuests.markerManager.HideMarkerByTarget(this.transform);
                     playerQuests.TakeQuest(CurrentQuest);
                     chatText.text = $"Bạn đã nhận nhiệm vụ: {CurrentQuest.QuetsItemName}";
                     questGiven = true;
@@ -238,14 +258,45 @@ public class NPC : MonoBehaviour
         chatText.text = rewardsSummary;
         
         yield return new WaitForSeconds(2.5f);
+
         playerQuests.CompleteQuest(finishedQuest);
-        
+
+        if (finishedQuest.isFinalQuest)
+        {
+            // gọi hiển thị WinGame SAU khi panel NPC đóng
+            StartCoroutine(ShowWinGameAfterDialogue());
+        }
+
         currentQuestIndex++;
         questGiven = false;
 
-        if (currentQuestIndex >= questList.Count)
+        // 🟢 Nếu vẫn còn nhiệm vụ thì tự động giao luôn
+        if (currentQuestIndex < questList.Count)
         {
-            chatText.text = "Bạn đã hoàn thành tất cả nhiệm vụ rồi. Cảm ơn bạn.";
+            QuestItem nextQuest = questList[currentQuestIndex];
+            nextQuest.questGiverLocation = this.transform;
+
+            playerQuests.TakeQuest(nextQuest);
+            chatText.text = $"Bạn đã nhận nhiệm vụ mới: {nextQuest.QuetsItemName}";
+            yield return new WaitForSeconds(2f);
+        }
+        else
+        {
+            chatText.text = "Bạn đã hoàn thành tất cả nhiệm vụ ở đây.";          
+            if (nextNPC != null)
+            {
+                QuestItem guideQuest = new QuestItem
+                {
+                    QuetsItemName = $"Tìm {nextNPC.name}",
+                    questTargetAmount = 1,
+                    currentAmount = 0,
+                    questLocation = nextNPC.transform,
+                };  
+                
+                playerQuests.markerManager.ShowMarker(guideQuest);
+                chatText.text += $"\nHãy đến gặp {nextNPC.name} để nhận nhiệm vụ tiếp theo!";
+            }
+
             yield return new WaitForSeconds(2f);
         }
 
@@ -253,10 +304,14 @@ public class NPC : MonoBehaviour
     }
     public void ManualTrigger()
     {
-        if (isChating) return;
+        if (isChating) return;        
+        if (playerQuests != null && playerQuests.markerManager != null)
+        {
+            playerQuests.markerManager.HideMarkerByTarget(this.transform);
+        }
 
         Cursor.visible = true;
-        Cursor.lockState = CursorLockMode.None;
+        Cursor.lockState = CursorLockMode.None;      
 
         if (playerController != null)
         {
@@ -378,6 +433,15 @@ public class NPC : MonoBehaviour
         });
     }
 
+    private IEnumerator ShowWinGameAfterDialogue()
+    {        
+        yield return new WaitForSeconds(1f);
+        HidePanel(); 
+        yield return new WaitForSeconds(0.5f); 
+
+        playerQuests.ShowWinGame();
+    }
+
     // Nhận nhiệm vụ và đóng bảng chat
     public void HidePanel()
     {
@@ -405,5 +469,11 @@ public class NPC : MonoBehaviour
                 playerController.freeLookCam.Priority = 20; 
             }
         }
+
+        if (playerQuests != null)
+        {
+            playerQuests.ShowPendingRewards();
+        }
+
     }
 }
