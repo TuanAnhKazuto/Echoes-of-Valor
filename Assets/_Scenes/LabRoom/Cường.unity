@@ -1798,6 +1798,17 @@ PrefabInstance:
     m_AddedGameObjects: []
     m_AddedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: ca1998f865fc71e4db1590094f47b43b, type: 3}
+--- !u!114 &742371014 stripped
+MonoBehaviour:
+  m_CorrespondingSourceObject: {fileID: 8835601500180365127, guid: 3f457b0604d84b140a2f3df12ea405bc, type: 3}
+  m_PrefabInstance: {fileID: 1037260718}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: c4072f72c95b91d4e8f366adaeca8e70, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!4 &742371016 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: 3614428877932804171, guid: 3f457b0604d84b140a2f3df12ea405bc, type: 3}
@@ -2215,6 +2226,10 @@ PrefabInstance:
       propertyPath: questLocation
       value: 
       objectReference: {fileID: 1833588143}
+    - target: {fileID: 7104119817309547941, guid: 3f457b0604d84b140a2f3df12ea405bc, type: 3}
+      propertyPath: questGiverLocation
+      value: 
+      objectReference: {fileID: 742371016}
     - target: {fileID: 7104119817309547941, guid: 3f457b0604d84b140a2f3df12ea405bc, type: 3}
       propertyPath: rewardItems.Array.size
       value: 3
@@ -3944,15 +3959,15 @@ PrefabInstance:
     m_Modifications:
     - target: {fileID: 3070871143641123909, guid: 123606a96912162458999fbd88d8e946, type: 3}
       propertyPath: m_LocalPosition.x
-      value: 15.549988
+      value: 7.5699463
       objectReference: {fileID: 0}
     - target: {fileID: 3070871143641123909, guid: 123606a96912162458999fbd88d8e946, type: 3}
       propertyPath: m_LocalPosition.y
-      value: 1.7650146
+      value: 1.5899658
       objectReference: {fileID: 0}
     - target: {fileID: 3070871143641123909, guid: 123606a96912162458999fbd88d8e946, type: 3}
       propertyPath: m_LocalPosition.z
-      value: 4.19
+      value: 20.66
       objectReference: {fileID: 0}
     - target: {fileID: 3070871143641123909, guid: 123606a96912162458999fbd88d8e946, type: 3}
       propertyPath: m_LocalRotation.w
@@ -5100,6 +5115,10 @@ PrefabInstance:
       propertyPath: m_Name
       value: GiaLang
       objectReference: {fileID: 0}
+    - target: {fileID: 6847407132193323700, guid: 7f8a0d0558e82a34ebfc272fb304533f, type: 3}
+      propertyPath: nextNPC
+      value: 
+      objectReference: {fileID: 742371014}
     - target: {fileID: 6847407132193323700, guid: 7f8a0d0558e82a34ebfc272fb304533f, type: 3}
       propertyPath: dialogueCam
       value: 

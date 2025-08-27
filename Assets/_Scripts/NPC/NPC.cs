@@ -18,7 +18,10 @@ public class NPC : MonoBehaviour
     Coroutine coroutine;
     public Button yesButton;
     public NpcChatSetup panelSetup;
-    public PlayerController playerController;  // khóa di chuyển 
+    public PlayerController playerController;
+
+    [Header("NPC tiếp theo")]
+    public NPC nextNPC;
 
     public Transform npcLookTarget; // điểm mà camera sẽ nhìn khi nói chuyện
     private Transform originalCamFollow;
@@ -194,7 +197,10 @@ public class NPC : MonoBehaviour
                         }
                     }
 
+                    playerQuests.markerManager.HideMarkerByTarget(this.transform);
+
                     CurrentQuest.questGiverLocation = this.transform;
+                    playerQuests.markerManager.HideMarkerByTarget(this.transform);
                     playerQuests.TakeQuest(CurrentQuest);
                     chatText.text = $"Bạn đã nhận nhiệm vụ: {CurrentQuest.QuetsItemName}";
                     questGiven = true;
@@ -263,7 +269,8 @@ public class NPC : MonoBehaviour
 
         currentQuestIndex++;
         questGiven = false;
-        
+
+        // 🟢 Nếu vẫn còn nhiệm vụ thì tự động giao luôn
         if (currentQuestIndex < questList.Count)
         {
             QuestItem nextQuest = questList[currentQuestIndex];
@@ -275,7 +282,21 @@ public class NPC : MonoBehaviour
         }
         else
         {
-            chatText.text = "Bạn đã hoàn thành tất cả nhiệm vụ rồi. Cảm ơn bạn.";
+            chatText.text = "Bạn đã hoàn thành tất cả nhiệm vụ ở đây.";          
+            if (nextNPC != null)
+            {
+                QuestItem guideQuest = new QuestItem
+                {
+                    QuetsItemName = $"Tìm {nextNPC.name}",
+                    questTargetAmount = 1,
+                    currentAmount = 0,
+                    questLocation = nextNPC.transform,
+                };  
+                
+                playerQuests.markerManager.ShowMarker(guideQuest);
+                chatText.text += $"\nHãy đến gặp {nextNPC.name} để nhận nhiệm vụ tiếp theo!";
+            }
+
             yield return new WaitForSeconds(2f);
         }
 
@@ -283,10 +304,14 @@ public class NPC : MonoBehaviour
     }
     public void ManualTrigger()
     {
-        if (isChating) return;
+        if (isChating) return;        
+        if (playerQuests != null && playerQuests.markerManager != null)
+        {
+            playerQuests.markerManager.HideMarkerByTarget(this.transform);
+        }
 
         Cursor.visible = true;
-        Cursor.lockState = CursorLockMode.None;
+        Cursor.lockState = CursorLockMode.None;      
 
         if (playerController != null)
         {
@@ -444,5 +469,11 @@ public class NPC : MonoBehaviour
                 playerController.freeLookCam.Priority = 20; 
             }
         }
+
+        if (playerQuests != null)
+        {
+            playerQuests.ShowPendingRewards();
+        }
+
     }
 }
