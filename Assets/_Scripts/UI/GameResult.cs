@@ -123,9 +123,17 @@ public class GameResult : MonoBehaviour
             //    characterStats.CursorTarget.SetActive(true);
             //}
         }
-
+        FindAnyObjectByType<UpgradeSystem>().ResetUpgrades();
         SceneManager.LoadScene(SceneManager.GetActiveScene().buildIndex);
         UpdateTimeScale();
+    }
+    private void OnSceneLoadedReplay(Scene scene, LoadSceneMode mode)
+    {
+        var upgradeSystem = FindAnyObjectByType<UpgradeSystem>();
+        if (upgradeSystem != null)
+            upgradeSystem.ResetUpgrades();
+
+        SceneManager.sceneLoaded -= OnSceneLoadedReplay;
     }
 
     public void OnPause()
