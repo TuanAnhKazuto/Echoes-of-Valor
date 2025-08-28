@@ -38,6 +38,7 @@ public class SaveGameManager : MonoBehaviour
 
     private IEnumerator SaveGameOnTime()
     {
+        yield return new WaitForSeconds(2);
         while (!playerStats.isDied)
         {
             yield return new WaitForSeconds(autoSaveInterval);

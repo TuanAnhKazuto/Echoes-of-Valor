@@ -1,89 +1,67 @@
-﻿using System.Collections.Generic;
+﻿using System.Collections;
+using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.AI;
 
 public class FireballMover : MonoBehaviour
 {
-    private List<Vector3> pathPoints = new List<Vector3>();
-    private int currentIndex = 0;
-    public float moveSpeed = 50f;
-    public float playerActivateDistance = 5f; 
-    public float heightOffset = 2f;
-    private float hoverOffset = 0f; 
-
     private Transform player;
-    private bool reachedEnd = false;
-    private Vector3 basePosition; 
+    private NavMeshAgent agent;
 
-   
-    [Header("Hiệu ứng khi đứng yên & khi bay")]
-    public float hoverAmplitude = 0.5f;  
-    public float hoverFrequency = 2f;    
+    [Header("Target & Movement")]
+    public Transform questTarget;       // NPC hoặc vị trí nhiệm vụ
+    public float moveSpeed = 15f;       // tốc độ bay
+    public float followDistance = 3f;   // đi trước Player
+    public float stopDistance = 2f;     // dừng khi gần mục tiêu
+    public float playerInfluenceRadius = 10f; // phạm vi để Fireball “dẫn đường” theo player
 
-    
-    public void InitPath(Transform player, Transform target, float spacing = 5f, int maxPoints = 30)
+    [Header("Hover Settings")]
+    public float upDownSpeed = 0.5f;
+
+    private void Start()
     {
-        pathPoints.Clear();
-        currentIndex = 0;
-        reachedEnd = false;
+        player = GameObject.FindGameObjectWithTag("Player")?.transform;
 
-        this.player = player;
+        agent = GetComponent<NavMeshAgent>();
+        if (agent == null) agent = gameObject.AddComponent<NavMeshAgent>();
 
-        if (player == null || target == null) return;
-
-        Vector3 start = player.position;
-        Vector3 end = target.position;
-
-        float distance = Vector3.Distance(start, end);
-        int count = Mathf.Min(Mathf.CeilToInt(distance / spacing), maxPoints);
-
-        Vector3 dir = (end - start).normalized;
-
-        for (int i = 1; i <= count; i++)
-        {
-            Vector3 pos = start + dir * (i * spacing);
-
-            
-            if (Physics.Raycast(pos + Vector3.up * 5, Vector3.down, out RaycastHit hit, 20f))
-                pos = hit.point + Vector3.up * heightOffset;
-
-            pathPoints.Add(pos);
-        }
-
-        if (pathPoints.Count > 0)
-        {
-            transform.position = pathPoints[0];
-            basePosition = transform.position; 
-        }
+        agent.speed = moveSpeed;
+        agent.stoppingDistance = 0;
     }
 
-    void Update()
+    private void Update()
     {
-        if (pathPoints.Count == 0 || player == null || reachedEnd) return;
+        if (player == null || questTarget == null) return;
 
-        float distToPlayer = Vector3.Distance(transform.position, player.position);
-        if (distToPlayer > playerActivateDistance)
+        // Hover VFX
+        agent.baseOffset += upDownSpeed * Time.deltaTime;
+        if (agent.baseOffset >= 2f) upDownSpeed = -0.5f;
+        else if (agent.baseOffset <= 1.5f) upDownSpeed = 0.5f;
+
+        float distToTarget = Vector3.Distance(transform.position, questTarget.position);
+
+        // Nếu tới gần target thì hủy
+        if (distToTarget <= stopDistance)
         {
-            Vector3 hoverPos = transform.position;
-            hoverPos.y = basePosition.y + Mathf.Sin(Time.time * hoverFrequency) * hoverAmplitude;
-            transform.position = hoverPos;
+            Destroy(gameObject);
             return;
-        }      
+        }
 
-        Vector3 targetPos = pathPoints[currentIndex];        
-        targetPos.y += Mathf.Sin(Time.time * hoverFrequency) * hoverAmplitude;
-
-        transform.position = Vector3.MoveTowards(transform.position, targetPos, moveSpeed * Time.deltaTime);        
-        Vector3 dir = (targetPos - transform.position).normalized;
-        if (dir != Vector3.zero)
-            transform.rotation = Quaternion.LookRotation(dir);
-        if (Vector3.Distance(transform.position, targetPos) < 0.2f)
+        // Nếu player ở gần → dẫn đường bằng cách “chạy trước mặt player về phía target”
+        float distPlayerToFireball = Vector3.Distance(player.position, transform.position);
+        if (distPlayerToFireball <= playerInfluenceRadius)
         {
-            currentIndex++;
-            if (currentIndex >= pathPoints.Count)
-            {
-                reachedEnd = true;
-                Destroy(gameObject); 
-            }
+            Vector3 dirToTarget = (questTarget.position - player.position).normalized;
+            Vector3 aheadPos = player.position + dirToTarget * followDistance;
+
+            agent.isStopped = false;
+            agent.SetDestination(aheadPos);
+        }
+        else
+        {
+            // Player đi xa → Fireball tự đi thẳng tới questTarget
+            agent.isStopped = false;
+            agent.SetDestination(questTarget.position);
         }
     }
 }

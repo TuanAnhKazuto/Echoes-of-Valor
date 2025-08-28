@@ -8,6 +8,13 @@ public class SkeletonMovement : MonoBehaviour
     public float attackRange = 8f;
     private float originalSpeed = 6f;
 
+    [Header("Patrol Settings")]
+    public float patrolRange = 5f;       // độ rộng cạnh hình vuông
+    public float patrolWaitTime = 2f;    // dừng lại ở mỗi điểm
+    private Vector3[] patrolPoints;
+    private int currentPatrolIndex = 0;
+    private bool isWaiting = false;
+
     Vector3 startTransform;
 
     public bool isSpawned = false;
@@ -36,6 +43,12 @@ public class SkeletonMovement : MonoBehaviour
 
         startTransform = transform.position;
 
+        // tạo 4 điểm hình vuông quanh chỗ spawn
+        patrolPoints = new Vector3[4];
+        patrolPoints[0] = startTransform + new Vector3(patrolRange, 0, patrolRange);
+        patrolPoints[1] = startTransform + new Vector3(-patrolRange, 0, patrolRange);
+        patrolPoints[2] = startTransform + new Vector3(-patrolRange, 0, -patrolRange);
+        patrolPoints[3] = startTransform + new Vector3(patrolRange, 0, -patrolRange);
     }
 
     private void Start()
@@ -56,6 +69,7 @@ public class SkeletonMovement : MonoBehaviour
         }
         if (!isSpawned) return;
         if (enemyStats.isDie) return;
+
         Movement();
     }
 
@@ -89,8 +103,6 @@ public class SkeletonMovement : MonoBehaviour
 
             if (Vector3.Angle(transform.forward, directionToTarget) < agent / 2)
             {
-
-
                 if (!Physics.Raycast(transform.position, directionToTarget, distanceToTarget, obstructionMask))
                 {
                     canSeePlayer = true;
@@ -117,12 +129,11 @@ public class SkeletonMovement : MonoBehaviour
 
     public void Movement()
     {
-        float distance = Vector3.Distance(transform.position, player.position);
+        float distance = player != null ? Vector3.Distance(transform.position, player.position) : Mathf.Infinity;
 
         if (!canSeePlayer)
         {
-            navAgent.SetDestination(startTransform);
-            animator.SetFloat("Speed", navAgent.velocity.magnitude);
+            PatrolSquare();
             return;
         }
 
@@ -146,5 +157,41 @@ public class SkeletonMovement : MonoBehaviour
                 navAgent.speed = originalSpeed;
             }
         }
+    }
+
+    private void PatrolSquare()
+    {
+        if (patrolPoints.Length == 0) return;
+        if (isWaiting) return;
+
+        animator.SetBool("IsAttack", false);
+
+        Vector3 targetPoint = patrolPoints[currentPatrolIndex];
+        navAgent.speed = originalSpeed;
+        navAgent.SetDestination(targetPoint);
+        animator.SetFloat("Speed", navAgent.velocity.magnitude);
+
+        // Nếu tới gần điểm patrol thì chuyển sang điểm tiếp theo
+        if (Vector3.Distance(transform.position, targetPoint) < 1f)
+        {
+            StartCoroutine(WaitAndGoNext());
+        }
+
+        // Nếu bị tường cản (không di chuyển được)
+        if (navAgent.remainingDistance > 1.5f && navAgent.velocity.magnitude < 0.05f)
+        {
+            currentPatrolIndex = (currentPatrolIndex + 1) % patrolPoints.Length;
+            navAgent.SetDestination(patrolPoints[currentPatrolIndex]);
+        }
+    }
+
+    IEnumerator WaitAndGoNext()
+    {
+        isWaiting = true;
+        animator.SetFloat("Speed", 0);
+        yield return new WaitForSeconds(patrolWaitTime);
+
+        currentPatrolIndex = (currentPatrolIndex + 1) % patrolPoints.Length;
+        isWaiting = false;
     }
 }

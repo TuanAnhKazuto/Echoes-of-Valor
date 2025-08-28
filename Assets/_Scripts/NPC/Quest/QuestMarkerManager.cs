@@ -3,7 +3,7 @@ using UnityEngine;
 
 public class QuestMarkerManager : MonoBehaviour
 {
-    public GameObject markerPrefab;
+     public GameObject markerPrefab;
     private Dictionary<QuestItem, GameObject> activeMarkers = new();
 
     [Header("Fireball dẫn đường")]
@@ -21,6 +21,7 @@ public class QuestMarkerManager : MonoBehaviour
     {
         if (quest.questLocation == null || activeMarkers.ContainsKey(quest)) return;
 
+        // spawn marker trên vị trí NPC/Quest
         Vector3 spawnPos = quest.questLocation.position;
 
         Collider col = quest.questLocation.GetComponentInChildren<Collider>();
@@ -37,15 +38,19 @@ public class QuestMarkerManager : MonoBehaviour
         marker.transform.SetParent(quest.questLocation);
         activeMarkers[quest] = marker;
 
-        // 🔥 Spawn Fireball dẫn đường
+        // 🟢 Spawn Fireball dẫn đường
         if (fireballPrefab != null && player != null)
         {
             if (activeFireball != null) Destroy(activeFireball);
 
+            // Spawn ngay tại player
             activeFireball = Instantiate(fireballPrefab, player.position, Quaternion.identity);
 
-            FireballMover mover = activeFireball.AddComponent<FireballMover>();
-            mover.InitPath(player, quest.questLocation);
+            // Gắn script FireballMover (đã chỉnh sửa ở trên)
+            FireballMover mover = activeFireball.GetComponent<FireballMover>();
+            if (mover == null) mover = activeFireball.AddComponent<FireballMover>();
+
+            mover.questTarget = quest.questLocation; // mục tiêu cuối cùng (NPC hoặc location)
         }
     }
 
@@ -78,7 +83,8 @@ public class QuestMarkerManager : MonoBehaviour
             activeFireball = null;
         }
     }
-    // 🟢 Ẩn marker bằng Transform (ví dụ: khi đã đến NPC)
+
+  
     public void HideMarkerByTarget(Transform target)
     {
         QuestItem keyToRemove = null;
@@ -98,7 +104,7 @@ public class QuestMarkerManager : MonoBehaviour
             activeMarkers.Remove(keyToRemove);
         }
 
-        // 🔥 Tắt luôn Fireball dẫn đường
+        // Tắt luôn Fireball dẫn đường
         if (activeFireball != null)
         {
             Destroy(activeFireball);
