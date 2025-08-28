@@ -1,89 +1,86 @@
-﻿using System.Collections.Generic;
+﻿using System.Collections;
+using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.AI;
 
 public class FireballMover : MonoBehaviour
 {
-    private List<Vector3> pathPoints = new List<Vector3>();
-    private int currentIndex = 0;
-    public float moveSpeed = 50f;
-    public float playerActivateDistance = 5f; 
-    public float heightOffset = 2f;
-    private float hoverOffset = 0f; 
+    private NavMeshAgent agent;
 
-    private Transform player;
-    private bool reachedEnd = false;
-    private Vector3 basePosition; 
+    [Header("Target & Movement")]
+    public Transform questTarget;      // mục tiêu nhiệm vụ
+    public float moveSpeed = 15f;      // tốc độ bay
+    public float timeMove = 1f;        // thời gian chờ trước khi dừng
+    private bool isMoving = false;
 
-   
-    [Header("Hiệu ứng khi đứng yên & khi bay")]
-    public float hoverAmplitude = 0.5f;  
-    public float hoverFrequency = 2f;    
+    [Header("Hover Settings")]
+    public float hoverAmplitude = 0.5f;   
+    public float hoverFrequency = 2f;     
+    public float upDownSpeed = 0.5f;         
 
-    
-    public void InitPath(Transform player, Transform target, float spacing = 5f, int maxPoints = 30)
+
+    private void Start()
     {
-        pathPoints.Clear();
-        currentIndex = 0;
-        reachedEnd = false;
+        agent = GetComponent<NavMeshAgent>();
+        if (agent == null) agent = gameObject.AddComponent<NavMeshAgent>();      
 
-        this.player = player;
+    }
 
-        if (player == null || target == null) return;
+    private void Update()
+    {
+        agent.baseOffset += upDownSpeed * Time.deltaTime;
 
-        Vector3 start = player.position;
-        Vector3 end = target.position;
-
-        float distance = Vector3.Distance(start, end);
-        int count = Mathf.Min(Mathf.CeilToInt(distance / spacing), maxPoints);
-
-        Vector3 dir = (end - start).normalized;
-
-        for (int i = 1; i <= count; i++)
+        if (agent.baseOffset >= 2f)
         {
-            Vector3 pos = start + dir * (i * spacing);
-
-            
-            if (Physics.Raycast(pos + Vector3.up * 5, Vector3.down, out RaycastHit hit, 20f))
-                pos = hit.point + Vector3.up * heightOffset;
-
-            pathPoints.Add(pos);
+            upDownSpeed = -0.5f;
+        }
+        else if (agent.baseOffset <= 1.5f)
+        {
+            upDownSpeed = 0.5f;
         }
 
-        if (pathPoints.Count > 0)
+        if (gameObject.transform.position == questTarget.transform.position)
         {
-            transform.position = pathPoints[0];
-            basePosition = transform.position; 
+            Destroy(gameObject);
         }
     }
 
-    void Update()
+    private void OnTriggerEnter(Collider other)
     {
-        if (pathPoints.Count == 0 || player == null || reachedEnd) return;
-
-        float distToPlayer = Vector3.Distance(transform.position, player.position);
-        if (distToPlayer > playerActivateDistance)
+        if (other.CompareTag("Player"))
         {
-            Vector3 hoverPos = transform.position;
-            hoverPos.y = basePosition.y + Mathf.Sin(Time.time * hoverFrequency) * hoverAmplitude;
-            transform.position = hoverPos;
-            return;
-        }      
-
-        Vector3 targetPos = pathPoints[currentIndex];        
-        targetPos.y += Mathf.Sin(Time.time * hoverFrequency) * hoverAmplitude;
-
-        transform.position = Vector3.MoveTowards(transform.position, targetPos, moveSpeed * Time.deltaTime);        
-        Vector3 dir = (targetPos - transform.position).normalized;
-        if (dir != Vector3.zero)
-            transform.rotation = Quaternion.LookRotation(dir);
-        if (Vector3.Distance(transform.position, targetPos) < 0.2f)
-        {
-            currentIndex++;
-            if (currentIndex >= pathPoints.Count)
-            {
-                reachedEnd = true;
-                Destroy(gameObject); 
-            }
+            StartMove();
         }
+    }
+
+    private void OnTriggerExit(Collider other)
+    {
+        if (other.CompareTag("Player"))
+        {
+            StartCoroutine(StopMove());
+        }
+    }
+
+    public void StartMove()
+    {
+        if (agent == null)
+        {
+            agent = GetComponent<NavMeshAgent>();
+            if (agent == null) agent = gameObject.AddComponent<NavMeshAgent>();
+        }
+
+        if (questTarget == null) return;
+
+        agent.SetDestination(questTarget.position);
+        agent.speed = moveSpeed;
+        isMoving = true;
+    }
+
+    IEnumerator StopMove()
+    {
+        yield return new WaitForSeconds(timeMove);
+        agent.speed = 0;
+        agent.ResetPath();
+        isMoving = false;
     }
 }
