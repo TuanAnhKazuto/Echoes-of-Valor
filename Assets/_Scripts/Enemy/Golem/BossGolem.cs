@@ -34,6 +34,7 @@ public class BossGolem : MonoBehaviour
     private NavMeshAgent agent;
     public EnemyHealthBar healthBar;
     private float distanceToPlayer;
+    public Next endScene;
 
     [Header("Boss Settings")]
     public float detectionRange = 20f;
@@ -60,6 +61,7 @@ public class BossGolem : MonoBehaviour
 
     void Start()
     {
+        endScene = GetComponent<Next>();
         player = GameObject.FindGameObjectWithTag("Player").transform;
         player = GameObject.FindGameObjectWithTag("Player").transform;
         anim = GetComponent<Animator>();
@@ -235,6 +237,7 @@ public class BossGolem : MonoBehaviour
         if (currentHealth <= 0)
         {
             currentHealth = 0;
+            Invoke(nameof(Die), 0.5f);
             ChangeState(BossState.Dead);
         }
 
@@ -269,6 +272,7 @@ public class BossGolem : MonoBehaviour
     {
         currentState = BossState.Dead;
         anim.SetFloat("HP", currentHealth);
+        endScene.NextBtn();
         Invoke(nameof(DelayDestroy), 1.5f);
         agent.enabled = false;
     }
