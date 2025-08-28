@@ -4,7 +4,7 @@ using UnityEngine.UI;
 
 public class UpgradeSystem : MonoBehaviour
 {
-    public int e = 60; 
+    private int e; 
 
     [Header("Link to Character")]
     public CharacterStats characterStats;
@@ -43,6 +43,7 @@ public class UpgradeSystem : MonoBehaviour
 
     private void Start()
     {
+        e  = 60;
         if (characterStats == null)
         {
             characterStats = FindAnyObjectByType<CharacterStats>();
@@ -54,6 +55,17 @@ public class UpgradeSystem : MonoBehaviour
         addManaButton.onClick.AddListener(AddMana);
         addAttackButton.onClick.AddListener(AddAttack);
         addSpeedButton.onClick.AddListener(AddSpeed);
+
+        UpdateUI();
+    }
+    public void ResetUpgrades()
+    {
+        e = 60;
+
+        hpUpgradeCount = 0;
+        manaUpgradeCount = 0;
+        attackUpgradeCount = 0;
+        speedUpgradeCount = 0;
 
         UpdateUI();
     }
