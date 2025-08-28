@@ -178,6 +178,7 @@ public class GameResult : MonoBehaviour
     public void OnNewGame()
     {
         SceneManager.LoadScene("CharacterCreation");
+        FindAnyObjectByType<UpgradeSystem>().ResetUpgrades();
     }
 
     public void OpenAdminPanel()
