@@ -11,8 +11,8 @@ GameObject:
   - component: {fileID: 5703257651129429414}
   - component: {fileID: 3558290783035270729}
   - component: {fileID: 3265316975743324268}
-  - component: {fileID: -934978068774821625}
-  - component: {fileID: -4327690773684729900}
+  - component: {fileID: 6041572859533038453}
+  - component: {fileID: 854791898596310699}
   m_Layer: 0
   m_Name: Target VFX
   m_TagString: Untagged
@@ -29,7 +29,7 @@ Transform:
   m_GameObject: {fileID: 823470740196258177}
   serializedVersion: 2
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 13.34, y: 0, z: 26.47}
+  m_LocalPosition: {x: 13.34, y: 2.2, z: 26.47}
   m_LocalScale: {x: 1.5, y: 1.5, z: 1.5}
   m_ConstrainProportionsScale: 0
   m_Children:
@@ -4838,7 +4838,7 @@ ParticleSystem:
         m_PostInfinity: 2
         m_RotationOrder: 4
     vectorLabel1_3: W
---- !u!195 &-934978068774821625
+--- !u!195 &6041572859533038453
 NavMeshAgent:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -4849,18 +4849,18 @@ NavMeshAgent:
   m_AgentTypeID: 0
   m_Radius: 0.5
   m_Speed: 3.5
-  m_Acceleration: 5
+  m_Acceleration: 8
   avoidancePriority: 50
-  m_AngularSpeed: 0
+  m_AngularSpeed: 120
   m_StoppingDistance: 0
   m_AutoTraverseOffMeshLink: 1
   m_AutoBraking: 1
   m_AutoRepath: 1
-  m_Height: 2
-  m_BaseOffset: 0
+  m_Height: 2.5
+  m_BaseOffset: 1.5
   m_WalkableMask: 4294967295
   m_ObstacleAvoidanceType: 4
---- !u!65 &-4327690773684729900
+--- !u!65 &854791898596310699
 BoxCollider:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -4879,8 +4879,8 @@ BoxCollider:
   m_ProvidesContacts: 0
   m_Enabled: 1
   serializedVersion: 3
-  m_Size: {x: 2.520042, y: 2.7722907, z: 5.2133827}
-  m_Center: {x: 0.055020332, y: -0.8861431, z: 0.08169111}
+  m_Size: {x: 2, y: 2, z: 2}
+  m_Center: {x: -0.07432048, y: 0, z: -0.11111625}
 --- !u!1 &2061677470402779123
 GameObject:
   m_ObjectHideFlags: 0
