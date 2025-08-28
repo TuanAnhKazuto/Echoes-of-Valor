@@ -12,10 +12,22 @@ public class MainMenu : MonoBehaviour
     }
     public void OnPlayGame()
     {
-        PlayerPrefs.DeleteAll(); 
+        PlayerPrefs.DeleteAll();
+        SceneManager.sceneLoaded += OnSceneLoaded;
         SceneManager.LoadScene("CharacterCreation");
     }
 
+    private void OnSceneLoaded(Scene scene, LoadSceneMode mode)
+    {
+        if (scene.name == "CharacterCreation")
+        {
+            var upgradeSystem = FindAnyObjectByType<UpgradeSystem>();
+            if (upgradeSystem != null)
+                upgradeSystem.ResetUpgrades();
+
+            SceneManager.sceneLoaded -= OnSceneLoaded;
+        }
+    }
 
     public void OnSetting(bool isOpen)
     {

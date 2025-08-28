@@ -1,10 +1,12 @@
 ﻿using TMPro;
 using UnityEngine;
 using UnityEngine.UI;
+using UnityEngine.SceneManagement;
+using System.Collections;
 
 public class UpgradeSystem : MonoBehaviour
 {
-    private int e; 
+    private int e;
 
     [Header("Link to Character")]
     public CharacterStats characterStats;
@@ -43,24 +45,33 @@ public class UpgradeSystem : MonoBehaviour
 
     private void Start()
     {
-        e  = 60;
+        e = 20;
+
         if (characterStats == null)
-        {
             characterStats = FindAnyObjectByType<CharacterStats>();
-        }
+
         if (upgradePanel != null)
             upgradePanel.SetActive(false);
 
-        addHPButton.onClick.AddListener(AddHP);
-        addManaButton.onClick.AddListener(AddMana);
-        addAttackButton.onClick.AddListener(AddAttack);
-        addSpeedButton.onClick.AddListener(AddSpeed);
+        addHPButton?.onClick.AddListener(AddHP);
+        addManaButton?.onClick.AddListener(AddMana);
+        addAttackButton?.onClick.AddListener(AddAttack);
+        addSpeedButton?.onClick.AddListener(AddSpeed);
 
-        UpdateUI();
+        StartCoroutine(InitUI());
     }
+
+    private IEnumerator InitUI()
+    {
+        yield return null;
+        if (characterStats == null)
+            characterStats = FindAnyObjectByType<CharacterStats>();
+        ResetUpgrades();
+    }
+
     public void ResetUpgrades()
     {
-        e = 60;
+        e = 20;
 
         hpUpgradeCount = 0;
         manaUpgradeCount = 0;
@@ -73,14 +84,9 @@ public class UpgradeSystem : MonoBehaviour
     private void Update()
     {
         if (Input.GetKeyDown(KeyCode.K))
-        {
             TogglePanel();
-        }
-        else if (Input.GetKeyDown(KeyCode.Escape))
-        {
-            if (isPanelActive)
-                TogglePanel();
-        }
+        else if (Input.GetKeyDown(KeyCode.Escape) && isPanelActive)
+            TogglePanel();
     }
 
     private void TogglePanel()
@@ -99,8 +105,8 @@ public class UpgradeSystem : MonoBehaviour
         {
             e -= cost;
             characterStats.maxHealth += 25;
-            characterStats.currentHealth = characterStats.maxHealth; // hồi đầy máu khi nâng cấp
-            characterStats.healthBar.UpdateHealth((int)characterStats.currentHealth, (int)characterStats.maxHealth);
+            characterStats.currentHealth = characterStats.maxHealth;
+            characterStats.healthBar?.UpdateHealth((int)characterStats.currentHealth, (int)characterStats.maxHealth);
 
             hpUpgradeCount++;
             UpdateUI();
@@ -113,8 +119,8 @@ public class UpgradeSystem : MonoBehaviour
         {
             e -= cost;
             characterStats.maxMana += 10;
-            characterStats.currentMana = characterStats.maxMana; // hồi đầy mana khi nâng cấp
-            characterStats.manaBar.UpdateMana(characterStats.currentMana, characterStats.maxMana);
+            characterStats.currentMana = characterStats.maxMana;
+            characterStats.manaBar?.UpdateMana(characterStats.currentMana, characterStats.maxMana);
 
             manaUpgradeCount++;
             UpdateUI();
@@ -135,10 +141,10 @@ public class UpgradeSystem : MonoBehaviour
 
     private void AddSpeed()
     {
-        if (e >= cost)
+        if (e >= cost && characterStats != null)
         {
             e -= cost;
-            characterStats.baseDefense += 1; // tạm thời thay cho speed nếu chưa có biến speed
+            characterStats.baseDefense += 1;
 
             speedUpgradeCount++;
             UpdateUI();
@@ -149,15 +155,15 @@ public class UpgradeSystem : MonoBehaviour
     {
         if (characterStats == null) return;
 
-        eText.text = "Echo: " + e;
-        hpText.text = "Máu tối đa: " + characterStats.maxHealth;
-        manaText.text = "Mana tối đa: " + characterStats.maxMana;
-        attackText.text = "Tấn công: " + characterStats.baseDamage;
-        speedText.text = "Phòng thủ: " + characterStats.baseDefense;
+        if (eText != null) eText.text = "Echo: " + e;
+        if (hpText != null) hpText.text = "Máu tối đa: " + characterStats.maxHealth;
+        if (manaText != null) manaText.text = "Mana tối đa: " + characterStats.maxMana;
+        if (attackText != null) attackText.text = "Tấn công: " + characterStats.baseDamage;
+        if (speedText != null) speedText.text = "Phòng thủ: " + characterStats.baseDefense;
 
-        hpCountText.text = "" + hpUpgradeCount;
-        manaCountText.text = "" + manaUpgradeCount;
-        attackCountText.text = "" + attackUpgradeCount;
-        speedCountText.text = "" + speedUpgradeCount;
+        if (hpCountText != null) hpCountText.text = hpUpgradeCount.ToString();
+        if (manaCountText != null) manaCountText.text = manaUpgradeCount.ToString();
+        if (attackCountText != null) attackCountText.text = attackUpgradeCount.ToString();
+        if (speedCountText != null) speedCountText.text = speedUpgradeCount.ToString();
     }
 }
