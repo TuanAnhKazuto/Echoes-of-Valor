@@ -30,11 +30,11 @@ public class FireballMover : MonoBehaviour
     {
         agent.baseOffset += upDownSpeed * Time.deltaTime;
 
-        if (agent.baseOffset >= 2f)
+        if (agent.baseOffset >= 1.5f)
         {
             upDownSpeed = -0.5f;
         }
-        else if (agent.baseOffset <= 1.5f)
+        else if (agent.baseOffset <= 1f)
         {
             upDownSpeed = 0.5f;
         }
