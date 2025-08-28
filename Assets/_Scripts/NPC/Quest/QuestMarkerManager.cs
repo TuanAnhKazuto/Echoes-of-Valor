@@ -21,6 +21,7 @@ public class QuestMarkerManager : MonoBehaviour
     {
         if (quest.questLocation == null || activeMarkers.ContainsKey(quest)) return;
 
+        // spawn marker trên vị trí NPC/Quest
         Vector3 spawnPos = quest.questLocation.position;
 
         Collider col = quest.questLocation.GetComponentInChildren<Collider>();
@@ -35,9 +36,7 @@ public class QuestMarkerManager : MonoBehaviour
 
         GameObject marker = Instantiate(markerPrefab, spawnPos, Quaternion.identity);
         marker.transform.SetParent(quest.questLocation);
-        activeMarkers[quest] = marker;
-
-        // 🔥 Spawn Fireball dẫn đường
+        activeMarkers[quest] = marker;      
         if (fireballPrefab != null && player != null)
         {
             if (activeFireball != null) Destroy(activeFireball);
@@ -45,7 +44,16 @@ public class QuestMarkerManager : MonoBehaviour
             activeFireball = Instantiate(fireballPrefab, player.position, Quaternion.identity);
 
             FireballMover mover = activeFireball.AddComponent<FireballMover>();
-            mover.InitPath(player, quest.questLocation);
+            mover.questTarget = quest.questLocation;
+            
+            if (mover.questTarget != null)
+            {
+                mover.StartMove();
+            }
+            else
+            {
+                Debug.LogWarning($"⚠ QuestMarkerManager: questLocation của {quest.QuetsItemName} chưa được gán!");
+            }
         }
     }
 
@@ -78,7 +86,8 @@ public class QuestMarkerManager : MonoBehaviour
             activeFireball = null;
         }
     }
-    // 🟢 Ẩn marker bằng Transform (ví dụ: khi đã đến NPC)
+
+  
     public void HideMarkerByTarget(Transform target)
     {
         QuestItem keyToRemove = null;
@@ -98,7 +107,7 @@ public class QuestMarkerManager : MonoBehaviour
             activeMarkers.Remove(keyToRemove);
         }
 
-        // 🔥 Tắt luôn Fireball dẫn đường
+        // Tắt luôn Fireball dẫn đường
         if (activeFireball != null)
         {
             Destroy(activeFireball);

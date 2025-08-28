@@ -368,7 +368,7 @@ public class NPC : MonoBehaviour
                 panelSetup.choiceButtons[i].gameObject.SetActive(true);
                 panelSetup.choiceTexts[i].text = dialogueChoices[i].choiceText;
 
-                int index = i; // tránh lỗi delegate closure
+                int index = i; 
                 panelSetup.choiceButtons[i].onClick.RemoveAllListeners();
                 panelSetup.choiceButtons[i].onClick.AddListener(() =>
                 {
