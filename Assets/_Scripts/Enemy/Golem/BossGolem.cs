@@ -52,6 +52,11 @@ public class BossGolem : MonoBehaviour
     public GameObject groundBreakEffectPrefab;
     public Transform groundBreakEffectSpawnPoint;
 
+    public void HamMa()
+    {
+
+    }
+
 
     void Start()
     {
@@ -127,7 +132,7 @@ public class BossGolem : MonoBehaviour
 
     void AttackPlayer()
     {
-        baseDamage = 70f;
+        baseDamage = 120f;
         agent.SetDestination(transform.position);
         Vector3 direction = (player.position - transform.position).normalized;
         direction.y = 0;
@@ -163,7 +168,7 @@ public class BossGolem : MonoBehaviour
 
     public void Skill1_JumpAttack()
     {
-        baseDamage = 120f;
+        baseDamage = 200;
         anim.SetTrigger("UseSkill01");
 
         // Ngưng di chuyển
@@ -264,6 +269,12 @@ public class BossGolem : MonoBehaviour
     {
         currentState = BossState.Dead;
         anim.SetFloat("HP", currentHealth);
+        Invoke(nameof(DelayDestroy), 1.5f);
         agent.enabled = false;
+    }
+
+    private void DelayDestroy()
+    {
+        Destroy(gameObject);
     }
 }
