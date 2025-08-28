@@ -93,7 +93,10 @@ public class EnemyStats : MonoBehaviour
         skeletonMovement.animator.SetLayerWeight(1, 0.7f);
         skeletonMovement.animator.SetBool("Hit", true);
 
-        DamagePopupSpawner.Instance.ShowDamage(transform.position + Vector3.up * 2f, (int)damage, Color.red);// effect - HP
+        if (currentHealth > 0)
+        {
+            DamagePopupSpawner.Instance.ShowDamage(transform.position + Vector3.up * 2f, (int)damage, Color.red);// effect - HP
+        }
 
         if (currentHealth <= 0)
         {
