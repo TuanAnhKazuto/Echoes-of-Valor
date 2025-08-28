@@ -3,7 +3,7 @@ using UnityEngine;
 
 public class QuestMarkerManager : MonoBehaviour
 {
-    public GameObject markerPrefab;
+     public GameObject markerPrefab;
     private Dictionary<QuestItem, GameObject> activeMarkers = new();
 
     [Header("Fireball dẫn đường")]
@@ -36,24 +36,21 @@ public class QuestMarkerManager : MonoBehaviour
 
         GameObject marker = Instantiate(markerPrefab, spawnPos, Quaternion.identity);
         marker.transform.SetParent(quest.questLocation);
-        activeMarkers[quest] = marker;      
+        activeMarkers[quest] = marker;
+
+        // 🟢 Spawn Fireball dẫn đường
         if (fireballPrefab != null && player != null)
         {
             if (activeFireball != null) Destroy(activeFireball);
 
+            // Spawn ngay tại player
             activeFireball = Instantiate(fireballPrefab, player.position, Quaternion.identity);
 
-            FireballMover mover = activeFireball.AddComponent<FireballMover>();
-            mover.questTarget = quest.questLocation;
-            
-            if (mover.questTarget != null)
-            {
-                mover.StartMove();
-            }
-            else
-            {
-                Debug.LogWarning($"⚠ QuestMarkerManager: questLocation của {quest.QuetsItemName} chưa được gán!");
-            }
+            // Gắn script FireballMover (đã chỉnh sửa ở trên)
+            FireballMover mover = activeFireball.GetComponent<FireballMover>();
+            if (mover == null) mover = activeFireball.AddComponent<FireballMover>();
+
+            mover.questTarget = quest.questLocation; // mục tiêu cuối cùng (NPC hoặc location)
         }
     }
 

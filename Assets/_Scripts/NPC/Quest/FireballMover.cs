@@ -5,82 +5,63 @@ using UnityEngine.AI;
 
 public class FireballMover : MonoBehaviour
 {
+    private Transform player;
     private NavMeshAgent agent;
 
     [Header("Target & Movement")]
-    public Transform questTarget;      // mục tiêu nhiệm vụ
-    public float moveSpeed = 15f;      // tốc độ bay
-    public float timeMove = 2f;        // thời gian chờ trước khi dừng
-    private bool isMoving = false;
+    public Transform questTarget;       // NPC hoặc vị trí nhiệm vụ
+    public float moveSpeed = 15f;       // tốc độ bay
+    public float followDistance = 3f;   // đi trước Player
+    public float stopDistance = 2f;     // dừng khi gần mục tiêu
+    public float playerInfluenceRadius = 10f; // phạm vi để Fireball “dẫn đường” theo player
 
     [Header("Hover Settings")]
-    public float hoverAmplitude = 0.5f;   
-    public float hoverFrequency = 2f;     
-    public float upDownSpeed = 0.5f;         
-
+    public float upDownSpeed = 0.5f;
 
     private void Start()
     {
-        agent = GetComponent<NavMeshAgent>();
-        if (agent == null) agent = gameObject.AddComponent<NavMeshAgent>();      
+        player = GameObject.FindGameObjectWithTag("Player")?.transform;
 
+        agent = GetComponent<NavMeshAgent>();
+        if (agent == null) agent = gameObject.AddComponent<NavMeshAgent>();
+
+        agent.speed = moveSpeed;
+        agent.stoppingDistance = 0;
     }
 
     private void Update()
     {
+        if (player == null || questTarget == null) return;
+
+        // Hover VFX
         agent.baseOffset += upDownSpeed * Time.deltaTime;
+        if (agent.baseOffset >= 2f) upDownSpeed = -0.5f;
+        else if (agent.baseOffset <= 1.5f) upDownSpeed = 0.5f;
 
-        if (agent.baseOffset >= 1.5f)
-        {
-            upDownSpeed = -0.5f;
-        }
-        else if (agent.baseOffset <= 1f)
-        {
-            upDownSpeed = 0.5f;
-        }
+        float distToTarget = Vector3.Distance(transform.position, questTarget.position);
 
-        if (gameObject.transform.position == questTarget.transform.position)
+        // Nếu tới gần target thì hủy
+        if (distToTarget <= stopDistance)
         {
             Destroy(gameObject);
+            return;
         }
-    }
 
-    private void OnTriggerStay(Collider other)
-    {
-        if (other.CompareTag("Player"))
+        // Nếu player ở gần → dẫn đường bằng cách “chạy trước mặt player về phía target”
+        float distPlayerToFireball = Vector3.Distance(player.position, transform.position);
+        if (distPlayerToFireball <= playerInfluenceRadius)
         {
-            StartMove();
-        }
-    }
+            Vector3 dirToTarget = (questTarget.position - player.position).normalized;
+            Vector3 aheadPos = player.position + dirToTarget * followDistance;
 
-    private void OnTriggerExit(Collider other)
-    {
-        if (other.CompareTag("Player"))
+            agent.isStopped = false;
+            agent.SetDestination(aheadPos);
+        }
+        else
         {
-            StartCoroutine(StopMove());
+            // Player đi xa → Fireball tự đi thẳng tới questTarget
+            agent.isStopped = false;
+            agent.SetDestination(questTarget.position);
         }
-    }
-
-    public void StartMove()
-    {
-        if (agent == null)
-        {
-            agent = GetComponent<NavMeshAgent>();
-            if (agent == null) agent = gameObject.AddComponent<NavMeshAgent>();
-        }
-
-        if (questTarget == null) return;
-
-        agent.SetDestination(questTarget.position);
-        agent.speed = moveSpeed;
-        isMoving = true;
-    }
-
-    IEnumerator StopMove()
-    {
-        yield return new WaitForSeconds(timeMove);
-        agent.speed = 0;
-        agent.ResetPath();
-        isMoving = false;
     }
 }
