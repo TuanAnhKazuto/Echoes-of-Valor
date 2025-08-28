@@ -43,7 +43,7 @@ public class SaveGameManager : MonoBehaviour
         {
             yield return new WaitForSeconds(autoSaveInterval);
             SaveFullGame();
-            Debug.LogWarning("Game auto-saved.");
+            //Debug.LogWarning("Game auto-saved.");
         }
     }
 

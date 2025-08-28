@@ -4,8 +4,7 @@ public class Portal : MonoBehaviour
 {
     [Header("Cổng dịch chuyển")]
     public Transform targetPortal;
-    public float offsetForward = 2f;  // dịch ra trước cổng
-    public float offsetUp = 1f;       // nhấc player lên
+
 
     private void OnTriggerEnter(Collider other)
     {
@@ -14,12 +13,16 @@ public class Portal : MonoBehaviour
         {
             Transform player = other.transform;
 
-            Vector3 targetPos = targetPortal.position
-                                + targetPortal.forward * offsetForward
-                                + Vector3.up * offsetUp;
+            CharacterController controller = other.GetComponent<CharacterController>();
+            controller.enabled = false;
+
+            Vector3 targetPos = new(targetPortal.position.x, targetPortal.position.y, targetPortal.position.z);
 
             player.position = targetPos;
             player.rotation = targetPortal.rotation;
+
+            other.transform.position = targetPos;
+            controller.enabled = true;
 
             Debug.Log("Teleport tới: " + targetPortal.name);
         }
