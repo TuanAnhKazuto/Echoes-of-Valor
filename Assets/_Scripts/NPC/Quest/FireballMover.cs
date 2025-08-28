@@ -10,7 +10,7 @@ public class FireballMover : MonoBehaviour
     [Header("Target & Movement")]
     public Transform questTarget;      // mục tiêu nhiệm vụ
     public float moveSpeed = 15f;      // tốc độ bay
-    public float timeMove = 1f;        // thời gian chờ trước khi dừng
+    public float timeMove = 2f;        // thời gian chờ trước khi dừng
     private bool isMoving = false;
 
     [Header("Hover Settings")]
